@@ -1,4 +1,28 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+/ProjetoMulaCar/manifest.mf
+/ProjetoMulaCar/build.xml
+/ProjetoMulaCar/dist/
 /ProjetoMulaCar/build/
-ProjetoMulaCar/build.xml
-ProjetoMulaCar/manifest.mf
-ProjetoMulaCar/nbproject/
+/ProjetoMulaCar/nbproject/
+/ProjetoMulaCar/src/br/com/pi/util/Conexao.java
+/ProjetoMulaCar/src/br/com/pi/util/postgresql-42.2.16.jar
