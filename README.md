@@ -14,7 +14,7 @@ Sistema de gerenciamento de locação de veículos
     <img alt="Jhonathan dos reis" src="https://img.shields.io/badge/Jhonathan dos reis-P.I-blue">
   </a>
     <a href="https://github.com/Gustavo-404">
-    <img alt="Gustavo Gabriel" src="https://img.shields.io/badge/ustavo Gabriel-P.I-green">
+    <img alt="Gustavo Gabriel" src="https://img.shields.io/badge/Gustavo Gabriel-P.I-green">
   </a>
     <a href="https://github.com/MiguellNeto">
     <img alt="Miguel Neto" src="https://img.shields.io/badge/Miguel Neto-P.I-red">
