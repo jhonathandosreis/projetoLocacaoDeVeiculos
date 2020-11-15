@@ -10,7 +10,7 @@ Sistema de gerenciamento de locação de veículos
 </h4>
 
 <p align="center">
-  <a href="https://github.com/anisberto">
+  <a href="https://github.com/Jhonathanreis">
     <img alt="Jhonathan dos reis" src="https://img.shields.io/badge/Jhonathan dos reis-P.I-blue">
   </a>
     <a href="https://github.com/Gustavo-404">
