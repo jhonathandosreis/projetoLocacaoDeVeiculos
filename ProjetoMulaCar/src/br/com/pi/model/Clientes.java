@@ -32,13 +32,37 @@ public class Clientes {
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-
+    public Clientes() {
+        
+    }
+    
+    public Clientes(int iden, String nome, double telefone, String email) {
+        
+        this.iden = iden;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+    }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- GET ----------------------------------------------------------------------------------------->
     //
+    public int getIden() {
+        return iden;
+    }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public double getTelefone() {
+        return telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
 
@@ -71,5 +95,6 @@ public class Clientes {
 
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
+
 
 }
