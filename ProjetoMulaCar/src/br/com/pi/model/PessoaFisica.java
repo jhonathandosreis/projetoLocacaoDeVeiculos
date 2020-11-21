@@ -89,33 +89,33 @@ public class PessoaFisica {
 
     //--- SET ----------------------------------------------------------------------------------------->
     //
+    public void setIden(int iden) {
+        this.iden = iden;
+    }
 
+    public void setRg(int rg) {
+        this.rg = rg;
+    }
+
+    public void setCpf(double cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setNumeroCnh(int numeroCnh) {
+        this.numeroCnh = numeroCnh;
+    }
+
+    public void setCategoriaCnh(String categoriaCnh) {
+        this.categoriaCnh = categoriaCnh;
+    }
+
+    public void setDataValidade(DateFormat dataValidade) {
+        this.dataValidade = dataValidade;
+    }
+
+    public void setPfi_cli_iden(Clientes pfi_cli_iden) {
+        this.pfi_cli_iden = pfi_cli_iden;
+    }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //
-
-    //--- CREATE -------------------------------------------------------------------------------------->
-    //
-
-    //--- FIM CREATE ----------------------------------------------------------------------------------|
-    //
-
-    //--- DELETE -------------------------------------------------------------------------------------->
-    //
-    
-    //--- FIM DELETE ----------------------------------------------------------------------------------|
-    //
-    
-    //--- UPDATE -------------------------------------------------------------------------------------->
-    //
-
-    //--- FIM UPDATE ----------------------------------------------------------------------------------|
-    //
-    
-    //--- READ ---------------------------------------------------------------------------------------->
-    //
-
-    //--- FIM READ ------------------------------------------------------------------------------------|
-    //
-
-
 }
