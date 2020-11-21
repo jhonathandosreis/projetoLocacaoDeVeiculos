@@ -55,6 +55,15 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="jButtonCadastrar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="290" max="-2" attributes="0"/>
+                  <Component id="jButtonAlterar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jButtonRemover" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -62,8 +71,14 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jButtonCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonRemover" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="476" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="434" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -116,7 +131,11 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="CATEGORIA"/>
+                <TitledBorder title="CATEGORIA">
+                  <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </TitledBorder>
               </Border>
             </Property>
           </Properties>
@@ -192,6 +211,30 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="jButtonCadastrar">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/salve.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="CADASTRAR"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonAlterar">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/editar.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="ALTERAR"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonRemover">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/lixo.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="REMOVER"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

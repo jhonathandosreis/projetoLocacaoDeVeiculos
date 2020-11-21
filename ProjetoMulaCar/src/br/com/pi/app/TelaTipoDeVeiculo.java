@@ -84,10 +84,13 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
+        jButtonCadastrar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/salve.png")); // NOI18N
         jButtonCadastrar.setText("CADASTRAR");
 
+        jButtonAlterar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/editar.png")); // NOI18N
         jButtonAlterar.setText("ALTERAR");
 
+        jButtonRemover.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/lixo.png")); // NOI18N
         jButtonRemover.setText("REMOVER");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -117,7 +120,7 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
                 .addComponent(jButtonCadastrar)
                 .addGap(296, 296, 296)
                 .addComponent(jButtonAlterar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 456, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 384, Short.MAX_VALUE)
                 .addComponent(jButtonRemover)
                 .addGap(44, 44, 44))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()

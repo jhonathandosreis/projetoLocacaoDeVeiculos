@@ -106,10 +106,13 @@ public class TelaReservas extends javax.swing.JFrame {
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
+        jButton1.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/salve.png")); // NOI18N
         jButton1.setText("CADASTRAR");
 
+        jButton2.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/editar.png")); // NOI18N
         jButton2.setText("ALTERAR");
 
+        jButton3.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/lixo.png")); // NOI18N
         jButton3.setText("REMOVER");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(

@@ -74,7 +74,7 @@
                       <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="393" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="376" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -202,16 +202,25 @@
         </Container>
         <Component class="javax.swing.JButton" name="jButtonSelecionarLocacao">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/arquivo.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="SELECIONAR LOCA&#xc7;&#xc3;O"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonFinalizar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/backspace.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="FINALIZAR"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonCancelar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/retroceder.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="CANCELAR"/>
           </Properties>
         </Component>

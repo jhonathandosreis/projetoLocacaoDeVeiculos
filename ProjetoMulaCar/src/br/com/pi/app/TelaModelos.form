@@ -82,7 +82,7 @@
                       <Component id="jButtonRemover" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="384" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="367" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -181,16 +181,25 @@
         </Container>
         <Component class="javax.swing.JButton" name="jButtonCadastrar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/salve.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="CADASTRAR"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonAlterar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/editar.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="ALTERAR"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonRemover">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/lixo.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="REMOVER"/>
           </Properties>
         </Component>

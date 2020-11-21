@@ -73,9 +73,9 @@
                               <Component id="jButtonAlterar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jButtonRemover" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="196" max="-2" attributes="0"/>
                               <Component id="jButtonLimpar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -90,7 +90,7 @@
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                      <EmptySpace pref="23" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButtonCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -455,21 +455,33 @@
             </Container>
             <Component class="javax.swing.JButton" name="jButtonCadastrar">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/salve.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="CADASTRAR"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonAlterar">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/editar.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="ALTERAR"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonRemover">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/lixo.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="EXCLUIR"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonLimpar">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/limpar-limpo.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="LIMPAR"/>
               </Properties>
             </Component>

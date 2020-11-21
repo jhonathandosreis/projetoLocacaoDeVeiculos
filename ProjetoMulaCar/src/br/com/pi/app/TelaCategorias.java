@@ -36,6 +36,9 @@ public class TelaCategorias extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextFieldIdPessoaFisica = new javax.swing.JTextField();
+        jButtonCadastrar = new javax.swing.JButton();
+        jButtonAlterar = new javax.swing.JButton();
+        jButtonRemover = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CATEGORIA");
@@ -63,7 +66,7 @@ public class TelaCategorias extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(0).setMaxWidth(40);
         }
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("CATEGORIA"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "CATEGORIA"));
 
         jLabel1.setText("ID");
 
@@ -109,6 +112,15 @@ public class TelaCategorias extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jButtonCadastrar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/salve.png")); // NOI18N
+        jButtonCadastrar.setText("CADASTRAR");
+
+        jButtonAlterar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/editar.png")); // NOI18N
+        jButtonAlterar.setText("ALTERAR");
+
+        jButtonRemover.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/lixo.png")); // NOI18N
+        jButtonRemover.setText("REMOVER");
+
         javax.swing.GroupLayout jPanelCategoriaLayout = new javax.swing.GroupLayout(jPanelCategoria);
         jPanelCategoria.setLayout(jPanelCategoriaLayout);
         jPanelCategoriaLayout.setHorizontalGroup(
@@ -119,14 +131,27 @@ public class TelaCategorias extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(jPanelCategoriaLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jButtonCadastrar)
+                .addGap(290, 290, 290)
+                .addComponent(jButtonAlterar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonRemover)
+                .addGap(43, 43, 43))
         );
         jPanelCategoriaLayout.setVerticalGroup(
             jPanelCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCategoriaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCadastrar)
+                    .addComponent(jButtonRemover)
+                    .addComponent(jButtonAlterar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -193,6 +218,9 @@ public class TelaCategorias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAlterar;
+    private javax.swing.JButton jButtonCadastrar;
+    private javax.swing.JButton jButtonRemover;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

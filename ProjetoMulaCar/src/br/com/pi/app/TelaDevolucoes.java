@@ -121,10 +121,13 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
+        jButtonSelecionarLocacao.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/arquivo.png")); // NOI18N
         jButtonSelecionarLocacao.setText("SELECIONAR LOCAÇÃO");
 
+        jButtonFinalizar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/backspace.png")); // NOI18N
         jButtonFinalizar.setText("FINALIZAR");
 
+        jButtonCancelar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/retroceder.png")); // NOI18N
         jButtonCancelar.setText("CANCELAR");
 
         jTableDevolucao.setModel(new javax.swing.table.DefaultTableModel(
@@ -178,7 +181,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                     .addComponent(jButtonFinalizar)
                     .addComponent(jButtonCancelar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
