@@ -65,10 +65,24 @@ public class Clientes {
     }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
+    public void setIden(int iden) {
+        this.iden = iden;
+    }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setTelefone(double telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     //--- SET ----------------------------------------------------------------------------------------->
     //
-
+    
     //--- FIM SET -------------------------------------------------------------------------------------|
     //
 
@@ -95,6 +109,7 @@ public class Clientes {
 
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
+
 
 
 }
