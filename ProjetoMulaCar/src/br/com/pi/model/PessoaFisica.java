@@ -22,7 +22,7 @@ import java.text.DateFormat;
  * @author jhonlinux
  */
 
-public class PessoaFisica {
+public class PessoaFisica extends Clientes{
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
@@ -41,9 +41,10 @@ public class PessoaFisica {
     public PessoaFisica() {
         
     }
-    
-    public PessoaFisica(int iden, int rg, double cpf, int numeroCnh, String categoriaCnh, 
-            DateFormat dataValidade, Clientes pfi_cli_iden) {
+
+    public PessoaFisica(int iden, String nome, double telefone, String email, int rg, double cpf, 
+            int numeroCnh, String categoriaCnh, DateFormat dataValidade, Clientes pfi_cli_iden) {
+        super(iden, nome, telefone, email);
         this.iden = iden;
         this.rg = rg;
         this.cpf = cpf;
