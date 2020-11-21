@@ -24,6 +24,9 @@ public class Clientes {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private int iden = 0;
+    private String nome = "";
+    private double telefone = 0;
+    private String email = "";
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
