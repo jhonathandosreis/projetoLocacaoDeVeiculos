@@ -24,19 +24,52 @@ public class PessoaJuridica extends Clientes{
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
-
+    private int iden = 0;
+    private double cnpj = 0;
+    private String nomeFantasia = "";
+    private String razaoSocial = "";
+    private Clientes pju_cli_iden = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
+    public PessoaJuridica() {
+    }
 
+    public PessoaJuridica(int iden, String nome, double telefone, String email, 
+            double cnpj, String nomeFantasia, String razaoSocial, Clientes pju_cli_iden) {
+        super(iden, nome, telefone, email);
+        this.iden = iden;
+        this.cnpj =  cnpj;
+        this.nomeFantasia = nomeFantasia;
+        this.razaoSocial = razaoSocial;
+        this.pju_cli_iden = pju_cli_iden;
+    }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- GET ----------------------------------------------------------------------------------------->
     //
+    public int getIden() {
+        return iden;
+    }
 
+    public double getCnpj() {
+        return cnpj;
+    }
+
+    public String getNomeFantasia() {
+        return nomeFantasia;
+    }
+
+    public String getRazaoSocial() {
+        return razaoSocial;
+    }
+
+    public Clientes getPju_cli_iden() {
+        return pju_cli_iden;
+    }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
 
@@ -69,5 +102,7 @@ public class PessoaJuridica extends Clientes{
 
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
+
+
 
 }
