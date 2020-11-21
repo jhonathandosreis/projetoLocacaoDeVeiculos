@@ -98,33 +98,41 @@ public class Veiculos {
 
     //--- SET ----------------------------------------------------------------------------------------->
     //
+    public void setIden(int iden) {
+        this.iden = iden;
+    }
 
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public void setQuilimetragem(int quilimetragem) {
+        this.quilimetragem = quilimetragem;
+    }
+
+    public void setAnoDoVeiculo(int anoDoVeiculo) {
+        this.anoDoVeiculo = anoDoVeiculo;
+    }
+
+    public void setRenavam(double renavam) {
+        this.renavam = renavam;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setPrecoDeCompra(int precoDeCompra) {
+        this.precoDeCompra = precoDeCompra;
+    }
+
+    public void setObservacoes(int observacoes) {
+        this.observacoes = observacoes;
+    }
+
+    public void setCapacidade(float capacidade) {
+        this.capacidade = capacidade;
+    }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //
-
-    //--- CREATE -------------------------------------------------------------------------------------->
-    //
-
-    //--- FIM CREATE ----------------------------------------------------------------------------------|
-    //
-
-    //--- DELETE -------------------------------------------------------------------------------------->
-    //
-    
-    //--- FIM DELETE ----------------------------------------------------------------------------------|
-    //
-    
-    //--- UPDATE -------------------------------------------------------------------------------------->
-    //
-
-    //--- FIM UPDATE ----------------------------------------------------------------------------------|
-    //
-    
-    //--- READ ---------------------------------------------------------------------------------------->
-    //
-
-    //--- FIM READ ------------------------------------------------------------------------------------|
-    //
-
-
 }
