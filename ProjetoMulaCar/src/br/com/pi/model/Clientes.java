@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 15/11/2020 04:13:52 
+ *  Criado em  : 21/11/2020 03:14:09 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -19,12 +19,11 @@ package br.com.pi.model;
  *
  * @author jhonlinux
  */
-
-public class ClienteModel {
+public class Clientes {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
-
+    private int iden = 0;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
