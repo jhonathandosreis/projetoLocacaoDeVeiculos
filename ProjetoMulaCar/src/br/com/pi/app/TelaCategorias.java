@@ -16,6 +16,7 @@ public class TelaCategorias extends javax.swing.JFrame {
      */
     public TelaCategorias() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -41,7 +42,7 @@ public class TelaCategorias extends javax.swing.JFrame {
         jButtonRemover = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("CATEGORIA");
+        setTitle("[CATEGORIA]");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,7 +94,7 @@ public class TelaCategorias extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldNomeCategoria)))
-                .addGap(350, 758, Short.MAX_VALUE))
+                .addGap(350, 801, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

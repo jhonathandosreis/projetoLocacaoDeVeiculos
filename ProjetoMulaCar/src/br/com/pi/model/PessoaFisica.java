@@ -43,8 +43,8 @@ public class PessoaFisica extends Clientes{
     }
 
     public PessoaFisica(int iden, String nome, double telefone, String email, int rg, double cpf, 
-            int numeroCnh, String categoriaCnh, DateFormat dataValidade, Clientes pfi_cli_iden) {
-        super(iden, nome, telefone, email);
+            int numeroCnh, String categoriaCnh, DateFormat dataValidade, Clientes pfi_cli_iden, Enderecos enderecos) {
+        super(iden, nome, telefone, email, enderecos);
         this.iden = iden;
         this.rg = rg;
         this.cpf = cpf;

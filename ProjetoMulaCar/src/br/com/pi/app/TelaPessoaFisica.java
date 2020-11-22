@@ -25,6 +25,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
      */
     public TelaPessoaFisica() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -80,7 +81,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         jTableConsultaPessoaFisica = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("[Tela Pessoa Fisica]");
+        setTitle("[PESSOAS FÍSICA]");
 
         jPanel2PessoaFisica.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados Gerais"));
 

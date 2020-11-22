@@ -25,6 +25,7 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
      */
     public TelaTipoDeVeiculo() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -48,6 +49,7 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("[TIPOS DE VEÍCULOS]");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Tipo de Veículo"));
 

@@ -25,6 +25,7 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
      */
     public TelaFinalizarLocacao() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -49,6 +50,7 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
         jButtonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("[FINALICAR LOCAÇÃO DO VEÍCULO]");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Finalizar Locação"));
 

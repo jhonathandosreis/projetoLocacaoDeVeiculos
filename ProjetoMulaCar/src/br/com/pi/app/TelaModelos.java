@@ -25,6 +25,7 @@ public class TelaModelos extends javax.swing.JFrame {
      */
     public TelaModelos() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -50,6 +51,7 @@ public class TelaModelos extends javax.swing.JFrame {
         jTableModelo = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("[MODELOS DOS VEÍCULOS]");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Modelo"));
 

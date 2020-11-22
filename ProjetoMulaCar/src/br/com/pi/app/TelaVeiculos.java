@@ -25,6 +25,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
      */
     public TelaVeiculos() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -70,6 +71,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jTableVeiculo = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("[VEÍCULOS]");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Veículo"));
 

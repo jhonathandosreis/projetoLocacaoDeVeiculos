@@ -27,6 +27,7 @@ public class Clientes {
     private String nome = "";
     private double telefone = 0;
     private String email = "";
+    private Enderecos enderecos = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -36,12 +37,13 @@ public class Clientes {
         
     }
     
-    public Clientes(int iden, String nome, double telefone, String email) {
+    public Clientes(int iden, String nome, double telefone, String email, Enderecos enderecos) {
         
         this.iden = iden;
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
+        this.enderecos = enderecos;
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -63,6 +65,10 @@ public class Clientes {
     public String getEmail() {
         return email;
     }
+    
+    public Enderecos getEnderecos() {
+        return enderecos;
+    }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
     
@@ -83,6 +89,10 @@ public class Clientes {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public void setEnderecos(Enderecos enderecos) {
+        this.enderecos = enderecos;
+    }
     //--- FIM SET -------------------------------------------------------------------------------------|
-    //
+    //    
 }

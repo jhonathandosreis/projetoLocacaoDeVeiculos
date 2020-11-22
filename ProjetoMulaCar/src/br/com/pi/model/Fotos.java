@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 21/11/2020 03:48:54 
+ *  Criado em  : 22/11/2020 16:50:43 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -12,85 +12,75 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
+
 package br.com.pi.model;
 
 /**
  *
  * @author jhonlinux
  */
-public class PessoaJuridica extends Clientes {
+public class Fotos {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
-    private int iden = 0;
-    private double cnpj = 0;
-    private String nomeFantasia = "";
-    private String razaoSocial = "";
-    private Clientes pju_cli_iden = null;
+    private int fot_iden = 0;
+    private String fot_caminho = "";
+    private String fot_descricao = "";
+    private Motoristas motorista = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-    public PessoaJuridica() {
+    public Fotos() {
+        
     }
 
-    public PessoaJuridica(int iden, String nome, double telefone, String email,
-            double cnpj, String nomeFantasia, String razaoSocial, Clientes pju_cli_iden, Enderecos enderecos) {
-        super(iden, nome, telefone, email, enderecos);
-        this.iden = iden;
-        this.cnpj = cnpj;
-        this.nomeFantasia = nomeFantasia;
-        this.razaoSocial = razaoSocial;
-        this.pju_cli_iden = pju_cli_iden;
+    public Fotos(int fot_iden, String fot_caminho, String fot_descricao, Motoristas motoristas) {
+        this.fot_iden = fot_iden;
+        this.fot_caminho = fot_caminho;
+        this.fot_descricao =  fot_descricao;
+        this.motorista = motoristas;
     }
-
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
+
     //--- GET ----------------------------------------------------------------------------------------->
     //
-    public int getIden() {
-        return iden;
+    public int getFot_iden() {
+        return fot_iden;
     }
 
-    public double getCnpj() {
-        return cnpj;
+    public String getFot_caminho() {
+        return fot_caminho;
     }
 
-    public String getNomeFantasia() {
-        return nomeFantasia;
+    public String getFot_descricao() {
+        return fot_descricao;
     }
 
-    public String getRazaoSocial() {
-        return razaoSocial;
-    }
-
-    public Clientes getPju_cli_iden() {
-        return pju_cli_iden;
+    public Motoristas getMotorista() {
+        return motorista;
     }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
 
     //--- SET ----------------------------------------------------------------------------------------->
     //
-    public void setIden(int iden) {
-        this.iden = iden;
+    public void setFot_iden(int fot_iden) {
+        this.fot_iden = fot_iden;
     }
 
-    public void setCnpj(double cnpj) {
-        this.cnpj = cnpj;
+    public void setFot_caminho(String fot_caminho) {
+        this.fot_caminho = fot_caminho;
     }
 
-    public void setNomeFantasia(String nomeFantasia) {
-        this.nomeFantasia = nomeFantasia;
+    public void setFot_descricao(String fot_descricao) {
+        this.fot_descricao = fot_descricao;
     }
 
-    public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
-    }
-
-    public void setPju_cli_iden(Clientes pju_cli_iden) {
-        this.pju_cli_iden = pju_cli_iden;
+    public void setMotorista(Motoristas motorista) {
+        this.motorista = motorista;
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //

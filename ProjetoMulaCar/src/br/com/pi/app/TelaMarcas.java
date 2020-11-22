@@ -26,6 +26,7 @@ public class TelaMarcas extends javax.swing.JFrame {
      */
     public TelaMarcas() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -49,6 +50,7 @@ public class TelaMarcas extends javax.swing.JFrame {
         jTableMarca = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("[MARCA DO VEÍCULO]");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Marca"));
 
