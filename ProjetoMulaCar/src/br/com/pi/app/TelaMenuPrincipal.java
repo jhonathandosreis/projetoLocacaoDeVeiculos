@@ -96,7 +96,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         );
         jDesktopPanePrincipalLayout.setVerticalGroup(
             jDesktopPanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 639, Short.MAX_VALUE)
+            .addGap(0, 651, Short.MAX_VALUE)
         );
 
         jMenuFuncionario.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/funcionario-cad.png")); // NOI18N
@@ -272,10 +272,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPanePrincipal)
-                .addContainerGap())
+            .addComponent(jDesktopPanePrincipal)
         );
 
         jDesktopPanePrincipal.getAccessibleContext().setAccessibleDescription("");
