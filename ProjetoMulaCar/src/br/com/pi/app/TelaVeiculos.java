@@ -234,11 +234,11 @@ public class TelaVeiculos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "PLACA", "RENAVAM", "ANO", "KM", "VALOR DE COMPRA", "VALOR DE VENDA", "CAPACIDADE", "STATUS", "MODELO", "CATEGORIA", "MARCA"
+                "ID", "PLACA", "RENAVAM", "ANO", "KM", "VALOR DE COMPRA", "CAPACIDADE", "STATUS", "MODELO", "CATEGORIA", "MARCA", "OBSERVAÇÕES"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -253,12 +253,11 @@ public class TelaVeiculos extends javax.swing.JFrame {
             jTableVeiculo.getColumnModel().getColumn(3).setPreferredWidth(100);
             jTableVeiculo.getColumnModel().getColumn(4).setPreferredWidth(150);
             jTableVeiculo.getColumnModel().getColumn(5).setPreferredWidth(250);
-            jTableVeiculo.getColumnModel().getColumn(6).setPreferredWidth(250);
-            jTableVeiculo.getColumnModel().getColumn(7).setPreferredWidth(100);
-            jTableVeiculo.getColumnModel().getColumn(8).setPreferredWidth(150);
-            jTableVeiculo.getColumnModel().getColumn(9).setPreferredWidth(130);
-            jTableVeiculo.getColumnModel().getColumn(10).setPreferredWidth(250);
-            jTableVeiculo.getColumnModel().getColumn(11).setPreferredWidth(150);
+            jTableVeiculo.getColumnModel().getColumn(6).setPreferredWidth(100);
+            jTableVeiculo.getColumnModel().getColumn(7).setPreferredWidth(150);
+            jTableVeiculo.getColumnModel().getColumn(8).setPreferredWidth(130);
+            jTableVeiculo.getColumnModel().getColumn(9).setPreferredWidth(250);
+            jTableVeiculo.getColumnModel().getColumn(10).setPreferredWidth(150);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

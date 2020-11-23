@@ -294,7 +294,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private void jMenuItemLoginFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoginFuncionarioActionPerformed
         try {
             TelaLogin telaLogin = new TelaLogin();
-            jDesktopPanePrincipal.add(telaLogin);
             telaLogin.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);

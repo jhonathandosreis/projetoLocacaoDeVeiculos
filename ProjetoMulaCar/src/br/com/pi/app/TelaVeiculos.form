@@ -436,12 +436,12 @@
                     <Column editable="false" title="ANO" type="java.lang.Object"/>
                     <Column editable="false" title="KM" type="java.lang.Object"/>
                     <Column editable="false" title="VALOR DE COMPRA" type="java.lang.Object"/>
-                    <Column editable="false" title="VALOR DE VENDA" type="java.lang.Object"/>
                     <Column editable="false" title="CAPACIDADE" type="java.lang.Object"/>
                     <Column editable="false" title="STATUS" type="java.lang.Object"/>
                     <Column editable="false" title="MODELO" type="java.lang.Object"/>
                     <Column editable="false" title="CATEGORIA" type="java.lang.Object"/>
                     <Column editable="false" title="MARCA" type="java.lang.Object"/>
+                    <Column editable="true" title="OBSERVA&#xc7;&#xd5;ES" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -476,11 +476,6 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="250" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
                       <Title/>
                       <Editor/>
@@ -502,6 +497,11 @@
                       <Renderer/>
                     </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
