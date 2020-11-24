@@ -16,7 +16,6 @@
 package br.com.pi.dal;
 
 import br.com.pi.model.Locacoes;
-import br.com.pi.model.Motoristas;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -35,12 +34,7 @@ public class LocacoesDal {
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-<<<<<<< HEAD
-
     public LocacoesDal() throws Exception {
-=======
-    public LocacoesDal(Connection conexao) throws Exception {
->>>>>>> a57abf6e1af014180d89d78a4155bbebff70d436
         this.conexao = Conexao.getConexao();
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|

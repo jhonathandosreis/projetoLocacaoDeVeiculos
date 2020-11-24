@@ -34,12 +34,7 @@ public class FotosDal {
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-<<<<<<< HEAD
-
     public FotosDal() throws Exception {
-=======
-    public FotosDal(Connection conexao) throws Exception {
->>>>>>> a57abf6e1af014180d89d78a4155bbebff70d436
         this.conexao = Conexao.getConexao();
     } 
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
