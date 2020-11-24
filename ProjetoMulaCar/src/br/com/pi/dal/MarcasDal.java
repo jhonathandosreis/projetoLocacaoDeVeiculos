@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 23/11/2020 11:06:39 
+ *  Criado em  : 23/11/2020 19:39:24 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -14,7 +14,7 @@
  */
 package br.com.pi.dal;
 
-import br.com.pi.model.Veiculos;
+import br.com.pi.model.Marcas;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
  *
  * @author jhonlinux
  */
-public class VeiculosDal {
+public class MarcasDal {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
@@ -33,7 +33,7 @@ public class VeiculosDal {
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-    public VeiculosDal() throws Exception {
+    public MarcasDal() throws Exception {
         conexao = Conexao.getConexao();
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
@@ -41,7 +41,7 @@ public class VeiculosDal {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void addVeiculos(Veiculos veiculos) throws Exception {
+    public void addMarcas(Marcas marcas) throws Exception {
 
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -49,7 +49,7 @@ public class VeiculosDal {
 
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void updateVeiculos(Veiculos veiculos) throws Exception {
+    public void updateMarcas(Marcas marcas) throws Exception {
 
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -57,7 +57,7 @@ public class VeiculosDal {
 
     //--- DELETE -------------------------------------------------------------------------------------->
     //
-    public void deleteVeiculos(int iden) throws Exception {
+    public void deleteMarcas(int iden) throws Exception {
 
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
@@ -65,11 +65,11 @@ public class VeiculosDal {
 
     //--- READ ---------------------------------------------------------------------------------------->
     //
-    public ArrayList<Veiculos> getAllVeiculos() throws Exception {
+    public ArrayList<Marcas> getAllMarcas() throws Exception {
         return null;
     }
 
-    public Veiculos getVeiculosById(int iden) throws Exception {
+    public Marcas getMarcasById(int iden) throws Exception {
         return null;
     }
     //--- FIM READ ------------------------------------------------------------------------------------|

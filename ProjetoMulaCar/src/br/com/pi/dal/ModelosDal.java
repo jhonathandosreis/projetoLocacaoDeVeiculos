@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 23/11/2020 11:06:39 
+ *  Criado em  : 23/11/2020 19:47:59 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -12,9 +12,10 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
+
 package br.com.pi.dal;
 
-import br.com.pi.model.Veiculos;
+import br.com.pi.model.Modelos;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -23,7 +24,8 @@ import java.util.ArrayList;
  *
  * @author jhonlinux
  */
-public class VeiculosDal {
+
+public class ModelosDal {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
@@ -33,7 +35,7 @@ public class VeiculosDal {
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-    public VeiculosDal() throws Exception {
+    public ModelosDal() throws Exception {
         conexao = Conexao.getConexao();
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
@@ -41,35 +43,35 @@ public class VeiculosDal {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void addVeiculos(Veiculos veiculos) throws Exception {
-
+    public void addModelos(Modelos modelos) throws Exception {
+        
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-
+    
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void updateVeiculos(Veiculos veiculos) throws Exception {
-
+    public void updateModelos(Modelos modelos) throws Exception {
+        
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
     //
-    public void deleteVeiculos(int iden) throws Exception {
-
+    public void deleteModelos(int iden) throws Exception {
+        
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
-
+    
     //--- READ ---------------------------------------------------------------------------------------->
     //
-    public ArrayList<Veiculos> getAllVeiculos() throws Exception {
+    public ArrayList<Modelos> getAllModelos() throws Exception {
         return null;
     }
-
-    public Veiculos getVeiculosById(int iden) throws Exception {
+    
+    public Modelos getModelosById(int iden) throws Exception {
         return null;
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
