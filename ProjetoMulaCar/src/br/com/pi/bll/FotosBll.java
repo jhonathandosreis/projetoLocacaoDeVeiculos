@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 23/11/2020 15:31:58 
+ *  Criado em  : 23/11/2020 23:33:18 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -13,75 +13,60 @@
  *  ---------------------------------------------------------------------------------------------------| 
  */
 
-package br.com.pi.dal;
+package br.com.pi.bll;
 
-import br.com.pi.model.Motoristas;
-import br.com.pi.util.Conexao;
-import java.sql.Connection;
+import br.com.pi.dal.FotosDal;
+import br.com.pi.model.Fotos;
 import java.util.ArrayList;
 
 /**
  *
  * @author Gustavo Gabriel
  */
-public class MotoristasDal {
-  
+public class FotosBll {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
-    //
-    private Connection conexao;
-
+    private FotosDal fotoDal;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
-    //
-
-    public MotoristasDal() throws Exception {
-        this.conexao = Conexao.getConexao();
+    public FotosBll() throws Exception {
+        fotoDal = new FotosDal();
     }
-    
-
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    public void addMotoristas (Motoristas motorista)throws Exception {
+    public void addFotos(Fotos foto) throws Exception {
         
     }
-
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
     
-    
     //--- UPDATE -------------------------------------------------------------------------------------->
-    public void updateMotoristas (Motoristas motorista)throws Exception {
+    public void updateFotos(Fotos foto) throws Exception {
         
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
-    public void deleteMotoristas (Motoristas motorista)throws Exception {
+    public void deleteFotos(Fotos foto) throws Exception {
         
     }
-    
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
     
     //--- READ ---------------------------------------------------------------------------------------->
-    // READ ALL
-    public ArrayList<Motoristas> getAllMotoristas() throws Exception {
-        ArrayList<Motoristas> lista = new ArrayList<Motoristas>();
-        return lista;
+    public ArrayList<Fotos> getAllFotos() throws Exception {
+        
+        return fotoDal.getAllFotos();
     }
     
-    // READ BY ID
-    public Motoristas getMotoristasById(int mot_iden) throws Exception {
-        Motoristas motorista = new Motoristas();
-        return motorista;
+    public Fotos getFotosBy(int fot_iden) throws Exception {
+        
+        return fotoDal.getFotosById(fot_iden);
     }
-
     //--- FIM READ ------------------------------------------------------------------------------------|
-    //
-
+    //    
 }

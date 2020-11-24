@@ -35,7 +35,7 @@ public class FotosDal {
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
 
-    public FotosDal(Connection conexao) throws Exception {
+    public FotosDal() throws Exception {
         this.conexao = Conexao.getConexao();
     }
     

@@ -36,7 +36,7 @@ public class LocacoesDal {
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
 
-    public LocacoesDal(Connection conexao) throws Exception {
+    public LocacoesDal() throws Exception {
         this.conexao = Conexao.getConexao();
     }
     

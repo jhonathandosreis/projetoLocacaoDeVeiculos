@@ -25,21 +25,15 @@ import java.util.ArrayList;
  * @author Gustavo Gabriel
  */
 public class DevolucoesDal {
-//--- ATRIBUTOS ----------------------------------------------------------------------------------->
-    //
+    //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     private Connection conexao;
-
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
-    //
-
-    public DevolucoesDal(Connection conexao) throws Exception {
+    public DevolucoesDal() throws Exception {
         this.conexao = Conexao.getConexao();
     }
-    
-
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
@@ -47,40 +41,19 @@ public class DevolucoesDal {
     public void addDevolucoes (Devolucoes devolucao)throws Exception {
         
     }
-
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
     
-    
-    //--- UPDATE -------------------------------------------------------------------------------------->
-    public void updateDevolucoes (Devolucoes devolucao)throws Exception {
-        
-    }
-    //--- FIM UPDATE ----------------------------------------------------------------------------------|
-    //
-
-    //--- DELETE -------------------------------------------------------------------------------------->
-    public void deleteDevolucoes (Devolucoes devolucao)throws Exception {
-        
-    }
-    
-    //--- FIM DELETE ----------------------------------------------------------------------------------|
-    //
-    
     //--- READ ---------------------------------------------------------------------------------------->
-    // READ ALL
     public ArrayList<Devolucoes> getAllDevolucoes() throws Exception {
         ArrayList<Devolucoes> lista = new ArrayList<Devolucoes>();
         return lista;
     }
     
-    // READ BY ID
     public Devolucoes getDevolucoesById(int dev_iden) throws Exception {
         Devolucoes devolucao = new Devolucoes();
         return devolucao;
     }
-
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
-
 }
