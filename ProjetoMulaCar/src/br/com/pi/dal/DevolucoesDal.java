@@ -25,24 +25,16 @@ import java.util.ArrayList;
  * @author Gustavo Gabriel
  */
 public class DevolucoesDal {
-<<<<<<< HEAD
-    //--- ATRIBUTOS ----------------------------------------------------------------------------------->
-=======
     
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
->>>>>>> a57abf6e1af014180d89d78a4155bbebff70d436
     private Connection conexao;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
-<<<<<<< HEAD
-    public DevolucoesDal() throws Exception {
-=======
     //
-    public DevolucoesDal(Connection conexao) throws Exception {
->>>>>>> a57abf6e1af014180d89d78a4155bbebff70d436
+    public DevolucoesDal() throws Exception {
         this.conexao = Conexao.getConexao();
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
@@ -54,8 +46,6 @@ public class DevolucoesDal {
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-<<<<<<< HEAD
-=======
        
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateDevolucoes (Devolucoes devolucao) throws Exception {
@@ -70,7 +60,6 @@ public class DevolucoesDal {
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
->>>>>>> a57abf6e1af014180d89d78a4155bbebff70d436
     
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Devolucoes> getAllDevolucoes() throws Exception {
