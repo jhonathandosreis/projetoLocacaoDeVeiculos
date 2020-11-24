@@ -16,7 +16,6 @@
 package br.com.pi.dal;
 
 import br.com.pi.model.Locacoes;
-import br.com.pi.model.Motoristas;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
 import java.util.ArrayList;
