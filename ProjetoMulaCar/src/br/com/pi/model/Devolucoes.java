@@ -21,7 +21,7 @@ import java.text.DateFormat;
  *
  * @author jhonlinux
  */
-public class Devolucao {
+public class Devolucoes {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
@@ -35,11 +35,11 @@ public class Devolucao {
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-    public Devolucao() {
+    public Devolucoes() {
         
     }
     
-    public Devolucao(int iden, DateFormat dataDevolucao, 
+    public Devolucoes(int iden, DateFormat dataDevolucao, 
             int multaPorAtraso, String status, int kmNaEntrega) {
         this.iden = iden;
         this.dataDevolucao = dataDevolucao;
