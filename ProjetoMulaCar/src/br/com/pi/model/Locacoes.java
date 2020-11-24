@@ -21,7 +21,7 @@ import java.text.DateFormat;
  *
  * @author jhonlinux
  */
-public class Locacao {
+public class Locacoes {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
@@ -44,11 +44,11 @@ public class Locacao {
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-    public Locacao() {
+    public Locacoes() {
         
     }
     
-    public Locacao(int iden, Clientes clientes, Motoristas motoristas, Categorias categorias, Veiculos veiculos,
+    public Locacoes(int iden, Clientes clientes, Motoristas motoristas, Categorias categorias, Veiculos veiculos,
             DateFormat dataDeLocao, DateFormat dataPrevistaDevolucao, int kmInicial, SituacaoLocacao situacao,
             int valorLocacao, int valorCaucao, int valorSeguro, int valorTotalPago) {
         this.iden = iden;

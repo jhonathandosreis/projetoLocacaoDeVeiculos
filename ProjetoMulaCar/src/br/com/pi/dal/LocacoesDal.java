@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 23/11/2020 15:31:58 
+ *  Criado em  : 23/11/2020 22:39:07 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -15,6 +15,7 @@
 
 package br.com.pi.dal;
 
+import br.com.pi.model.Locacoes;
 import br.com.pi.model.Motoristas;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
@@ -24,8 +25,7 @@ import java.util.ArrayList;
  *
  * @author Gustavo Gabriel
  */
-public class MotoristasDal {
-  
+public class LocacoesDal {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private Connection conexao;
@@ -36,7 +36,7 @@ public class MotoristasDal {
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
 
-    public MotoristasDal(Connection conexao) throws Exception {
+    public LocacoesDal(Connection conexao) throws Exception {
         this.conexao = Conexao.getConexao();
     }
     
@@ -45,7 +45,7 @@ public class MotoristasDal {
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    public void addMotoristas (Motoristas motorista)throws Exception {
+    public void addLocacoes (Locacoes locacao)throws Exception {
         
     }
 
@@ -54,14 +54,14 @@ public class MotoristasDal {
     
     
     //--- UPDATE -------------------------------------------------------------------------------------->
-    public void updateMotoristas (Motoristas motorista)throws Exception {
+    public void updateLocacoes (Locacoes locacao)throws Exception {
         
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
-    public void deleteMotoristas (Motoristas motorista)throws Exception {
+    public void deleteLocacoes (Locacoes locacao)throws Exception {
         
     }
     
@@ -70,15 +70,15 @@ public class MotoristasDal {
     
     //--- READ ---------------------------------------------------------------------------------------->
     // READ ALL
-    public ArrayList<Motoristas> getAllMotoristas() throws Exception {
-        ArrayList<Motoristas> lista = new ArrayList<Motoristas>();
+    public ArrayList<Locacoes> getAllLocacoes() throws Exception {
+        ArrayList<Locacoes> lista = new ArrayList<Locacoes>();
         return lista;
     }
     
     // READ BY ID
-    public Motoristas getMotoristasById(int mot_iden) throws Exception {
-        Motoristas motorista = new Motoristas();
-        return motorista;
+    public Locacoes getLocacoesById(int loc_iden) throws Exception {
+        Locacoes locacao = new Locacoes();
+        return locacao;
     }
 
     //--- FIM READ ------------------------------------------------------------------------------------|
