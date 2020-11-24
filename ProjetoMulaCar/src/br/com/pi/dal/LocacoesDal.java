@@ -26,62 +26,56 @@ import java.util.ArrayList;
  * @author Gustavo Gabriel
  */
 public class LocacoesDal {
+    
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private Connection conexao;
-
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
+<<<<<<< HEAD
 
     public LocacoesDal() throws Exception {
+=======
+    public LocacoesDal(Connection conexao) throws Exception {
+>>>>>>> a57abf6e1af014180d89d78a4155bbebff70d436
         this.conexao = Conexao.getConexao();
     }
-    
-
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    public void addLocacoes (Locacoes locacao)throws Exception {
+    public void addLocacoes (Locacoes locacao) throws Exception {
         
     }
-
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-    
-    
+     
     //--- UPDATE -------------------------------------------------------------------------------------->
-    public void updateLocacoes (Locacoes locacao)throws Exception {
+    public void updateLocacoes (Locacoes locacao) throws Exception {
         
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
-    public void deleteLocacoes (Locacoes locacao)throws Exception {
+    public void deleteLocacoes (Locacoes locacao) throws Exception {
         
-    }
-    
+    }  
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
     
     //--- READ ---------------------------------------------------------------------------------------->
-    // READ ALL
     public ArrayList<Locacoes> getAllLocacoes() throws Exception {
         ArrayList<Locacoes> lista = new ArrayList<Locacoes>();
         return lista;
-    }
-    
-    // READ BY ID
+    }   
     public Locacoes getLocacoesById(int loc_iden) throws Exception {
         Locacoes locacao = new Locacoes();
         return locacao;
     }
-
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
-
 }

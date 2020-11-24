@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 23/11/2020 22:53:50 
+ *  Criado em  : 23/11/2020 22:41:51 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -13,74 +13,64 @@
  *  ---------------------------------------------------------------------------------------------------| 
  */
 
-package br.com.pi.dal;
+package br.com.pi.bll;
 
-import br.com.pi.model.Devolucoes;
-import br.com.pi.util.Conexao;
-import java.sql.Connection;
+import br.com.pi.dal.VeiculosDal;
+import br.com.pi.model.Veiculos;
 import java.util.ArrayList;
 
 /**
  *
- * @author Gustavo Gabriel
+ * @author jhonlinux
  */
-public class DevolucoesDal {
-<<<<<<< HEAD
-    //--- ATRIBUTOS ----------------------------------------------------------------------------------->
-=======
-    
+public class VeiculosBll {
+
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
->>>>>>> a57abf6e1af014180d89d78a4155bbebff70d436
-    private Connection conexao;
+    private VeiculosDal veiculosDal;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
-<<<<<<< HEAD
-    public DevolucoesDal() throws Exception {
-=======
     //
-    public DevolucoesDal(Connection conexao) throws Exception {
->>>>>>> a57abf6e1af014180d89d78a4155bbebff70d436
-        this.conexao = Conexao.getConexao();
+    public VeiculosBll() throws Exception {
+        veiculosDal = new VeiculosDal();
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    public void addDevolucoes (Devolucoes devolucao) throws Exception {
+    //
+    public void addVeiculos(Veiculos veiculos) throws Exception {
         
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-<<<<<<< HEAD
-=======
-       
+    
     //--- UPDATE -------------------------------------------------------------------------------------->
-    public void updateDevolucoes (Devolucoes devolucao) throws Exception {
+    //
+    public void updateVeiculos(Veiculos veiculos) throws Exception {
         
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
-    public void deleteDevolucoes (Devolucoes devolucao) throws Exception {
+    //
+    public void deleteVeiculos(Veiculos veiculos) throws Exception {
         
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
->>>>>>> a57abf6e1af014180d89d78a4155bbebff70d436
     
     //--- READ ---------------------------------------------------------------------------------------->
-    public ArrayList<Devolucoes> getAllDevolucoes() throws Exception {
-        ArrayList<Devolucoes> lista = new ArrayList<Devolucoes>();
-        return lista;
+    //
+    public ArrayList<Veiculos> getAllVeiculos() throws Exception {
+        return null;
     }
     
-    public Devolucoes getDevolucoesById(int dev_iden) throws Exception {
-        Devolucoes devolucao = new Devolucoes();
-        return devolucao;
+    public Veiculos getVeiculosById(int iden) throws Exception {
+        return null;
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //

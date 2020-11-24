@@ -19,7 +19,7 @@ package br.com.pi.model;
  *
  * @author jhonlinux
  */
-public class TipoDeVeiculos {
+public class TiposDeVeiculos {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
@@ -30,11 +30,11 @@ public class TipoDeVeiculos {
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-    public TipoDeVeiculos() {
+    public TiposDeVeiculos() {
         
     }
     
-    public TipoDeVeiculos(int iden, String nome) {
+    public TiposDeVeiculos(int iden, String nome) {
         this.iden = iden;
         this.nome = nome;
     }
