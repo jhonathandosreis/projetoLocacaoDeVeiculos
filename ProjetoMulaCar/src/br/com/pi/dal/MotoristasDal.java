@@ -29,59 +29,48 @@ public class MotoristasDal {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private Connection conexao;
-
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-
     public MotoristasDal(Connection conexao) throws Exception {
         this.conexao = Conexao.getConexao();
     }
-    
-
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    public void addMotoristas (Motoristas motorista)throws Exception {
+    public void addMotoristas (Motoristas motorista) throws Exception {
         
     }
-
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-    
-    
+     
     //--- UPDATE -------------------------------------------------------------------------------------->
-    public void updateMotoristas (Motoristas motorista)throws Exception {
+    public void updateMotoristas (Motoristas motorista) throws Exception {
         
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
-    public void deleteMotoristas (Motoristas motorista)throws Exception {
+    public void deleteMotoristas (Motoristas motorista) throws Exception {
         
-    }
-    
+    }  
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
     
     //--- READ ---------------------------------------------------------------------------------------->
-    // READ ALL
     public ArrayList<Motoristas> getAllMotoristas() throws Exception {
         ArrayList<Motoristas> lista = new ArrayList<Motoristas>();
         return lista;
     }
-    
-    // READ BY ID
+
     public Motoristas getMotoristasById(int mot_iden) throws Exception {
         Motoristas motorista = new Motoristas();
         return motorista;
     }
-
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
-
 }

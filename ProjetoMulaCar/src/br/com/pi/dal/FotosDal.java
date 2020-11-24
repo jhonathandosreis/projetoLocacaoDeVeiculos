@@ -23,64 +23,53 @@ import java.util.ArrayList;
  *
  * @author Gustavo Gabriel
  */
+
 public class FotosDal {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private Connection conexao;
-
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-
     public FotosDal(Connection conexao) throws Exception {
         this.conexao = Conexao.getConexao();
-    }
-    
-
+    } 
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    public void addFotos (Fotos foto)throws Exception {
+    public void addFotos (Fotos foto) throws Exception {
         
     }
-
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
     
-    
     //--- UPDATE -------------------------------------------------------------------------------------->
-    public void updateFotos (Fotos foto)throws Exception {
+    public void updateFotos (Fotos foto) throws Exception {
         
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
-    public void deleteFotos (Fotos foto)throws Exception {
+    public void deleteFotos (Fotos foto) throws Exception {
         
     }
-    
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
     
     //--- READ ---------------------------------------------------------------------------------------->
-    // READ ALL
     public ArrayList<Fotos> getAllFotos() throws Exception {
         ArrayList<Fotos> lista = new ArrayList<Fotos>();
         return lista;
-    }
-    
-    // READ BY ID
+    }  
     public Fotos getFotosById(int fot_iden) throws Exception {
         Fotos foto = new Fotos();
         return foto;
     }
-
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
-
 }
