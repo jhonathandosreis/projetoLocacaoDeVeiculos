@@ -62,7 +62,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jMenuLocacao = new javax.swing.JMenu();
         jMenuItemLocacao = new javax.swing.JMenuItem();
         jMenuItemDevolucao = new javax.swing.JMenuItem();
-        jMenuItemReservas = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItemDesenvolvedores = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -235,15 +234,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuLocacao.add(jMenuItemDevolucao);
 
-        jMenuItemReservas.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/combinadoo (1).png")); // NOI18N
-        jMenuItemReservas.setText("Reserva");
-        jMenuItemReservas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemReservasActionPerformed(evt);
-            }
-        });
-        jMenuLocacao.add(jMenuItemReservas);
-
         jMenuBar1.add(jMenuLocacao);
 
         jMenu4.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/botao-de-informacao.png")); // NOI18N
@@ -383,15 +373,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItemDevolucaoActionPerformed
 
-    private void jMenuItemReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReservasActionPerformed
-        try {
-            TelaReservas telaReservas = new TelaReservas();
-            telaReservas.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jMenuItemReservasActionPerformed
-
     private void jMenuItemVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVeiculoActionPerformed
         try {
             TelaVeiculos telaVeiculos = new TelaVeiculos();
@@ -461,7 +442,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemMotorista;
     private javax.swing.JMenuItem jMenuItemPessoaFisica;
     private javax.swing.JMenuItem jMenuItemPessoaJuridica;
-    private javax.swing.JMenuItem jMenuItemReservas;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemTIpoDeVeiculo;
     private javax.swing.JMenuItem jMenuItemVeiculo;
