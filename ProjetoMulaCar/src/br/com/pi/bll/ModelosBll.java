@@ -42,7 +42,7 @@ public class ModelosBll {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void AddModelos(Modelos modelos) throws Exception {
+    public void addModelos(Modelos modelos) throws Exception {
         
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -50,7 +50,7 @@ public class ModelosBll {
     
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void UpdateModelos(Modelos modelos) throws Exception {
+    public void updateModelos(Modelos modelos) throws Exception {
         
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -58,7 +58,7 @@ public class ModelosBll {
 
     //--- DELETE -------------------------------------------------------------------------------------->
     //
-    public void DeleteModelos(Modelos modelos) throws Exception {
+    public void deleteModelos(Modelos modelos) throws Exception {
         
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|

@@ -40,7 +40,7 @@ public class TiposDeVeiculosBll {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void AddTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculos) throws Exception {
+    public void addTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculos) throws Exception {
 
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -48,7 +48,7 @@ public class TiposDeVeiculosBll {
 
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void UpdateTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculos) throws Exception {
+    public void updateTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculos) throws Exception {
 
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -56,7 +56,7 @@ public class TiposDeVeiculosBll {
 
     //--- DELETE -------------------------------------------------------------------------------------->
     //
-    public void DeleteTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculos) throws Exception {
+    public void deleteTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculos) throws Exception {
 
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
