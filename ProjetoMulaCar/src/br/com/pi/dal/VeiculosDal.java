@@ -14,9 +14,12 @@
  */
 package br.com.pi.dal;
 
+import java.sql.PreparedStatement;
 import br.com.pi.model.Veiculos;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -41,24 +44,71 @@ public class VeiculosDal {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void addVeiculos(Veiculos veiculos) throws Exception {
+    public void addVeiculos(Veiculos veiculo) throws Exception {
 
+        String sql = "INSERT INTO veiculos(vei_placa, vei_km, vei_ano_modelo,"
+                + "vei_renavam, vei_status, vei_observacoes, vei_preco_compra, vei_ano_fabricacao,"
+                + "vei_numero_passageiros, vei_mod_iden, vei_tve_iden) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1, veiculo.getPlaca());
+            preparedStatement.setInt(2, veiculo.getQuilimetragem());
+            preparedStatement.setDouble(3, veiculo.getRenavam());
+            preparedStatement.setString(4, veiculo.getStatus());
+            preparedStatement.setString(5, veiculo.getObservacoes());
+            preparedStatement.setInt(6, veiculo.getPrecoDeCompra());
+            preparedStatement.setFloat(7, veiculo.getAnoFabricacao());
+            preparedStatement.setFloat(8, veiculo.getCapacidade());
+            preparedStatement.setInt(9, veiculo.getModelo().getIden());
+            preparedStatement.setInt(10, veiculo.getTiposDeVeiculo().getIden());
+            preparedStatement.executeUpdate();
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
 
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void updateVeiculos(Veiculos veiculos) throws Exception {
-
+    public void updateVeiculos(Veiculos veiculo) throws Exception {
+        String sql = "UPDATE veiculos SET vei_placa=?, vei_km=?, vei_ano_modelo=?,"
+                + "vei_renavam=?, vei_status=?, vei_observacoes=?, vei_preco_compra=?, vei_ano_fabricacao=?,"
+                + "vei_numero_passageiros=?, vei_mod_iden=?, vei_tve_iden=? WHERE vei_iden=?";
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1, veiculo.getPlaca());
+            preparedStatement.setInt(2, veiculo.getQuilimetragem());
+            preparedStatement.setDouble(3, veiculo.getRenavam());
+            preparedStatement.setString(4, veiculo.getStatus());
+            preparedStatement.setString(5, veiculo.getObservacoes());
+            preparedStatement.setInt(6, veiculo.getPrecoDeCompra());
+            preparedStatement.setFloat(7, veiculo.getAnoFabricacao());
+            preparedStatement.setFloat(8, veiculo.getCapacidade());
+            preparedStatement.setInt(9, veiculo.getModelo().getIden());
+            preparedStatement.setInt(10, veiculo.getTiposDeVeiculo().getIden());
+            preparedStatement.setInt(11, veiculo.getIden());
+            preparedStatement.executeUpdate();
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
     //
-    public void deleteVeiculos(int iden) throws Exception {
+    public void deleteVeiculos(int vei_iden) throws Exception {
 
+        String sql = "DELETE FROM veiculos WHERE vei_iden=?";
+
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1, vei_iden);
+            preparedStatement.executeUpdate();
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
@@ -66,11 +116,75 @@ public class VeiculosDal {
     //--- READ ---------------------------------------------------------------------------------------->
     //
     public ArrayList<Veiculos> getAllVeiculos() throws Exception {
-        return null;
+
+        ArrayList<Veiculos> lista = new ArrayList<Veiculos>();
+
+        String sql = "SELECT * FROM veiculos";
+
+        try {
+            Statement statement = conexao.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+               
+                Veiculos veiculo = new Veiculos();
+                
+                veiculo.setIden(rs.getInt("vei_iden"));
+                veiculo.setPlaca(rs.getString("vei_placa"));
+                veiculo.setQuilimetragem(rs.getInt("vei_km"));
+                veiculo.setRenavam(rs.getDouble("vei_renavam"));
+                veiculo.setStatus(rs.getString("vei_status"));
+                veiculo.setObservacoes(rs.getString("vei_observacoes"));
+                veiculo.setPrecoDeCompra(rs.getInt("vei_preco_compra"));
+                veiculo.setAnoFabricacao(rs.getFloat("vei_ano_fabricacao"));
+                veiculo.setCapacidade(rs.getFloat("vei_numero_passageiros"));
+
+                //Chave estrangeira
+                ModelosDal modeloDal = new ModelosDal();
+                veiculo.setModelo(modeloDal.getModelosById(rs.getInt("vei_mod_iden")));
+
+                TiposDeVeiculosDal tiposDeVeiculoDal = new TiposDeVeiculosDal();
+                veiculo.setTiposDeVeiculo(tiposDeVeiculoDal.getTiposDeVeiculosById(rs.getInt("vei_tve_iden")));
+                lista.add(veiculo);
+            }
+        } catch (Exception error) {
+            throw error;
+        }
+        return lista;
     }
 
     public Veiculos getVeiculosById(int iden) throws Exception {
-        return null;
+
+        Veiculos veiculo = new Veiculos();
+
+        String sql = "SELECT * FROM veiculos WHERE vei_iden=?";
+
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1, iden);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                
+                veiculo.setIden(rs.getInt("vei_iden"));
+                veiculo.setPlaca(rs.getString("vei_placa"));
+                veiculo.setQuilimetragem(rs.getInt("vei_km"));
+                veiculo.setRenavam(rs.getDouble("vei_renavam"));
+                veiculo.setStatus(rs.getString("vei_status"));
+                veiculo.setObservacoes(rs.getString("vei_observacoes"));
+                veiculo.setPrecoDeCompra(rs.getInt("vei_preco_compra"));
+                veiculo.setAnoFabricacao(rs.getFloat("vei_ano_fabricacao"));
+                veiculo.setCapacidade(rs.getFloat("vei_numero_passageiros"));
+
+                //Chave estrangeira
+                ModelosDal modeloDal = new ModelosDal();
+                veiculo.setModelo(modeloDal.getModelosById(rs.getInt("vei_mod_iden")));
+
+                TiposDeVeiculosDal tiposDeVeiculoDal = new TiposDeVeiculosDal();
+                veiculo.setTiposDeVeiculo(tiposDeVeiculoDal.getTiposDeVeiculosById(rs.getInt("vei_tve_iden")));
+            }
+        } catch (Exception error) {
+            throw error;
+        }
+        return veiculo;
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //

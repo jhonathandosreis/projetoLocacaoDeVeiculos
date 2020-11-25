@@ -45,7 +45,7 @@ public class Categorias {
 
     //--- GET ----------------------------------------------------------------------------------------->
     //
-    public int getId() {
+    public int getIden() {
         return iden;
     }
 
@@ -61,8 +61,8 @@ public class Categorias {
 
     //--- SET ----------------------------------------------------------------------------------------->
     //
-    public void setId(int id) {
-        this.iden = id;
+    public void setIden(int iden) {
+        this.iden = iden;
     }
 
     public void setNome(String nome) {

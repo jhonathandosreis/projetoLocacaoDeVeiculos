@@ -41,7 +41,7 @@ public class CategoriasBll {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void addCategorias(Categorias categorias) throws Exception {
+    public void addCategorias(Categorias categoria) throws Exception {
         
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -49,7 +49,7 @@ public class CategoriasBll {
     
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void updateCategorias(Categorias categorias) throws Exception {
+    public void updateCategorias(Categorias categoria) throws Exception {
         
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -57,7 +57,7 @@ public class CategoriasBll {
 
     //--- DELETE -------------------------------------------------------------------------------------->
     //
-    public void deleteCategorias(Categorias categorias) throws Exception {
+    public void deleteCategorias(Categorias categoria) throws Exception {
         
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|

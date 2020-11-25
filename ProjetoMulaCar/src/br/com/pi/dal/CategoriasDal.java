@@ -18,6 +18,7 @@ package br.com.pi.dal;
 import br.com.pi.model.Categorias;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 /**
@@ -43,24 +44,52 @@ public class CategoriasDal {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void addCategorias(Categorias categorias) throws Exception {
+    public void addCategorias(Categorias categoria) throws Exception {
+    
+        String sql = "INSERT INTO categorias (cat_nome, cat_valor_diario_locacao) VALUES (?,?)";
         
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1, categoria.getNome());
+            preparedStatement.setFloat(2, categoria.getValorDiarioLocacao());
+            preparedStatement.executeUpdate();
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
     
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void updateCategorias(Categorias categorias) throws Exception {
+    public void updateCategorias(Categorias categoria) throws Exception {
         
+        String sql = "UPDATE categorias SET cat_nome=?, cat_valor_diario_locacao=? WHERE cat_iden=?";
+        
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1, categoria.getNome());
+            preparedStatement.setFloat(2, categoria.getValorDiarioLocacao());
+            preparedStatement.executeUpdate();
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
     //
-    public void deleteCategorias(int iden) throws Exception {
+    public void deleteCategorias(int cat_iden) throws Exception {
+        String sql = "DELETE FROM categorias WHERE cat_iden";
         
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1, cat_iden);
+            preparedStatement.executeUpdate();
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
