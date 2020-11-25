@@ -5,7 +5,7 @@
  */
 package br.com.pi.dal;
 
-import br.com.pi.model.Cidades;
+import br.com.pi.model.Ufs;
 import br.com.pi.model.Enderecos;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
@@ -47,7 +47,7 @@ public class EnderecosDal {
             preparedStatement.setString(3, end.getLogradouro());
             preparedStatement.setInt(4, end.getCep());
             preparedStatement.setString(5, end.getComplemento());
-            preparedStatement.setInt(6, end.getCidade().getValor());
+            preparedStatement.setInt(6, end.getCidade().getIden());
 
             preparedStatement.executeUpdate();
         } catch (Exception error) {
@@ -93,7 +93,7 @@ public class EnderecosDal {
             preparedStatement.setString(3, end.getLogradouro());
             preparedStatement.setInt(4, end.getCep());
             preparedStatement.setString(5, end.getComplemento());
-            preparedStatement.setInt(6, end.getCidade().getValor());
+            preparedStatement.setInt(6, end.getCidade().getIden());
             preparedStatement.setInt(7, end.getIden());
 
             preparedStatement.executeUpdate();
@@ -117,23 +117,23 @@ public class EnderecosDal {
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
-                Enderecos end = new Enderecos();
+                Enderecos endereco = new Enderecos();
 
-                end.setIden(rs.getInt("end_iden"));
-                end.setRua(rs.getString("end_rua"));
-                end.setNumero(rs.getFloat("end_numero"));
-                end.setLogradouro(rs.getString("end_logradouro"));
-                end.setCep(rs.getInt("end_cep"));
-                end.setComplemento(rs.getString("end_complemento"));
+                endereco.setIden(rs.getInt("end_iden"));
+                endereco.setRua(rs.getString("end_rua"));
+                endereco.setNumero(rs.getFloat("end_numero"));
+                endereco.setLogradouro(rs.getString("end_logradouro"));
+                endereco.setCep(rs.getInt("end_cep"));
+                endereco.setComplemento(rs.getString("end_complemento"));
 
                 
               
-                CidadesDal cid = new CidadesDal();
-                end.setCidade(cid.sById(rs.getInt("end_cid_iden")));
+                CidadesDal cidade = new CidadesDal();
+          BB      endereco.setCidade(cidade.
                 
 
 
-                lista.add(end);
+                lista.add(endereco);
             }
         } catch (Exception error) {
             throw error;
@@ -161,9 +161,9 @@ public class EnderecosDal {
                 end.setCep(rs.getInt("end_cep"));
                 end.setComplemento(rs.getString("end_complemento"));
 
-                decidir se vai ter uf no banco de dados
-                Cidades cid = new Cidades();
-                end.setCidade(cid.getNome()
+               
+                 CidadesDal cidade = new CidadesDal();
+          BB      endereco.setCidade(cidade.
 
             }
         } catch (Exception error) {

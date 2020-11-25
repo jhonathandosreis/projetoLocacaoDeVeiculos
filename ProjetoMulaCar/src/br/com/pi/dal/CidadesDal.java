@@ -38,21 +38,17 @@ public class CidadesDal {
     //
     public void addCidades(Cidades cidade) throws Exception {
 
-        decidir se vai ter uf no banco de dados
-        
-        String sql = "INSERT INTO cidades(cli_nome , cli_telefone  , cli_email , cli_end_iden ) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO cidades( cid_nome , cid_ufs_iden ) VALUES(?,?)";
         try {
 
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setString(1, cliente.getNome());
-            preparedStatement.setDouble(2, cliente.getTelefone());
-            preparedStatement.setString(3, cliente.getEmail());
-            preparedStatement.setInt(4, cliente.getEnderecos().getIden());
-
+            preparedStatement.setString(1, cidade.getNome());
+            preparedStatement.setInt(2, cidade.getUf().getValor());
             preparedStatement.executeUpdate();
+
         } catch (Exception error) {
             if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-                throw new RuntimeException("Não é possível cadastrar este CLiente!");
+                throw new RuntimeException("Não é possível cadastrar esta Cidade!");
             }
         }
 
@@ -62,17 +58,17 @@ public class CidadesDal {
     //
     //--- DELETE -------------------------------------------------------------------------------------->
     //
-    public void deleteClientes(int cli_iden) throws Exception {
+    public void deleteCidades(int cid_iden) throws Exception {
 
-        String sql = "DELETE FROM clientes WHERE cli_iden =?";
+        String sql = "DELETE FROM cidades WHERE cid_iden =?";
 
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setInt(1, cli_iden);
+            preparedStatement.setInt(1, cid_iden);
             preparedStatement.executeUpdate();
         } catch (Exception error) {
-            if (error.getMessage().contains("loc_data_prevista_devolucao")) {
-                throw new RuntimeException("Não é possível deletar este cliente pois esta vinculado a uma locação!");
+            if (error.getMessage().contains("")) {
+                throw new RuntimeException("Não é possível deletar esta cidade pois esta vinculado a uma Uf!");
             }
         }
 
@@ -82,21 +78,20 @@ public class CidadesDal {
     //
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void updateClientes(Clientes cliente) throws Exception {
+    public void updateCidades(Cidades cidade) throws Exception {
 
-        String sql = "UPDATE clientes SET cli_nome=?, cli_telefone=?, cli_email=?, cli_end_iden=? WHERE cli_iden=?";
+        String sql = "UPDATE cidades SET cid_nome=?, cid_ufs_iden_=? WHERE cid_iden=?";
 
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setString(1, cliente.getNome());
-            preparedStatement.setDouble(2, cliente.getTelefone());
-            preparedStatement.setString(3, cliente.getEmail());
-            preparedStatement.setInt(4, cliente.getEnderecos().getIden());
-            preparedStatement.setInt(5, cliente.getIden());
+            preparedStatement.setString(1, cidade.getNome());
+            preparedStatement.setInt(2, cidade.getUf().getValor());
+            preparedStatement.setInt(3, cidade.getIden());
+
             preparedStatement.executeUpdate();
         } catch (Exception error) {
             if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-                throw new RuntimeException("Não é possível alterar este cliente!");
+                throw new RuntimeException("Não é possível alterar esta Cidade !");
             }
         }
 
@@ -106,23 +101,21 @@ public class CidadesDal {
     //
     //--- READ ---------------------------------------------------------------------------------------->
     //
-    public ArrayList<Clientes> getAllClientes() throws Exception {
+    public ArrayList<Cidades> getAllCidades() throws Exception {
 
-        ArrayList<Clientes> lista = new ArrayList<Clientes>();
-        String sql = "SELECT * FROM clientes";
+        ArrayList<Cidades> lista = new ArrayList<Cidades>();
+        String sql = "SELECT * FROM cidades";
         try {
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
-                Clientes cliente = new Clientes();
-                cliente.setIden(rs.getInt("cli_iden"));
-                cliente.setNome(rs.getString("cli_nome"));
-                cliente.setTelefone(rs.getDouble("cli_telefone"));
+                Cidades cidade = new Cidades();
+                cidade.setIden(rs.getInt("cid_iden"));
+                cidade.setNome(rs.getString("cid_nome"));
 
-                EnderecosDal end = new EnderecosDal();
-                cliente.setEnderecos(end.getEnderecosById(rs.getInt("cli_end_iden")));
+                cidade.setUf((rs.getInt("cid_ufs_iden")));
 
-                lista.add(cliente);
+                lista.add(cidade);
             }
         } catch (Exception error) {
             throw error;
@@ -132,8 +125,8 @@ public class CidadesDal {
 
     public Clientes getClientesById(int id) throws Exception {
 
-        Clientes cliente = new Clientes();
-        String sql = "SELECT * FROM clientes WHERE cli_iden=?";
+        Cidades cidade = new Cidades();
+        String sql = "SELECT * FROM cidades WHERE cid_iden=?";
 
         try {
 
@@ -143,18 +136,16 @@ public class CidadesDal {
 
             if (rs.next()) {
 
-                cliente.setIden(rs.getInt("cli_iden"));
-                cliente.setNome(rs.getString("cli_nome"));
-                cliente.setTelefone(rs.getDouble("cli_telefone"));
+                cidade.setIden(rs.getInt("cid_iden"));
+                cidade.setNome(rs.getString("cid_nome"));
 
-                EnderecosDal end = new EnderecosDal();
-                cliente.setEnderecos(end.getEnderecosById(rs.getInt("cli_end_iden")));
+                cidade.setUf((rs.getInt("cid_ufs_iden")));
 
             }
         } catch (Exception error) {
             throw error;
         }
-        return cliente;
+        return cidade;
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //

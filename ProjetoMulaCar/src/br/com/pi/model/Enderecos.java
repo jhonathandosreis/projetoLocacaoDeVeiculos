@@ -29,6 +29,8 @@ public class Enderecos {
     private String logradouro = "";
     private int cep = 0;
     private String complemento = "";
+    private Cidades cidade = null;
+    
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -39,13 +41,14 @@ public class Enderecos {
     }
     
     public Enderecos(int iden, String rua, float numero, 
-            String logradouro, int cep, String complemento) {
+            String logradouro, int cep, String complemento , Cidades cidade) {
         this.iden = iden;
         this.rua = rua;
         this.numero = numero;
         this.logradouro = logradouro;
         this.cep = cep;
         this.complemento = complemento;
+        this.cidade = cidade;
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -75,6 +78,13 @@ public class Enderecos {
     public String getComplemento() {
         return complemento;
     }
+    
+     public Cidades getCidade() {
+        return cidade;
+    }
+ 
+    
+
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
 
@@ -103,6 +113,15 @@ public class Enderecos {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     } 
+    
+      public void setCidade(Cidades cidade) {
+        this.cidade = cidade;
+    }
+  
     //--- FIM SET -------------------------------------------------------------------------------------|
     //
+
+  
+
+    
 }
