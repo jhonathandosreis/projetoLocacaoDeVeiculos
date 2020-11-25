@@ -126,12 +126,8 @@ public class EnderecosDal {
                 endereco.setCep(rs.getInt("end_cep"));
                 endereco.setComplemento(rs.getString("end_complemento"));
 
-                
-              
                 CidadesDal cidade = new CidadesDal();
-          BB      endereco.setCidade(cidade.
-                
-
+                endereco.setCidade(cidade.getCidadesById(rs.getInt("end_cid_iden")));
 
                 lista.add(endereco);
             }
@@ -143,7 +139,7 @@ public class EnderecosDal {
 
     public Enderecos getEnderecosById(int id) throws Exception {
 
-        Enderecos end = new Enderecos();
+        Enderecos endereco = new Enderecos();
         String sql = "SELECT * FROM enderecos WHERE end_iden=?";
 
         try {
@@ -154,22 +150,21 @@ public class EnderecosDal {
 
             if (rs.next()) {
 
-                end.setIden(rs.getInt("end_iden"));
-                end.setRua(rs.getString("end_rua"));
-                end.setNumero(rs.getFloat("end_numero"));
-                end.setLogradouro(rs.getString("end_logradouro"));
-                end.setCep(rs.getInt("end_cep"));
-                end.setComplemento(rs.getString("end_complemento"));
+                endereco.setIden(rs.getInt("end_iden"));
+                endereco.setRua(rs.getString("end_rua"));
+                endereco.setNumero(rs.getFloat("end_numero"));
+                endereco.setLogradouro(rs.getString("end_logradouro"));
+                endereco.setCep(rs.getInt("end_cep"));
+                endereco.setComplemento(rs.getString("end_complemento"));
 
-               
-                 CidadesDal cidade = new CidadesDal();
-          BB      endereco.setCidade(cidade.
+                CidadesDal cidade = new CidadesDal();
+                endereco.setCidade(cidade.getCidadesById(rs.getInt("end_cid_iden")));
 
             }
         } catch (Exception error) {
             throw error;
         }
-        return end;
+        return endereco;
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //

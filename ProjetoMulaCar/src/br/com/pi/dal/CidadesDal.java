@@ -6,7 +6,7 @@
 package br.com.pi.dal;
 
 import br.com.pi.model.Cidades;
-import br.com.pi.model.Clientes;
+import br.com.pi.model.Ufs;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -123,7 +123,7 @@ public class CidadesDal {
         return lista;
     }
 
-    public Clientes getClientesById(int id) throws Exception {
+    public Cidades getCidadesById(int id) throws Exception {
 
         Cidades cidade = new Cidades();
         String sql = "SELECT * FROM cidades WHERE cid_iden=?";
@@ -138,7 +138,8 @@ public class CidadesDal {
 
                 cidade.setIden(rs.getInt("cid_iden"));
                 cidade.setNome(rs.getString("cid_nome"));
-
+                
+                Ufs uf = new Ufs();
                 cidade.setUf((rs.getInt("cid_ufs_iden")));
 
             }
