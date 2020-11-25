@@ -52,15 +52,25 @@ public class MotoristasDal {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addMotoristas (Motoristas motorista) throws Exception {
-        
+       
+        try{
         String sqlCliente ="INSERT INTO clientes (cli_nome, cli_telefone, cli_email, cli_end_iden) values (?, ?, ?, ?)";
-        PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);
-      
+        PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente, Statement.RETURN_GENERATED_KEYS);
+        
         preparedStatement1.setString(1, motorista.getNome());
         preparedStatement1.setDouble(2, motorista.getTelefone());
         preparedStatement1.setString(3, motorista.getEmail());
         preparedStatement1.setInt(4, motorista.getEnderecos().getIden());
         preparedStatement1.executeUpdate();
+        
+        try (ResultSet generatedKeys = preparedStatement1.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                motorista.setCliente  (clienteBll.getClienteById((generatedKeys.getInt(1))) );
+            }
+            else {
+                throw new Exception("Erro ao criar motorista cliente!");
+            }
+        }
         
         String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_numero_cnh, pfi_categoria_cnh, pfi_data_de_validade, pfi_cli_iden) values (?, ?, ?, ?, ?, ?)";        
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
@@ -71,6 +81,10 @@ public class MotoristasDal {
         preparedStatement2.setDate(5, (Date) motorista.getDataValidade());
         preparedStatement2.setInt(6, motorista.getCliente().getIden());
         preparedStatement2.executeUpdate();
+        
+        } catch (Exception e) {
+            throw  e;
+        }
     } 
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
@@ -78,6 +92,7 @@ public class MotoristasDal {
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateMotoristas (Motoristas motorista) throws Exception {
         
+        try{
         String sqlCliente ="UPDATE clientes SET cli_nome=?, cli_telefone=?, cli_email=?, cli_end_iden=? WHERE cli_iden=?";
         PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);
       
@@ -98,6 +113,10 @@ public class MotoristasDal {
         preparedStatement2.setInt(6, motorista.getCliente().getIden());
         preparedStatement2.setInt(7, motorista.getIden());
         preparedStatement2.executeUpdate();
+        
+        } catch (Exception e) {
+            throw  e;
+        }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
@@ -105,6 +124,7 @@ public class MotoristasDal {
     //--- DELETE -------------------------------------------------------------------------------------->
     public void deleteMotoristas (Motoristas motorista) throws Exception {
         
+        try{
         int idMotorista = motorista.getIden();
         int idCliente = motorista.getCliente().getIden();
         
@@ -115,6 +135,9 @@ public class MotoristasDal {
         PreparedStatement preparedStatement2 = conexao.prepareStatement("DELETE FROM pessoas_fisicas where pfi_iden =?");
         preparedStatement1.setInt(1, idMotorista);
         preparedStatement2.executeUpdate();
+        } catch (Exception e) {
+            throw  e;
+        }
     }  
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
@@ -122,6 +145,7 @@ public class MotoristasDal {
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Motoristas> getAllMotoristas() throws Exception {
         
+        try{
          ArrayList<Motoristas> lista = new ArrayList<Motoristas>();
          String sql = "SELECT * FROM motoristas";
          Statement statement = conexao.createStatement();
@@ -139,13 +163,18 @@ public class MotoristasDal {
                 motorista.setCliente(cliente);
                 lista.add(motorista);
            }
+           
          
     return lista;
+        } catch (Exception e) {
+            throw  e;
+        }
         
     }
 
     public Motoristas getMotoristasById(int mot_iden) throws Exception {
         
+        try{
         Motoristas motorista = new Motoristas();
         String sql = "SELECT * FROM motoristas WHERE pfi_iden=?";
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
@@ -164,6 +193,9 @@ public class MotoristasDal {
         motorista.setCliente(cliente);
         }       
         return motorista;
+        } catch (Exception e) {
+            throw  e;
+        }
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
