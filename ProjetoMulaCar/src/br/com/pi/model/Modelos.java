@@ -27,6 +27,7 @@ public class Modelos {
     private String nome = "";
     private Marcas marcas = null;
     private Categorias categoria = null;
+    private TiposDeVeiculos tiposDeVeiculos = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -36,11 +37,13 @@ public class Modelos {
         
     }
     
-    public Modelos(int iden, String nome, Marcas marcas, Categorias categoria) {
+    public Modelos(int iden, String nome, Marcas marcas,
+            Categorias categoria, TiposDeVeiculos tiposDeVeiculos) {
         this.iden = iden;
         this.nome = nome;
         this.marcas = marcas;
         this.categoria = categoria;
+        this.tiposDeVeiculos = tiposDeVeiculos;
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -59,8 +62,12 @@ public class Modelos {
         return marcas;
     }
 
-    public Categorias getCategorias() {
+    public Categorias getCategoria() {
         return categoria;
+    }
+
+    public TiposDeVeiculos getTiposDeVeiculos() {
+        return tiposDeVeiculos;
     }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
@@ -79,9 +86,13 @@ public class Modelos {
         this.marcas = marcas;
     }
     
-    public void setCategorias(Categorias categoria) {
+    public void setCategoria(Categorias categoria) {
         this.categoria = categoria;
     }
+
+    public void setTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculos) {
+        this.tiposDeVeiculos = tiposDeVeiculos;
+    }
     //--- FIM SET -------------------------------------------------------------------------------------|
-    //
+    //   
 }
