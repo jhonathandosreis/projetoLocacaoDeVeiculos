@@ -52,7 +52,8 @@ public class ModelosDal {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, modelo.getNome());
             preparedStatement.setInt(2, modelo.getMarcas().getIden());
-            preparedStatement.setInt(3, modelo.getCategorias().getIden());
+            preparedStatement.setInt(3, modelo.getCategoria().getIden());
+            preparedStatement.setInt(4, modelo.getTiposDeVeiculos().getIden());
             preparedStatement.executeUpdate();
         } catch (Exception error) {
             throw error;
@@ -71,8 +72,9 @@ public class ModelosDal {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, modelo.getNome());
             preparedStatement.setInt(2, modelo.getMarcas().getIden());
-            preparedStatement.setInt(3, modelo.getCategorias().getIden());
-            preparedStatement.setInt(4, modelo.getIden());
+            preparedStatement.setInt(3, modelo.getCategoria().getIden());
+            preparedStatement.setInt(4, modelo.getTiposDeVeiculos().getIden());
+            preparedStatement.setInt(5, modelo.getIden());
             preparedStatement.executeUpdate();
         } catch (Exception error) {
             throw error;
@@ -121,7 +123,10 @@ public class ModelosDal {
                 modelo.setMarcas(marcaDal.getMarcasById(rs.getInt("mod_mar_iden")));
 
                 CategoriasDal categoriaDal = new CategoriasDal();
-                modelo.setCategorias(categoriaDal.getCategoriasById(rs.getInt("mod_cat_iden")));
+                modelo.setCategoria(categoriaDal.getCategoriasById(rs.getInt("mod_cat_iden")));
+                
+                TiposDeVeiculosDal tiposDeVeiculosDal = new TiposDeVeiculosDal();
+                modelo.setTiposDeVeiculos(tiposDeVeiculosDal.getTiposDeVeiculosById(rs.getInt("tve_iden")));
                 lista.add(modelo);
             }
         } catch (Exception error) {
@@ -150,7 +155,10 @@ public class ModelosDal {
                 modelo.setMarcas(marcaDal.getMarcasById(rs.getInt("mod_mar_iden")));
 
                 CategoriasDal categoriaDal = new CategoriasDal();
-                modelo.setCategorias(categoriaDal.getCategoriasById(rs.getInt("mod_cat_iden")));
+                modelo.setCategoria(categoriaDal.getCategoriasById(rs.getInt("mod_cat_iden")));
+                
+                TiposDeVeiculosDal tiposDeVeiculosDal = new TiposDeVeiculosDal();
+                modelo.setTiposDeVeiculos(tiposDeVeiculosDal.getTiposDeVeiculosById(rs.getInt("tve_iden")));
             }
         } catch (Exception error) {
             throw error;
