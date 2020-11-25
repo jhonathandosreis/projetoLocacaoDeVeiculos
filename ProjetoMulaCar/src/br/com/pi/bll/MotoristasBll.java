@@ -38,34 +38,54 @@ public class MotoristasBll {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addMotoristas(Motoristas motoristas) throws Exception {
-        
+        try{
+         motoristaDal.addMotoristas(motoristas);
+        } catch (Exception e) {
+            throw  e;
+        }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
     
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateMotorista(Motoristas motoristas) throws Exception {
-        
+        try{
+         motoristaDal.updateMotoristas(motoristas);
+        } catch (Exception e) {
+            throw  e;
+        }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
     public void deleteMotoristas(Motoristas motoristas) throws Exception {
-        
+        try{
+         motoristaDal.deleteMotoristas(motoristas);
+        } catch (Exception e) {
+            throw  e;
+        }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
     
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Motoristas> getAllMotoristas() throws Exception {
+        try{
+         return motoristaDal.getAllMotoristas();
+        } catch (Exception e) {
+            throw  e;
+        }
         
-        return motoristaDal.getAllMotoristas();
     }
     
     public Motoristas getMotoristaBy(int mot_iden) throws Exception {
+         try{
+         return motoristaDal.getMotoristasById(mot_iden);
+        } catch (Exception e) {
+            throw  e;
+        }
         
-        return motoristaDal.getMotoristasById(mot_iden);
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //   

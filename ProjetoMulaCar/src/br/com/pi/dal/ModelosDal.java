@@ -85,7 +85,7 @@ public class ModelosDal {
     //
     public void deleteModelos(int mod_iden) throws Exception {
 
-        String sql = "DELET FROM modelos WHERE mod_iden=?";
+        String sql = "DELETE FROM modelos WHERE mod_iden=?";
 
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);

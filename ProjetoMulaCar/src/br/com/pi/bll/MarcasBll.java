@@ -15,8 +15,8 @@
 
 package br.com.pi.bll;
 
-import br.com.pi.dal.CategoriasDal;
-import br.com.pi.model.Categorias;
+import br.com.pi.dal.MarcasDal;
+import br.com.pi.model.Marcas;
 import java.util.ArrayList;
 
 /**
@@ -27,50 +27,75 @@ public class MarcasBll {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
-    private CategoriasDal categoriasDal;
+    private MarcasDal marcasDal;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
     public MarcasBll() throws Exception {
-        categoriasDal = new CategoriasDal();
+        marcasDal = new MarcasDal();
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void addMarcas(Categorias categoria) throws Exception {
+    public void addMarcas(Marcas marca) throws Exception {
         
+        try {
+            marcasDal.addMarcas(marca);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
     
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void updateMarcas(Categorias categoria) throws Exception {
+    public void updateMarcas(Marcas marca) throws Exception {
         
+        try {
+            marcasDal.updateMarcas(marca);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
     //
-    public void deleteMarcas(Categorias categoria) throws Exception {
+    public void deleteMarcas(Marcas marca) throws Exception {
         
+        try {
+            marcasDal.deleteMarcas(marca.getIden());
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
     
     //--- READ ---------------------------------------------------------------------------------------->
     //
-    public ArrayList<Categorias> getAllMarcas() throws Exception {
-        return null;
+    public ArrayList<Marcas> getAllMarcas() throws Exception {
+        
+        try {
+            return marcasDal.getAllMarcas();
+        } catch (Exception error) {
+            throw error;
+        }
     }
     
-    public Categorias getMarcasById(int iden) throws Exception {
-        return null;
+    public Marcas getMarcasById(int mar_iden) throws Exception {
+        
+        try {
+            return marcasDal.getMarcasById(mar_iden);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //

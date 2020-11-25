@@ -19,6 +19,8 @@ import br.com.pi.model.Categorias;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -97,11 +99,48 @@ public class CategoriasDal {
     //--- READ ---------------------------------------------------------------------------------------->
     //
     public ArrayList<Categorias> getAllCategorias() throws Exception {
-        return null;
+        
+        ArrayList<Categorias> lista = new ArrayList<Categorias>();
+        
+        String sql = "SELECT * FROM categorias";
+        
+        try {
+            Statement statement = conexao.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                
+                Categorias categoria = new Categorias();
+                
+                categoria.setIden(rs.getInt("cat_iden"));
+                categoria.setNome(rs.getString("cat_nome"));
+                categoria.setValorDiarioLocacao(rs.getFloat("cat_valor_diario_locacao"));
+                lista.add(categoria);
+            }
+        } catch (Exception error) {
+            throw error;
+        }
+        return lista;
     }
     
-    public Categorias getCategoriasById(int iden) throws Exception {
-        return null;
+    public Categorias getCategoriasById(int cat_iden) throws Exception {
+        
+        Categorias categoria = new Categorias();
+        
+        String sql = "SELECT * FROM categorias WHERE cat_iden=?";
+        
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1, cat_iden);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                categoria.setIden(rs.getInt("cat_iden"));
+                categoria.setNome(rs.getString("cat_nome"));
+                categoria.setValorDiarioLocacao(rs.getFloat("cat_valor_diario_locacao"));
+            }
+        } catch (Exception error) {
+            throw error;
+        }
+        return categoria;
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //

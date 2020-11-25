@@ -12,7 +12,6 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
-
 package br.com.pi.bll;
 
 import br.com.pi.dal.ModelosDal;
@@ -23,7 +22,6 @@ import java.util.ArrayList;
  *
  * @author jhonlinux
  */
-
 public class ModelosBll {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
@@ -43,15 +41,25 @@ public class ModelosBll {
     //--- CREATE -------------------------------------------------------------------------------------->
     //
     public void addModelos(Modelos modelo) throws Exception {
-        
+
+        try {
+            modelosDal.addModelos(modelo);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-    
+
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
     public void updateModelos(Modelos modelo) throws Exception {
-        
+
+        try {
+            modelosDal.updateModelos(modelo);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
@@ -59,19 +67,33 @@ public class ModelosBll {
     //--- DELETE -------------------------------------------------------------------------------------->
     //
     public void deleteModelos(Modelos modelo) throws Exception {
-        
+
+        try {
+            modelosDal.deleteModelos(modelo.getIden());
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
-    
+
     //--- READ ---------------------------------------------------------------------------------------->
     //
     public ArrayList<Modelos> getAllModelos() throws Exception {
-        return null;
+
+        try {
+            return modelosDal.getAllModelos();
+        } catch (Exception error) {
+            throw error;
+        }
     }
-    
-    public Modelos getModelosById(int iden) throws Exception {
-        return null;
+
+    public Modelos getModelosById(int mod_iden) throws Exception {
+        try {
+            return modelosDal.getModelosById(mod_iden);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //

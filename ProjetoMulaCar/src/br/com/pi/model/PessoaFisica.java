@@ -81,9 +81,10 @@ public class PessoaFisica extends Clientes {
         this.cpf = cpf;
     }
 
-    public void setPfi_cli_iden(Clientes pfi_cli_iden) {
-        this.cliente = pfi_cli_iden;
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
     }
+    
     //--- FIM SET -------------------------------------------------------------------------------------|
     //
 }

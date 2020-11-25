@@ -43,6 +43,11 @@ public class CategoriasBll {
     //
     public void addCategorias(Categorias categoria) throws Exception {
         
+        try {
+            categoriasDal.addCategorias(categoria);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
@@ -51,6 +56,11 @@ public class CategoriasBll {
     //
     public void updateCategorias(Categorias categoria) throws Exception {
         
+        try {
+            categoriasDal.updateCategorias(categoria);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
@@ -59,6 +69,11 @@ public class CategoriasBll {
     //
     public void deleteCategorias(Categorias categoria) throws Exception {
         
+        try {
+            categoriasDal.deleteCategorias(categoria.getIden());
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
@@ -66,11 +81,21 @@ public class CategoriasBll {
     //--- READ ---------------------------------------------------------------------------------------->
     //
     public ArrayList<Categorias> getAllCategorias() throws Exception {
-        return null;
+        
+        try {
+            return categoriasDal.getAllCategorias();
+        } catch (Exception error) {
+            throw error;
+        }
     }
     
-    public Categorias getCategoriasById(int iden) throws Exception {
-        return null;
+    public Categorias getCategoriasById(int cat_iden) throws Exception {
+        
+        try {
+            return categoriasDal.getCategoriasById(cat_iden);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
