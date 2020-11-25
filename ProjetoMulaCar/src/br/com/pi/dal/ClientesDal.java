@@ -16,7 +16,9 @@
 package br.com.pi.dal;
 
 import br.com.pi.bll.ClientesBll;
+import br.com.pi.bll.EnderecosBll;
 import br.com.pi.model.Clientes;
+import br.com.pi.model.Enderecos;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -27,18 +29,20 @@ import java.util.ArrayList;
  *
  * @author jhonlinux
  */
-public class ClienteDal {
+public class ClientesDal {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     private Connection conexao;
     private ClientesBll clienteBll;
     private Clientes cliente;
+    private EnderecosBll enderecoBll = new EnderecosBll();
+    private Enderecos endereco = null;
 
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
-    public ClienteDal() throws Exception {
+    public ClientesDal() throws Exception {
         this.conexao = Conexao.getConexao();
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
@@ -55,16 +59,15 @@ public class ClienteDal {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
 
-                int cup_id = rs.getInt("usu_cup_iden");
-                cupon = cupBll.getConsultaId(cup_id);
-                Usuarios usuario = new Usuarios();
-                usuario.setUsu_iden(rs.getInt("usu_iden"));
-                usuario.setUsu_nome(rs.getString("usu_nome"));
-                usuario.setUsu_cpf(rs.getString("usu_cpf"));
-                usuario.setUsu_email(rs.getString("usu_email"));
-                usuario.setUsu_senha(rs.getString("usu_senha"));
-                usuario.setUsu_cup_iden(cupon);
-                lista.add(usuario);
+                int endereco_id = rs.getInt("cli_end_iden");
+                endereco = enderecoBll.getConsultaPorId(endereco_id);
+                cliente = new Clientes();
+                cliente.setIden(rs.getInt("cli_iden"));
+                cliente.setNome(rs.getString("cli_nome"));
+                cliente.setTelefone(rs.getDouble("cli_telefone"));
+                cliente.setEmail(rs.getString("cli_email"));
+                cliente.setEnderecos(endereco);
+                lista.add(cliente);
             }
         return lista;
         
@@ -72,6 +75,24 @@ public class ClienteDal {
 
     public Clientes getClientesById(int cli_iden) throws Exception {
         
+        String sql = "SELECT * FROM clientes";
+        
+
+            Statement statement = conexao.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+
+                int endereco_id = rs.getInt("cli_end_iden");
+                endereco = enderecoBll.getConsultaPorId(endereco_id);
+                cliente = new Clientes();
+                cliente.setIden(rs.getInt("cli_iden"));
+                cliente.setNome(rs.getString("cli_nome"));
+                cliente.setTelefone(rs.getDouble("cli_telefone"));
+                cliente.setEmail(rs.getString("cli_email"));
+                cliente.setEnderecos(endereco);
+                
+            }
+        return cliente;
     }
 
     //--- FIM READ ------------------------------------------------------------------------------------|

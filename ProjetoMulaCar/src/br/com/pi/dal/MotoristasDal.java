@@ -15,13 +15,16 @@
 
 package br.com.pi.dal;
 
+import br.com.pi.bll.ClientesBll;
 import br.com.pi.bll.MotoristasBll;
+import br.com.pi.model.Clientes;
 import br.com.pi.model.Motoristas;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -34,6 +37,8 @@ public class MotoristasDal {
     private Connection conexao;
     private MotoristasBll motoristaBll;
     private Motoristas motorista;
+    private Clientes cliente = null;
+    private ClientesBll clienteBll = new ClientesBll();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -72,6 +77,7 @@ public class MotoristasDal {
      
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateMotoristas (Motoristas motorista) throws Exception {
+        
         String sqlCliente ="UPDATE clientes SET cli_nome=?, cli_telefone=?, cli_email=?, cli_end_iden=? WHERE cli_iden=?";
         PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);
       
@@ -98,6 +104,7 @@ public class MotoristasDal {
 
     //--- DELETE -------------------------------------------------------------------------------------->
     public void deleteMotoristas (Motoristas motorista) throws Exception {
+        
         int idMotorista = motorista.getIden();
         int idCliente = motorista.getCliente().getIden();
         
@@ -114,8 +121,26 @@ public class MotoristasDal {
     
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Motoristas> getAllMotoristas() throws Exception {
-        ArrayList<Motoristas> lista = new ArrayList<Motoristas>();
-        return lista;
+        
+         ArrayList<Motoristas> lista = new ArrayList<Motoristas>();
+         String sql = "SELECT * FROM motoristas";
+         Statement statement = conexao.createStatement();
+         ResultSet rs = statement.executeQuery(sql);
+         
+           if(rs.next()){
+                int cli_id = rs.getInt("pfi_cli_iden");
+                cliente = clienteBll.getClienteById(cli_id);
+                motorista.setIden(rs.getInt("pfi_iden"));
+                motorista.setRg(rs.getInt("pfi_rg"));
+                motorista.setCpf(rs.getLong("pfi_cpf"));
+                motorista.setNumeroCnh(rs.getLong("pfi_numero_cnh"));
+                motorista.setCategoriaCnh(rs.getString("pfi_categoria_cnh"));
+                motorista.setDataValidade(rs.getDate("pfi_data_de_validade"));
+                motorista.setCliente(cliente);
+                lista.add(motorista);
+           }
+         
+    return lista;
         
     }
 
@@ -129,17 +154,15 @@ public class MotoristasDal {
         ResultSet rs = preparedStatement.executeQuery();
         if(rs.next()){
         int cli_id = rs.getInt("pfi_cli_iden");
-        
+        cliente = clienteBll.getClienteById(cli_id);
         motorista.setIden(rs.getInt("pfi_iden"));
         motorista.setRg(rs.getInt("pfi_rg"));
         motorista.setCpf(rs.getLong("pfi_cpf"));
         motorista.setNumeroCnh(rs.getLong("pfi_numero_cnh"));
         motorista.setCategoriaCnh(rs.getString("pfi_categoria_cnh"));
         motorista.setDataValidade(rs.getDate("pfi_data_de_validade"));
-        
-        
-        }
-        
+        motorista.setCliente(cliente);
+        }       
         return motorista;
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
