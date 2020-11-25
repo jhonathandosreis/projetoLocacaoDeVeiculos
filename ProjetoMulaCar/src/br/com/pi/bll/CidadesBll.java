@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.pi.bll;
 
 import br.com.pi.dal.CidadesDal;
@@ -15,7 +14,8 @@ import java.util.ArrayList;
  * @author miguelneto
  */
 public class CidadesBll {
-   //--- ATRIBUTOS ----------------------------------------------------------------------------------->
+    //--- ATRIBUTOS ----------------------------------------------------------------------------------->
+
     private CidadesDal cidadeDal;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
@@ -29,20 +29,26 @@ public class CidadesBll {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addCidades(Cidades cidade) throws Exception {
-        
+
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-    
+
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Cidades> getAllCidade() throws Exception {
-        
+
         return cidadeDal.getAllCidades();
     }
-    
+
     public Cidades getCidadesBy(int cid_iden) throws Exception {
-        
+
         return cidadeDal.getCidadesById(cid_iden);
+    }
+
+    public Cidades getCidadeNome(String nome) throws Exception {
+
+        return cidadeDal.getCidadesById(nome);
+
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //    
