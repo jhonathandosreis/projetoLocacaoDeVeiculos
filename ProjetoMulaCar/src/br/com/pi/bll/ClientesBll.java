@@ -19,7 +19,7 @@ package br.com.pi.bll;
  *
  * @author jhonlinux
  */
-public class ClienteBll {
+public class ClientesBll {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //

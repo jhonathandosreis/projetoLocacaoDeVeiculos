@@ -25,7 +25,7 @@ import java.util.ArrayList;
  */
 public class MotoristasBll {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
-    private MotoristasDal motoristaDal;
+    private MotoristasDal motoristaDal;  
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 

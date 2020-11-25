@@ -15,24 +15,19 @@
 
 package br.com.pi.model;
 
-import java.text.DateFormat;
-
 /**
  *
  * @author jhonlinux
  */
 
-public class PessoaFisica extends Clientes{
+public class PessoaFisica extends Clientes {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private int iden = 0;
     private int rg = 0;
     private double cpf = 0;
-    private int numeroCnh = 0;
-    private String categoriaCnh = "";
-    private DateFormat dataValidade = null;
-    private Clientes pfi_cli_iden = null;
+    private Clientes cliente = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -42,16 +37,12 @@ public class PessoaFisica extends Clientes{
         
     }
 
-    public PessoaFisica(int iden, String nome, double telefone, String email, int rg, double cpf, 
-            int numeroCnh, String categoriaCnh, DateFormat dataValidade, Clientes pfi_cli_iden, Enderecos enderecos) {
+    public PessoaFisica(int iden, String nome, double telefone, String email,Enderecos enderecos, Clientes cliente, int rg, double cpf) {
         super(iden, nome, telefone, email, enderecos);
         this.iden = iden;
         this.rg = rg;
         this.cpf = cpf;
-        this.numeroCnh = numeroCnh;
-        this.categoriaCnh = categoriaCnh;
-        this.dataValidade = dataValidade;
-        this.pfi_cli_iden = pfi_cli_iden;
+        this.cliente = cliente;
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -70,20 +61,8 @@ public class PessoaFisica extends Clientes{
         return cpf;
     }
 
-    public int getNumeroCnh() {
-        return numeroCnh;
-    }
-
-    public String getCategoriaCnh() {
-        return categoriaCnh;
-    }
-
-    public DateFormat getDataValidade() {
-        return dataValidade;
-    }
-
-    public Clientes getPfi_cli_iden() {
-        return pfi_cli_iden;
+    public Clientes getCliente() {
+        return cliente;
     }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
@@ -102,20 +81,8 @@ public class PessoaFisica extends Clientes{
         this.cpf = cpf;
     }
 
-    public void setNumeroCnh(int numeroCnh) {
-        this.numeroCnh = numeroCnh;
-    }
-
-    public void setCategoriaCnh(String categoriaCnh) {
-        this.categoriaCnh = categoriaCnh;
-    }
-
-    public void setDataValidade(DateFormat dataValidade) {
-        this.dataValidade = dataValidade;
-    }
-
     public void setPfi_cli_iden(Clientes pfi_cli_iden) {
-        this.pfi_cli_iden = pfi_cli_iden;
+        this.cliente = pfi_cli_iden;
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //

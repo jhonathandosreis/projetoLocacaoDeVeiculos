@@ -14,19 +14,20 @@
  */
 
 package br.com.pi.model;
-
 import java.util.ArrayList;
-
+import java.util.Date;
 /**
  *
  * @author jhonlinux
  */
-public class Motoristas extends Clientes {
+public class Motoristas extends PessoaFisica {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private int iden =0;
     private double numeroCnh = 0;
+    private String categoriaCnh = "";
+    private Date dataValidade = null;
     private ArrayList<Fotos> fotos = new ArrayList<>();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
@@ -37,10 +38,15 @@ public class Motoristas extends Clientes {
         
     }
     
-    public Motoristas(int iden, String nome, double telefone, String email, Enderecos enderecos, double numeroCnh) {
-        super(iden, nome, telefone, email, enderecos);
+    public Motoristas( double numeroCnh, String categoriaCnh, Date dataValidade, ArrayList<Fotos> fotos ,
+        int iden, int rg, double cpf, String nome, double telefone, String email, Enderecos enderecos, Clientes cliente) {
+        super(iden, nome, telefone, email, enderecos, cliente, rg, cpf);
+        
         this.iden = iden;
         this.numeroCnh = numeroCnh;
+        this.categoriaCnh = categoriaCnh;
+        this.dataValidade = dataValidade;
+        this.fotos = fotos;
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -54,9 +60,17 @@ public class Motoristas extends Clientes {
     public double getNumeroCnh() {
         return numeroCnh;
     }
+    
+    public String getCategoriaCnh() {
+        return categoriaCnh;
+    }
 
     public ArrayList<Fotos> getFotos() {
         return fotos;
+    }
+    
+    public Date getDataValidade() {
+        return dataValidade;
     }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
@@ -70,11 +84,19 @@ public class Motoristas extends Clientes {
     public void setNumeroCnh(double numeroCnh) {
         this.numeroCnh = numeroCnh;
     }
+    
+    public void setCategoriaCnh(String categoriacnh) {
+        this.categoriaCnh = categoriacnh;
+    }
 
     public void setFotos(ArrayList<Fotos> fotos) {
         this.fotos = fotos;
     }
-
+    
+    public void setDataValidade(Date dataValidade) {
+         this.dataValidade = dataValidade;
+    }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //
+    
 }
