@@ -41,7 +41,7 @@ public class VeiculosBll {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void addVeiculos(Veiculos veiculos) throws Exception {
+    public void addVeiculos(Veiculos veiculo) throws Exception {
         
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -49,7 +49,7 @@ public class VeiculosBll {
     
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void updateVeiculos(Veiculos veiculos) throws Exception {
+    public void updateVeiculos(Veiculos veiculo) throws Exception {
         
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -57,7 +57,7 @@ public class VeiculosBll {
 
     //--- DELETE -------------------------------------------------------------------------------------->
     //
-    public void deleteVeiculos(Veiculos veiculos) throws Exception {
+    public void deleteVeiculos(Veiculos veiculo) throws Exception {
         
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|

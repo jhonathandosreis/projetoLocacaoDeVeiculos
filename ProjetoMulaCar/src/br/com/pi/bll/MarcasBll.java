@@ -41,7 +41,7 @@ public class MarcasBll {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void addMarcas(Categorias categorias) throws Exception {
+    public void addMarcas(Categorias categoria) throws Exception {
         
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -49,7 +49,7 @@ public class MarcasBll {
     
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void updateMarcas(Categorias categorias) throws Exception {
+    public void updateMarcas(Categorias categoria) throws Exception {
         
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -57,7 +57,7 @@ public class MarcasBll {
 
     //--- DELETE -------------------------------------------------------------------------------------->
     //
-    public void deleteMarcas(Categorias categorias) throws Exception {
+    public void deleteMarcas(Categorias categoria) throws Exception {
         
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|

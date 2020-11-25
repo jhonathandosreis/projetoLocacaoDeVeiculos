@@ -41,7 +41,7 @@ public class MarcasDal {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void addMarcas(Marcas marcas) throws Exception {
+    public void addMarcas(Marcas marca) throws Exception {
 
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -49,7 +49,7 @@ public class MarcasDal {
 
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void updateMarcas(Marcas marcas) throws Exception {
+    public void updateMarcas(Marcas marca) throws Exception {
 
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|

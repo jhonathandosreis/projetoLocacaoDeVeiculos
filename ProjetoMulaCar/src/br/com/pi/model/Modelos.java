@@ -26,6 +26,7 @@ public class Modelos {
     private int iden = 0;
     private String nome = "";
     private Marcas marcas = null;
+    private Categorias categoria = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -35,10 +36,11 @@ public class Modelos {
         
     }
     
-    public Modelos(int iden, String nome, Marcas marcas) {
+    public Modelos(int iden, String nome, Marcas marcas, Categorias categoria) {
         this.iden = iden;
         this.nome = nome;
         this.marcas = marcas;
+        this.categoria = categoria;
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -55,7 +57,11 @@ public class Modelos {
 
     public Marcas getMarcas() {
         return marcas;
-    }    
+    }
+
+    public Categorias getCategorias() {
+        return categoria;
+    }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
     
@@ -71,6 +77,10 @@ public class Modelos {
 
     public void setMarcas(Marcas marcas) {
         this.marcas = marcas;
+    }
+    
+    public void setCategorias(Categorias categoria) {
+        this.categoria = categoria;
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //

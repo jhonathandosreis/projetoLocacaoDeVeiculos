@@ -42,7 +42,7 @@ public class TiposDeVeiculosDal {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void addTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculos) throws Exception {
+    public void addTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculo) throws Exception {
         
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -50,7 +50,7 @@ public class TiposDeVeiculosDal {
     
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void updateTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculos) throws Exception {
+    public void updateTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculo) throws Exception {
         
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|

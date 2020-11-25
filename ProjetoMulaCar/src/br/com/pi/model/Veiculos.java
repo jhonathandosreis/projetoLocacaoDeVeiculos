@@ -26,12 +26,14 @@ public class Veiculos {
     private int iden = 0;
     private String placa = "";
     private int quilimetragem = 0;
-    private int anoDoVeiculo = 0;
     private double renavam = 0;
     private String status = "";
     private int precoDeCompra = 0;
-    private int observacoes = 0;
+    private float anoFabricacao = 0;
+    private String observacoes = "";
     private float capacidade = 0;
+    private Modelos modelo = null;
+    private TiposDeVeiculos tiposDeVeiculo = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -41,17 +43,21 @@ public class Veiculos {
         
     }
     
-    public Veiculos(int iden, String placa, int quilometragem, int anoDoVeiculo, 
-            double renavam, String status, int precoDeCompra, int observacoes, float capacidade) {
+    public Veiculos(int iden, String placa, int quilometragem,double renavam, 
+            String status, int precoDeCompra, float anoFabricacao, String observacoes, 
+            float capacidade, Modelos modelo, TiposDeVeiculos tiposDeVeiculos) {
         this.iden = iden;
         this.placa = placa;
         this.quilimetragem = quilometragem;
-        this.anoDoVeiculo = anoDoVeiculo;
         this.renavam = renavam;
         this.status = status;
         this.precoDeCompra = precoDeCompra;
+        this.anoFabricacao = anoFabricacao;
         this.observacoes = observacoes;
         this.capacidade = capacidade;
+        this.modelo = modelo;
+        this.tiposDeVeiculo = tiposDeVeiculos;
+        
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -70,10 +76,6 @@ public class Veiculos {
         return quilimetragem;
     }
 
-    public int getAnoDoVeiculo() {
-        return anoDoVeiculo;
-    }
-
     public double getRenavam() {
         return renavam;
     }
@@ -85,13 +87,25 @@ public class Veiculos {
     public int getPrecoDeCompra() {
         return precoDeCompra;
     }
+    
+    public float getAnoFabricacao() {
+        return anoFabricacao;
+    }
 
-    public int getObservacoes() {
+    public String getObservacoes() {
         return observacoes;
     }
 
     public float getCapacidade() {
         return capacidade;
+    }
+    
+    public Modelos getModelo() {
+        return modelo;
+    }
+    
+    public TiposDeVeiculos getTiposDeVeiculo() {
+        return tiposDeVeiculo;
     }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
@@ -110,10 +124,6 @@ public class Veiculos {
         this.quilimetragem = quilimetragem;
     }
 
-    public void setAnoDoVeiculo(int anoDoVeiculo) {
-        this.anoDoVeiculo = anoDoVeiculo;
-    }
-
     public void setRenavam(double renavam) {
         this.renavam = renavam;
     }
@@ -125,13 +135,25 @@ public class Veiculos {
     public void setPrecoDeCompra(int precoDeCompra) {
         this.precoDeCompra = precoDeCompra;
     }
+    
+    public void setAnoFabricacao(float anoFabricacao) {
+        this.anoFabricacao = anoFabricacao;
+    }
 
-    public void setObservacoes(int observacoes) {
+    public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
     }
 
     public void setCapacidade(float capacidade) {
         this.capacidade = capacidade;
+    }
+    
+    public void setModelo(Modelos modelo) {
+        this.modelo = modelo;
+    }
+    
+    public void setTiposDeVeiculo(TiposDeVeiculos tiposDeVeiculo) {
+        this.tiposDeVeiculo = tiposDeVeiculo;
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //
