@@ -18,6 +18,9 @@ package br.com.pi.dal;
 import br.com.pi.model.TiposDeVeiculos;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -44,6 +47,15 @@ public class TiposDeVeiculosDal {
     //
     public void addTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculo) throws Exception {
         
+        String sql = "INSERT INTO tipos_de_veiculos (tve_nome) VALUES (?)";
+        
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1, tiposDeVeiculo.getNome());
+            preparedStatement.executeUpdate();
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
@@ -52,14 +64,33 @@ public class TiposDeVeiculosDal {
     //
     public void updateTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculo) throws Exception {
         
+        String sql = "UPDATE tipos_de_veiculos SET tve_nome=? WHERE tve_iden=?";
+        
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1, tiposDeVeiculo.getNome());
+            preparedStatement.setInt(2, tiposDeVeiculo.getIden());
+            preparedStatement.executeUpdate();
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
     //
-    public void deleteTiposDeVeiculos(int iden) throws Exception {
+    public void deleteTiposDeVeiculos(int tve_iden) throws Exception {
         
+        String sql = "DELETE FROM tipos_de_veiculos WHERE tve_iden=?";
+        
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1, tve_iden);
+            preparedStatement.executeUpdate();
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
@@ -67,11 +98,46 @@ public class TiposDeVeiculosDal {
     //--- READ ---------------------------------------------------------------------------------------->
     //
     public ArrayList<TiposDeVeiculos> getAllTiposDeVeiculos() throws Exception {
-        return null;
+        
+        ArrayList<TiposDeVeiculos> lista = new ArrayList<TiposDeVeiculos>();
+        
+        String sql = "SELECT * FROM tipos_de_veiculos";
+        
+        try {
+            Statement statement = conexao.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                
+                TiposDeVeiculos tiposDeVeiculos = new TiposDeVeiculos();
+                
+                tiposDeVeiculos.setIden(rs.getInt("tve_iden"));
+                tiposDeVeiculos.setNome(rs.getString("tve_nome"));
+                lista.add(tiposDeVeiculos);
+            }
+        } catch (Exception error) {
+            throw error;
+        }
+        return lista;
     }
     
-    public TiposDeVeiculos getTiposDeVeiculosById(int iden) throws Exception {
-        return null;
+    public TiposDeVeiculos getTiposDeVeiculosById(int tve_iden) throws Exception {
+        
+        TiposDeVeiculos tiposDeVeiculos = new TiposDeVeiculos();
+        
+        String sql = "SELECT * FROM tipos_de_veiculos WHERE tve_iden=?";
+        
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1, tve_iden);
+            ResultSet rs = preparedStatement.executeQuery(); 
+            if (rs.next()) {
+                tiposDeVeiculos.setIden(rs.getInt("tve_iden"));
+                tiposDeVeiculos.setNome(rs.getString("tve_nome"));
+            }
+        } catch (Exception error) {
+            throw error;
+        }
+        return tiposDeVeiculos;
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //

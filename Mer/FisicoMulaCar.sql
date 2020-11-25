@@ -11,7 +11,7 @@ CREATE TABLE marcas (
 CREATE TABLE categorias (
     cat_iden SERIAL PRIMARY KEY,
     cat_nome VARCHAR(80) CONSTRAINT categoria_repetida UNIQUE,
-    cat_valor_diario_da_Locacao NUMERIC(15)
+    cat_valor_diario_Locacao NUMERIC(15)
 );
 
 CREATE TABLE tipos_de_veiculos (
@@ -52,7 +52,7 @@ CREATE TABLE pessoas_fisicas (
     pfi_cpf BIGINT CONSTRAINT cpf_repetido UNIQUE,
     pfi_numero_cnh BIGINT CONSTRAINT cnh_repetida UNIQUE,
     pfi_categoria_cnh VARCHAR(20),
-    pfi_data_de_validade VARCHAR(30),
+    pfi_data_validade VARCHAR(30),
     pfi_cli_iden INTEGER,
     FOREIGN KEY (pfi_cli_iden) REFERENCES clientes (cli_iden)
 );
@@ -87,7 +87,6 @@ CREATE TABLE veiculos (
     vei_iden SERIAL PRIMARY KEY,
     vei_placa VARCHAR(30) CONSTRAINT placa_repetida UNIQUE,
     vei_km NUMERIC(30),
-    vei_ano_modelo INTEGER,
     vei_renavam BIGINT CONSTRAINT renavam_repetido UNIQUE,
     vei_status VARCHAR(100),
     vei_observacoes VARCHAR(100),

@@ -12,7 +12,6 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
-
 package br.com.pi.bll;
 
 import br.com.pi.dal.VeiculosDal;
@@ -42,15 +41,23 @@ public class VeiculosBll {
     //--- CREATE -------------------------------------------------------------------------------------->
     //
     public void addVeiculos(Veiculos veiculo) throws Exception {
-        
+        try {
+            veiculosDal.addVeiculos(veiculo);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-    
+
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
     public void updateVeiculos(Veiculos veiculo) throws Exception {
-        
+        try {
+            veiculosDal.updateVeiculos(veiculo);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
@@ -58,19 +65,34 @@ public class VeiculosBll {
     //--- DELETE -------------------------------------------------------------------------------------->
     //
     public void deleteVeiculos(Veiculos veiculo) throws Exception {
-        
+
+        try {
+            veiculosDal.deleteVeiculos(veiculo.getIden());
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
-    
+
     //--- READ ---------------------------------------------------------------------------------------->
     //
     public ArrayList<Veiculos> getAllVeiculos() throws Exception {
-        return null;
+        
+        try {
+            return veiculosDal.getAllVeiculos();
+        } catch (Exception error) {
+            throw error;
+        }
     }
-    
-    public Veiculos getVeiculosById(int iden) throws Exception {
-        return null;
+
+    public Veiculos getVeiculosById(int vei_iden) throws Exception {
+        
+        try {
+            return veiculosDal.getVeiculosById(vei_iden);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
