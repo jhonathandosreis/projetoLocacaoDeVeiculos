@@ -12,7 +12,6 @@ package br.com.pi.bll;
  */
 public class CidadesBll {
     
-     decidir se vai ter uf no banco de dados
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
 

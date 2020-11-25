@@ -41,7 +41,12 @@ public class TiposDeVeiculosBll {
     //--- CREATE -------------------------------------------------------------------------------------->
     //
     public void addTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculo) throws Exception {
-
+        
+        try {
+            tiposDeVeiculosDal.addTiposDeVeiculos(tiposDeVeiculo);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
@@ -49,7 +54,12 @@ public class TiposDeVeiculosBll {
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
     public void updateTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculo) throws Exception {
-
+        
+        try {
+            tiposDeVeiculosDal.updateTiposDeVeiculos(tiposDeVeiculo);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
@@ -57,7 +67,12 @@ public class TiposDeVeiculosBll {
     //--- DELETE -------------------------------------------------------------------------------------->
     //
     public void deleteTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculo) throws Exception {
-
+        
+        try {
+            tiposDeVeiculosDal.deleteTiposDeVeiculos(tiposDeVeiculo.getIden());
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
@@ -65,11 +80,21 @@ public class TiposDeVeiculosBll {
     //--- READ ---------------------------------------------------------------------------------------->
     //
     public ArrayList<TiposDeVeiculos> getAllTiposDeVeiculos() throws Exception {
-        return null;
+        
+        try {
+            return tiposDeVeiculosDal.getAllTiposDeVeiculos();
+        } catch (Exception error) {
+            throw error;
+        }
     }
 
-    public TiposDeVeiculos getTiposDeVeiculosById(int iden) throws Exception {
-        return null;
+    public TiposDeVeiculos getTiposDeVeiculosById(int tve_iden) throws Exception {
+        
+        try {
+            return tiposDeVeiculosDal.getTiposDeVeiculosById(tve_iden);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
