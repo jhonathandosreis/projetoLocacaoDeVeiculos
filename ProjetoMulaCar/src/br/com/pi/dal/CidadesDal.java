@@ -85,7 +85,6 @@ public class CidadesDal {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, cidade.getNome());
             preparedStatement.setInt(2, cidade.getUf().getIden());
-        
 
             preparedStatement.executeUpdate();
         } catch (Exception error) {
@@ -111,7 +110,7 @@ public class CidadesDal {
                 Cidades cidade = new Cidades();
                 cidade.setIden(rs.getInt("cid_iden"));
                 cidade.setNome(rs.getString("cid_nome"));
-              
+
                 UfsDal uf = new UfsDal();
                 cidade.setUf(uf.getUfsById(rs.getInt("cid_ufs_iden")));
 
@@ -138,8 +137,8 @@ public class CidadesDal {
 
                 cidade.setIden(rs.getInt("cid_iden"));
                 cidade.setNome(rs.getString("cid_nome"));
-              
-                 UfsDal uf = new UfsDal();
+
+                UfsDal uf = new UfsDal();
                 cidade.setUf(uf.getUfsById(rs.getInt("cid_ufs_iden")));
 
             }
@@ -148,7 +147,33 @@ public class CidadesDal {
         }
         return cidade;
     }
+
+    public Cidades getCidadesById(String nome) throws Exception {
+
+        Cidades cidade = new Cidades();
+        String sql = "SELECT * FROM cidades WHERE cid_nome=?";
+
+        try {
+
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1, nome);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+
+                cidade.setIden(rs.getInt("cid_iden"));
+                cidade.setNome(rs.getString("cid_nome"));
+
+                UfsDal uf = new UfsDal();
+                cidade.setUf(uf.getUfsById(rs.getInt("cid_ufs_iden")));
+
+            }
+        } catch (Exception error) {
+            throw error;
+        }
+        return cidade;
+    }
+
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
-
 }
