@@ -5,7 +5,7 @@
  */
 package br.com.pi.dal;
 
-import br.com.pi.model.Ufs;
+
 import br.com.pi.model.Enderecos;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;

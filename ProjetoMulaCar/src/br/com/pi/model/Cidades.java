@@ -55,14 +55,15 @@ public class Cidades {
         this.nome = nome;
     }
 
-    public void setUf(Ufs uf) {
+     public void setUf(Ufs uf) {
         this.uf = uf;
     }
-
+   
     public void setIden(int iden) {
         this.iden = iden;
     }
 
     //--- FIM SET -------------------------------------------------------------------------------------|
     //
+
 }

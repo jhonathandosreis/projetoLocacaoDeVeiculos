@@ -5,29 +5,31 @@
  */
 package br.com.pi.dal;
 
-import br.com.pi.model.Cidades;
+import br.com.pi.model.Enderecos;
+import br.com.pi.model.Ufs;
 import br.com.pi.util.Conexao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
+import java.sql.Statement;
 
 /**
  *
  * @author miguelneto
  */
-public class CidadesDal {
+public class UfsDal {
+
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
-
     private Connection conexao;
 
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-    public CidadesDal() throws Exception {
+    public UfsDal() throws Exception {
         conexao = Conexao.getConexao();
     }
 
@@ -35,19 +37,19 @@ public class CidadesDal {
     //
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void addCidades(Cidades cidade) throws Exception {
+    public void addUfs(Ufs uf) throws Exception {
 
-        String sql = "INSERT INTO cidades( cid_nome , cid_ufs_iden ) VALUES(?,?)";
+        String sql = "INSERT INTO ufs( uf_iden , uf_sigla) VALUES(?,?)";
         try {
 
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setString(1, cidade.getNome());
-            preparedStatement.setInt(2, cidade.getUf().getIden());
+            preparedStatement.setString(1, uf.getSigla());
+
             preparedStatement.executeUpdate();
 
         } catch (Exception error) {
             if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-                throw new RuntimeException("Não é possível cadastrar esta Cidade!");
+                throw new RuntimeException("Não é possível cadastrar esta UF!");
             }
         }
 
@@ -57,17 +59,17 @@ public class CidadesDal {
     //
     //--- DELETE -------------------------------------------------------------------------------------->
     //
-    public void deleteCidades(int cid_iden) throws Exception {
+    public void deleteUfs(int uf_iden) throws Exception {
 
-        String sql = "DELETE FROM cidades WHERE cid_iden =?";
+        String sql = "DELETE FROM ufs WHERE uf_iden =?";
 
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setInt(1, cid_iden);
+            preparedStatement.setInt(1, uf_iden);
             preparedStatement.executeUpdate();
         } catch (Exception error) {
             if (error.getMessage().contains("")) {
-                throw new RuntimeException("Não é possível deletar esta cidade pois esta vinculado a uma Uf!");
+                throw new RuntimeException("Não é possível deletar esta UF!");
             }
         }
 
@@ -77,20 +79,19 @@ public class CidadesDal {
     //
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void updateCidades(Cidades cidade) throws Exception {
+    public void updateUfs(Ufs uf) throws Exception {
 
-        String sql = "UPDATE cidades SET cid_nome=?, cid_ufs_iden=? WHERE cid_iden=?";
+        String sql = "UPDATE ufs SET uf_sigla=? WHERE uf_iden=?";
 
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setString(1, cidade.getNome());
-            preparedStatement.setInt(2, cidade.getUf().getIden());
-        
+            preparedStatement.setString(1, uf.getSigla());
+            preparedStatement.setInt(2, uf.getIden());
 
             preparedStatement.executeUpdate();
         } catch (Exception error) {
             if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-                throw new RuntimeException("Não é possível alterar esta Cidade !");
+                throw new RuntimeException("Não é possível alterar este UF !");
             }
         }
 
@@ -100,22 +101,21 @@ public class CidadesDal {
     //
     //--- READ ---------------------------------------------------------------------------------------->
     //
-    public ArrayList<Cidades> getAllCidades() throws Exception {
+    public ArrayList<Ufs> getAllUfs() throws Exception {
 
-        ArrayList<Cidades> lista = new ArrayList<Cidades>();
-        String sql = "SELECT * FROM cidades";
+        ArrayList<Ufs> lista = new ArrayList<Ufs>();
+        String sql = "SELECT * FROM ufs";
         try {
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
-                Cidades cidade = new Cidades();
-                cidade.setIden(rs.getInt("cid_iden"));
-                cidade.setNome(rs.getString("cid_nome"));
-              
-                UfsDal uf = new UfsDal();
-                cidade.setUf(uf.getUfsById(rs.getInt("cid_ufs_iden")));
+                Ufs uf = new Ufs();
 
-                lista.add(cidade);
+                uf.setIden(rs.getInt("uf_iden"));
+                uf.setSigla(rs.getString("uf_sigla"));
+               
+
+                lista.add(uf);
             }
         } catch (Exception error) {
             throw error;
@@ -123,10 +123,10 @@ public class CidadesDal {
         return lista;
     }
 
-    public Cidades getCidadesById(int id) throws Exception {
+    public Ufs getUfsById(int id) throws Exception {
 
-        Cidades cidade = new Cidades();
-        String sql = "SELECT * FROM cidades WHERE cid_iden=?";
+        Ufs uf = new Ufs();
+        String sql = "SELECT * FROM ufs WHERE uf_iden=?";
 
         try {
 
@@ -136,17 +136,14 @@ public class CidadesDal {
 
             if (rs.next()) {
 
-                cidade.setIden(rs.getInt("cid_iden"));
-                cidade.setNome(rs.getString("cid_nome"));
-              
-                 UfsDal uf = new UfsDal();
-                cidade.setUf(uf.getUfsById(rs.getInt("cid_ufs_iden")));
+                 uf.setIden(rs.getInt("uf_iden"));
+                 uf.setSigla(rs.getString("uf_sigla"));
 
             }
         } catch (Exception error) {
             throw error;
         }
-        return cidade;
+        return uf;
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
