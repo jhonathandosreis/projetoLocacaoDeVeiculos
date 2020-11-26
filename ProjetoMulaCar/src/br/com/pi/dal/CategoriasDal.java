@@ -72,6 +72,7 @@ public class CategoriasDal {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, categoria.getNome());
             preparedStatement.setFloat(2, categoria.getValorDiarioLocacao());
+            preparedStatement.setInt(3, categoria.getIden());
             preparedStatement.executeUpdate();
         } catch (Exception error) {
             throw error;
@@ -83,7 +84,8 @@ public class CategoriasDal {
     //--- DELETE -------------------------------------------------------------------------------------->
     //
     public void deleteCategorias(int cat_iden) throws Exception {
-        String sql = "DELETE FROM categorias WHERE cat_iden";
+        
+        String sql = "DELETE FROM categorias WHERE cat_iden=?";
         
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);

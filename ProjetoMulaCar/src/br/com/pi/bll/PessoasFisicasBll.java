@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 23/11/2020 22:59:14 
+ *  Criado em  : 25/11/2020 21:32:56 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -12,98 +12,81 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
+
 package br.com.pi.bll;
 
-import br.com.pi.dal.ModelosDal;
-import br.com.pi.model.Modelos;
+import br.com.pi.dal.PessoasFisicasDal;
+import br.com.pi.model.PessoasFisicas;
 import java.util.ArrayList;
 
 /**
  *
- * @author jhonlinux
+ * @author Gustavo Gabriel
  */
-public class ModelosBll {
-
+public class PessoasFisicasBll {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
-    //
-    private ModelosDal modelosDal;
+    private PessoasFisicasDal pessoaFisicaDal;  
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
-    //
-    public ModelosBll() throws Exception {
-        modelosDal = new ModelosDal();
+    public PessoasFisicasBll() throws Exception {
+        pessoaFisicaDal = new PessoasFisicasDal();
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    //
-    public void addModelos(Modelos modelo) throws Exception {
-
-        try {
-            modelosDal.addModelos(modelo);
+    public void addPessoasFisicas(PessoasFisicas pessoaFisica) throws Exception {
+        try{
+         pessoaFisicaDal.addPessoasFisicas(pessoaFisica);
         } catch (Exception error) {
-            throw error;
+            throw  error;
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-
+    
     //--- UPDATE -------------------------------------------------------------------------------------->
-    //
-    public void updateModelos(Modelos modelo) throws Exception {
-
-        try {
-            modelosDal.updateModelos(modelo);
+    public void updatePessoasFisicas(PessoasFisicas pessoaFisica) throws Exception {
+        try{
+         pessoaFisicaDal.updatePessoasFisicas(pessoaFisica);
         } catch (Exception error) {
-            throw error;
+            throw  error;
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
-    //
-    public void deleteModelos(Modelos modelo) throws Exception {
-
-        try {
-            modelosDal.deleteModelos(modelo.getIden());
+    public void deletePessoasFisicas(PessoasFisicas pessoaFisica) throws Exception {
+        try{
+         pessoaFisicaDal.deletePessoasFisicas(pessoaFisica);
         } catch (Exception error) {
-            throw error;
+            throw  error;
         }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
-
+    
     //--- READ ---------------------------------------------------------------------------------------->
-    //
-    public ArrayList<Modelos> getAllModelos() throws Exception {
-
-        try {
-            return modelosDal.getAllModelos();
+    public ArrayList<PessoasFisicas> getAllPessoasFisicas() throws Exception {
+        try{
+         return pessoaFisicaDal.getAllPessoasFisicas();
         } catch (Exception error) {
-            throw error;
+            throw  error;
         }
-    }
-
-    public Modelos getModelosById(int mod_iden) throws Exception {
-        try {
-            return modelosDal.getModelosById(mod_iden);
-        } catch (Exception error) {
-            throw error;
-        }
+        
     }
     
-    public Modelos getModeloByNome(String mod_nome) throws Exception {
-        
-        try {
-            return modelosDal.getModelosByNome(mod_nome);
+    public PessoasFisicas getPessoasFisicasBy(int pessoaFisica_iden) throws Exception {
+         try{
+         return pessoaFisicaDal.getPessoasFisicasById(pessoaFisica_iden);
         } catch (Exception error) {
-            throw error;
+            throw  error;
         }
+        
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
-    //
+    //   
 }

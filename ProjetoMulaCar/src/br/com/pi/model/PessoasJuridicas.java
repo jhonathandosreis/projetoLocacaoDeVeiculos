@@ -18,7 +18,7 @@ package br.com.pi.model;
  *
  * @author jhonlinux
  */
-public class PessoaJuridica extends Clientes {
+public class PessoasJuridicas extends Clientes {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
@@ -26,23 +26,23 @@ public class PessoaJuridica extends Clientes {
     private double cnpj = 0;
     private String nomeFantasia = "";
     private String razaoSocial = "";
-    private Clientes pju_cli_iden = null;
+    private Clientes cliente = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-    public PessoaJuridica() {
+    public PessoasJuridicas() {
     }
 
-    public PessoaJuridica(int iden, String nome, double telefone, String email,
-            double cnpj, String nomeFantasia, String razaoSocial, Clientes pju_cli_iden, Enderecos enderecos) {
+    public PessoasJuridicas(int iden, String nome, double telefone, String email,
+            double cnpj, String nomeFantasia, String razaoSocial, Clientes cliente, Enderecos enderecos) {
         super(iden, nome, telefone, email, enderecos);
         this.iden = iden;
         this.cnpj = cnpj;
         this.nomeFantasia = nomeFantasia;
         this.razaoSocial = razaoSocial;
-        this.pju_cli_iden = pju_cli_iden;
+        this.cliente = cliente;
     }
 
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
@@ -65,8 +65,8 @@ public class PessoaJuridica extends Clientes {
         return razaoSocial;
     }
 
-    public Clientes getPju_cli_iden() {
-        return pju_cli_iden;
+    public Clientes getCliente() {
+        return cliente;
     }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
@@ -89,8 +89,8 @@ public class PessoaJuridica extends Clientes {
         this.razaoSocial = razaoSocial;
     }
 
-    public void setPju_cli_iden(Clientes pju_cli_iden) {
-        this.pju_cli_iden = pju_cli_iden;
+    public void setCliente(Clientes pju_cli_iden) {
+        this.cliente = pju_cli_iden;
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //

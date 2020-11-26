@@ -165,6 +165,37 @@ public class ModelosDal {
         }
         return modelo;
     }
+    
+    public Modelos getModelosByNome(String nome) throws Exception {
+        
+        Modelos modelo = new Modelos();
+        
+        String sql = ("SELECT * FROM modelos WHERE mod_nome=?");
+        
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1, nome);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                
+                modelo.setIden(rs.getInt("mod_iden"));
+                modelo.setNome(rs.getString("mod_nome"));
+
+                //Chave estrangeira
+                MarcasDal marcaDal = new MarcasDal();
+                modelo.setMarcas(marcaDal.getMarcasById(rs.getInt("mod_mar_iden")));
+
+                CategoriasDal categoriaDal = new CategoriasDal();
+                modelo.setCategoria(categoriaDal.getCategoriasById(rs.getInt("mod_cat_iden")));
+                
+                TiposDeVeiculosDal tiposDeVeiculosDal = new TiposDeVeiculosDal();
+                modelo.setTiposDeVeiculos(tiposDeVeiculosDal.getTiposDeVeiculosById(rs.getInt("tve_iden")));
+            }
+        } catch (Exception error) {
+            throw error;
+        }
+        return modelo;
+    }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 }

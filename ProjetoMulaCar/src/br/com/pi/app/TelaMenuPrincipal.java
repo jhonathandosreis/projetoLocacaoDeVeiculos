@@ -273,8 +273,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private void jMenuItemCadastroFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroFuncionarioActionPerformed
         try {
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemCadastroFuncionarioActionPerformed
 
@@ -282,8 +282,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         try {
             TelaLogin telaLogin = new TelaLogin();
             telaLogin.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemLoginFuncionarioActionPerformed
 
@@ -295,8 +295,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         try {
             TelaPessoaFisica telaPessoaFisica = new TelaPessoaFisica();
             telaPessoaFisica.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemPessoaFisicaActionPerformed
 
@@ -304,8 +304,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         try {
             TelaPessoaJuridica telaPessoaJuridica = new TelaPessoaJuridica();
             telaPessoaJuridica.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemPessoaJuridicaActionPerformed
 
@@ -313,8 +313,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         try {
             TelaMotoristas telaMotorista = new TelaMotoristas();
             telaMotorista.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemMotoristaActionPerformed
 
@@ -322,8 +322,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         try {
             TelaMarcas telaMarcas = new TelaMarcas();
             telaMarcas.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemMarcasActionPerformed
 
@@ -331,8 +331,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         try {
             TelaModelos telaModelos = new TelaModelos();
             telaModelos.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemModeloActionPerformed
 
@@ -340,8 +340,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         try {
             TelaCategorias telaCategorias = new TelaCategorias();
             telaCategorias.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemCategoriaActionPerformed
 
@@ -350,8 +350,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         try {
             TelaTipoDeVeiculo telaTipoDeVeiculo = new TelaTipoDeVeiculo();
             telaTipoDeVeiculo.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemTIpoDeVeiculoActionPerformed
 
@@ -359,8 +359,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         try {
             TelaLocacao telaLocacao = new TelaLocacao();
             telaLocacao.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemLocacaoActionPerformed
 
@@ -368,8 +368,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         try {
             TelaDevolucoes telaDevolucoes = new TelaDevolucoes();
             telaDevolucoes.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemDevolucaoActionPerformed
 
@@ -377,8 +377,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         try {
             TelaVeiculos telaVeiculos = new TelaVeiculos();
             telaVeiculos.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemVeiculoActionPerformed
 

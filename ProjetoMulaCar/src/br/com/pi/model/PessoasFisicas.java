@@ -20,7 +20,7 @@ package br.com.pi.model;
  * @author jhonlinux
  */
 
-public class PessoaFisica extends Clientes {
+public class PessoasFisicas extends Clientes {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
@@ -33,11 +33,11 @@ public class PessoaFisica extends Clientes {
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-    public PessoaFisica() {
+    public PessoasFisicas() {
         
     }
 
-    public PessoaFisica(int iden, String nome, double telefone, String email,Enderecos enderecos, Clientes cliente, int rg, double cpf) {
+    public PessoasFisicas(int iden, String nome, double telefone, String email,Enderecos enderecos, Clientes cliente, int rg, double cpf) {
         super(iden, nome, telefone, email, enderecos);
         this.iden = iden;
         this.rg = rg;

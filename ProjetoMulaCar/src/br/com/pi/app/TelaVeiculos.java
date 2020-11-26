@@ -497,7 +497,24 @@ public class TelaVeiculos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-       String nome = jComboBoxModelo.getSelectedItem().toString();
+        
+        try {
+            String nome = jComboBoxModelo.getSelectedItem().toString();
+            modelo = modelosBll.getModeloByNome(nome);
+            veiculo.setModelo(modelo);
+            
+            veiculo.setPlaca(jTextFieldPlaca.getText());
+            veiculo.setRenavam(Integer.parseInt(jTextFieldRenavam.getText()));
+            veiculo.setAnoFabricacao(Float.parseFloat(jTextFieldAno.getText()));
+            veiculo.setQuilimetragem(Integer.parseInt(jTextFieldKM.getText()));
+            veiculo.setPrecoDeCompra(Integer.parseInt(jTextFieldValorDeCompra.getText()));
+            veiculo.setCapacidade(Float.parseFloat(jTextFieldQuantidadePassageiros.getText()));
+            veiculo.setStatus(jComboBoxStatus.getSelectedItem().toString());
+ 
+        } catch (Exception error) {
+            
+        }
+        
        
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 

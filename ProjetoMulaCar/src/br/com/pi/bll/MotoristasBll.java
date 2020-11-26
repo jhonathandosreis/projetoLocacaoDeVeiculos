@@ -40,8 +40,8 @@ public class MotoristasBll {
     public void addMotoristas(Motoristas motoristas) throws Exception {
         try{
          motoristaDal.addMotoristas(motoristas);
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -51,8 +51,8 @@ public class MotoristasBll {
     public void updateMotorista(Motoristas motoristas) throws Exception {
         try{
          motoristaDal.updateMotoristas(motoristas);
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -62,8 +62,8 @@ public class MotoristasBll {
     public void deleteMotoristas(Motoristas motoristas) throws Exception {
         try{
          motoristaDal.deleteMotoristas(motoristas);
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
@@ -73,8 +73,8 @@ public class MotoristasBll {
     public ArrayList<Motoristas> getAllMotoristas() throws Exception {
         try{
          return motoristaDal.getAllMotoristas();
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }
         
     }
@@ -82,8 +82,8 @@ public class MotoristasBll {
     public Motoristas getMotoristaBy(int mot_iden) throws Exception {
          try{
          return motoristaDal.getMotoristasById(mot_iden);
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }
         
     }
