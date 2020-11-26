@@ -95,6 +95,15 @@ public class ModelosBll {
             throw error;
         }
     }
+    
+    public Modelos getModeloByNome(String mod_nome) throws Exception {
+        
+        try {
+            return modelosDal.getModelosByNome(mod_nome);
+        } catch (Exception error) {
+            throw error;
+        }
+    }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 }
