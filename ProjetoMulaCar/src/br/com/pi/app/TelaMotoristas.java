@@ -17,9 +17,11 @@ package br.com.pi.app;
 import br.com.pi.bll.CidadesBll;
 import br.com.pi.bll.EnderecosBll;
 import br.com.pi.bll.MotoristasBll;
+import br.com.pi.bll.UfsBll;
 import br.com.pi.model.Cidades;
 import br.com.pi.model.Enderecos;
 import br.com.pi.model.Motoristas;
+import br.com.pi.model.Ufs;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -36,6 +38,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
     private EnderecosBll enderecoBll;
     private Cidades cidade;
     private CidadesBll cidadesBll;
+    private UfsBll ufbll;
     public TelaMotoristas() {
         initComponents();
         
@@ -47,6 +50,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
            enderecoBll = new EnderecosBll();
            cidade = new Cidades();
            cidadesBll = new  CidadesBll();
+           ufbll = new UfsBll();
            
         }catch(Exception error){
             JOptionPane.showMessageDialog(null, "Erro ao instanciar classes init "+error.getMessage());
@@ -538,14 +542,21 @@ public class TelaMotoristas extends javax.swing.JFrame {
        try{
            
            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-           Date data = formato.parse(jFormattedTextField_Data_validade.getText());
+           //Date data = formato.parse(jFormattedTextField_Data_validade.getText());
+           Date data = formato.parse("23/11/2015");
            
-           cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString()); 
+           //cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString()); 
            endereco.setCep(Integer.parseInt(jTextFieldCepMotorista.getText()));
            endereco.setLogradouro(jTextFieldLogradouroMotorista.getText());
            endereco.setComplemento(jTextFieldComplementoMotorista.getText());
            endereco.setNumero(Float.parseFloat(jTextFieldNumeroMotorista.getText()));
-           endereco.setCidade(cidade);
+           //endereco.setCidade(cidade);
+           Ufs uf = new Ufs("GO");
+           ufbll.addCidades(uf);
+           Cidades cidade1 = new Cidades("Goiânia", uf);
+           cidadesBll.addCidades(cidade);
+           endereco.setCidade(cidade1);
+           enderecoBll.Adicionar(endereco);
     
            motorista.setNome(jTextFieldNomeMotorista.getText());
            motorista.setRg(Integer.parseInt(jTextField_rgMotorista.getText()));
@@ -562,7 +573,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
            limparCampos();
      
       }catch(Exception error){
-            JOptionPane.showMessageDialog(null, "Erro ao instanciar classes init");
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas "+error.getMessage());
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 

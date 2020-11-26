@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 23/11/2020 23:05:49 
+ *  Criado em  : 25/11/2020 21:32:56 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -15,31 +15,31 @@
 
 package br.com.pi.bll;
 
-import br.com.pi.dal.MotoristasDal;
-import br.com.pi.model.Motoristas;
+import br.com.pi.dal.PessoasFisicasDal;
+import br.com.pi.model.PessoaFisica;
 import java.util.ArrayList;
 
 /**
  *
  * @author Gustavo Gabriel
  */
-public class MotoristasBll {
-    //--- ATRIBUTOS ----------------------------------------------------------------------------------->
-    private MotoristasDal motoristaDal;  
+public class PessoasFisicasBll {
+ //--- ATRIBUTOS ----------------------------------------------------------------------------------->
+    private PessoasFisicasDal pessoaFisicaDal;  
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
-    public MotoristasBll() throws Exception {
-        motoristaDal = new MotoristasDal();
+    public PessoasFisicasBll() throws Exception {
+        pessoaFisicaDal = new PessoasFisicasDal();
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    public void addMotoristas(Motoristas motoristas) throws Exception {
+    public void addPessoasFisicas(PessoaFisica pessoaFisica) throws Exception {
         try{
-         motoristaDal.addMotoristas(motoristas);
+         pessoaFisicaDal.addPessoasFisicas(pessoaFisica);
         } catch (Exception error) {
             throw  error;
         }
@@ -48,9 +48,9 @@ public class MotoristasBll {
     //
     
     //--- UPDATE -------------------------------------------------------------------------------------->
-    public void updateMotorista(Motoristas motoristas) throws Exception {
+    public void updatePessoasFisicas(PessoaFisica pessoaFisica) throws Exception {
         try{
-         motoristaDal.updateMotoristas(motoristas);
+         pessoaFisicaDal.updatePessoasFisicas(pessoaFisica);
         } catch (Exception error) {
             throw  error;
         }
@@ -59,9 +59,9 @@ public class MotoristasBll {
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
-    public void deleteMotoristas(Motoristas motoristas) throws Exception {
+    public void deletePessoasFisicas(PessoaFisica pessoaFisica) throws Exception {
         try{
-         motoristaDal.deleteMotoristas(motoristas);
+         pessoaFisicaDal.deletePessoasFisicas(pessoaFisica);
         } catch (Exception error) {
             throw  error;
         }
@@ -70,18 +70,18 @@ public class MotoristasBll {
     //
     
     //--- READ ---------------------------------------------------------------------------------------->
-    public ArrayList<Motoristas> getAllMotoristas() throws Exception {
+    public ArrayList<PessoaFisica> getAllPessoasFisicas() throws Exception {
         try{
-         return motoristaDal.getAllMotoristas();
+         return pessoaFisicaDal.getAllPessoasFisicas();
         } catch (Exception error) {
             throw  error;
         }
         
     }
     
-    public Motoristas getMotoristaBy(int mot_iden) throws Exception {
+    public PessoaFisica getPessoasFisicasBy(int pessoaFisica_iden) throws Exception {
          try{
-         return motoristaDal.getMotoristasById(mot_iden);
+         return pessoaFisicaDal.getPessoasFisicasById(pessoaFisica_iden);
         } catch (Exception error) {
             throw  error;
         }
