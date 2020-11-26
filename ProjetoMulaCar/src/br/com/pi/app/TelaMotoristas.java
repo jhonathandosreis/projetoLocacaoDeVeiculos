@@ -161,9 +161,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
                 .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
                         .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
-                                .addComponent(jLabel3RGPessoaFisica)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel3RGPessoaFisica)
                             .addComponent(jTextFieldCNHMotorista))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -210,9 +208,9 @@ public class TelaMotoristas extends javax.swing.JFrame {
                             .addContainerGap()
                             .addComponent(jTextField_rgMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2PessoaFisicaLayout.createSequentialGroup()
-                            .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel10))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jTextField_CpfMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
@@ -552,11 +550,11 @@ public class TelaMotoristas extends javax.swing.JFrame {
            endereco.setNumero(Float.parseFloat(jTextFieldNumeroMotorista.getText()));
            //endereco.setCidade(cidade);
            Ufs uf = new Ufs("GO");
-           ufbll.addCidades(uf);
+           ufbll.addUfs(uf);
            Cidades cidade1 = new Cidades("Goiânia", uf);
            cidadesBll.addCidades(cidade);
            endereco.setCidade(cidade1);
-           enderecoBll.Adicionar(endereco);
+           enderecoBll.AddEndereco(endereco);
     
            motorista.setNome(jTextFieldNomeMotorista.getText());
            motorista.setRg(Integer.parseInt(jTextField_rgMotorista.getText()));

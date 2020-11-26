@@ -68,7 +68,7 @@ public class MotoristasDal {
                 motorista.setCliente  (clienteBll.getClienteById((generatedKeys.getInt(1))) );
             }
             else {
-                throw new Exception("Erro ao criar motorista cliente!");
+                throw new Exception("(ERROR DAL) Erro ao criar motorista cliente!");
             }
         }
         
@@ -82,8 +82,8 @@ public class MotoristasDal {
         preparedStatement2.setInt(6, motorista.getCliente().getIden());
         preparedStatement2.executeUpdate();
         
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }
     } 
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -114,8 +114,8 @@ public class MotoristasDal {
         preparedStatement2.setInt(7, motorista.getIden());
         preparedStatement2.executeUpdate();
         
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -135,8 +135,8 @@ public class MotoristasDal {
         PreparedStatement preparedStatement2 = conexao.prepareStatement("DELETE FROM pessoas_fisicas where pfi_iden =?");
         preparedStatement1.setInt(1, idMotorista);
         preparedStatement2.executeUpdate();
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }
     }  
     //--- FIM DELETE ----------------------------------------------------------------------------------|
@@ -166,8 +166,8 @@ public class MotoristasDal {
            
          
     return lista;
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }
         
     }
@@ -193,8 +193,8 @@ public class MotoristasDal {
         motorista.setCliente(cliente);
         }       
         return motorista;
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }
     }
     //--- FIM READ ------------------------------------------------------------------------------------|

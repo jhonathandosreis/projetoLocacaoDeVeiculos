@@ -20,7 +20,7 @@ import java.util.Date;
  *
  * @author jhonlinux
  */
-public class Motoristas extends PessoaFisica {
+public class Motoristas extends PessoasFisicas {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //

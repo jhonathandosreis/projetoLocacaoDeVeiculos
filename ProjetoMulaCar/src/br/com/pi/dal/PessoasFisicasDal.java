@@ -17,7 +17,7 @@ package br.com.pi.dal;
 import br.com.pi.bll.ClientesBll;
 import br.com.pi.bll.PessoasFisicasBll;
 import br.com.pi.model.Clientes;
-import br.com.pi.model.PessoaFisica;
+import br.com.pi.model.PessoasFisicas;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,10 +32,9 @@ public class PessoasFisicasDal {
 //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     private Connection conexao;
     private PessoasFisicasBll pessoaFisicaBll;
-    private PessoaFisica pessoaFisica;
+    private PessoasFisicas pessoaFisica;
     private Clientes cliente = null;
-    private ClientesBll clienteBll = new ClientesBll();
-    
+    private ClientesBll clienteBll = new ClientesBll();    
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -48,7 +47,7 @@ public class PessoasFisicasDal {
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    public void addPessoasFisicas (PessoaFisica pessoaFisica) throws Exception {
+    public void addPessoasFisicas (PessoasFisicas pessoaFisica) throws Exception {
        
         try{
         String sqlCliente ="INSERT INTO clientes (cli_nome, cli_telefone, cli_email, cli_end_iden) values (?, ?, ?, ?)";
@@ -65,7 +64,7 @@ public class PessoasFisicasDal {
                 pessoaFisica.setCliente  (clienteBll.getClienteById((generatedKeys.getInt(1))) );
             }
             else {
-                throw new Exception("Erro ao criar motorista cliente!");
+                throw new Exception("(ERROR DAL) Erro ao criar pessoa fisica cliente!");
             }
         }
         
@@ -84,11 +83,11 @@ public class PessoasFisicasDal {
     //
      
     //--- UPDATE -------------------------------------------------------------------------------------->
-    public void updatePessoasFisicas (PessoaFisica pessoaFisica) throws Exception {
+    public void updatePessoasFisicas (PessoasFisicas pessoaFisica) throws Exception {
         
         try{
         String sqlCliente ="UPDATE clientes SET cli_nome=?, cli_telefone=?, cli_email=?, cli_end_iden=?";
-        PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);
         
         preparedStatement1.setString(1, pessoaFisica.getNome());
         preparedStatement1.setDouble(2, pessoaFisica.getTelefone());
@@ -111,7 +110,7 @@ public class PessoasFisicasDal {
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
-    public void deletePessoasFisicas (PessoaFisica pessoaFisica) throws Exception {
+    public void deletePessoasFisicas (PessoasFisicas pessoaFisica) throws Exception {
         
         try{
         int idPessoaFisica = pessoaFisica.getIden();
@@ -132,10 +131,10 @@ public class PessoasFisicasDal {
     //
     
     //--- READ ---------------------------------------------------------------------------------------->
-    public ArrayList<PessoaFisica> getAllPessoasFisicas() throws Exception {
+    public ArrayList<PessoasFisicas> getAllPessoasFisicas() throws Exception {
         
         try{
-         ArrayList<PessoaFisica> lista = new ArrayList<PessoaFisica>();
+         ArrayList<PessoasFisicas> lista = new ArrayList<PessoasFisicas>();
          String sql = "SELECT * FROM pessoas_fisicas";
          Statement statement = conexao.createStatement();
          ResultSet rs = statement.executeQuery(sql);
@@ -156,10 +155,10 @@ public class PessoasFisicasDal {
         }      
     }
 
-    public PessoaFisica getPessoasFisicasById(int pessoaFisica_iden) throws Exception {
+    public PessoasFisicas getPessoasFisicasById(int pessoaFisica_iden) throws Exception {
         
         try{
-        PessoaFisica pessoaFisica = new PessoaFisica();
+        PessoasFisicas pessoaFisica = new PessoasFisicas();
         String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_iden=?";
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         preparedStatement.setInt(1, pessoaFisica_iden);

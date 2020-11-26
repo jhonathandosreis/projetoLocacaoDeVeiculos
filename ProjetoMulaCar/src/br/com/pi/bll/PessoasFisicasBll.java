@@ -16,7 +16,7 @@
 package br.com.pi.bll;
 
 import br.com.pi.dal.PessoasFisicasDal;
-import br.com.pi.model.PessoaFisica;
+import br.com.pi.model.PessoasFisicas;
 import java.util.ArrayList;
 
 /**
@@ -37,7 +37,7 @@ public class PessoasFisicasBll {
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    public void addPessoasFisicas(PessoaFisica pessoaFisica) throws Exception {
+    public void addPessoasFisicas(PessoasFisicas pessoaFisica) throws Exception {
         try{
          pessoaFisicaDal.addPessoasFisicas(pessoaFisica);
         } catch (Exception error) {
@@ -48,7 +48,7 @@ public class PessoasFisicasBll {
     //
     
     //--- UPDATE -------------------------------------------------------------------------------------->
-    public void updatePessoasFisicas(PessoaFisica pessoaFisica) throws Exception {
+    public void updatePessoasFisicas(PessoasFisicas pessoaFisica) throws Exception {
         try{
          pessoaFisicaDal.updatePessoasFisicas(pessoaFisica);
         } catch (Exception error) {
@@ -59,7 +59,7 @@ public class PessoasFisicasBll {
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
-    public void deletePessoasFisicas(PessoaFisica pessoaFisica) throws Exception {
+    public void deletePessoasFisicas(PessoasFisicas pessoaFisica) throws Exception {
         try{
          pessoaFisicaDal.deletePessoasFisicas(pessoaFisica);
         } catch (Exception error) {
@@ -70,7 +70,7 @@ public class PessoasFisicasBll {
     //
     
     //--- READ ---------------------------------------------------------------------------------------->
-    public ArrayList<PessoaFisica> getAllPessoasFisicas() throws Exception {
+    public ArrayList<PessoasFisicas> getAllPessoasFisicas() throws Exception {
         try{
          return pessoaFisicaDal.getAllPessoasFisicas();
         } catch (Exception error) {
@@ -79,7 +79,7 @@ public class PessoasFisicasBll {
         
     }
     
-    public PessoaFisica getPessoasFisicasBy(int pessoaFisica_iden) throws Exception {
+    public PessoasFisicas getPessoasFisicasBy(int pessoaFisica_iden) throws Exception {
          try{
          return pessoaFisicaDal.getPessoasFisicasById(pessoaFisica_iden);
         } catch (Exception error) {
