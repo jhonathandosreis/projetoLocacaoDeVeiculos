@@ -148,7 +148,7 @@ public class CidadesDal {
         return cidade;
     }
 
-    public Cidades getCidadesById(String nome) throws Exception {
+    public Cidades getCidadesByNome(String nome) throws Exception {
 
         Cidades cidade = new Cidades();
         String sql = "SELECT * FROM cidades WHERE cid_nome=?";

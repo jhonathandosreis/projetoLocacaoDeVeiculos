@@ -32,7 +32,7 @@ public class EnderecosBll {
 
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
-    public void Adicionar(Enderecos endereco) throws Exception {
+    public void AddEndereco(Enderecos endereco) throws Exception {
 
         try {
 
@@ -56,7 +56,7 @@ public class EnderecosBll {
 //--- DELETE -------------------------------------------------------------------------------------->
 //
 
-    public void Remover(Enderecos endereco) throws Exception {
+    public void deleteEndereco(Enderecos endereco) throws Exception {
 
         try {
 
@@ -71,7 +71,7 @@ public class EnderecosBll {
     //
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void Alterar(Enderecos endereco) throws Exception {
+    public void updateEndereco(Enderecos endereco) throws Exception {
 
         try {
 
@@ -97,9 +97,9 @@ public class EnderecosBll {
         }
     }
 
-    public Enderecos getConsultaPorId(int id) throws Exception {
+    public Enderecos getConsultaPorId(int end_iden) throws Exception {
         try {
-            return endDal.getEnderecosById(id);
+            return endDal.getEnderecosById(end_iden);
         } catch (Exception error) {
             throw error;
         }

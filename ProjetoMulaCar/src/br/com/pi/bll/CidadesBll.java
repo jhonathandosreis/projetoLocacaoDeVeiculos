@@ -28,27 +28,70 @@ public class CidadesBll {
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
+    //
     public void addCidades(Cidades cidade) throws Exception {
-
+        
+        try {
+            cidadeDal.addCidades(cidade);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
 
+    //--- UPDATE -------------------------------------------------------------------------------------->
+    //
+    public void updateCidades(Cidades cidade) throws Exception {
+        
+        try {
+            cidadeDal.updateCidades(cidade);
+        } catch (Exception error) {
+            throw error;
+        }
+    }
+    //--- FIM UPDATE ----------------------------------------------------------------------------------|
+    //
+
+    //--- DELETE -------------------------------------------------------------------------------------->
+    //
+    public void deleteCidades(Cidades cidade) throws Exception {
+        
+        try {
+            cidadeDal.deleteCidades(cidade.getIden());
+        } catch (Exception error) {
+            throw error;
+        }
+    }
+    //--- FIM DELETE ----------------------------------------------------------------------------------|
+    //
+
     //--- READ ---------------------------------------------------------------------------------------->
-    public ArrayList<Cidades> getAllCidade() throws Exception {
-
-        return cidadeDal.getAllCidades();
+    //
+    public ArrayList<Cidades> getAllCidades() throws Exception {
+        
+        try {
+            return cidadeDal.getAllCidades();
+        } catch (Exception error) {
+            throw error;
+        }
     }
-
-    public Cidades getCidadesBy(int cid_iden) throws Exception {
-
-        return cidadeDal.getCidadesById(cid_iden);
+    
+    public Cidades getCidadesById(int cid_iden) throws Exception {
+        
+        try {
+            return cidadeDal.getCidadesById(cid_iden);
+        } catch (Exception error) {
+            throw error;
+        }
     }
-
+    
     public Cidades getCidadeNome(String nome) throws Exception {
-
-        return cidadeDal.getCidadesById(nome);
-
+        try {
+            return cidadeDal.getCidadesByNome(nome);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //    
