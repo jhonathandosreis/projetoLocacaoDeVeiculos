@@ -24,35 +24,90 @@ import java.util.ArrayList;
  * @author Gustavo Gabriel
  */
 public class DevolucoesBll {
-//--- ATRIBUTOS ----------------------------------------------------------------------------------->
+    
+    
+    //--- ATRIBUTOS ----------------------------------------------------------------------------------->
+  
     private DevolucoesDal devolucoesDal;
+  
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
+  
     public DevolucoesBll() throws Exception {
         devolucoesDal = new DevolucoesDal();
     }
+  
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addDevolucoes(Devolucoes devolucao) throws Exception {
-        
+        try {
+
+            
+            devolucoesDal.addDevolucoes(devolucao);
+
+        } catch (Exception error) {
+
+            throw error;
+        }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
     
+  //--- DELETE -------------------------------------------------------------------------------------->
+//
+
+    public void deleteDevolucoes(Devolucoes devolucao) throws Exception {
+
+        try {
+
+            devolucoesDal.deleteDevolucoes(devolucao.getIden());
+
+        } catch (Exception error) {
+            throw error;
+        }
+    }
+
+    //--- FIM DELETE ----------------------------------------------------------------------------------|
+    //
+    //--- UPDATE -------------------------------------------------------------------------------------->
+    //
+    public void updateDevolucoes(Devolucoes devolucao) throws Exception {
+
+        try {
+            
+            devolucoesDal.updateDevolucoes(devolucao);
+            
+        } catch (Exception error) {
+            throw error;
+        }
+    }
+
+    //--- FIM UPDATE ----------------------------------------------------------------------------------|
+    //
     //--- READ ---------------------------------------------------------------------------------------->
-    public ArrayList<Devolucoes> getAllDevolucoes() throws Exception {
-        
-        return devolucoesDal.getAllDevolucoes();
+    //
+    public ArrayList<Devolucoes> getConsulta() throws Exception {
+        try {
+
+            return devolucoesDal.getAllDevolucoes();
+
+        } catch (Exception error) {
+            throw error;
+        }
     }
-    
-    public Devolucoes getDevolucoesBy(int dev_iden) throws Exception {
-        
-        return devolucoesDal.getDevolucoesById(dev_iden);
+
+    public Devolucoes getConsultaPorId(int dev_iden) throws Exception {
+        try {
+            return devolucoesDal.getDevolucoesById(dev_iden);
+        } catch (Exception error) {
+            throw error;
+        }
     }
+
     //--- FIM READ ------------------------------------------------------------------------------------|
-    //    
+    //
 }

@@ -36,18 +36,18 @@ public class EnderecosDal {
     //
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void addEnderecos(Enderecos end) throws Exception {
+    public void addEnderecos(Enderecos endereco) throws Exception {
 
         String sql = "INSERT INTO enderecos (end_rua , end_numero , end_logradouro , end_cep , end_complemento , end_cid_iden ) VALUES(?,?,?,?,?,?)";
         try {
 
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setString(1, end.getRua());
-            preparedStatement.setFloat(2, end.getNumero());
-            preparedStatement.setString(3, end.getLogradouro());
-            preparedStatement.setInt(4, end.getCep());
-            preparedStatement.setString(5, end.getComplemento());
-            preparedStatement.setInt(6, end.getCidade().getIden());
+            preparedStatement.setString(1, endereco.getRua());
+            preparedStatement.setFloat(2, endereco.getNumero());
+            preparedStatement.setString(3, endereco.getLogradouro());
+            preparedStatement.setInt(4, endereco.getCep());
+            preparedStatement.setString(5, endereco.getComplemento());
+            preparedStatement.setInt(6, endereco.getCidade().getIden());
 
             preparedStatement.executeUpdate();
         } catch (Exception error) {
@@ -82,19 +82,19 @@ public class EnderecosDal {
     //
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void updateEnderecos(Enderecos end) throws Exception {
+    public void updateEnderecos(Enderecos endereco) throws Exception {
 
         String sql = "UPDATE enderecos SET end_rua=?, end_numero=?, end_logradouro=?, end_cep=? , end_complemento=? , end_cid_iden=? WHERE end_iden=?";
 
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setString(1, end.getRua());
-            preparedStatement.setFloat(2, end.getNumero());
-            preparedStatement.setString(3, end.getLogradouro());
-            preparedStatement.setInt(4, end.getCep());
-            preparedStatement.setString(5, end.getComplemento());
-            preparedStatement.setInt(6, end.getCidade().getIden());
-            preparedStatement.setInt(7, end.getIden());
+            preparedStatement.setString(1, endereco.getRua());
+            preparedStatement.setFloat(2, endereco.getNumero());
+            preparedStatement.setString(3, endereco.getLogradouro());
+            preparedStatement.setInt(4, endereco.getCep());
+            preparedStatement.setString(5, endereco.getComplemento());
+            preparedStatement.setInt(6, endereco.getCidade().getIden());
+            preparedStatement.setInt(7, endereco.getIden());
 
             preparedStatement.executeUpdate();
         } catch (Exception error) {

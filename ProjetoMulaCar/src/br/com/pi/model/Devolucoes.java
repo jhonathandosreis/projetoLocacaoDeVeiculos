@@ -12,10 +12,9 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
-
 package br.com.pi.model;
 
-import java.text.DateFormat;
+import java.util.Date;
 
 /**
  *
@@ -26,26 +25,27 @@ public class Devolucoes {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private int iden = 0;
-    private DateFormat dataDevolucao = null;
+    private Date dataDevolucao = null;
     private int multaPorAtraso = 0;
     private String status = "";
     private int kmNaEntrega = 0;
+    private Locacoes locacao = null;
+
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
-
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
     public Devolucoes() {
-        
+
     }
-    
-    public Devolucoes(int iden, DateFormat dataDevolucao, 
-            int multaPorAtraso, String status, int kmNaEntrega) {
+
+    public Devolucoes(int iden, Date dataDevolucao,int multaPorAtraso, String status, int kmNaEntrega, Locacoes locacao) {
         this.iden = iden;
         this.dataDevolucao = dataDevolucao;
         this.multaPorAtraso = multaPorAtraso;
         this.status = status;
         this.kmNaEntrega = kmNaEntrega;
+        this.locacao = locacao;
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -56,7 +56,7 @@ public class Devolucoes {
         return iden;
     }
 
-    public DateFormat getDataDevolucao() {
+    public Date getDataDevolucao() {
         return dataDevolucao;
     }
 
@@ -71,6 +71,10 @@ public class Devolucoes {
     public int getKmNaEntrega() {
         return kmNaEntrega;
     }
+
+    public Locacoes getLocacao() {
+        return locacao;
+    }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
 
@@ -80,7 +84,7 @@ public class Devolucoes {
         this.iden = iden;
     }
 
-    public void setDataDevolucao(DateFormat dataDevolucao) {
+    public void setDataDevolucao(Date dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
 
@@ -95,6 +99,11 @@ public class Devolucoes {
     public void setKmNaEntrega(int kmNaEntrega) {
         this.kmNaEntrega = kmNaEntrega;
     }
+
+    public void setLocacao(Locacoes locacao) {
+        this.locacao = locacao;
+    }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //
+
 }
