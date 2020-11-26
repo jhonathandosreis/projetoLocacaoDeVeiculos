@@ -113,7 +113,6 @@ public class UfsDal {
 
                 uf.setIden(rs.getInt("uf_iden"));
                 uf.setSigla(rs.getString("uf_sigla"));
-               
 
                 lista.add(uf);
             }
@@ -136,8 +135,31 @@ public class UfsDal {
 
             if (rs.next()) {
 
-                 uf.setIden(rs.getInt("uf_iden"));
-                 uf.setSigla(rs.getString("uf_sigla"));
+                uf.setIden(rs.getInt("uf_iden"));
+                uf.setSigla(rs.getString("uf_sigla"));
+
+            }
+        } catch (Exception error) {
+            throw error;
+        }
+        return uf;
+    }
+
+    public Ufs getUfsByNome(String sigla) throws Exception {
+
+        Ufs uf = new Ufs();
+        String sql = "SELECT * FROM ufs WHERE uf_sigla=?";
+
+        try {
+
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1, sigla);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+
+                uf.setIden(rs.getInt("uf_iden"));
+                uf.setSigla(rs.getString("uf_sigla"));
 
             }
         } catch (Exception error) {

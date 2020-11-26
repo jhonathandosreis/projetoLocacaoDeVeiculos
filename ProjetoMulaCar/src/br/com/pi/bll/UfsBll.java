@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.pi.bll;
 
 import br.com.pi.dal.UfsDal;
@@ -15,7 +14,8 @@ import java.util.ArrayList;
  * @author miguelneto
  */
 public class UfsBll {
-  //--- ATRIBUTOS ----------------------------------------------------------------------------------->
+    //--- ATRIBUTOS ----------------------------------------------------------------------------------->
+
     private UfsDal ufDal;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
@@ -27,22 +27,69 @@ public class UfsBll {
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
-    //--- CREATE -------------------------------------------------------------------------------------->
-    public void addCidades(Ufs uf) throws Exception {
-        
+    public void addUfs(Ufs uf) throws Exception {
+
+        try {
+            ufDal.addUfs(uf);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-    
-    //--- READ ---------------------------------------------------------------------------------------->
-    public ArrayList<Ufs> getAllUfs() throws Exception {
-        
-        return ufDal.getAllUfs();
+
+    //--- UPDATE -------------------------------------------------------------------------------------->
+    //
+    public void updateUfs(Ufs uf) throws Exception {
+
+        try {
+            ufDal.updateUfs(uf);
+        } catch (Exception error) {
+            throw error;
+        }
     }
-    
-    public Ufs getufsBy(int uf_iden) throws Exception {
-        
-        return ufDal.getUfsById(uf_iden);
+    //--- FIM UPDATE ----------------------------------------------------------------------------------|
+    //
+
+    //--- DELETE -------------------------------------------------------------------------------------->
+    //
+    public void deleteUfs(Ufs uf) throws Exception {
+
+        try {
+            ufDal.deleteUfs(uf.getIden());
+        } catch (Exception error) {
+            throw error;
+        }
+    }
+    //--- FIM DELETE ----------------------------------------------------------------------------------|
+    //
+
+    //--- READ ---------------------------------------------------------------------------------------->
+    //
+    public ArrayList<Ufs> getAllUfs() throws Exception {
+
+        try {
+            return ufDal.getAllUfs();
+        } catch (Exception error) {
+            throw error;
+        }
+    }
+
+    public Ufs getUfById(int uf_iden) throws Exception {
+
+        try {
+            return ufDal.getUfsById(uf_iden);
+        } catch (Exception error) {
+            throw error;
+        }
+    }
+
+    public Ufs getUfsNome(String sigla) throws Exception {
+        try {
+            return ufDal.getUfsByNome(sigla);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //    
