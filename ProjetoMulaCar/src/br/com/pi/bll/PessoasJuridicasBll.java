@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 25/11/2020 21:32:56 
+ *  Criado em  : 25/11/2020 23:51:39 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -15,31 +15,31 @@
 
 package br.com.pi.bll;
 
-import br.com.pi.dal.PessoasFisicasDal;
-import br.com.pi.model.PessoasFisicas;
+import br.com.pi.dal.PessoasJuridicasDal;
+import br.com.pi.model.PessoasJuridicas;
 import java.util.ArrayList;
 
 /**
  *
  * @author Gustavo Gabriel
  */
-public class PessoasFisicasBll {
+public class PessoasJuridicasBll {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
-    private PessoasFisicasDal pessoaFisicaDal;  
+    private PessoasJuridicasDal pessoaJuridicaDal;  
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
-    public PessoasFisicasBll() throws Exception {
-        pessoaFisicaDal = new PessoasFisicasDal();
+    public PessoasJuridicasBll() throws Exception {
+        pessoaJuridicaDal = new PessoasJuridicasDal();
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    public void addPessoasFisicas(PessoasFisicas pessoaFisica) throws Exception {
+    public void addPessoasJuridicas(PessoasJuridicas pessoaJuridica) throws Exception {
         try{
-         pessoaFisicaDal.addPessoasFisicas(pessoaFisica);
+         pessoaJuridicaDal.addPessoasJuridicas(pessoaJuridica);
         } catch (Exception error) {
             throw  error;
         }
@@ -48,9 +48,9 @@ public class PessoasFisicasBll {
     //
     
     //--- UPDATE -------------------------------------------------------------------------------------->
-    public void updatePessoasFisicas(PessoasFisicas pessoaFisica) throws Exception {
+    public void updatePessoasJuridicas(PessoasJuridicas pessoaJuridica) throws Exception {
         try{
-         pessoaFisicaDal.updatePessoasFisicas(pessoaFisica);
+         pessoaJuridicaDal.updatePessoasJuridicas(pessoaJuridica);
         } catch (Exception error) {
             throw  error;
         }
@@ -59,9 +59,9 @@ public class PessoasFisicasBll {
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
-    public void deletePessoasFisicas(PessoasFisicas pessoaFisica) throws Exception {
+    public void deletePessoasJuridicas(PessoasJuridicas pessoaJuridica) throws Exception {
         try{
-         pessoaFisicaDal.deletePessoasFisicas(pessoaFisica);
+         pessoaJuridicaDal.deletePessoasJuridicas(pessoaJuridica);
         } catch (Exception error) {
             throw  error;
         }
@@ -70,18 +70,18 @@ public class PessoasFisicasBll {
     //
     
     //--- READ ---------------------------------------------------------------------------------------->
-    public ArrayList<PessoasFisicas> getAllPessoasFisicas() throws Exception {
+    public ArrayList<PessoasJuridicas> getAllPessoasJuridicas() throws Exception {
         try{
-         return pessoaFisicaDal.getAllPessoasFisicas();
+         return pessoaJuridicaDal.getAllPessoasJuridicas();
         } catch (Exception error) {
             throw  error;
         }
         
     }
     
-    public PessoasFisicas getPessoasFisicasBy(int pessoaFisica_iden) throws Exception {
+    public PessoasJuridicas getPessoasJuridicasBy(int pessoaJuridica_iden) throws Exception {
          try{
-         return pessoaFisicaDal.getPessoasFisicasById(pessoaFisica_iden);
+         return pessoaJuridicaDal.getPessoasJuridicasById(pessoaJuridica_iden);
         } catch (Exception error) {
             throw  error;
         }

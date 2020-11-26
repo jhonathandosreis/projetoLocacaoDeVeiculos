@@ -75,8 +75,8 @@ public class PessoasFisicasDal {
         preparedStatement2.setInt(3, pessoaFisica.getCliente().getIden());
         preparedStatement2.executeUpdate();
         
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }
     } 
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -102,8 +102,8 @@ public class PessoasFisicasDal {
         preparedStatement2.setInt(3, pessoaFisica.getCliente().getIden());
         preparedStatement2.executeUpdate();
         
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -123,8 +123,8 @@ public class PessoasFisicasDal {
         PreparedStatement preparedStatement2 = conexao.prepareStatement("DELETE FROM pessoas_fisicas where pfi_iden =?");
         preparedStatement1.setInt(1, idPessoaFisica);
         preparedStatement2.executeUpdate();
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }
     }  
     //--- FIM DELETE ----------------------------------------------------------------------------------|
@@ -150,8 +150,8 @@ public class PessoasFisicasDal {
            }
                  
     return lista;
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }      
     }
 
@@ -173,8 +173,8 @@ public class PessoasFisicasDal {
         pessoaFisica.setCliente(cliente);
         }       
         return pessoaFisica;
-        } catch (Exception e) {
-            throw  e;
+        } catch (Exception error) {
+            throw  error;
         }
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
