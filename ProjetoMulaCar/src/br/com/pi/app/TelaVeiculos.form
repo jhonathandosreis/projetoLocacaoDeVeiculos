@@ -322,9 +322,10 @@
             <Component class="javax.swing.JComboBox" name="jComboBoxStatus">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
-                    <StringItem index="0" value="ATIVO"/>
-                    <StringItem index="1" value="INATIVO"/>
+                  <StringArray count="3">
+                    <StringItem index="0" value="&lt;SELECIONE&gt;"/>
+                    <StringItem index="1" value="ATIVO"/>
+                    <StringItem index="2" value="INATIVO"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -449,6 +450,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="LIMPAR"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLimparActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>

@@ -119,14 +119,14 @@ public class TelaVeiculos extends javax.swing.JFrame {
     public void preencherFormularioVeiculo() throws Exception {
         
         int id = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 0).toString());
-        int placa = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 1).toString());
-        double renavam = Double.parseDouble(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 2).toString());
-        int anoFabricacao = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 3).toString());
-        int quilometragem = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 4).toString());
-        int precoCompra = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 5).toString());
-        int capacidade = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 6).toString());
-        String observacoes = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 7).toString();
-        String status = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 8).toString();
+        String placa = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 1).toString();
+        int quilometragem = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 2).toString());
+        String renavam = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 3).toString();
+        String status = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 4).toString();
+        String observacoes = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 5).toString();
+        int precoCompra = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 6).toString());
+        int anoFabricacao = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 7).toString());
+        int capacidade = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 8).toString());
         
         jComboBoxModelo.setSelectedItem(modelosBll.getModelosById(id).getNome());
         jTextFieldTipoDoVeiculo.setText(tiposDeVeiculosBll.getTiposDeVeiculosById(id).getNome());
@@ -134,8 +134,8 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jTextFieldCategoria.setText(categoriasBll.getCategoriasById(id).getNome());
         
         jTextFieldIDVeiculo.setText(id + "");
-        jTextFieldPlaca.setText(placa + "");
-        jTextFieldRenavam.setText(renavam + "");
+        jTextFieldPlaca.setText(placa);
+        jTextFieldRenavam.setText(renavam);
         jTextFieldAno.setText(anoFabricacao + "");
         jTextFieldKM.setText(quilometragem + "");
         jTextFieldValorDeCompra.setText(precoCompra + "");
@@ -153,11 +153,12 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jTextFieldKM.setText("");
         jTextFieldValorDeCompra.setText("");
         jTextFieldQuantidadePassageiros.setText("");
-        jComboBoxStatus.setSelectedItem("");
+        jComboBoxStatus.setSelectedItem("<SELECIONE>");
         jComboBoxModelo.setSelectedItem("");
         jTextFieldMarca.setText("");
         jTextFieldTipoDoVeiculo.setText("");
         jTextFieldCategoria.setText("");
+        jTextAreaObservacoes.setText("");
     }
     
     //--- FIM METODOS --------------------------------------------------------------------------------->
@@ -224,7 +225,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
 
         jLabel8.setText("CATEGORIA");
 
-        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ATIVO", "INATIVO" }));
+        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<SELECIONE>", "ATIVO", "INATIVO" }));
 
         jLabel9.setText("STATUS");
 
@@ -405,6 +406,11 @@ public class TelaVeiculos extends javax.swing.JFrame {
 
         jButtonLimpar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/limpar-limpo.png")); // NOI18N
         jButtonLimpar.setText("LIMPAR");
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimparActionPerformed(evt);
+            }
+        });
 
         jTableVeiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -583,6 +589,10 @@ public class TelaVeiculos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jComboBoxModeloActionPerformed
+
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_jButtonLimparActionPerformed
         
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
