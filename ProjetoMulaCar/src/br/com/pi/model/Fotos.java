@@ -25,8 +25,7 @@ public class Fotos {
     //
     private int fot_iden = 0;
     private String fot_caminho = "";
-    private String fot_descricao = "";
-    private Motoristas motorista = null;
+    private PessoasFisicas pessoaFisica = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -36,11 +35,10 @@ public class Fotos {
         
     }
 
-    public Fotos(int fot_iden, String fot_caminho, String fot_descricao, Motoristas motoristas) {
+    public Fotos(int fot_iden, String fot_caminho, PessoasFisicas pessoaFisica) {
         this.fot_iden = fot_iden;
         this.fot_caminho = fot_caminho;
-        this.fot_descricao =  fot_descricao;
-        this.motorista = motoristas;
+        this.pessoaFisica = pessoaFisica;
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -55,12 +53,8 @@ public class Fotos {
         return fot_caminho;
     }
 
-    public String getFot_descricao() {
-        return fot_descricao;
-    }
-
-    public Motoristas getMotorista() {
-        return motorista;
+    public PessoasFisicas getPessoasFisicas() {
+        return pessoaFisica;
     }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
@@ -75,12 +69,8 @@ public class Fotos {
         this.fot_caminho = fot_caminho;
     }
 
-    public void setFot_descricao(String fot_descricao) {
-        this.fot_descricao = fot_descricao;
-    }
-
-    public void setMotorista(Motoristas motorista) {
-        this.motorista = motorista;
+    public void setPessoasFisicas(PessoasFisicas pessoaFisica) {
+        this.pessoaFisica = pessoaFisica;
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //

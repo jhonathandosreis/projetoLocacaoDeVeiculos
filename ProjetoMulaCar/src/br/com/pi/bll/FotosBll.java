@@ -12,7 +12,6 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
-
 package br.com.pi.bll;
 
 import br.com.pi.dal.FotosDal;
@@ -24,6 +23,7 @@ import java.util.ArrayList;
  * @author Gustavo Gabriel
  */
 public class FotosBll {
+
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     private FotosDal fotoDal;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
@@ -38,34 +38,56 @@ public class FotosBll {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addFotos(Fotos foto) throws Exception {
-        
+
+        try {
+            fotoDal.addFotos(foto);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-    
+
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateFotos(Fotos foto) throws Exception {
-        
+
+        try {
+            fotoDal.updateFotos(foto);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
     public void deleteFotos(Fotos foto) throws Exception {
-        
+
+        try {
+            fotoDal.deleteFotos(foto);
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
-    
+
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Fotos> getAllFotos() throws Exception {
-        
-        return fotoDal.getAllFotos();
+
+        try {
+            return fotoDal.getAllFotos();
+        } catch (Exception error) {
+            throw error;
+        }
     }
-    
+
     public Fotos getFotosBy(int fot_iden) throws Exception {
-        
-        return fotoDal.getFotosById(fot_iden);
+        try {
+        return fotoDal.getFotosById(fot_iden);    
+        } catch (Exception error) {
+            throw error;
+        }
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //    
