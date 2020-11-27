@@ -60,7 +60,6 @@ CREATE TABLE pessoas_fisicas (
 CREATE TABLE fotos (
     fot_iden SERIAL PRIMARY KEY,
     fot_caminho VARCHAR(200),
-    fot_descricao VARCHAR(100),
     fot_pfi_iden INTEGER,
     FOREIGN KEY (fot_pfi_iden) REFERENCES pessoas_fisicas (pfi_iden)
 );
