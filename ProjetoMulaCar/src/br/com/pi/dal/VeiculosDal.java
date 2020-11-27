@@ -46,21 +46,20 @@ public class VeiculosDal {
     //
     public void addVeiculos(Veiculos veiculo) throws Exception {
 
-        String sql = "INSERT INTO veiculos(vei_placa, vei_km, vei_ano_modelo,"
+        String sql = "INSERT INTO veiculos (vei_placa, vei_km,"
                 + "vei_renavam, vei_status, vei_observacoes, vei_preco_compra, vei_ano_fabricacao,"
-                + "vei_numero_passageiros, vei_mod_iden, vei_tve_iden) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                + "vei_numero_passageiros, vei_mod_iden) VALUES (?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, veiculo.getPlaca());
             preparedStatement.setInt(2, veiculo.getQuilimetragem());
-            preparedStatement.setDouble(3, veiculo.getRenavam());
+            preparedStatement.setString(3, veiculo.getRenavam());
             preparedStatement.setString(4, veiculo.getStatus());
             preparedStatement.setString(5, veiculo.getObservacoes());
             preparedStatement.setInt(6, veiculo.getPrecoDeCompra());
-            preparedStatement.setFloat(7, veiculo.getAnoFabricacao());
-            preparedStatement.setFloat(8, veiculo.getCapacidade());
+            preparedStatement.setInt(7, veiculo.getAnoFabricacao());
+            preparedStatement.setInt(8, veiculo.getCapacidade());
             preparedStatement.setInt(9, veiculo.getModelo().getIden());
-            preparedStatement.setInt(10, veiculo.getTiposDeVeiculo().getIden());
             preparedStatement.executeUpdate();
         } catch (Exception error) {
             throw error;
@@ -72,22 +71,21 @@ public class VeiculosDal {
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
     public void updateVeiculos(Veiculos veiculo) throws Exception {
-        String sql = "UPDATE veiculos SET vei_placa=?, vei_km=?, vei_ano_modelo=?,"
+        String sql = "UPDATE veiculos SET vei_placa=?, vei_km=?,"
                 + "vei_renavam=?, vei_status=?, vei_observacoes=?, vei_preco_compra=?, vei_ano_fabricacao=?,"
-                + "vei_numero_passageiros=?, vei_mod_iden=?, vei_tve_iden=? WHERE vei_iden=?";
+                + "vei_numero_passageiros=?, vei_mod_iden=? WHERE vei_iden=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, veiculo.getPlaca());
             preparedStatement.setInt(2, veiculo.getQuilimetragem());
-            preparedStatement.setDouble(3, veiculo.getRenavam());
+            preparedStatement.setString(3, veiculo.getRenavam());
             preparedStatement.setString(4, veiculo.getStatus());
             preparedStatement.setString(5, veiculo.getObservacoes());
             preparedStatement.setInt(6, veiculo.getPrecoDeCompra());
-            preparedStatement.setFloat(7, veiculo.getAnoFabricacao());
-            preparedStatement.setFloat(8, veiculo.getCapacidade());
+            preparedStatement.setInt(7, veiculo.getAnoFabricacao());
+            preparedStatement.setInt(8, veiculo.getCapacidade());
             preparedStatement.setInt(9, veiculo.getModelo().getIden());
-            preparedStatement.setInt(10, veiculo.getTiposDeVeiculo().getIden());
-            preparedStatement.setInt(11, veiculo.getIden());
+            preparedStatement.setInt(10, veiculo.getIden());
             preparedStatement.executeUpdate();
         } catch (Exception error) {
             throw error;
@@ -131,19 +129,16 @@ public class VeiculosDal {
                 veiculo.setIden(rs.getInt("vei_iden"));
                 veiculo.setPlaca(rs.getString("vei_placa"));
                 veiculo.setQuilimetragem(rs.getInt("vei_km"));
-                veiculo.setRenavam(rs.getDouble("vei_renavam"));
+                veiculo.setRenavam(rs.getString("vei_renavam"));
                 veiculo.setStatus(rs.getString("vei_status"));
                 veiculo.setObservacoes(rs.getString("vei_observacoes"));
                 veiculo.setPrecoDeCompra(rs.getInt("vei_preco_compra"));
-                veiculo.setAnoFabricacao(rs.getFloat("vei_ano_fabricacao"));
-                veiculo.setCapacidade(rs.getFloat("vei_numero_passageiros"));
+                veiculo.setAnoFabricacao(rs.getInt("vei_ano_fabricacao"));
+                veiculo.setCapacidade(rs.getInt("vei_numero_passageiros"));
 
                 //Chave estrangeira
                 ModelosDal modeloDal = new ModelosDal();
                 veiculo.setModelo(modeloDal.getModelosById(rs.getInt("vei_mod_iden")));
-
-                TiposDeVeiculosDal tiposDeVeiculoDal = new TiposDeVeiculosDal();
-                veiculo.setTiposDeVeiculo(tiposDeVeiculoDal.getTiposDeVeiculosById(rs.getInt("vei_tve_iden")));
                 lista.add(veiculo);
             }
         } catch (Exception error) {
@@ -167,19 +162,16 @@ public class VeiculosDal {
                 veiculo.setIden(rs.getInt("vei_iden"));
                 veiculo.setPlaca(rs.getString("vei_placa"));
                 veiculo.setQuilimetragem(rs.getInt("vei_km"));
-                veiculo.setRenavam(rs.getDouble("vei_renavam"));
+                veiculo.setRenavam(rs.getString("vei_renavam"));
                 veiculo.setStatus(rs.getString("vei_status"));
                 veiculo.setObservacoes(rs.getString("vei_observacoes"));
                 veiculo.setPrecoDeCompra(rs.getInt("vei_preco_compra"));
-                veiculo.setAnoFabricacao(rs.getFloat("vei_ano_fabricacao"));
-                veiculo.setCapacidade(rs.getFloat("vei_numero_passageiros"));
+                veiculo.setAnoFabricacao(rs.getInt("vei_ano_fabricacao"));
+                veiculo.setCapacidade(rs.getInt("vei_numero_passageiros"));
 
                 //Chave estrangeira
                 ModelosDal modeloDal = new ModelosDal();
                 veiculo.setModelo(modeloDal.getModelosById(rs.getInt("vei_mod_iden")));
-
-                TiposDeVeiculosDal tiposDeVeiculoDal = new TiposDeVeiculosDal();
-                veiculo.setTiposDeVeiculo(tiposDeVeiculoDal.getTiposDeVeiculosById(rs.getInt("vei_tve_iden")));
             }
         } catch (Exception error) {
             throw error;

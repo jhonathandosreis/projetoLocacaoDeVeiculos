@@ -97,6 +97,15 @@ public class CategoriasBll {
             throw error;
         }
     }
+    
+    public Categorias getCategoriaByNome(String cat_nome) throws Exception {
+        
+        try {
+            return categoriasDal.getCategoriasByNome(cat_nome);
+        } catch (Exception error) {
+            throw error;
+        }
+    }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 }

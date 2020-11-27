@@ -14,20 +14,143 @@
  */
 package br.com.pi.app;
 
+import br.com.pi.bll.CategoriasBll;
+import br.com.pi.bll.MarcasBll;
+import br.com.pi.bll.ModelosBll;
+import br.com.pi.bll.TiposDeVeiculosBll;
+import br.com.pi.model.Categorias;
+import br.com.pi.model.Marcas;
+import br.com.pi.model.Modelos;
+import br.com.pi.model.TiposDeVeiculos;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jhonlinux
  */
 public class TelaModelos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaModelo
-     */
+    //--- BLL´S---------------------------------------------------------------------------------------->
+    private ModelosBll modelosBll = null;
+    private CategoriasBll categoriasBll = null;
+    private MarcasBll marcasBll = null;
+    private TiposDeVeiculosBll tiposDeVeiculosBll = null;
+    //--- FIM BLL'S ----------------------------------------------------------------------------------->
+    //
+
+    //--- CLASSES -------------------------------------------------------------------------------------> 
+    private Modelos modelo = null;
+    private Marcas marca = null;
+    private Categorias categoria = null;
+    private TiposDeVeiculos tipoDeVeiculo = null;
+    //--- FIM CLASSES --------------------------------------------------------------------------------->
+    //
+
     public TelaModelos() {
         initComponents();
+
+        try {
+            //--- INSTANCIAS BLL ------------------------------------------------------------------------------>
+            modelosBll = new ModelosBll();
+            categoriasBll = new CategoriasBll();
+            marcasBll = new MarcasBll();
+            tiposDeVeiculosBll = new TiposDeVeiculosBll();
+            //--- FIM INSTANCIAS BLL -------------------------------------------------------------------------->
+            //
+
+            //--- INSTANCIAS CLASSES -------------------------------------------------------------------------->
+            modelo = new Modelos();
+            marca = new Marcas();
+            categoria = new Categorias();
+            tipoDeVeiculo = new TiposDeVeiculos();
+            //--- FIM INSTANCIAS CLASSES ---------------------------------------------------------------------->
+            //
+            
+            preencherGridModelos();
+            preencherComboboxModelos();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
         this.setLocationRelativeTo(null);
     }
 
+    //--- METODOS ------------------------------------------------------------------------------------->
+    public void preencherGridModelos() {
+
+        try {
+            DefaultTableModel tableVeiculos = (DefaultTableModel) jTableModelo.getModel();
+            tableVeiculos.setRowCount(0);
+
+            Object[] linha = new Object[5];
+
+            ArrayList<Modelos> modelos = new ModelosBll().getAllModelos();
+
+            for (Modelos modelo1 : modelos) {
+                linha[0] = modelo1.getIden();
+                linha[1] = modelo1.getNome();
+                linha[2] = modelo1.getMarcas().getNome();
+                linha[3] = modelo1.getCategoria().getNome();
+                linha[4] = modelo1.getTiposDeVeiculos().getNome();
+                tableVeiculos.addRow(linha);
+            }
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void preencherFormularioModelos() throws Exception {
+
+        int id = Integer.parseInt(jTableModelo.getValueAt(jTableModelo.getSelectedRow(), 0).toString());
+        String nome = jTableModelo.getValueAt(jTableModelo.getSelectedRow(), 1).toString();
+
+        jComboBoxMarca.setSelectedItem(marcasBll.getMarcasById(id).getNome());
+        jComboBoxCategoria.setSelectedItem(categoriasBll.getCategoriasById(id).getNome());
+        jComboBoxTipoDeVeiculos.setSelectedItem(tiposDeVeiculosBll.getTiposDeVeiculosById(id).getNome());
+
+        jTextFieldIdModelo.setText(id + "");
+        jTextFieldNome.setText(nome);
+    }
+
+    public void preencherComboboxModelos() throws Exception {
+
+        ArrayList<Categorias> lista = categoriasBll.getAllCategorias();
+        jComboBoxCategoria.removeAllItems();
+        jComboBoxCategoria.addItem("<SELECIONE>");
+
+        for (Categorias categoria : lista) {
+            jComboBoxCategoria.addItem(categoria.getNome());
+        }
+
+        ArrayList<Marcas> lista1 = marcasBll.getAllMarcas();
+        jComboBoxMarca.removeAllItems();
+        jComboBoxMarca.addItem("<SELECIONE>");
+
+        for (Marcas marca : lista1) {
+            jComboBoxMarca.addItem(marca.getNome());
+        }
+        
+        ArrayList<TiposDeVeiculos> lista2 = tiposDeVeiculosBll.getAllTiposDeVeiculos();
+        jComboBoxTipoDeVeiculos.removeAllItems();
+        jComboBoxTipoDeVeiculos.addItem("<SELECIONE>");
+
+        for (TiposDeVeiculos tipos : lista2) {
+            jComboBoxTipoDeVeiculos.addItem(tipos.getNome());
+        }
+
+    }
+
+    public void limparCampos() {
+        jTextFieldIdModelo.setText("");
+        jTextFieldNome.setText("");
+        jComboBoxCategoria.removeAll();
+        jComboBoxMarca.removeAll();
+        jComboBoxTipoDeVeiculos.removeAll();
+    }
+
+    //--- FIM METODOS --------------------------------------------------------------------------------->
+    //
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify
      * this code. The content of this method is always regenerated by the Form Editor.
@@ -122,12 +245,27 @@ public class TelaModelos extends javax.swing.JFrame {
 
         jButtonCadastrar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/salve.png")); // NOI18N
         jButtonCadastrar.setText("CADASTRAR");
+        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarActionPerformed(evt);
+            }
+        });
 
         jButtonAlterar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/editar.png")); // NOI18N
         jButtonAlterar.setText("ALTERAR");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
         jButtonRemover.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/lixo.png")); // NOI18N
         jButtonRemover.setText("REMOVER");
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
 
         jTableModelo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -143,6 +281,11 @@ public class TelaModelos extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTableModelo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableModeloMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTableModelo);
@@ -208,6 +351,77 @@ public class TelaModelos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+        try {
+            String marcas = jComboBoxMarca.getSelectedItem().toString();
+            marca = marcasBll.getMarcasByNome(marcas);
+            modelo.setMarcas(marca);
+
+            String categorias = jComboBoxCategoria.getSelectedItem().toString();
+            categoria = categoriasBll.getCategoriaByNome(categorias);
+            modelo.setCategoria(categoria);
+
+            String tiposDeVeiculos = jComboBoxTipoDeVeiculos.getSelectedItem().toString();
+            tipoDeVeiculo = tiposDeVeiculosBll.getTiposDeVeiculosByNome(tiposDeVeiculos);
+            modelo.setTiposDeVeiculos(tipoDeVeiculo);
+
+            modelo.setNome(jTextFieldNome.getText());
+            modelosBll.addModelos(modelo);
+
+            preencherGridModelos();
+            limparCampos();
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonCadastrarActionPerformed
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        try {
+            String marcas = jComboBoxMarca.getSelectedItem().toString();
+            marca = marcasBll.getMarcasByNome(marcas);
+            modelo.setMarcas(marca);
+
+            String categorias = jComboBoxCategoria.getSelectedItem().toString();
+            categoria = categoriasBll.getCategoriaByNome(categorias);
+            modelo.setCategoria(categoria);
+
+            String tiposDeVeiculos = jComboBoxTipoDeVeiculos.getSelectedItem().toString();
+            tipoDeVeiculo = tiposDeVeiculosBll.getTiposDeVeiculosByNome(marcas);
+            modelo.setTiposDeVeiculos(tipoDeVeiculo);
+
+            modelo.setIden(Integer.parseInt(jTextFieldIdModelo.getText()));
+            modelo.setNome(jTextFieldNome.getText());
+            modelosBll.updateModelos(modelo);
+
+            preencherGridModelos();
+            limparCampos();
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        try {
+            modelo.setIden(Integer.parseInt(jTextFieldIdModelo.getText()));
+            modelosBll.deleteModelos(modelo);
+
+            preencherGridModelos();
+            limparCampos();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
+
+    private void jTableModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableModeloMouseClicked
+        try {
+            preencherFormularioModelos();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jTableModeloMouseClicked
 
     /**
      * @param args the command line arguments

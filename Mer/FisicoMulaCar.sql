@@ -5,7 +5,7 @@ CREATE TABLE ufs (
 
 CREATE TABLE marcas (
     mar_iden SERIAL PRIMARY KEY,
-    mar_nome VARCHAR(50)
+    mar_nome VARCHAR(50) CONSTRAINT marca_repetida UNIQUE
 );
 
 CREATE TABLE categorias (
@@ -16,7 +16,7 @@ CREATE TABLE categorias (
 
 CREATE TABLE tipos_de_veiculos (
     tve_iden SERIAL PRIMARY KEY,
-    tve_nome VARCHAR(80) CONSTRAINT tipo_veiculos_repetido UNIQUE
+    tve_nome VARCHAR(80)
 );
 
 CREATE TABLE cidades (
@@ -79,24 +79,24 @@ CREATE TABLE modelos (
     mod_nome VARCHAR(100) CONSTRAINT modelo_repetido UNIQUE,
     mod_cat_iden INTEGER,
     mod_mar_iden INTEGER,
+    mod_tve_iden INTEGER,
     FOREIGN KEY (mod_cat_iden) REFERENCES categorias (cat_iden),
-    FOREIGN KEY (mod_mar_iden) REFERENCES marcas (mar_iden)
+    FOREIGN KEY (mod_mar_iden) REFERENCES marcas (mar_iden),
+    FOREIGN KEY (mod_tve_iden) REFERENCES tipos_de_veiculos (tve_iden)
 );
 
 CREATE TABLE veiculos (
     vei_iden SERIAL PRIMARY KEY,
     vei_placa VARCHAR(30) CONSTRAINT placa_repetida UNIQUE,
     vei_km NUMERIC(30),
-    vei_renavam BIGINT CONSTRAINT renavam_repetido UNIQUE,
+    vei_renavam VARCHAR(13) CONSTRAINT renavam_repetido UNIQUE,
     vei_status VARCHAR(100),
     vei_observacoes VARCHAR(100),
     vei_preco_compra NUMERIC(10),
     vei_ano_fabricacao INTEGER,
     vei_numero_passageiros INTEGER,
     vei_mod_iden INTEGER,
-    vei_tve_iden INTEGER,
-    FOREIGN KEY (vei_mod_iden) REFERENCES modelos (mod_iden),
-    FOREIGN KEY (vei_tve_iden) REFERENCES tipos_de_veiculos (tve_iden)
+    FOREIGN KEY (vei_mod_iden) REFERENCES modelos (mod_iden)
 );
 
 CREATE TABLE locacoes (

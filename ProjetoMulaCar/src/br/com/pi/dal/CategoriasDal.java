@@ -144,6 +144,27 @@ public class CategoriasDal {
         }
         return categoria;
     }
+    
+    public Categorias getCategoriasByNome(String cat_nome) throws Exception {
+        
+        Categorias categoria = new Categorias();
+        
+        String sql = "SELECT * FROM categorias WHERE cat_nome=?";
+        
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1, cat_nome);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                categoria.setIden(rs.getInt("cat_iden"));
+                categoria.setNome(rs.getString("cat_nome"));
+                categoria.setValorDiarioLocacao(rs.getFloat("cat_valor_diario_locacao"));
+            }
+        } catch (Exception error) {
+            throw error;
+        }
+        return categoria;
+    }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 }

@@ -96,6 +96,15 @@ public class TiposDeVeiculosBll {
             throw error;
         }
     }
+    
+    public TiposDeVeiculos getTiposDeVeiculosByNome(String tve_nome) throws Exception {
+        
+        try {
+            return tiposDeVeiculosDal.getTiposDeVeiculosByNome(tve_nome);
+        } catch (Exception error) {
+            throw error;
+        }
+    }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 }

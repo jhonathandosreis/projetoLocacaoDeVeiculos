@@ -46,13 +46,13 @@ public class ModelosDal {
     //
     public void addModelos(Modelos modelo) throws Exception {
 
-        String sql = "INSERT INTO modelos (mod_nome, mod_cat_iden, mod_mar_iden) VALUES (?,?,?)";
+        String sql = "INSERT INTO modelos (mod_nome, mod_cat_iden, mod_mar_iden, mod_tve_iden) VALUES (?,?,?,?)";
 
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, modelo.getNome());
-            preparedStatement.setInt(2, modelo.getMarcas().getIden());
-            preparedStatement.setInt(3, modelo.getCategoria().getIden());
+            preparedStatement.setInt(2, modelo.getCategoria().getIden());
+            preparedStatement.setInt(3, modelo.getMarcas().getIden());
             preparedStatement.setInt(4, modelo.getTiposDeVeiculos().getIden());
             preparedStatement.executeUpdate();
         } catch (Exception error) {
@@ -66,13 +66,13 @@ public class ModelosDal {
     //
     public void updateModelos(Modelos modelo) throws Exception {
 
-        String sql = "UPDATE modelos SET mod_nome=?, mod_cat_iden=?, mod_mar_iden=? WHERE mod_iden=?";
+        String sql = "UPDATE modelos SET mod_nome=?, mod_cat_iden=?, mod_mar_iden=?, mod_tve_iden=? WHERE mod_iden=?";
 
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, modelo.getNome());
-            preparedStatement.setInt(2, modelo.getMarcas().getIden());
-            preparedStatement.setInt(3, modelo.getCategoria().getIden());
+            preparedStatement.setInt(2, modelo.getCategoria().getIden());
+            preparedStatement.setInt(3, modelo.getMarcas().getIden());
             preparedStatement.setInt(4, modelo.getTiposDeVeiculos().getIden());
             preparedStatement.setInt(5, modelo.getIden());
             preparedStatement.executeUpdate();
@@ -126,7 +126,7 @@ public class ModelosDal {
                 modelo.setCategoria(categoriaDal.getCategoriasById(rs.getInt("mod_cat_iden")));
                 
                 TiposDeVeiculosDal tiposDeVeiculosDal = new TiposDeVeiculosDal();
-                modelo.setTiposDeVeiculos(tiposDeVeiculosDal.getTiposDeVeiculosById(rs.getInt("tve_iden")));
+                modelo.setTiposDeVeiculos(tiposDeVeiculosDal.getTiposDeVeiculosById(rs.getInt("mod_tve_iden")));
                 lista.add(modelo);
             }
         } catch (Exception error) {
@@ -158,7 +158,7 @@ public class ModelosDal {
                 modelo.setCategoria(categoriaDal.getCategoriasById(rs.getInt("mod_cat_iden")));
                 
                 TiposDeVeiculosDal tiposDeVeiculosDal = new TiposDeVeiculosDal();
-                modelo.setTiposDeVeiculos(tiposDeVeiculosDal.getTiposDeVeiculosById(rs.getInt("tve_iden")));
+                modelo.setTiposDeVeiculos(tiposDeVeiculosDal.getTiposDeVeiculosById(rs.getInt("mod_tve_iden")));
             }
         } catch (Exception error) {
             throw error;
@@ -170,7 +170,7 @@ public class ModelosDal {
         
         Modelos modelo = new Modelos();
         
-        String sql = ("SELECT * FROM modelos WHERE mod_nome=?");
+        String sql = "SELECT * FROM modelos WHERE mod_nome=?";
         
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
@@ -189,7 +189,7 @@ public class ModelosDal {
                 modelo.setCategoria(categoriaDal.getCategoriasById(rs.getInt("mod_cat_iden")));
                 
                 TiposDeVeiculosDal tiposDeVeiculosDal = new TiposDeVeiculosDal();
-                modelo.setTiposDeVeiculos(tiposDeVeiculosDal.getTiposDeVeiculosById(rs.getInt("tve_iden")));
+                modelo.setTiposDeVeiculos(tiposDeVeiculosDal.getTiposDeVeiculosById(rs.getInt("mod_tve_iden")));
             }
         } catch (Exception error) {
             throw error;

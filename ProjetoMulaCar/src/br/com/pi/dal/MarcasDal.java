@@ -138,6 +138,26 @@ public class MarcasDal {
         }
         return marca;
     }
+    
+    public Marcas getMarcarByNome(String nome) throws Exception {
+        
+        Marcas marca = new Marcas();
+        
+        String sql = "SELECT * FROM marcas WHERE mar_nome=?";
+        
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1, nome);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                marca.setIden(rs.getInt("mar_iden"));
+                marca.setNome(rs.getString("mar_nome"));
+            }
+        } catch (Exception error) {
+            throw error;
+        }
+        return marca;
+    }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 }

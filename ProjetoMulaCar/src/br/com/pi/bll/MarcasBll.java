@@ -97,6 +97,15 @@ public class MarcasBll {
             throw error;
         }
     }
+    
+    public Marcas getMarcasByNome(String mar_nome) throws Exception {
+        
+        try {
+            return marcasDal.getMarcarByNome(mar_nome);
+        } catch (Exception error) {
+            throw error;
+        }
+    }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 }

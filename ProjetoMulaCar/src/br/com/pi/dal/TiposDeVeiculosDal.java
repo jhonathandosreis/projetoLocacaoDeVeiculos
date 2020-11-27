@@ -12,7 +12,6 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
-
 package br.com.pi.dal;
 
 import br.com.pi.model.TiposDeVeiculos;
@@ -46,9 +45,9 @@ public class TiposDeVeiculosDal {
     //--- CREATE -------------------------------------------------------------------------------------->
     //
     public void addTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculo) throws Exception {
-        
+
         String sql = "INSERT INTO tipos_de_veiculos (tve_nome) VALUES (?)";
-        
+
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, tiposDeVeiculo.getNome());
@@ -59,13 +58,13 @@ public class TiposDeVeiculosDal {
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-    
+
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
     public void updateTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculo) throws Exception {
-        
+
         String sql = "UPDATE tipos_de_veiculos SET tve_nome=? WHERE tve_iden=?";
-        
+
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, tiposDeVeiculo.getNome());
@@ -81,9 +80,9 @@ public class TiposDeVeiculosDal {
     //--- DELETE -------------------------------------------------------------------------------------->
     //
     public void deleteTiposDeVeiculos(int tve_iden) throws Exception {
-        
+
         String sql = "DELETE FROM tipos_de_veiculos WHERE tve_iden=?";
-        
+
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setInt(1, tve_iden);
@@ -94,22 +93,22 @@ public class TiposDeVeiculosDal {
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
-    
+
     //--- READ ---------------------------------------------------------------------------------------->
     //
     public ArrayList<TiposDeVeiculos> getAllTiposDeVeiculos() throws Exception {
-        
+
         ArrayList<TiposDeVeiculos> lista = new ArrayList<TiposDeVeiculos>();
-        
+
         String sql = "SELECT * FROM tipos_de_veiculos";
-        
+
         try {
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
-                
+
                 TiposDeVeiculos tiposDeVeiculos = new TiposDeVeiculos();
-                
+
                 tiposDeVeiculos.setIden(rs.getInt("tve_iden"));
                 tiposDeVeiculos.setNome(rs.getString("tve_nome"));
                 lista.add(tiposDeVeiculos);
@@ -119,23 +118,39 @@ public class TiposDeVeiculosDal {
         }
         return lista;
     }
-    
+
     public TiposDeVeiculos getTiposDeVeiculosById(int tve_iden) throws Exception {
-        
+
         TiposDeVeiculos tiposDeVeiculos = new TiposDeVeiculos();
-        
+
         String sql = "SELECT * FROM tipos_de_veiculos WHERE tve_iden=?";
-        
+
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setInt(1, tve_iden);
-            ResultSet rs = preparedStatement.executeQuery(); 
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 tiposDeVeiculos.setIden(rs.getInt("tve_iden"));
                 tiposDeVeiculos.setNome(rs.getString("tve_nome"));
             }
         } catch (Exception error) {
             throw error;
+        }
+        return tiposDeVeiculos;
+    }
+
+    public TiposDeVeiculos getTiposDeVeiculosByNome(String tve_nome) throws Exception {
+
+        TiposDeVeiculos tiposDeVeiculos = new TiposDeVeiculos();
+
+        String sql = "SELECT * FROM tipos_de_veiculos WHERE tve_nome=?";
+
+        PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+        preparedStatement.setString(1, tve_nome);
+        ResultSet rs = preparedStatement.executeQuery();
+        if (rs.next()) {
+            tiposDeVeiculos.setIden(rs.getInt("tve_iden"));
+            tiposDeVeiculos.setNome(rs.getString("tve_nome"));
         }
         return tiposDeVeiculos;
     }

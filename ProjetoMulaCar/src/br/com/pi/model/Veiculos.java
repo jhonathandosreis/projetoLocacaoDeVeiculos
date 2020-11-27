@@ -26,12 +26,12 @@ public class Veiculos {
     private int iden = 0;
     private String placa = "";
     private int quilimetragem = 0;
-    private double renavam = 0;
+    private String renavam = "";
     private String status = "";
     private int precoDeCompra = 0;
-    private float anoFabricacao = 0;
+    private int anoFabricacao = 0;
     private String observacoes = "";
-    private float capacidade = 0;
+    private int capacidade = 0;
     private Modelos modelo = null;
     private TiposDeVeiculos tiposDeVeiculo = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
@@ -43,9 +43,9 @@ public class Veiculos {
         
     }
     
-    public Veiculos(int iden, String placa, int quilometragem,double renavam, 
-            String status, int precoDeCompra, float anoFabricacao, String observacoes, 
-            float capacidade, Modelos modelo, TiposDeVeiculos tiposDeVeiculos) {
+    public Veiculos(int iden, String placa, int quilometragem, String renavam, 
+            String status, int precoDeCompra, int anoFabricacao, String observacoes, 
+            int capacidade, Modelos modelo, TiposDeVeiculos tiposDeVeiculos) {
         this.iden = iden;
         this.placa = placa;
         this.quilimetragem = quilometragem;
@@ -76,7 +76,7 @@ public class Veiculos {
         return quilimetragem;
     }
 
-    public double getRenavam() {
+    public String getRenavam() {
         return renavam;
     }
 
@@ -88,7 +88,7 @@ public class Veiculos {
         return precoDeCompra;
     }
     
-    public float getAnoFabricacao() {
+    public int getAnoFabricacao() {
         return anoFabricacao;
     }
 
@@ -96,7 +96,7 @@ public class Veiculos {
         return observacoes;
     }
 
-    public float getCapacidade() {
+    public int getCapacidade() {
         return capacidade;
     }
     
@@ -124,7 +124,7 @@ public class Veiculos {
         this.quilimetragem = quilimetragem;
     }
 
-    public void setRenavam(double renavam) {
+    public void setRenavam(String renavam) {
         this.renavam = renavam;
     }
 
@@ -136,7 +136,7 @@ public class Veiculos {
         this.precoDeCompra = precoDeCompra;
     }
     
-    public void setAnoFabricacao(float anoFabricacao) {
+    public void setAnoFabricacao(int anoFabricacao) {
         this.anoFabricacao = anoFabricacao;
     }
 
@@ -144,7 +144,7 @@ public class Veiculos {
         this.observacoes = observacoes;
     }
 
-    public void setCapacidade(float capacidade) {
+    public void setCapacidade(int capacidade) {
         this.capacidade = capacidade;
     }
     
