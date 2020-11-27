@@ -38,34 +38,52 @@ public class LocacoesBll {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addLocacoes(Locacoes locacao) throws Exception {
-        
+        try{
+           locacoesDal.addLocacoes(locacao);
+        } catch (Exception error) {
+            throw  error;
+        }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
     
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateLocacoes(Locacoes locacao) throws Exception {
-        
+        try{
+            locacoesDal.updateLocacoes(locacao);
+        } catch (Exception error) {
+            throw  error;
+        }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
     public void deleteLocacoes(Locacoes locacao) throws Exception {
-        
+        try{
+            locacoesDal.deleteLocacoes(locacao);
+        } catch (Exception error) {
+            throw  error;
+        }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
     
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Locacoes> getAllLocacoes() throws Exception {
-        
+        try{
         return locacoesDal.getAllLocacoes();
+        } catch (Exception error) {
+            throw  error;
+        }
     }
     
     public Locacoes getLocacoesBy(int loc_iden) throws Exception {
-        
+        try{
         return locacoesDal.getLocacoesById(loc_iden);
+        } catch (Exception error) {
+            throw  error;
+        }
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //

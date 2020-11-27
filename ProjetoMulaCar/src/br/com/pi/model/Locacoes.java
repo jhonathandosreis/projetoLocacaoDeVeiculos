@@ -15,7 +15,7 @@
 
 package br.com.pi.model;
 
-import java.text.DateFormat;
+import java.util.Date;
 
 /**
  *
@@ -30,13 +30,13 @@ public class Locacoes {
     private Motoristas motoristas = null;
     private Categorias categorias = null;
     private Veiculos veiculos = null;
-    private DateFormat dataDeLocacao = null;
-    private DateFormat dataPrevistDeDevolucao = null;
-    private int kmInicial = 0;
-    private int valorLocacao = 0;
-    private int valorCaucao = 0;
-    private int valorSeguro = 0;
-    private int valorTotalPago = 0;
+    private Date dataDeLocacao = null;
+    private Date dataPrevistDeDevolucao = null;
+    private double kmInicial = 0;
+    private float valorLocacao = 0;
+    private float valorCaucao = 0;
+    private float valorSeguro = 0;
+    private float valorTotalPago = 0;
     private SituacaoLocacao situacao = null;
     
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
@@ -49,8 +49,8 @@ public class Locacoes {
     }
     
     public Locacoes(int iden, Clientes clientes, Motoristas motoristas, Categorias categorias, Veiculos veiculos,
-            DateFormat dataDeLocao, DateFormat dataPrevistaDevolucao, int kmInicial, SituacaoLocacao situacao,
-            int valorLocacao, int valorCaucao, int valorSeguro, int valorTotalPago) {
+            Date dataDeLocao, Date dataPrevistaDevolucao, double kmInicial, SituacaoLocacao situacao,
+            float valorLocacao, float valorCaucao, float valorSeguro, float valorTotalPago) {
         this.iden = iden;
         this.cliente = clientes;
         this.motoristas = motoristas;
@@ -90,31 +90,31 @@ public class Locacoes {
         return veiculos;
     }
 
-    public DateFormat getDataDeLocacao() {
+    public Date getDataDeLocacao() {
         return dataDeLocacao;
     }
 
-    public DateFormat getDataPrevistDeDevolucao() {
+    public Date getDataPrevistDeDevolucao() {
         return dataPrevistDeDevolucao;
     }
 
-    public int getKmInicial() {
+    public double getKmInicial() {
         return kmInicial;
     }
     
-    public int getValorLocacao() {
+    public float getValorLocacao() {
         return valorLocacao;
     }
 
-    public int getValorCaucao() {
+    public float getValorCaucao() {
         return valorCaucao;
     }
 
-    public int getValorSeguro() {
+    public float getValorSeguro() {
         return valorSeguro;
     }
 
-    public int getValorTotalPago() {
+    public float getValorTotalPago() {
         return valorTotalPago;
     }
     
@@ -146,31 +146,31 @@ public class Locacoes {
         this.veiculos = veiculos;
     }
 
-    public void setDataDeLocacao(DateFormat dataDeLocacao) {
+    public void setDataDeLocacao(Date dataDeLocacao) {
         this.dataDeLocacao = dataDeLocacao;
     }
 
-    public void setDataPrevistDeDevolucao(DateFormat dataPrevistDeDevolucao) {
+    public void setDataPrevistDeDevolucao(Date dataPrevistDeDevolucao) {
         this.dataPrevistDeDevolucao = dataPrevistDeDevolucao;
     }
 
-    public void setKmInicial(int kmInicial) {
+    public void setKmInicial(double kmInicial) {
         this.kmInicial = kmInicial;
     }
     
-    public void setValorLocacao(int valorLocacao) {
+    public void setValorLocacao(float valorLocacao) {
         this.valorLocacao = valorLocacao;
     }
 
-    public void setValorCaucao(int valorCaucao) {
+    public void setValorCaucao(float valorCaucao) {
         this.valorCaucao = valorCaucao;
     }
 
-    public void setValorSeguro(int valorSeguro) {
+    public void setValorSeguro(float valorSeguro) {
         this.valorSeguro = valorSeguro;
     }
 
-    public void setValorTotalPago(int valorTotalPago) {
+    public void setValorTotalPago(float valorTotalPago) {
         this.valorTotalPago = valorTotalPago;
     }
     

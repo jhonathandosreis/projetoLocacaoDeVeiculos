@@ -21,7 +21,6 @@ import br.com.pi.model.Clientes;
 import br.com.pi.model.Motoristas;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -73,12 +72,13 @@ public class MotoristasDal {
         }
         
         String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_numero_cnh, pfi_categoria_cnh, pfi_data_de_validade, pfi_cli_iden) values (?, ?, ?, ?, ?, ?)";        
+        java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
         preparedStatement2.setInt(1, motorista.getRg());
         preparedStatement2.setDouble(2, motorista.getCpf());
         preparedStatement2.setDouble(3, motorista.getNumeroCnh());
         preparedStatement2.setString(4, motorista.getCategoriaCnh());
-        preparedStatement2.setDate(5, (Date) motorista.getDataValidade());
+        preparedStatement2.setDate(5, dataValidade);
         preparedStatement2.setInt(6, motorista.getCliente().getIden());
         preparedStatement2.executeUpdate();
         
@@ -105,11 +105,12 @@ public class MotoristasDal {
         
         String sqlPessoaFisica = "UPDATE pessoas_fisicas SET pfi_rg=?, pfi_cpf=?, pfi_numero_cnh=?, pfi_categoria_cnh=?, pfi_data_de_validade=?, pfi_cli_iden=? WHERE pfi_iden=?";        
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
+        java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
         preparedStatement2.setInt(1, motorista.getRg());
         preparedStatement2.setDouble(2, motorista.getCpf());
         preparedStatement2.setDouble(3, motorista.getNumeroCnh());
         preparedStatement2.setString(4, motorista.getCategoriaCnh());
-        preparedStatement2.setDate(5, (Date) motorista.getDataValidade());
+        preparedStatement2.setDate(5, dataValidade);
         preparedStatement2.setInt(6, motorista.getCliente().getIden());
         preparedStatement2.setInt(7, motorista.getIden());
         preparedStatement2.executeUpdate();
@@ -128,11 +129,11 @@ public class MotoristasDal {
         int idMotorista = motorista.getIden();
         int idCliente = motorista.getCliente().getIden();
         
-        PreparedStatement preparedStatement1 = conexao.prepareStatement("DELETE FROM clientes where cli_iden =?");
+        PreparedStatement preparedStatement1 = conexao.prepareStatement("DELETE FROM clientes WHERE cli_iden =?");
         preparedStatement1.setInt(1, idCliente);
         preparedStatement1.executeUpdate();
         
-        PreparedStatement preparedStatement2 = conexao.prepareStatement("DELETE FROM pessoas_fisicas where pfi_iden =?");
+        PreparedStatement preparedStatement2 = conexao.prepareStatement("DELETE FROM pessoas_fisicas WHERE pfi_iden =?");
         preparedStatement1.setInt(1, idMotorista);
         preparedStatement2.executeUpdate();
         } catch (Exception error) {
@@ -175,7 +176,7 @@ public class MotoristasDal {
     public Motoristas getMotoristasById(int mot_iden) throws Exception {
         
         try{
-        Motoristas motorista = new Motoristas();
+        motorista = new Motoristas();
         String sql = "SELECT * FROM motoristas WHERE pfi_iden=?";
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         preparedStatement.setInt(1, mot_iden);
