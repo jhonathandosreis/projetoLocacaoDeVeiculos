@@ -44,7 +44,7 @@ public class Valida {
     
     public static void notSpecialCharacters(String  message, String type){
         String vetor []= new String[] {"!",  "#","$","%", "\\","&","’","(",")","*","+","\"","-",".","/",":",";","<","=",">","?","@","[","]","^","_","`","{","|","}"};
-        String saida = type+"!\nCampo não permite Carácter Especiais.";
+        String saida = type+"Campo não permite Carácter Especiais.";
         for (String string : vetor) {
             if(message.contains(string))throw new RuntimeException(saida);
         }
@@ -58,7 +58,7 @@ public class Valida {
     
     public static void notNumber(String  message, String type){
         String saida;       
-        saida = type + "!\nCampo não permite Números.";
+        saida = type + "Campo não permite Números.";
         for (int i = 0; i < 10; i++) {
         if(message.contains(String.format("%d", i)))throw new RuntimeException(saida);
         }
@@ -71,7 +71,7 @@ public class Valida {
      */
     
     public static void numberInteger(String  message, String type){
-        String saida = type + "!\nCampo só permite números do conjunto inteiro.\nEx: 3";
+        String saida = type + "Campo só permite números do conjunto inteiro.\nEx: 3";
         if(!message.matches("[0-9]*")) throw  new RuntimeException(saida);
     }
     
@@ -83,7 +83,7 @@ public class Valida {
      */
     
     public static void numberFloat(String  message, String type){
-        String saida = type + "!\nCampo só permite números do conjunto real.\nSe estiver usando \",\" troque por \".\".\nEx: 3.45";
+        String saida = type + "Campo só permite números do conjunto real.\nSe estiver usando \",\" troque por \".\".\nEx: 3.45";
         if(!message.matches("[0-9.]*")) throw  new RuntimeException(saida);
     }
     
@@ -94,7 +94,7 @@ public class Valida {
      */
     
     public static void campoVazio(String  message, String type){
-        String saida = type+ "!\nCampo vazio.";
+        String saida = type+ "\nCampo vazio.";
         if(message.trim().equals(""))throw  new RuntimeException(saida);   
     }
 }

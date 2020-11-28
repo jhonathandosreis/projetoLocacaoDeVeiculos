@@ -39,21 +39,13 @@ public class TelaMarcas extends javax.swing.JFrame {
     public TelaMarcas() {
         initComponents();
         try {
-    //--- INSTANCIAS BLL ------------------------------------------------------------------------------>
             marcasBll = new MarcasBll();
-    //--- FIM INSTANCIAS BLL -------------------------------------------------------------------------->
-    //
-
-    //--- INSTANCIAS CLASSES -------------------------------------------------------------------------->
             marca = new Marcas();
-    //--- FIM INSTANCIAS CLASSES ---------------------------------------------------------------------->
-    //
 
             preencherGridMarcas();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
-
         this.setLocationRelativeTo(null);
     }
 
@@ -89,6 +81,10 @@ public class TelaMarcas extends javax.swing.JFrame {
     public void limparCampos() {
         jTextFieldIDMarca.setText("");
         jTextFieldNome.setText("");
+    }
+    
+    public void ValidaMarcas() {
+        
     }
     //--- FIM METODOS --------------------------------------------------------------------------------->
     //

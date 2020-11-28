@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.pi.app;
 
 import br.com.pi.bll.CategoriasBll;
 import br.com.pi.model.Categorias;
+import br.com.pi.util.Valida;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -21,47 +17,38 @@ public class TelaCategorias extends javax.swing.JFrame {
     private CategoriasBll categoriasBll = null;
     //--- FIM BLL'S ----------------------------------------------------------------------------------->
     //
-    
+
     //--- CLASSES -------------------------------------------------------------------------------------> 
     private Categorias categoria = null;
     //--- FIM CLASSES --------------------------------------------------------------------------------->
     //
-    
-    
+
     public TelaCategorias() {
         initComponents();
-        
-        try {       
-    //--- INSTANCIAS BLL ------------------------------------------------------------------------------>
-    categoriasBll = new CategoriasBll();
-    //--- FIM INSTANCIAS BLL -------------------------------------------------------------------------->
-    //
-    
-    //--- INSTANCIAS CLASSES -------------------------------------------------------------------------->
-    categoria = new Categorias();
-    //--- FIM INSTANCIAS CLASSES ---------------------------------------------------------------------->
-    //     
-    
-    preencherGridCategorias();
+
+        try {
+            categoriasBll = new CategoriasBll();
+            categoria = new Categorias();
+            preencherGridCategorias();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
         this.setLocationRelativeTo(null);
     }
-    
+
     //--- METODOS ------------------------------------------------------------------------------------->
     public void preencherGridCategorias() throws Exception {
-        
+
         try {
             DefaultTableModel tableVeiculos = (DefaultTableModel) jTableCategoria.getModel();
             tableVeiculos.setRowCount(0);
-            
+
             Object[] linha = new Object[3];
-            
+
             ArrayList<Categorias> categoria = new CategoriasBll().getAllCategorias();
-            
+
             for (Categorias categorias : categoria) {
-                
+
                 linha[0] = categorias.getIden();
                 linha[1] = categorias.getNome();
                 linha[2] = categorias.getValorDiarioLocacao();
@@ -71,22 +58,30 @@ public class TelaCategorias extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     public void preencherFormularioCategoria() {
-        
+
         int id = Integer.parseInt(jTableCategoria.getValueAt(jTableCategoria.getSelectedRow(), 0).toString());
         String nome = jTableCategoria.getValueAt(jTableCategoria.getSelectedRow(), 1).toString();
         float valorDiarioLocacao = Float.parseFloat(jTableCategoria.getValueAt(jTableCategoria.getSelectedRow(), 2).toString());
-        
+
         jTextFieldIDCategoria.setText(id + "");
         jTextFieldNomeCategoria.setText(nome);
-        jTextFieldValorDiarioLocacao.setText(valorDiarioLocacao + "");   
+        jTextFieldValorDiarioLocacao.setText(valorDiarioLocacao + "");
     }
-    
+
     public void limparCampos() {
         jTextFieldIDCategoria.setText("");
         jTextFieldNomeCategoria.setText("");
         jTextFieldValorDiarioLocacao.setText("");
+    }
+    
+    public void validacaoCategorias() {
+        
+        Valida.campoVazio(jTextFieldNomeCategoria.getText(), "Digite uma categoria para o veículo!");
+        Valida.campoVazio(jTextFieldValorDiarioLocacao.getText(), "Digite um valor para locação!");
+        Valida.notNumber(jTextFieldNomeCategoria.getText(), "");
+        Valida.numberFloat(jTextFieldValorDiarioLocacao.getText(), "");
     }
     //--- FIM METODOS --------------------------------------------------------------------------------->
     //
@@ -167,7 +162,7 @@ public class TelaCategorias extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldNomeCategoria)))
-                .addGap(350, 801, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,33 +210,31 @@ public class TelaCategorias extends javax.swing.JFrame {
         jPanelCategoriaLayout.setHorizontalGroup(
             jPanelCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCategoriaLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanelCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanelCategoriaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonCadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 329, Short.MAX_VALUE)
+                        .addComponent(jButtonAlterar)
+                        .addGap(292, 292, 292)
+                        .addComponent(jButtonRemover)
+                        .addGap(8, 8, 8))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
-            .addGroup(jPanelCategoriaLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jButtonCadastrar)
-                .addGap(290, 290, 290)
-                .addComponent(jButtonAlterar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonRemover)
-                .addGap(43, 43, 43))
         );
         jPanelCategoriaLayout.setVerticalGroup(
             jPanelCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCategoriaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanelCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCadastrar)
-                    .addComponent(jButtonRemover)
-                    .addComponent(jButtonAlterar))
+                    .addComponent(jButtonAlterar)
+                    .addComponent(jButtonRemover))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -250,8 +243,7 @@ public class TelaCategorias extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanelCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,21 +257,29 @@ public class TelaCategorias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+
         try {
+            validacaoCategorias();
             categoria.setNome(jTextFieldNomeCategoria.getText());
-            categoria.setValorDiarioLocacao(Integer.parseInt(jTextFieldValorDiarioLocacao.getText()));
+            categoria.setValorDiarioLocacao(Float.parseFloat(jTextFieldValorDiarioLocacao.getText()));
             categoriasBll.addCategorias(categoria);
             preencherGridCategorias();
             limparCampos();
+            JOptionPane.showMessageDialog(null, "Categoria inclusca com sucesso!");
         } catch (Exception error) {
-            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+
         try {
+            if (jTableCategoria.getSelectedRow() == -1) {
+                throw new Exception("Selecione uma Categoria a ser alterada!");
+            }
+            validacaoCategorias();
             categoria.setNome(jTextFieldNomeCategoria.getText());
-            categoria.setValorDiarioLocacao(Integer.parseInt(jTextFieldValorDiarioLocacao.getText()));
+            categoria.setValorDiarioLocacao(Float.parseFloat(jTextFieldValorDiarioLocacao.getText()));
             categoria.setIden(Integer.parseInt(jTextFieldIDCategoria.getText()));
             categoriasBll.updateCategorias(categoria);
             preencherGridCategorias();
@@ -290,23 +290,28 @@ public class TelaCategorias extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+
         try {
+            if (jTableCategoria.getSelectedRow() == -1) {
+                throw new Exception("Selecione uma Categoria a ser removida!");
+            }
             categoria.setIden(Integer.parseInt(jTextFieldIDCategoria.getText()));
             categoriasBll.deleteCategorias(categoria);
             preencherGridCategorias();
             limparCampos();
-        } catch (Exception e) {
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     private void jTableCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCategoriaMouseClicked
+
         try {
             preencherFormularioCategoria();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTableCategoriaMouseClicked
-
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
