@@ -48,7 +48,7 @@ public class VeiculosDal {
 
         String sql = "INSERT INTO veiculos (vei_placa, vei_km,"
                 + "vei_renavam, vei_status, vei_observacoes, vei_preco_compra, vei_ano_fabricacao,"
-                + "vei_numero_passageiros, vei_mod_iden) VALUES (?,?,?,?,?,?,?,?,?)";
+                + "vei_numero_passageiros, vei_tipo_combustivel, vei_mod_iden) VALUES (?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, veiculo.getPlaca());
@@ -59,7 +59,8 @@ public class VeiculosDal {
             preparedStatement.setInt(6, veiculo.getPrecoDeCompra());
             preparedStatement.setInt(7, veiculo.getAnoFabricacao());
             preparedStatement.setInt(8, veiculo.getCapacidade());
-            preparedStatement.setInt(9, veiculo.getModelo().getIden());
+            preparedStatement.setString(9, veiculo.getTipoDeCombustivel());
+            preparedStatement.setInt(10, veiculo.getModelo().getIden());
             preparedStatement.executeUpdate();
         } catch (Exception error) {
             throw error;
@@ -73,7 +74,7 @@ public class VeiculosDal {
     public void updateVeiculos(Veiculos veiculo) throws Exception {
         String sql = "UPDATE veiculos SET vei_placa=?, vei_km=?,"
                 + "vei_renavam=?, vei_status=?, vei_observacoes=?, vei_preco_compra=?, vei_ano_fabricacao=?,"
-                + "vei_numero_passageiros=?, vei_mod_iden=? WHERE vei_iden=?";
+                + "vei_numero_passageiros=?, vei_tipo_combustivel=?, vei_mod_iden=? WHERE vei_iden=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, veiculo.getPlaca());
@@ -84,8 +85,9 @@ public class VeiculosDal {
             preparedStatement.setInt(6, veiculo.getPrecoDeCompra());
             preparedStatement.setInt(7, veiculo.getAnoFabricacao());
             preparedStatement.setInt(8, veiculo.getCapacidade());
-            preparedStatement.setInt(9, veiculo.getModelo().getIden());
-            preparedStatement.setInt(10, veiculo.getIden());
+            preparedStatement.setString(9, veiculo.getTipoDeCombustivel());
+            preparedStatement.setInt(10, veiculo.getModelo().getIden());
+            preparedStatement.setInt(11, veiculo.getIden());
             preparedStatement.executeUpdate();
         } catch (Exception error) {
             throw error;
@@ -135,6 +137,7 @@ public class VeiculosDal {
                 veiculo.setPrecoDeCompra(rs.getInt("vei_preco_compra"));
                 veiculo.setAnoFabricacao(rs.getInt("vei_ano_fabricacao"));
                 veiculo.setCapacidade(rs.getInt("vei_numero_passageiros"));
+                veiculo.setTipoDeCombustivel(rs.getString("vei_tipo_combustivel"));
 
                 //Chave estrangeira
                 ModelosDal modeloDal = new ModelosDal();
@@ -168,6 +171,7 @@ public class VeiculosDal {
                 veiculo.setPrecoDeCompra(rs.getInt("vei_preco_compra"));
                 veiculo.setAnoFabricacao(rs.getInt("vei_ano_fabricacao"));
                 veiculo.setCapacidade(rs.getInt("vei_numero_passageiros"));
+                veiculo.setTipoDeCombustivel(rs.getString("vei_tipo_combustivel"));
 
                 //Chave estrangeira
                 ModelosDal modeloDal = new ModelosDal();

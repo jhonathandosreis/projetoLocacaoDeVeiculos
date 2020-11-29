@@ -42,10 +42,20 @@ public class TiposDeVeiculosBll {
     //
     public void addTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculo) throws Exception {
         
+        if (tiposDeVeiculo.getNome().length() < 3) {
+            throw new Exception("Nome do tipo do veículo inválido\nNo mínimo 3 caracteres!");
+        }
+
+        if (tiposDeVeiculo.getNome().length() > 30) {
+            throw new Exception("Nome tipo do veículo inválido\nMáximo de caracteres excedido!");
+        }
+        
         try {
             tiposDeVeiculosDal.addTiposDeVeiculos(tiposDeVeiculo);
         } catch (Exception error) {
-            throw error;
+            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
+                throw new Exception("Existe um tipo de veículo com o mesmo nome cadastrado no banco de dados!");
+            }
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -55,10 +65,20 @@ public class TiposDeVeiculosBll {
     //
     public void updateTiposDeVeiculos(TiposDeVeiculos tiposDeVeiculo) throws Exception {
         
+        if (tiposDeVeiculo.getNome().length() < 3) {
+            throw new Exception("Nome do tipo do veículo inválido\nNo mínimo 3 caracteres!");
+        }
+
+        if (tiposDeVeiculo.getNome().length() > 30) {
+            throw new Exception("Nome tipo do veículo inválido\nMáximo de caracteres excedido!");
+        }
+        
         try {
             tiposDeVeiculosDal.updateTiposDeVeiculos(tiposDeVeiculo);
         } catch (Exception error) {
-            throw error;
+            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
+                throw new Exception("Existe um tipo de veículo com o mesmo nome cadastrado no banco de dados!");
+            }
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -71,7 +91,9 @@ public class TiposDeVeiculosBll {
         try {
             tiposDeVeiculosDal.deleteTiposDeVeiculos(tiposDeVeiculo.getIden());
         } catch (Exception error) {
-            throw error;
+            if (error.getMessage().contains("modelos_mod_tve_iden_fkey")) {
+                throw new Exception("Existe um veículo vinculado a este tipo de veículo!");
+            }
         }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|

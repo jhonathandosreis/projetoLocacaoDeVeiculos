@@ -234,7 +234,7 @@ public class TelaCategorias extends javax.swing.JFrame {
                     .addComponent(jButtonAlterar)
                     .addComponent(jButtonRemover))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -275,7 +275,7 @@ public class TelaCategorias extends javax.swing.JFrame {
 
         try {
             if (jTableCategoria.getSelectedRow() == -1) {
-                throw new Exception("Selecione uma Categoria a ser alterada!");
+                throw new Exception("Selecione uma categoria a ser alterada!");
             }
             validacaoCategorias();
             categoria.setNome(jTextFieldNomeCategoria.getText());
