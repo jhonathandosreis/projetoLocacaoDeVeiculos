@@ -38,11 +38,8 @@ public class UfsDal {
     //
     public void addUfs(Ufs uf) throws Exception {
 
-<<<<<<< HEAD
         String sql = "INSERT INTO ufs( uf_nome) VALUES(?)";
-=======
-        String sql = "INSERT INTO ufs(uf_sigla) VALUES(?)";
->>>>>>> a721027e4f283888522413359f75c72246657c24
+
         try {
 
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
@@ -50,14 +47,10 @@ public class UfsDal {
 
             preparedStatement.executeUpdate();
 
-        } catch (Exception error) {
-            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-                throw new RuntimeException("Não é possível cadastrar esta UF!");
-            }
+        } catch (Exception error) {   
+                throw error;      
         }
-
     }
-
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
     //--- DELETE -------------------------------------------------------------------------------------->
