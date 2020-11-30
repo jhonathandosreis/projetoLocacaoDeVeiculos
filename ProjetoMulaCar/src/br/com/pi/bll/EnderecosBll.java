@@ -9,6 +9,7 @@ package br.com.pi.bll;
 import br.com.pi.dal.EnderecosDal;
 import br.com.pi.model.Enderecos;
 import java.util.ArrayList;
+import javax.management.RuntimeErrorException;
 
 /**
  *
@@ -36,17 +37,13 @@ public class EnderecosBll {
 
         try {
 
-            ArrayList<Enderecos> lista = getConsulta();
 
-            for (Enderecos end : lista) {
-                if (end.getCep() == end.getCep()){
-                    throw new RuntimeException("Cliente já possui um Endereço Cadastrado!");
-                }
-            }
             endDal.addEnderecos(endereco);
 
         } catch (Exception error) {
-
+            if(error.getMessage().contains("cep_repetido")){
+            throw new RuntimeException("CEP "+endereco.getCep()+" já cadastrado em nosso sistema");
+            }
             throw error;
         }
 
