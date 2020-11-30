@@ -14,20 +14,140 @@
  */
 package br.com.pi.app;
 
+import br.com.pi.bll.CidadesBll;
+import br.com.pi.bll.EnderecosBll;
+import br.com.pi.bll.PessoasJuridicasBll;
+import br.com.pi.bll.UfsBll;
+import br.com.pi.model.Cidades;
+import br.com.pi.model.Enderecos;
+import br.com.pi.model.PessoasJuridicas;
+import br.com.pi.model.Ufs;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jhonlinux
  */
 public class TelaPessoaJuridica extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PessoaJuridica
-     */
+    //--- BLL´S --------------------------------------------------------------------------------------->
+    private PessoasJuridicasBll pessoaJuridicaBll = null;
+    private EnderecosBll enderecoBll = null;
+    private CidadesBll cidadesBll = null;
+    private UfsBll ufBll = null;
+
+    //--- FIM BLL'S ----------------------------------------------------------------------------------->
+    //
+    //--- CLASSES -------------------------------------------------------------------------------------> 
+    private PessoasJuridicas pessoaJuridica = null;
+    private Enderecos endereco = null;
+    private Cidades cidade = null;
+    private Ufs uf = null;
+
+    //--- FIM CLASSES --------------------------------------------------------------------------------->
+    //
     public TelaPessoaJuridica() {
         initComponents();
+
+        try {
+
+            pessoaJuridica = new PessoasJuridicas();
+            pessoaJuridicaBll = new PessoasJuridicasBll();
+            enderecoBll = new EnderecosBll();
+            cidadesBll = new CidadesBll();
+            ufBll = new UfsBll();
+            endereco = new Enderecos();
+            cidade = new Cidades();
+            uf = new Ufs();
+
+            preencherGridPessoaJuridica();
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
         this.setLocationRelativeTo(null);
     }
 
+    //--- METODOS ------------------------------------------------------------------------------------->
+    public void preencherGridPessoaJuridica() throws Exception {
+
+        try {
+            DefaultTableModel tableEndereco = (DefaultTableModel) jTableEndereco.getModel();
+            tableEndereco.setRowCount(0);
+
+            Object[] linha = new Object[8];
+
+            ArrayList<PessoasJuridicas> pessoaJuridica = new PessoasJuridicasBll().getAllPessoasJuridicas();
+
+            for (PessoasJuridicas pessoasJuridicas : pessoaJuridica) {
+
+                linha[0] = pessoasJuridicas.getEnderecos().getIden();
+                linha[1] = pessoasJuridicas.getEnderecos().getLogradouro();
+                linha[2] = pessoasJuridicas.getEnderecos().getRua();
+                linha[3] = pessoasJuridicas.getEnderecos().getNumero();
+                linha[4] = pessoasJuridicas.getEnderecos().getCep();
+                linha[5] = pessoasJuridicas.getEnderecos().getComplemento();
+                linha[6] = pessoasJuridicas.getEnderecos().getCidade().getNome();
+                linha[7] = pessoasJuridicas.getEnderecos().getCidade().getUf().getNome();
+
+                tableEndereco.addRow(linha);
+            }
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void preencherFormularioVeiculo() throws Exception {
+
+        try {
+
+            int id = Integer.parseInt(jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 0).toString());
+
+            String logradouro = jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 1).toString();
+
+            String rua = jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 2).toString();
+
+            int numero = Integer.parseInt(jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 3).toString());
+
+            int cep = Integer.parseInt(jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 4).toString());
+
+            String complemento = jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 5).toString();
+
+            String cidade = jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 6).toString();
+
+            String uf = jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 7).toString();
+
+            jTextFieldIdPessoaJuridica.setText(id + "");
+            jTextFieldCepPessoaJuridica.setText(cep + "");
+            jTextFieldLogradouroPessoaJuridica.setText(logradouro);
+            jTextFieldNumeroPessoaJuridica.setText(numero + "");
+            jTextFieldComplementoPessoaJuridica.setText(complemento);
+            jTextFieldRuaPessoaJuridica.setText(rua);
+
+            jTextFieldCidadePessoaJuridica.setText(cidade);
+            jComboBoxUFPessoaJuridica.setSelectedItem(uf);
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void limparCampos() {
+
+            jTextFieldIdPessoaJuridica.setText("");
+            jTextFieldCepPessoaJuridica.setText("");
+            jTextFieldLogradouroPessoaJuridica.setText("");
+            jTextFieldNumeroPessoaJuridica.setText("");
+            jTextFieldComplementoPessoaJuridica.setText("");
+            jTextFieldRuaPessoaJuridica.setText("");
+            jTextFieldCidadePessoaJuridica.setText("");
+            jComboBoxUFPessoaJuridica.setSelectedIndex(0);
+    }
+
+    //--- FIM METODOS --------------------------------------------------------------------------------->
+    //
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify
      * this code. The content of this method is always regenerated by the Form Editor.
@@ -57,7 +177,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldComplementoPessoaJuridica = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextFieldBairroPessoaJuridica = new javax.swing.JTextField();
+        jTextFieldRuaPessoaJuridica = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextFieldCidadePessoaJuridica = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -78,6 +198,8 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         jButtonLimparPessoaJuridica = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableConsultaPessoaJuridica = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableEndereco = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("[PESSOAS JURIDICA]");
@@ -151,7 +273,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
         jLabel5.setText("COMPLEMENTO");
 
-        jLabel6.setText("BAIRRO");
+        jLabel6.setText("Rua");
 
         jLabel7.setText("CIDADE");
 
@@ -192,7 +314,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                                             .addComponent(jLabel8)
                                             .addComponent(jComboBoxUFPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(294, 294, 294))
-                                    .addComponent(jTextFieldBairroPessoaJuridica))))
+                                    .addComponent(jTextFieldRuaPessoaJuridica))))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldNumeroPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -219,7 +341,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldComplementoPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldBairroPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldRuaPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -272,16 +394,17 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        jButtonCadastrar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/salve.png")); // NOI18N
         jButtonCadastrar.setText("CADASTRAR");
+        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarActionPerformed(evt);
+            }
+        });
 
-        jButtonAlterar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/editar.png")); // NOI18N
         jButtonAlterar.setText("ALTERAR");
 
-        jButtonRemover.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/lixo.png")); // NOI18N
         jButtonRemover.setText("EXCLUIR");
 
-        jButtonLimpar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/limpar-limpo.png")); // NOI18N
         jButtonLimpar.setText("LIMPAR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -361,10 +484,24 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             jTableConsultaPessoaJuridica.getColumnModel().getColumn(7).setPreferredWidth(40);
         }
 
+        jTableEndereco.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "LOGRADOURO", "RUA", "NUMERO", "CEP", "COMPLEMENTO", "CIDADE", "UF"
+            }
+        ));
+        jScrollPane2.setViewportView(jTableEndereco);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTextFieldPesquisarPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -373,7 +510,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonLimparPessoaJuridica)
                 .addContainerGap(338, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,8 +521,10 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                     .addComponent(jButtonConsultarPessoaJuridica)
                     .addComponent(jButtonLimparPessoaJuridica))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -425,6 +564,22 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+
+        
+try {
+            limparCampos();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -490,9 +645,10 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1PessoaFisica;
     private javax.swing.JTable jTableConsultaPessoaJuridica;
-    private javax.swing.JTextField jTextFieldBairroPessoaJuridica;
+    private javax.swing.JTable jTableEndereco;
     private javax.swing.JTextField jTextFieldCNPJPessoaJuridica;
     private javax.swing.JTextField jTextFieldCepPessoaJuridica;
     private javax.swing.JTextField jTextFieldCidadePessoaJuridica;
@@ -504,6 +660,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNumeroPessoaJuridica;
     private javax.swing.JTextField jTextFieldPesquisarPessoaJuridica;
     private javax.swing.JTextField jTextFieldRazaoSocialPessoaJuridica;
+    private javax.swing.JTextField jTextFieldRuaPessoaJuridica;
     private javax.swing.JTextField jTextFieldTelefonePessoaJuridica;
     // End of variables declaration//GEN-END:variables
 }

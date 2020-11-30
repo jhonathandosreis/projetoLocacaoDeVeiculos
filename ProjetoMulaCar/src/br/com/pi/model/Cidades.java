@@ -25,9 +25,10 @@ public class Cidades {
 
     }
 
-    public Cidades(String nome, Ufs uf) {
+    public Cidades(String nome, Ufs uf , int iden) {
         this.nome = nome;
         this.uf = uf;
+        this.iden = iden;
 
     }
 

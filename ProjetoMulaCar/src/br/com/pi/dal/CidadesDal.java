@@ -45,10 +45,9 @@ public class CidadesDal {
             preparedStatement.setInt(2, cidade.getUf().getIden());
             preparedStatement.executeUpdate();
 
-        } catch (Exception error) {
-            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-                throw new RuntimeException("Não é possível cadastrar esta Cidade!");
-            }
+       } catch (Exception error) {
+            throw  error;
+        
         }
 
     }
@@ -65,10 +64,9 @@ public class CidadesDal {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setInt(1, cid_iden);
             preparedStatement.executeUpdate();
-        } catch (Exception error) {
-            if (error.getMessage().contains("")) {
-                throw new RuntimeException("Não é possível deletar esta cidade pois esta vinculado a uma Uf!");
-            }
+       } catch (Exception error) {
+            throw  error;
+        
         }
 
     }
@@ -88,9 +86,8 @@ public class CidadesDal {
 
             preparedStatement.executeUpdate();
         } catch (Exception error) {
-            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-                throw new RuntimeException("Não é possível alterar esta Cidade !");
-            }
+            throw  error;
+        
         }
 
     }

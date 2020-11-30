@@ -14,7 +14,7 @@ public class Ufs {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private int iden = 0;
-    private String sigla = "";
+    private String nome = "";
 
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
@@ -24,8 +24,9 @@ public class Ufs {
 
     }
 
-    public Ufs(String nome) {
-        this.sigla = nome;
+    public Ufs(String nome, int iden) {
+        this.nome = nome;
+        this.iden = iden;
 
     }
 
@@ -33,20 +34,20 @@ public class Ufs {
     //
     //--- GET ----------------------------------------------------------------------------------------->
     //
-    public int getIden() {
-        return iden;
+    public String getNome() {
+        return nome;
     }
 
-    public String getSigla() {
-        return sigla;
+    public int getIden() {
+        return iden;
     }
 
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
     //--- SET ----------------------------------------------------------------------------------------->
     //
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public void setIden(int iden) {

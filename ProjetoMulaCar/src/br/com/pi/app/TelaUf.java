@@ -14,18 +14,79 @@
  */
 package br.com.pi.app;
 
+import br.com.pi.bll.UfsBll;
+import br.com.pi.model.Ufs;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jhonlinux
  */
 public class TelaUf extends javax.swing.JFrame {
+//--- BLL´S---------------------------------------------------------------------------------------->
+    UfsBll ufBll = null;
+    //--- FIM BLL'S ----------------------------------------------------------------------------------->
+    //
 
-    /**
-     * Creates new form TelaUf
-     */
+    //--- CLASSES -------------------------------------------------------------------------------------> 
+    Ufs uf = null;
+    //--- FIM CLASSES --------------------------------------------------------------------------------->
+    //
     public TelaUf() {
         initComponents();
+        
+//        try {
+//            ufBll = new UfsBll();
+//            uf = new Ufs();
+//
+//            preencherGridUf();
+//            
+//        } catch (Exception error) {
+//            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+//        }
+//        this.setLocationRelativeTo(null);
+//    
+//    }
+//    
+//    //--- METODOS ------------------------------------------------------------------------------------->
+//    public void preencherGridMarcas() {
+//
+//        try {
+//            DefaultTableModel tableCategoria = (DefaultTableModel) jTableMarca.getModel();
+//            tableCategoria.setRowCount(0);
+//
+//            Object[] linha = new Object[2];
+//
+//            ArrayList<Marcas> marcas = new MarcasBll().getAllMarcas();
+//
+//            for (Marcas marca1 : marcas) {
+//                linha[0] = marca1.getIden();
+//                linha[1] = marca1.getNome();
+//                tableCategoria.addRow(linha);
+//            }
+//        } catch (Exception error) {
+//            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+//        }
+//    }
+//
+//    public void preencerFormularioMarcas() {
+//        int id = Integer.parseInt(jTableMarca.getValueAt(jTableMarca.getSelectedRow(), 0).toString());
+//        String nome = jTableMarca.getValueAt(jTableMarca.getSelectedRow(), 1).toString();
+//
+//        jTextFieldIDMarca.setText(id + "");
+//        jTextFieldNome.setText(nome);
+//    }
+//
+//    public void limparCampos() {
+//        jTextFieldIDMarca.setText("");
+//        jTextFieldNome.setText("");
+//    }
+    
+//    public void ValidaMarcas() {
+        
     }
+    //--- FIM METODOS --------------------------------------------------------------------------------->
+    //
 
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify
