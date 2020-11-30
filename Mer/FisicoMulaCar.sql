@@ -31,7 +31,7 @@ CREATE TABLE Enderecos (
     end_rua VARCHAR(100),
     end_numero INTEGER,
     end_logradouro VARCHAR(50),
-    end_cep INTEGER CONSTRAINT cep_repetido UNIQUE,
+    end_cep BIGINT CONSTRAINT cep_repetido UNIQUE,
     end_complemento VARCHAR(200),
     end_cid_iden INTEGER,
     FOREIGN KEY (end_cid_iden) REFERENCES cidades (cid_iden)
@@ -109,8 +109,7 @@ CREATE TABLE locacoes (
     loc_valor_total_pago NUMERIC(50),
     loc_cli_iden INTEGER,
     loc_vei_iden INTEGER,
-    loc_pfi_iden INTEGER,
-    FOREIGN KEY (loc_pfi_iden) REFERENCES pessoas_fisicas (pfi_iden),
+    
     FOREIGN KEY (loc_cli_iden) REFERENCES clientes (cli_iden),
     FOREIGN KEY (loc_vei_iden) REFERENCES veiculos (vei_iden)
 );

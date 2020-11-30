@@ -51,22 +51,22 @@ public class PessoasJuridicasDal {
      public void addPessoasJuridicas(PessoasJuridicas pessoaJuridica) throws Exception {
        
         try{
-            String sqlCliente ="INSERT INTO clientes (cli_telefone, cli_email, cli_end_iden) values (?, ?, ?)";
-            PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement1.setDouble(1, pessoaJuridica.getTelefone());
-            preparedStatement1.setString(2, pessoaJuridica.getEmail());
-            preparedStatement1.setInt(3, pessoaJuridica.getEnderecos().getIden());
-            preparedStatement1.executeUpdate();
-        
-        try (ResultSet generatedKeys = preparedStatement1.getGeneratedKeys()) {
-            if (generatedKeys.next()) {
-                pessoaJuridica.setCliente(clienteBll.getClienteById((generatedKeys.getInt(1))) );
-            }
-            else {
-                throw new Exception("(ERROR DAL) Erro ao criar pessoa juridica cliente!");
-            }
-        }
-        
+//            String sqlCliente ="INSERT INTO clientes (cli_telefone, cli_email, cli_end_iden) values (?, ?, ?)";
+//            PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente, Statement.RETURN_GENERATED_KEYS);
+//            preparedStatement1.setDouble(1, pessoaJuridica.getTelefone());
+//            preparedStatement1.setString(2, pessoaJuridica.getEmail());
+//            preparedStatement1.setInt(3, pessoaJuridica.getEnderecos().getIden());
+//            preparedStatement1.executeUpdate();
+//        
+//        try (ResultSet generatedKeys = preparedStatement1.getGeneratedKeys()) {
+//            if (generatedKeys.next()) {
+//                pessoaJuridica.setCliente(clienteBll.getClienteById((generatedKeys.getInt(1))) );
+//            }
+//            else {
+//                throw new Exception("(ERROR DAL) Erro ao criar pessoa juridica cliente!");
+//            }
+//        }
+//        
             String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pju_cnpj, pju_nome_fantasia, pju_razao_social, pju_cli_iden) values (?, ?, ?, ?)";        
             PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
             preparedStatement2.setDouble(1, pessoaJuridica.getCnpj());

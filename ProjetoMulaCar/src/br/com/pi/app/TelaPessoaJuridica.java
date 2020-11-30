@@ -15,13 +15,13 @@
 package br.com.pi.app;
 
 import br.com.pi.bll.CidadesBll;
+import br.com.pi.bll.ClientesBll;
 import br.com.pi.bll.EnderecosBll;
 import br.com.pi.bll.PessoasJuridicasBll;
-import br.com.pi.bll.UfsBll;
 import br.com.pi.model.Cidades;
+import br.com.pi.model.Clientes;
 import br.com.pi.model.Enderecos;
 import br.com.pi.model.PessoasJuridicas;
-import br.com.pi.model.Ufs;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -42,6 +42,8 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     //
     //--- CLASSES -------------------------------------------------------------------------------------> 
     private PessoasJuridicas pessoaJuridica = null;
+    private Clientes cliente;
+    private ClientesBll clienteBll;
     private Enderecos endereco = null;
     private Cidades cidade = null;
  
@@ -55,13 +57,15 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
             pessoaJuridica = new PessoasJuridicas();
             pessoaJuridicaBll = new PessoasJuridicasBll();
+            
             enderecoBll = new EnderecosBll();
             cidadesBll = new CidadesBll();
-           
+            cliente = new Clientes();
+            clienteBll = new ClientesBll();
             endereco = new Enderecos();
             cidade = new Cidades();
           
-
+            preencherComboboxCidades();
             preencherGridPessoaJuridica();
 
         } catch (Exception error) {
@@ -134,19 +138,17 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         }
     }
     
-     public void preencherComboboxCidades() throws Exception {
-
-        ArrayList<Cidades> lista = cidadesBll.getAllCidades();
-        jComboBoxCidade.removeAllItems();
-        jComboBoxCidade.addItem("<SELECIONE>");
-
-        for (Cidades cidades : lista) {
-            jComboBoxCidade.addItem(cidades.getNome());
-           
-        }
-
-       
-
+    public void preencherComboboxCidades() throws Exception{
+           try{
+            jComboBoxCidade.removeAllItems();
+            ArrayList<Cidades> listaCidades = cidadesBll.getAllCidades();
+            
+            for (Cidades cidade : listaCidades) {
+               jComboBoxCidade.addItem(cidade.getNome());
+            }  
+           }catch(Exception error){
+                JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+           }
     }
 
     public void limparCampos() {
@@ -294,6 +296,12 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
         jLabel8.setText("UF");
 
+        jComboBoxCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCidadeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -350,9 +358,9 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                     .addComponent(jTextFieldRuaPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(27, 27, 27)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -581,19 +589,33 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
         
 try {
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+           cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
+           endereco.setCidade(cidade);
+           endereco.setCep(Double.parseDouble(jTextFieldCepPessoaJuridica.getText()));
+           endereco.setLogradouro(jTextFieldLogradouroPessoaJuridica.getText());
+           endereco.setComplemento(jTextFieldComplementoPessoaJuridica.getText());
+           endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaJuridica.getText()));
+           endereco.setRua(jTextFieldRuaPessoaJuridica.getText());
+           enderecoBll.AddEndereco(endereco);
+           double cep = endereco.getCep();
+           endereco = enderecoBll.getConsultaPorCEP(cep);
+           
+           cliente.setEnderecos(endereco);
+           cliente.setNome("");
+           cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaJuridica.getText()));
+           cliente.setEmail(jTextFieldEmailPessoaJuridica.getText());
+           clienteBll.addClientes(cliente);
+           double clienteTelefone = cliente.getTelefone();
+           cliente = clienteBll.getClienteByTelefone(clienteTelefone);
+           
+           pessoaJuridica.setCliente(cliente);
+           pessoaJuridica.setCnpj(Double.parseDouble(jTextFieldCNPJPessoaJuridica.getText()));
+           pessoaJuridica.setNomeFantasia(jTextFieldNomeFantasiaPessoaJuridica.getText());
+           pessoaJuridica.setRazaoSocial(jTextFieldRazaoSocialPessoaJuridica.getText());
+           pessoaJuridicaBll.addPessoasJuridicas(pessoaJuridica);
+
+           JOptionPane.showMessageDialog(null, pessoaJuridica.getNomeFantasia()+" cadastrado com sucesso no sistema!");
+
             limparCampos();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -618,6 +640,15 @@ try {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableEnderecoMouseClicked
+
+    private void jComboBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCidadeActionPerformed
+      try{
+        cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
+        jTextFieldUf.setText(cidade.getUf().getNome());
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas "+error.getMessage());
+        }
+    }//GEN-LAST:event_jComboBoxCidadeActionPerformed
 
     /**
      * @param args the command line arguments
