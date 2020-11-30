@@ -27,7 +27,7 @@ public class Enderecos {
     private String rua = "";
     private float numero = 0;
     private String logradouro = "";
-    private int cep = 0;
+    private double cep = 0;
     private String complemento = "";
     private Cidades cidade = null;
     
@@ -41,7 +41,7 @@ public class Enderecos {
     }
     
     public Enderecos(int iden, String rua, float numero, 
-            String logradouro, int cep, String complemento , Cidades cidade) {
+            String logradouro, double cep, String complemento , Cidades cidade) {
         this.iden = iden;
         this.rua = rua;
         this.numero = numero;
@@ -71,7 +71,7 @@ public class Enderecos {
         return logradouro;
     }
 
-    public int getCep() {
+    public double getCep() {
         return cep;
     }
 
@@ -106,7 +106,7 @@ public class Enderecos {
         this.logradouro = logradouro;
     }
 
-    public void setCep(int cep) {
+    public void setCep(double cep) {
         this.cep = cep;
     }
 

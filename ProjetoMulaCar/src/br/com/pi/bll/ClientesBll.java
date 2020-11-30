@@ -36,6 +36,18 @@ public class ClientesBll {
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
+    //--- CREATE -------------------------------------------------------------------------------------->
+    public void addClientes(Clientes cliente) throws Exception {
+        try{
+         
+         clienteDal.addClientes(cliente);
+        } catch (Exception error) {
+            if(error.getMessage().contains("email_repetido")) throw new RuntimeException("E-mail "+cliente.getEmail()+" já cadastrado em nosso sistema");
+             if(error.getMessage().contains("telefone_repetido")) throw new RuntimeException("Telefone "+cliente.getTelefone()+" já cadastrado em nosso sistema");
+        }
+    }
+    //--- FIM CREATE ----------------------------------------------------------------------------------|
+    //
 
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Clientes> getAllClientes() throws Exception {
@@ -44,6 +56,10 @@ public class ClientesBll {
     
     public Clientes getClienteById(int cliente_iden) throws Exception {
         return clienteDal.getClientesById(cliente_iden);
+    }
+    
+    public Clientes getClienteByTelefone(double cliente_telefone) throws Exception {
+        return clienteDal.getClientesByTelefone(cliente_telefone);
     }
 
     //--- FIM READ ------------------------------------------------------------------------------------|

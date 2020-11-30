@@ -102,7 +102,7 @@ public class EnderecosBll {
         }
     }
     
-     public Enderecos getConsultaPorCEP(int cep) throws Exception {
+     public Enderecos getConsultaPorCEP(double cep) throws Exception {
         try {
             return endDal.getEnderecosByCEP(cep);
         } catch (Exception error) {

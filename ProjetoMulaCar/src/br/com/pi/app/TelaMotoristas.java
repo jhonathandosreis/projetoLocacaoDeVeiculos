@@ -15,10 +15,12 @@
 package br.com.pi.app;
 
 import br.com.pi.bll.CidadesBll;
+import br.com.pi.bll.ClientesBll;
 import br.com.pi.bll.EnderecosBll;
 import br.com.pi.bll.MotoristasBll;
 import br.com.pi.bll.UfsBll;
 import br.com.pi.model.Cidades;
+import br.com.pi.model.Clientes;
 import br.com.pi.model.Enderecos;
 import br.com.pi.model.Motoristas;
 import br.com.pi.model.Ufs;
@@ -35,6 +37,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
     private Motoristas motorista;
     private MotoristasBll motoristabll;
+    private Clientes cliente;
+    private ClientesBll clienteBll;
     private Enderecos endereco;
     private EnderecosBll enderecoBll;
     private Cidades cidade;
@@ -48,6 +52,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
             
            motorista = new Motoristas();
            motoristabll = new MotoristasBll();
+           cliente = new Clientes();
+           clienteBll = new ClientesBll();
            endereco = new Enderecos();
            enderecoBll = new EnderecosBll();
            cidade = new Cidades();
@@ -164,7 +170,11 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
         jLabel13.setText("DATA DE VALIDADE DA CNH");
 
-        jFormattedTextField_Data_validade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("\"##/##/####\""))));
+        try {
+            jFormattedTextField_Data_validade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel2PessoaFisicaLayout = new javax.swing.GroupLayout(jPanel2PessoaFisica);
         jPanel2PessoaFisica.setLayout(jPanel2PessoaFisicaLayout);
@@ -564,32 +574,34 @@ public class TelaMotoristas extends javax.swing.JFrame {
        try{
            
            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-           //Date data = formato.parse(jFormattedTextField_Data_validade.getText());
-           Date data = formato.parse("23/11/2015");
+           Date data = formato.parse(jFormattedTextField_Data_validade.getText());
            
-           //cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString()); 
+           cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
+           endereco.setCidade(cidade);
            endereco.setCep(Integer.parseInt(jTextFieldCepMotorista.getText()));
            endereco.setLogradouro(jTextFieldLogradouroMotorista.getText());
            endereco.setComplemento(jTextFieldComplementoMotorista.getText());
            endereco.setNumero(Float.parseFloat(jTextFieldNumeroMotorista.getText()));
-           //endereco.setCidade(cidade);
-          // uf = ufbll.getUfsNome(jComboBoxUFMotorista.getSelectedItem().toString());
-           cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
-           endereco.setCidade(cidade);
            enderecoBll.AddEndereco(endereco);
-    
-           motorista.setNome(jTextFieldNomeMotorista.getText());
+           double cep = endereco.getCep();
+           endereco = enderecoBll.getConsultaPorCEP(cep);
+           
+           cliente.setEnderecos(endereco);
+           cliente.setNome(jTextFieldNomeMotorista.getText());
+           cliente.setTelefone(Double.parseDouble(jTextFieldTelefoneMotorista.getText()));
+           cliente.setEmail(jTextFieldEmailMotorista.getText());
+           clienteBll.addClientes(cliente);
+           double clienteTelefone = cliente.getTelefone();
+           cliente = clienteBll.getClienteByTelefone(clienteTelefone);
+           
            motorista.setRg(Integer.parseInt(jTextField_rgMotorista.getText()));
-           motorista.setCpf(Double.parseDouble(jTextField_CpfMotorista.getText()));
-           motorista.setEnderecos(endereco);
-           motorista.setTelefone(Double.parseDouble(jTextFieldTelefoneMotorista.getText()));
-           motorista.setEmail(jTextFieldEmailMotorista.getText());
+           motorista.setCpf(Double.parseDouble(jTextField_CpfMotorista.getText()));       
            motorista.setNumeroCnh(Double.parseDouble(jTextFieldCNHMotorista.getText()));
            motorista.setCategoriaCnh(jTextField_CategoriaCNH.getText());
            motorista.setDataValidade(data);
-           
            motoristabll.addMotoristas(motorista);
-           JOptionPane.showConfirmDialog(null, motorista.getNome()+" cadastrado com sucesso no sistema!");
+           
+           JOptionPane.showMessageDialog(null, motorista.getNome()+" cadastrado com sucesso no sistema!");
            limparCampos();
      
       }catch(Exception error){

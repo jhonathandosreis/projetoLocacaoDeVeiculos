@@ -39,9 +39,12 @@ public class MotoristasBll {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addMotoristas(Motoristas motoristas) throws Exception {
         try{
+         
          motoristaDal.addMotoristas(motoristas);
         } catch (Exception error) {
-            throw  error;
+            if(error.getMessage().contains("cnh_repetida")) throw new RuntimeException("Número "+motoristas.getNumeroCnh()+" de cnh já cadastrado em nosso sistema");
+             if(error.getMessage().contains("cpf_repetido")) throw new RuntimeException("Número "+motoristas.getCpf()+" de cpf já cadastrado em nosso sistema");
+             if(error.getMessage().contains("rg_repetido")) throw new RuntimeException("Número "+motoristas.getRg()+" de rg já cadastrado em nosso sistema");
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|

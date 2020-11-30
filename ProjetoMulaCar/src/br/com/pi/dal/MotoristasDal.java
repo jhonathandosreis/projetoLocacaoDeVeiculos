@@ -53,23 +53,23 @@ public class MotoristasDal {
     public void addMotoristas (Motoristas motorista) throws Exception {
        
         try{
-        String sqlCliente ="INSERT INTO clientes (cli_nome, cli_telefone, cli_email, cli_end_iden) values (?, ?, ?, ?)";
-        PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente, Statement.RETURN_GENERATED_KEYS);
-        
-        preparedStatement1.setString(1, motorista.getNome());
-        preparedStatement1.setDouble(2, motorista.getTelefone());
-        preparedStatement1.setString(3, motorista.getEmail());
-        preparedStatement1.setInt(4, motorista.getEnderecos().getIden());
-        preparedStatement1.executeUpdate();
-        
-        try (ResultSet generatedKeys = preparedStatement1.getGeneratedKeys()) {
-            if (generatedKeys.next()) {
-                motorista.setCliente  (clienteBll.getClienteById((generatedKeys.getInt(1))) );
-            }
-            else {
-                throw new Exception("(ERROR DAL) Erro ao criar motorista cliente!");
-            }
-        }
+//        String sqlCliente ="INSERT INTO clientes (cli_nome, cli_telefone, cli_email, cli_end_iden) values (?, ?, ?, ?)";
+//        PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente, Statement.RETURN_GENERATED_KEYS);
+//        
+//        preparedStatement1.setString(1, motorista.getNome());
+//        preparedStatement1.setDouble(2, motorista.getTelefone());
+//        preparedStatement1.setString(3, motorista.getEmail());
+//        preparedStatement1.setInt(4, motorista.getEnderecos().getIden());
+//        preparedStatement1.executeUpdate();
+//        
+//        try (ResultSet generatedKeys = preparedStatement1.getGeneratedKeys()) {
+//            if (generatedKeys.next()) {
+//                motorista.setCliente  (clienteBll.getClienteById((generatedKeys.getInt(1))) );
+//            }
+//            else {
+//                throw new Exception("(ERROR DAL) Erro ao criar motorista cliente!");
+//            }
+//        }
         
         String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_numero_cnh, pfi_categoria_cnh, pfi_data_de_validade, pfi_cli_iden) values (?, ?, ?, ?, ?, ?)";        
         java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
