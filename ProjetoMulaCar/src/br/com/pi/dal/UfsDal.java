@@ -39,7 +39,7 @@ public class UfsDal {
     //
     public void addUfs(Ufs uf) throws Exception {
 
-        String sql = "INSERT INTO ufs( uf_iden , uf_sigla) VALUES(?,?)";
+        String sql = "INSERT INTO ufs(uf_sigla) VALUES(?)";
         try {
 
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
