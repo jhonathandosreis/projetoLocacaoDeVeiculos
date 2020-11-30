@@ -16,6 +16,7 @@ package br.com.pi.app;
 
 import br.com.pi.bll.TiposDeVeiculosBll;
 import br.com.pi.model.TiposDeVeiculos;
+import br.com.pi.util.Valida;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -40,15 +41,8 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
         initComponents();
 
         try {
-    //--- INSTANCIAS BLL ------------------------------------------------------------------------------>
             tiposVeiculosBll = new TiposDeVeiculosBll();
-    //--- FIM INSTANCIAS BLL -------------------------------------------------------------------------->
-            //
-
-    //--- INSTANCIAS CLASSES -------------------------------------------------------------------------->
             tipoDeVeiculo = new TiposDeVeiculos();
-    //--- FIM INSTANCIAS CLASSES ---------------------------------------------------------------------->
-    //
             preencherGridTiposDeVeiculos();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -58,15 +52,15 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
 
     //--- METODOS ------------------------------------------------------------------------------------->
     public void preencherGridTiposDeVeiculos() {
-        
+
         try {
             DefaultTableModel tableCategoria = (DefaultTableModel) jTableTiposDeVeiculos.getModel();
             tableCategoria.setRowCount(0);
 
             Object[] linha = new Object[2];
-            
+
             ArrayList<TiposDeVeiculos> tiposDeVeiculos = new TiposDeVeiculosBll().getAllTiposDeVeiculos();
-            
+
             for (TiposDeVeiculos tiposDeVeiculo : tiposDeVeiculos) {
                 linha[0] = tiposDeVeiculo.getIden();
                 linha[1] = tiposDeVeiculo.getNome();
@@ -74,22 +68,28 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
             }
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-        }       
+        }
     }
-    
+
     public void preencherFormularioTiposDeVeiculos() {
         int id = Integer.parseInt(jTableTiposDeVeiculos.getValueAt(jTableTiposDeVeiculos.getSelectedRow(), 0).toString());
         String nome = jTableTiposDeVeiculos.getValueAt(jTableTiposDeVeiculos.getSelectedRow(), 1).toString();
-        
-       jTextFieldIdTipoDeVeiculo.setText(id + "");
-       jTextFieldNome.setText(nome);
+
+        jTextFieldIdTipoDeVeiculo.setText(id + "");
+        jTextFieldNome.setText(nome);
     }
-    
+
     public void limparCampos() {
         jTextFieldIdTipoDeVeiculo.setText("");
         jTextFieldNome.setText("");
     }
     
+    public void ValidaTiposDeVeiculos() {
+        
+        Valida.campoVazio(jTextFieldNome.getText(), "Digite o tipo do veículo!");
+        Valida.notNumber(jTextFieldNome.getText(), "");
+        Valida.notSpecialCharacters(jTextFieldNome.getText(), "");
+    }
     //--- FIM METODOS --------------------------------------------------------------------------------->
     //
     @SuppressWarnings("unchecked")
@@ -243,7 +243,9 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+        
         try {
+            ValidaTiposDeVeiculos();
             tipoDeVeiculo.setNome(jTextFieldNome.getText());
             tiposVeiculosBll.addTiposDeVeiculos(tipoDeVeiculo);
             preencherGridTiposDeVeiculos();
@@ -254,7 +256,13 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        
         try {
+            if (jTableTiposDeVeiculos.getSelectedRow() == -1) {
+                throw new Exception("Selecione um tipo de veículo a ser alterado!");
+            }
+            
+            ValidaTiposDeVeiculos();
             tipoDeVeiculo.setNome(jTextFieldNome.getText());
             tipoDeVeiculo.setIden(Integer.parseInt(jTextFieldIdTipoDeVeiculo.getText()));
             tiposVeiculosBll.updateTiposDeVeiculos(tipoDeVeiculo);
@@ -266,7 +274,13 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        
         try {
+            if (jTableTiposDeVeiculos.getSelectedRow() == -1) {
+                throw new Exception ("Selecione um tipo de veículo a ser removido!");
+            }
+            
+            ValidaTiposDeVeiculos();
             tipoDeVeiculo.setIden(Integer.parseInt(jTextFieldIdTipoDeVeiculo.getText()));
             tiposVeiculosBll.deleteTiposDeVeiculos(tipoDeVeiculo);
             preencherGridTiposDeVeiculos();
@@ -277,6 +291,7 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     private void jTableTiposDeVeiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTiposDeVeiculosMouseClicked
+        
         try {
             preencherFormularioTiposDeVeiculos();
         } catch (Exception error) {

@@ -43,10 +43,20 @@ public class MarcasBll {
     //
     public void addMarcas(Marcas marca) throws Exception {
         
+        if (marca.getNome().length() < 3) {
+            throw new Exception("Nome da categoria inválida\nNo mínimo 3 caracteres!");
+        }
+
+        if (marca.getNome().length() > 30) {
+            throw new Exception("Nome da categoria inválida\nMáximo de caracteres excedido!");
+        }
+        
         try {
             marcasDal.addMarcas(marca);
         } catch (Exception error) {
-            throw error;
+            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
+                throw new Exception("Existe uma marca com o mesmo nome cadastrada no banco de dados!");
+            }
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -56,10 +66,20 @@ public class MarcasBll {
     //
     public void updateMarcas(Marcas marca) throws Exception {
         
+        if (marca.getNome().length() < 3) {
+            throw new Exception("Nome da categoria inválida\nNo mínimo 3 caracteres!");
+        }
+
+        if (marca.getNome().length() > 30) {
+            throw new Exception("Nome da categoria inválida\nMáximo de caracteres excedido!");
+        }
+        
         try {
             marcasDal.updateMarcas(marca);
         } catch (Exception error) {
-            throw error;
+            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
+                throw new Exception("Existe uma marca com o mesmo nome cadastrada no banco de dados!");
+            }
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -72,7 +92,9 @@ public class MarcasBll {
         try {
             marcasDal.deleteMarcas(marca.getIden());
         } catch (Exception error) {
-            throw error;
+            if (error.getMessage().contains("modelos_mod_mar_iden_fkey")) {
+                throw new Exception("Existe um veículo vinculado a esta marca!");
+            }
         }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|

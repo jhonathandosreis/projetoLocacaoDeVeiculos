@@ -39,6 +39,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
     private Cidades cidade;
     private CidadesBll cidadesBll;
     private UfsBll ufbll;
+    private Ufs uf;
     public TelaMotoristas() {
         initComponents();
         
@@ -50,6 +51,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
            enderecoBll = new EnderecosBll();
            cidade = new Cidades();
            cidadesBll = new  CidadesBll();
+           uf = new Ufs();
            ufbll = new UfsBll();
            
         }catch(Exception error){
@@ -549,11 +551,11 @@ public class TelaMotoristas extends javax.swing.JFrame {
            endereco.setComplemento(jTextFieldComplementoMotorista.getText());
            endereco.setNumero(Float.parseFloat(jTextFieldNumeroMotorista.getText()));
            //endereco.setCidade(cidade);
-           Ufs uf = new Ufs("GO");
+           uf = new Ufs("GO");
            ufbll.addUfs(uf);
-           Cidades cidade1 = new Cidades("Goiânia", uf);
+           cidade = new Cidades("Goiânia", uf);
            cidadesBll.addCidades(cidade);
-           endereco.setCidade(cidade1);
+           endereco.setCidade(cidade);
            enderecoBll.AddEndereco(endereco);
     
            motorista.setNome(jTextFieldNomeMotorista.getText());

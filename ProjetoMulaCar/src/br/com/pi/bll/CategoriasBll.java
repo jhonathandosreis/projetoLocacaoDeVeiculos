@@ -43,10 +43,10 @@ public class CategoriasBll {
     public void addCategorias(Categorias categoria) throws Exception {
 
         if (categoria.getNome().length() < 3) {
-            throw new RuntimeException("Nome da categoria inválida\nNo mínimo 3 caracteres!");
+            throw new Exception("Nome da categoria inválida\nNo mínimo 3 caracteres!");
         }
 
-        if (categoria.getNome().length() > 50) {
+        if (categoria.getNome().length() > 30) {
             throw new Exception("Nome da categoria inválida\nMáximo de caracteres excedido!");
         }
 
@@ -86,10 +86,10 @@ public class CategoriasBll {
     public void updateCategorias(Categorias categoria) throws Exception {
         
         if (categoria.getNome().length() < 3) {
-            throw new RuntimeException("Nome da categoria inválida\nNo mínimo 3 caracteres!");
+            throw new Exception("Nome da categoria inválida\nNo mínimo 3 caracteres!");
         }
 
-        if (categoria.getNome().length() > 50) {
+        if (categoria.getNome().length() > 30) {
             throw new Exception("Nome da categoria inválida\nMáximo de caracteres excedido!");
         }
 

@@ -2,6 +2,7 @@ package br.com.pi.app;
 
 import br.com.pi.bll.MarcasBll;
 import br.com.pi.model.Marcas;
+import br.com.pi.util.Valida;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -85,6 +86,9 @@ public class TelaMarcas extends javax.swing.JFrame {
     
     public void ValidaMarcas() {
         
+        Valida.campoVazio(jTextFieldNome.getText(), "Digite uma marca!");
+        Valida.notSpecialCharacters(jTextFieldNome.getText(), "");
+        Valida.notNumber(jTextFieldNome.getText(), "");
     }
     //--- FIM METODOS --------------------------------------------------------------------------------->
     //
@@ -252,7 +256,9 @@ public class TelaMarcas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        try {
+         
+        try {   
+            ValidaMarcas();
             marca.setNome(jTextFieldNome.getText());
             marcasBll.addMarcas(marca);
             preencherGridMarcas();
@@ -264,7 +270,12 @@ public class TelaMarcas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        
         try {
+            if (jTableMarca.getSelectedRow() == -1) {
+                throw new Exception("Selecione uma marca a ser alterada!");
+            }
+            ValidaMarcas();
             marca.setNome(jTextFieldNome.getText());
             marca.setIden(Integer.parseInt(jTextFieldIDMarca.getText()));
             marcasBll.updateMarcas(marca);
@@ -276,7 +287,12 @@ public class TelaMarcas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        
         try {
+            if (jTableMarca.getSelectedRow() == -1) {
+                throw new Exception ("Selecione uma marca a ser removida!");
+            }
+            
             marca.setIden(Integer.parseInt(jTextFieldIDMarca.getText()));
             marcasBll.deleteMarcas(marca);
             preencherGridMarcas();
@@ -287,6 +303,7 @@ public class TelaMarcas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     private void jTableMarcaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMarcaMouseClicked
+        
         try {
             preencerFormularioMarcas();
         } catch (Exception error) {

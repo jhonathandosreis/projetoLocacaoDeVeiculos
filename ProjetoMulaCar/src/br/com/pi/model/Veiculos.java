@@ -32,6 +32,7 @@ public class Veiculos {
     private int anoFabricacao = 0;
     private String observacoes = "";
     private int capacidade = 0;
+    private String tipoDeCombustivel = "";
     private Modelos modelo = null;
     private TiposDeVeiculos tiposDeVeiculo = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
@@ -45,7 +46,7 @@ public class Veiculos {
     
     public Veiculos(int iden, String placa, int quilometragem, String renavam, 
             String status, int precoDeCompra, int anoFabricacao, String observacoes, 
-            int capacidade, Modelos modelo, TiposDeVeiculos tiposDeVeiculos) {
+            int capacidade, String tipoDeCombustivel, Modelos modelo, TiposDeVeiculos tiposDeVeiculos) {
         this.iden = iden;
         this.placa = placa;
         this.quilimetragem = quilometragem;
@@ -55,6 +56,7 @@ public class Veiculos {
         this.anoFabricacao = anoFabricacao;
         this.observacoes = observacoes;
         this.capacidade = capacidade;
+        this.tipoDeCombustivel = tipoDeCombustivel;
         this.modelo = modelo;
         this.tiposDeVeiculo = tiposDeVeiculos;
         
@@ -98,6 +100,10 @@ public class Veiculos {
 
     public int getCapacidade() {
         return capacidade;
+    }
+    
+    public String getTipoDeCombustivel() {
+        return tipoDeCombustivel;
     }
     
     public Modelos getModelo() {
@@ -148,6 +154,10 @@ public class Veiculos {
         this.capacidade = capacidade;
     }
     
+    public void setTipoDeCombustivel(String tipoDeCombustivel) {
+        this.tipoDeCombustivel = tipoDeCombustivel;
+    }
+    
     public void setModelo(Modelos modelo) {
         this.modelo = modelo;
     }
@@ -156,5 +166,5 @@ public class Veiculos {
         this.tiposDeVeiculo = tiposDeVeiculo;
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
-    //
+    //    
 }
