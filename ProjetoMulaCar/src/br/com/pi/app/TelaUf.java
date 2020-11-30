@@ -16,77 +16,82 @@ package br.com.pi.app;
 
 import br.com.pi.bll.UfsBll;
 import br.com.pi.model.Ufs;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author jhonlinux
  */
 public class TelaUf extends javax.swing.JFrame {
-//--- BLL´S---------------------------------------------------------------------------------------->
+    //--- BLL´S---------------------------------------------------------------------------------------->
+
     UfsBll ufBll = null;
     //--- FIM BLL'S ----------------------------------------------------------------------------------->
     //
 
     //--- CLASSES -------------------------------------------------------------------------------------> 
     Ufs uf = null;
+
     //--- FIM CLASSES --------------------------------------------------------------------------------->
     //
     public TelaUf() {
         initComponents();
-        
-//        try {
-//            ufBll = new UfsBll();
-//            uf = new Ufs();
-//
-//            preencherGridUf();
-//            
-//        } catch (Exception error) {
-//            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-//        }
-//        this.setLocationRelativeTo(null);
-//    
-//    }
-//    
-//    //--- METODOS ------------------------------------------------------------------------------------->
-//    public void preencherGridMarcas() {
-//
-//        try {
-//            DefaultTableModel tableCategoria = (DefaultTableModel) jTableMarca.getModel();
-//            tableCategoria.setRowCount(0);
-//
-//            Object[] linha = new Object[2];
-//
-//            ArrayList<Marcas> marcas = new MarcasBll().getAllMarcas();
-//
-//            for (Marcas marca1 : marcas) {
-//                linha[0] = marca1.getIden();
-//                linha[1] = marca1.getNome();
-//                tableCategoria.addRow(linha);
-//            }
-//        } catch (Exception error) {
-//            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-//        }
-//    }
-//
-//    public void preencerFormularioMarcas() {
-//        int id = Integer.parseInt(jTableMarca.getValueAt(jTableMarca.getSelectedRow(), 0).toString());
-//        String nome = jTableMarca.getValueAt(jTableMarca.getSelectedRow(), 1).toString();
-//
-//        jTextFieldIDMarca.setText(id + "");
-//        jTextFieldNome.setText(nome);
-//    }
-//
-//    public void limparCampos() {
-//        jTextFieldIDMarca.setText("");
-//        jTextFieldNome.setText("");
-//    }
-    
-//    public void ValidaMarcas() {
-        
+
+        try {
+            ufBll = new UfsBll();
+            uf = new Ufs();
+
+            preencherGridUf();
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+        this.setLocationRelativeTo(null);
+
     }
-    //--- FIM METODOS --------------------------------------------------------------------------------->
-    //
+
+    //--- METODOS ------------------------------------------------------------------------------------->
+    public void preencherGridUf() {
+
+        try {
+            DefaultTableModel tableUf = (DefaultTableModel) jTableUf.getModel();
+            tableUf.setRowCount(0);
+
+            Object[] linha = new Object[2];
+
+            ArrayList<Ufs> uf = new UfsBll().getAllUfs();
+
+            for (Ufs uf1 : uf) {
+                linha[0] = uf1.getIden();
+                linha[1] = uf1.getNome();
+                tableUf.addRow(linha);
+            }
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void preencherFormularioUf() {
+
+        int id = Integer.parseInt(jTableUf.getValueAt(jTableUf.getSelectedRow(), 0).toString());
+        String nome = jTableUf.getValueAt(jTableUf.getSelectedRow(), 1).toString();
+
+        jTextFieldIDUf.setText(id + "");
+        jTextFieldUfnome.setText(nome);
+    }
+
+    public void limparCampos() {
+        jTextFieldIDUf.setText("");
+        jTextFieldUfnome.setText("");
+    }
+
+    public void ValidaUf() {
+
+    }
+//    --- FIM METODOS --------------------------------------------------------------------------------->
+//    
 
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify
@@ -99,7 +104,7 @@ public class TelaUf extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldUf = new javax.swing.JTextField();
+        jTextFieldUfnome = new javax.swing.JTextField();
         jTextFieldIDUf = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -127,7 +132,7 @@ public class TelaUf extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldIDUf, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldUf, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldUfnome, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -140,7 +145,7 @@ public class TelaUf extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldUfnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 91, Short.MAX_VALUE))
         );
 
@@ -160,6 +165,11 @@ public class TelaUf extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableUf.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableUfMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableUf);
         if (jTableUf.getColumnModel().getColumnCount() > 0) {
             jTableUf.getColumnModel().getColumn(0).setMinWidth(40);
@@ -167,14 +177,26 @@ public class TelaUf extends javax.swing.JFrame {
             jTableUf.getColumnModel().getColumn(0).setMaxWidth(40);
         }
 
-        jButtonCadastrar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/salve.png")); // NOI18N
         jButtonCadastrar.setText("CADASTRAR");
+        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarActionPerformed(evt);
+            }
+        });
 
-        jButtonAlterar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/editar.png")); // NOI18N
         jButtonAlterar.setText("ALTERAR");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
-        jButtonRemover.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/lixo.png")); // NOI18N
         jButtonRemover.setText("REMOVER");
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -230,6 +252,84 @@ public class TelaUf extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+
+        try {
+            ValidaUf();
+
+            uf.setNome(jTextFieldUfnome.getText());
+            ufBll.addUfs(uf);
+
+            preencherGridUf();
+            limparCampos();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCadastrarActionPerformed
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+
+
+
+ try {
+            if (jTableUf.getSelectedRow() == -1) {
+                throw new Exception("Selecione uma UF a ser alterada!");
+            }
+            ValidaUf();
+            uf.setNome(jTextFieldUfnome.getText());
+            uf.setIden(Integer.parseInt(jTextFieldIDUf.getText()));
+            ufBll.updateUfs(uf);
+
+            preencherGridUf();
+            limparCampos();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+
+
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+
+ try {
+            if (jTableUf.getSelectedRow() == -1) {
+                throw new Exception ("Selecione uma UF a ser removida!");
+            }
+            uf.setIden(Integer.parseInt(jTextFieldIDUf.getText()));
+            ufBll.deleteUfs(uf);
+
+            preencherGridUf();
+            limparCampos();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
+
+    private void jTableUfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUfMouseClicked
+
+ try {
+            preencherFormularioUf();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableUfMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -276,6 +376,6 @@ public class TelaUf extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableUf;
     private javax.swing.JTextField jTextFieldIDUf;
-    private javax.swing.JTextField jTextFieldUf;
+    private javax.swing.JTextField jTextFieldUfnome;
     // End of variables declaration//GEN-END:variables
 }
