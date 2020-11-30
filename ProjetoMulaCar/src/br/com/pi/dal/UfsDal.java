@@ -5,7 +5,6 @@
  */
 package br.com.pi.dal;
 
-import br.com.pi.model.Enderecos;
 import br.com.pi.model.Ufs;
 import br.com.pi.util.Conexao;
 
@@ -39,11 +38,15 @@ public class UfsDal {
     //
     public void addUfs(Ufs uf) throws Exception {
 
+<<<<<<< HEAD
+        String sql = "INSERT INTO ufs( uf_nome) VALUES(?)";
+=======
         String sql = "INSERT INTO ufs(uf_sigla) VALUES(?)";
+>>>>>>> a721027e4f283888522413359f75c72246657c24
         try {
 
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setString(1, uf.getSigla());
+            preparedStatement.setString(1, uf.getNome());
 
             preparedStatement.executeUpdate();
 
@@ -68,9 +71,7 @@ public class UfsDal {
             preparedStatement.setInt(1, uf_iden);
             preparedStatement.executeUpdate();
         } catch (Exception error) {
-            if (error.getMessage().contains("")) {
-                throw new RuntimeException("Não é possível deletar esta UF!");
-            }
+            throw  error;
         }
 
     }
@@ -81,18 +82,17 @@ public class UfsDal {
     //
     public void updateUfs(Ufs uf) throws Exception {
 
-        String sql = "UPDATE ufs SET uf_sigla=? WHERE uf_iden=?";
+        String sql = "UPDATE ufs SET uf_nome=? WHERE uf_iden=?";
 
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setString(1, uf.getSigla());
+            preparedStatement.setString(1, uf.getNome());
             preparedStatement.setInt(2, uf.getIden());
 
             preparedStatement.executeUpdate();
-        } catch (Exception error) {
-            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-                throw new RuntimeException("Não é possível alterar este UF !");
-            }
+       } catch (Exception error) {
+            throw  error;
+        
         }
 
     }
@@ -112,7 +112,7 @@ public class UfsDal {
                 Ufs uf = new Ufs();
 
                 uf.setIden(rs.getInt("uf_iden"));
-                uf.setSigla(rs.getString("uf_sigla"));
+                uf.setNome(rs.getString("uf_nome"));
 
                 lista.add(uf);
             }
@@ -136,7 +136,7 @@ public class UfsDal {
             if (rs.next()) {
 
                 uf.setIden(rs.getInt("uf_iden"));
-                uf.setSigla(rs.getString("uf_sigla"));
+                uf.setNome(rs.getString("uf_nome"));
 
             }
         } catch (Exception error) {
@@ -145,21 +145,21 @@ public class UfsDal {
         return uf;
     }
 
-    public Ufs getUfsByNome(String sigla) throws Exception {
+    public Ufs getUfsByNome(String nome) throws Exception {
 
         Ufs uf = new Ufs();
-        String sql = "SELECT * FROM ufs WHERE uf_sigla=?";
+        String sql = "SELECT * FROM ufs WHERE uf_nome=?";
 
         try {
 
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setString(1, sigla);
+            preparedStatement.setString(1, nome);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
 
                 uf.setIden(rs.getInt("uf_iden"));
-                uf.setSigla(rs.getString("uf_sigla"));
+                uf.setNome(rs.getString("uf_nome"));
 
             }
         } catch (Exception error) {

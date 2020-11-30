@@ -50,10 +50,8 @@ public class EnderecosDal {
             preparedStatement.setInt(6, endereco.getCidade().getIden());
 
             preparedStatement.executeUpdate();
-        } catch (Exception error) {
-            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-                throw new RuntimeException("Não é possível cadastrar este Endereço!");
-            }
+       } catch (Exception error) {
+            throw  error;
         }
 
     }
@@ -71,9 +69,8 @@ public class EnderecosDal {
             preparedStatement.setInt(1, end_iden);
             preparedStatement.executeUpdate();
         } catch (Exception error) {
-            if (error.getMessage().contains("cli_end_iden")) {
-                throw new RuntimeException("Não é possível deletar este endereço pois esta vinculado a um Cliente!");
-            }
+            throw  error;
+        
         }
 
     }
@@ -97,10 +94,9 @@ public class EnderecosDal {
             preparedStatement.setInt(7, endereco.getIden());
 
             preparedStatement.executeUpdate();
-        } catch (Exception error) {
-            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-                throw new RuntimeException("Não é possível alterar este endereço!");
-            }
+       } catch (Exception error) {
+            throw  error;
+        
         }
 
     }

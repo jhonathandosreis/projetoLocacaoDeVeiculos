@@ -84,9 +84,9 @@ public class UfsBll {
         }
     }
 
-    public Ufs getUfsNome(String sigla) throws Exception {
+    public Ufs getUfsNome(String nome) throws Exception {
         try {
-            return ufDal.getUfsByNome(sigla);
+            return ufDal.getUfsByNome(nome);
         } catch (Exception error) {
             throw error;
         }
