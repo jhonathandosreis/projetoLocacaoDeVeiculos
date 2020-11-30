@@ -23,6 +23,7 @@ import br.com.pi.model.Enderecos;
 import br.com.pi.model.Motoristas;
 import br.com.pi.model.Ufs;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -54,11 +55,26 @@ public class TelaMotoristas extends javax.swing.JFrame {
            uf = new Ufs();
            ufbll = new UfsBll();
            
+           preencherComboboxCidades();
+           
         }catch(Exception error){
-            JOptionPane.showMessageDialog(null, "Erro ao instanciar classes init "+error.getMessage());
+           JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
         
         this.setLocationRelativeTo(null);
+    }
+    
+    public void preencherComboboxCidades() throws Exception{
+           try{
+            jComboBox_Cidade.removeAllItems();
+            ArrayList<Cidades> listaCidades = cidadesBll.getAllCidades();
+            
+            for (Cidades cidade : listaCidades) {
+               jComboBox_Cidade.addItem(cidade.getNome());
+            }  
+           }catch(Exception error){
+                JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+           }
     }
     
     public void limparCampos(){
@@ -250,7 +266,13 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
         jLabel8.setText("UF");
 
-        jComboBoxUFMotorista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC" }));
+        jComboBoxUFMotorista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UF" }));
+
+        jComboBox_Cidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_CidadeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -277,13 +299,13 @@ public class TelaMotoristas extends javax.swing.JFrame {
                                     .addGap(401, 401, 401))
                                 .addComponent(jComboBox_Cidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldNumeroMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4)
                             .addComponent(jLabel8)
-                            .addComponent(jComboBoxUFMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(297, 297, 297)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jComboBoxUFMotorista, 0, 100, Short.MAX_VALUE)
+                            .addComponent(jTextFieldNumeroMotorista))
+                        .addGap(248, 248, 248)))
+                .addContainerGap(536, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -551,10 +573,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
            endereco.setComplemento(jTextFieldComplementoMotorista.getText());
            endereco.setNumero(Float.parseFloat(jTextFieldNumeroMotorista.getText()));
            //endereco.setCidade(cidade);
-           uf = new Ufs("GO");
-           ufbll.addUfs(uf);
-           cidade = new Cidades("Goiânia", uf);
-           cidadesBll.addCidades(cidade);
+          // uf = ufbll.getUfsNome(jComboBoxUFMotorista.getSelectedItem().toString());
+           cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
            endereco.setCidade(cidade);
            enderecoBll.AddEndereco(endereco);
     
@@ -576,6 +596,16 @@ public class TelaMotoristas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas "+error.getMessage());
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
+
+    private void jComboBox_CidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_CidadeActionPerformed
+        try{
+        cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
+        jComboBoxUFMotorista.removeAllItems();
+        jComboBoxUFMotorista.addItem(cidade.getUf().getNome());
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas "+error.getMessage());
+        }
+    }//GEN-LAST:event_jComboBox_CidadeActionPerformed
 
     /**
      * @param args the command line arguments
