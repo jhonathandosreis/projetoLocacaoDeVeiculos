@@ -36,7 +36,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     private PessoasJuridicasBll pessoaJuridicaBll = null;
     private EnderecosBll enderecoBll = null;
     private CidadesBll cidadesBll = null;
-    private UfsBll ufBll = null;
+    
 
     //--- FIM BLL'S ----------------------------------------------------------------------------------->
     //
@@ -44,7 +44,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     private PessoasJuridicas pessoaJuridica = null;
     private Enderecos endereco = null;
     private Cidades cidade = null;
-    private Ufs uf = null;
+ 
 
     //--- FIM CLASSES --------------------------------------------------------------------------------->
     //
@@ -57,10 +57,10 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             pessoaJuridicaBll = new PessoasJuridicasBll();
             enderecoBll = new EnderecosBll();
             cidadesBll = new CidadesBll();
-            ufBll = new UfsBll();
+           
             endereco = new Enderecos();
             cidade = new Cidades();
-            uf = new Ufs();
+          
 
             preencherGridPessoaJuridica();
 
@@ -99,7 +99,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         }
     }
 
-    public void preencherFormularioVeiculo() throws Exception {
+    public void preencherFormularioPessoaJuridica() throws Exception {
 
         try {
 
@@ -126,12 +126,27 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             jTextFieldComplementoPessoaJuridica.setText(complemento);
             jTextFieldRuaPessoaJuridica.setText(rua);
 
-            jTextFieldCidadePessoaJuridica.setText(cidade);
-            jComboBoxUFPessoaJuridica.setSelectedItem(uf);
+            jComboBoxCidade.setSelectedItem(cidade);
+            jTextFieldUf.setText(uf);
 
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+     public void preencherComboboxCidades() throws Exception {
+
+        ArrayList<Cidades> lista = cidadesBll.getAllCidades();
+        jComboBoxCidade.removeAllItems();
+        jComboBoxCidade.addItem("<SELECIONE>");
+
+        for (Cidades cidades : lista) {
+            jComboBoxCidade.addItem(cidades.getNome());
+           
+        }
+
+       
+
     }
 
     public void limparCampos() {
@@ -142,8 +157,8 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             jTextFieldNumeroPessoaJuridica.setText("");
             jTextFieldComplementoPessoaJuridica.setText("");
             jTextFieldRuaPessoaJuridica.setText("");
-            jTextFieldCidadePessoaJuridica.setText("");
-            jComboBoxUFPessoaJuridica.setSelectedIndex(0);
+            jTextFieldUf.setText("");
+            jComboBoxCidade.setSelectedIndex(0);
     }
 
     //--- FIM METODOS --------------------------------------------------------------------------------->
@@ -179,9 +194,9 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextFieldRuaPessoaJuridica = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextFieldCidadePessoaJuridica = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jComboBoxUFPessoaJuridica = new javax.swing.JComboBox<>();
+        jComboBoxCidade = new javax.swing.JComboBox<>();
+        jTextFieldUf = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel4CPFPessoaFisica = new javax.swing.JLabel();
         jTextFieldTelefonePessoaJuridica = new javax.swing.JTextField();
@@ -279,47 +294,40 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
         jLabel8.setText("UF");
 
-        jComboBoxUFPessoaJuridica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC" }));
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(357, 357, 357)
-                        .addComponent(jLabel6))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldComplementoPessoaJuridica, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+                            .addComponent(jLabel7)
+                            .addComponent(jComboBoxCidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jTextFieldUf, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldRuaPessoaJuridica))))
+                    .addComponent(jLabel5)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jTextFieldCepPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(33, 33, 33)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jTextFieldLogradouroPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldComplementoPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jTextFieldCidadePessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jComboBoxUFPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(294, 294, 294))
-                                    .addComponent(jTextFieldRuaPessoaJuridica))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextFieldCepPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextFieldLogradouroPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldNumeroPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,21 +343,20 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                     .addComponent(jTextFieldLogradouroPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldNumeroPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldComplementoPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldRuaPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jTextFieldRuaPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldCidadePessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxUFPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 7, Short.MAX_VALUE))
         );
 
@@ -439,7 +446,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCadastrar)
                     .addComponent(jButtonAlterar)
@@ -495,6 +502,11 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                 "ID", "LOGRADOURO", "RUA", "NUMERO", "CEP", "COMPLEMENTO", "CIDADE", "UF"
             }
         ));
+        jTableEndereco.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableEnderecoMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableEndereco);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -524,7 +536,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -569,6 +581,19 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
         
 try {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
             limparCampos();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -580,6 +605,19 @@ try {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
+
+    private void jTableEnderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEnderecoMouseClicked
+
+  try {
+            preencherFormularioPessoaJuridica();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableEnderecoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -624,7 +662,7 @@ try {
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonLimparPessoaJuridica;
     private javax.swing.JButton jButtonRemover;
-    private javax.swing.JComboBox<String> jComboBoxUFPessoaJuridica;
+    private javax.swing.JComboBox<String> jComboBoxCidade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -651,7 +689,6 @@ try {
     private javax.swing.JTable jTableEndereco;
     private javax.swing.JTextField jTextFieldCNPJPessoaJuridica;
     private javax.swing.JTextField jTextFieldCepPessoaJuridica;
-    private javax.swing.JTextField jTextFieldCidadePessoaJuridica;
     private javax.swing.JTextField jTextFieldComplementoPessoaJuridica;
     private javax.swing.JTextField jTextFieldEmailPessoaJuridica;
     private javax.swing.JTextField jTextFieldIdPessoaJuridica;
@@ -662,5 +699,6 @@ try {
     private javax.swing.JTextField jTextFieldRazaoSocialPessoaJuridica;
     private javax.swing.JTextField jTextFieldRuaPessoaJuridica;
     private javax.swing.JTextField jTextFieldTelefonePessoaJuridica;
+    private javax.swing.JTextField jTextFieldUf;
     // End of variables declaration//GEN-END:variables
 }
