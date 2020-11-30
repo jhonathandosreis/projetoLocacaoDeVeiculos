@@ -162,6 +162,36 @@ public class EnderecosDal {
         }
         return endereco;
     }
+    
+     public Enderecos getEnderecosByCEP(int cep) throws Exception {
+
+        Enderecos endereco = new Enderecos();
+        String sql = "SELECT * FROM enderecos WHERE end_cep=?";
+
+        try {
+
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1, cep);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+
+                endereco.setIden(rs.getInt("end_iden"));
+                endereco.setRua(rs.getString("end_rua"));
+                endereco.setNumero(rs.getFloat("end_numero"));
+                endereco.setLogradouro(rs.getString("end_logradouro"));
+                endereco.setCep(rs.getInt("end_cep"));
+                endereco.setComplemento(rs.getString("end_complemento"));
+
+                CidadesDal cidade = new CidadesDal();
+                endereco.setCidade(cidade.getCidadesById(rs.getInt("end_cid_iden")));
+
+            }
+        } catch (Exception error) {
+            throw error;
+        }
+        return endereco;
+    }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 

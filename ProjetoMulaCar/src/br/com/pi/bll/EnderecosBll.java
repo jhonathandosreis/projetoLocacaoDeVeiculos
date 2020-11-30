@@ -101,6 +101,14 @@ public class EnderecosBll {
             throw error;
         }
     }
+    
+     public Enderecos getConsultaPorCEP(int cep) throws Exception {
+        try {
+            return endDal.getEnderecosByCEP(cep);
+        } catch (Exception error) {
+            throw error;
+        }
+    }
 
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
