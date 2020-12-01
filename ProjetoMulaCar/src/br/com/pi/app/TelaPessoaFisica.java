@@ -14,19 +14,70 @@
  */
 package br.com.pi.app;
 
+import br.com.pi.bll.CidadesBll;
+import br.com.pi.bll.ClientesBll;
+import br.com.pi.bll.EnderecosBll;
+import br.com.pi.bll.PessoasFisicasBll;
+import br.com.pi.model.Cidades;
+import br.com.pi.model.Clientes;
+import br.com.pi.model.Enderecos;
+import br.com.pi.model.PessoasFisicas;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jhonlinux
  */
 public class TelaPessoaFisica extends javax.swing.JFrame {
-
-    /**
-     * Creates new form PessoaFisica
-     */
+    
+    PessoasFisicas pessoaFisica;
+    PessoasFisicasBll pessoaFisicaBll;
+    Clientes cliente;
+    ClientesBll clienteBll;
+    Enderecos endereco;
+    EnderecosBll enderecoBll;
+    Cidades cidade;
+    CidadesBll cidadeBll;
+    
     public TelaPessoaFisica() {
         initComponents();
+        
+        try{
+            
+        pessoaFisica = new PessoasFisicas();
+        pessoaFisicaBll = new PessoasFisicasBll();
+        cliente = new Clientes();
+        clienteBll = new ClientesBll();
+        endereco = new Enderecos();
+        enderecoBll = new EnderecosBll();
+        cidade = new Cidades();
+        cidadeBll = new CidadesBll();
+        
+        preencherComboboxCidades();
+        
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+        
         this.setLocationRelativeTo(null);
     }
+    
+     public void preencherComboboxCidades() throws Exception{
+           try{
+            jComboBox_Cidades.removeAllItems();
+            ArrayList<Cidades> listaCidades = cidadeBll.getAllCidades();
+            
+            for (Cidades cidade : listaCidades) {
+               jComboBox_Cidades.addItem(cidade.getNome());
+            }  
+           }catch(Exception error){
+                JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+           }
+    }
+     public void  limparCampos(){
+         
+     }
 
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify
@@ -58,11 +109,11 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldComplementoPessoaFisica = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextFieldBairroPessoaFisica = new javax.swing.JTextField();
+        jTextFieldRuaPessoaFisica = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextFieldCidadePessoaFisica = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jComboBoxUFPessoaFisica = new javax.swing.JComboBox<>();
+        jComboBox_Cidades = new javax.swing.JComboBox<>();
+        jTextField_UF = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel4CPFPessoaFisica = new javax.swing.JLabel();
         jTextFieldTelefonePessoaFisica = new javax.swing.JTextField();
@@ -156,13 +207,13 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
 
         jLabel5.setText("COMPLEMENTO");
 
-        jLabel6.setText("BAIRRO");
+        jLabel6.setText("RUA");
 
         jLabel7.setText("CIDADE");
 
         jLabel8.setText("UF");
 
-        jComboBoxUFPessoaFisica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC" }));
+        jComboBox_Cidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -170,38 +221,35 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(357, 357, 357)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jTextFieldCepPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(33, 33, 33)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jTextFieldLogradouroPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldComplementoPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jTextFieldCidadePessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jComboBoxUFPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(294, 294, 294))
-                                    .addComponent(jTextFieldBairroPessoaFisica))))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldNumeroPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))))
+                            .addComponent(jLabel2)
+                            .addComponent(jTextFieldCepPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextFieldLogradouroPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldComplementoPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(jComboBox_Cidades, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldRuaPessoaFisica)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jTextField_UF, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(264, 264, 264))))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldNumeroPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addContainerGap(215, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -224,16 +272,16 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldComplementoPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldBairroPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldRuaPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldCidadePessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxUFPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 7, Short.MAX_VALUE))
+                    .addComponent(jComboBox_Cidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_UF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados para Contato"));
@@ -277,16 +325,17 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        jButtonCadastrar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/salve.png")); // NOI18N
         jButtonCadastrar.setText("CADASTRAR");
+        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarActionPerformed(evt);
+            }
+        });
 
-        jButtonAlterar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/editar.png")); // NOI18N
         jButtonAlterar.setText("ALTERAR");
 
-        jButtonRemover.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/lixo.png")); // NOI18N
         jButtonRemover.setText("EXCLUIR");
 
-        jButtonLimpar.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/Repositorio/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/limpar-limpo.png")); // NOI18N
         jButtonLimpar.setText("LIMPAR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -452,6 +501,40 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+       
+           try{
+           cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
+           endereco.setCidade(cidade);
+           endereco.setCep(Double.parseDouble(jTextFieldCepPessoaFisica.getText()));
+           endereco.setLogradouro(jTextFieldLogradouroPessoaFisica.getText());
+           endereco.setComplemento(jTextFieldComplementoPessoaFisica.getText());
+           endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaFisica.getText()));
+           endereco.setRua(jTextFieldRuaPessoaFisica.getText());
+           enderecoBll.AddEndereco(endereco);
+           double cep = endereco.getCep();
+           endereco = enderecoBll.getConsultaPorCEP(cep);
+           
+           cliente.setEnderecos(endereco);
+           cliente.setNome(jTextFieldNomePessoaFisica.getText());
+           cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaFisica.getText()));
+           cliente.setEmail(jTextFieldEmailPessoaFisica.getText());
+           clienteBll.addClientes(cliente);
+           double clienteTelefone = cliente.getTelefone();
+           cliente = clienteBll.getClienteByTelefone(clienteTelefone);
+           
+           pessoaFisica.setCliente(cliente);
+           pessoaFisica.setRg(Integer.parseInt(jTextFieldRGPessoaFisica.getText()));
+           pessoaFisica.setCpf(Double.parseDouble(jTextFieldCPFPessoaFisica.getText()));       
+           pessoaFisicaBll.addPessoasFisicas(pessoaFisica);
+           
+           JOptionPane.showMessageDialog(null, pessoaFisica.getNome()+" cadastrado com sucesso no sistema!");
+           limparCampos();
+            }catch(Exception error){
+                JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+           }
+    }//GEN-LAST:event_jButtonCadastrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -495,7 +578,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonLimparConsulta;
     private javax.swing.JButton jButtonRemover;
-    private javax.swing.JComboBox<String> jComboBoxUFPessoaFisica;
+    private javax.swing.JComboBox<String> jComboBox_Cidades;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -519,10 +602,8 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1PessoaFisica;
     private javax.swing.JTable jTableConsultaPessoaFisica;
-    private javax.swing.JTextField jTextFieldBairroPessoaFisica;
     private javax.swing.JTextField jTextFieldCPFPessoaFisica;
     private javax.swing.JTextField jTextFieldCepPessoaFisica;
-    private javax.swing.JTextField jTextFieldCidadePessoaFisica;
     private javax.swing.JTextField jTextFieldComplementoPessoaFisica;
     private javax.swing.JTextField jTextFieldEmailPessoaFisica;
     private javax.swing.JTextField jTextFieldIdPessoaFisica;
@@ -531,6 +612,8 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNumeroPessoaFisica;
     private javax.swing.JTextField jTextFieldPesquisarPessoaFisica;
     private javax.swing.JTextField jTextFieldRGPessoaFisica;
+    private javax.swing.JTextField jTextFieldRuaPessoaFisica;
     private javax.swing.JTextField jTextFieldTelefonePessoaFisica;
+    private javax.swing.JTextField jTextField_UF;
     // End of variables declaration//GEN-END:variables
 }

@@ -50,29 +50,16 @@ public class PessoasFisicasDal {
     public void addPessoasFisicas (PessoasFisicas pessoaFisica) throws Exception {
        
         try{
-//        String sqlCliente ="INSERT INTO clientes (cli_nome, cli_telefone, cli_email, cli_end_iden) values (?, ?, ?, ?)";
-//        PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente, Statement.RETURN_GENERATED_KEYS);
-//        
-//        preparedStatement1.setString(1, pessoaFisica.getNome());
-//        preparedStatement1.setDouble(2, pessoaFisica.getTelefone());
-//        preparedStatement1.setString(3, pessoaFisica.getEmail());
-//        preparedStatement1.setInt(4, pessoaFisica.getEnderecos().getIden());
-//        preparedStatement1.executeUpdate();
-//        
-//        try (ResultSet generatedKeys = preparedStatement1.getGeneratedKeys()) {
-//            if (generatedKeys.next()) {
-//                pessoaFisica.setCliente  (clienteBll.getClienteById((generatedKeys.getInt(1))) );
-//            }
-//            else {
-//                throw new Exception("(ERROR DAL) Erro ao criar pessoa fisica cliente!");
-//            }
-//        }
-        
-        String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_cli_iden) values (?, ?, ?)";        
+ 
+       String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_numero_cnh, pfi_categoria_cnh, pfi_data_de_validade, pfi_cli_iden) values (?, ?, ?, ?, ?, ?)";        
+        java.sql.Date dataValidade = new java.sql.Date(0);
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
         preparedStatement2.setInt(1, pessoaFisica.getRg());
         preparedStatement2.setDouble(2, pessoaFisica.getCpf());
-        preparedStatement2.setInt(3, pessoaFisica.getCliente().getIden());
+        preparedStatement2.setDouble(3, 0);
+        preparedStatement2.setString(4, null);
+        preparedStatement2.setDate(5, null);
+        preparedStatement2.setInt(6, pessoaFisica.getCliente().getIden());
         preparedStatement2.executeUpdate();
         
         } catch (Exception error) {
