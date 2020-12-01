@@ -263,6 +263,8 @@ public class TelaMarcas extends javax.swing.JFrame {
             marcasBll.addMarcas(marca);
             preencherGridMarcas();
             limparCampos();
+            
+            JOptionPane.showMessageDialog(null, "Marca cadastrada com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -281,6 +283,8 @@ public class TelaMarcas extends javax.swing.JFrame {
             marcasBll.updateMarcas(marca);
             preencherGridMarcas();
             limparCampos();
+            
+            JOptionPane.showMessageDialog(null, "Marca alterada com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -297,6 +301,8 @@ public class TelaMarcas extends javax.swing.JFrame {
             marcasBll.deleteMarcas(marca);
             preencherGridMarcas();
             limparCampos();
+            
+            JOptionPane.showMessageDialog(null, "Marca removida com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
