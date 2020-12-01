@@ -94,6 +94,7 @@ CREATE TABLE veiculos (
     vei_preco_compra NUMERIC(10),
     vei_ano_fabricacao INTEGER,
     vei_numero_passageiros INTEGER,
+    vei_tipo_combustivel VARCHAR(20),
     vei_mod_iden INTEGER,
     FOREIGN KEY (vei_mod_iden) REFERENCES modelos (mod_iden)
 );
@@ -124,3 +125,5 @@ CREATE TABLE devolucoes (
     FOREIGN KEY (dev_loc_iden) REFERENCES locacoes (loc_codigo)
 );
  
+
+ fisico
