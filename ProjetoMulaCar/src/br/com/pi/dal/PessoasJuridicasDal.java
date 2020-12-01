@@ -34,9 +34,7 @@ public class PessoasJuridicasDal {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     private Connection conexao;
     private Clientes cliente = null;
-    private ClientesBll clienteBll;
-    private PessoasJuridicas pessoaJuridica;
-    private PessoasJuridicasBll pessoaJuridicaBll;
+    private ClientesBll clienteBll = new ClientesBll();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -126,12 +124,13 @@ public class PessoasJuridicasDal {
             ResultSet rs = statement.executeQuery(sql);
          
            if(rs.next()){
+                PessoasJuridicas pessoaJuridica = new PessoasJuridicas();
                 int cli_id = rs.getInt("pju_cli_iden");
                 cliente = clienteBll.getClienteById(cli_id);
                 pessoaJuridica.setIden(rs.getInt("pju_iden"));
                 pessoaJuridica.setCnpj(rs.getDouble("pju_cnpj"));
-                pessoaJuridica.setNomeFantasia("pju_nome_fantasia");
-                pessoaJuridica.setRazaoSocial("pju_razao_social");
+                pessoaJuridica.setNomeFantasia(rs.getString("pju_nome_fantasia"));
+                pessoaJuridica.setRazaoSocial(rs.getString("pju_razao_social"));
                 pessoaJuridica.setCliente(cliente);
                 lista.add(pessoaJuridica);
            }

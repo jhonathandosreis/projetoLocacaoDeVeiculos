@@ -78,25 +78,26 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     public void preencherGridPessoaJuridica() throws Exception {
 
         try {
-            DefaultTableModel tableEndereco = (DefaultTableModel) jTableEndereco.getModel();
-            tableEndereco.setRowCount(0);
+            DefaultTableModel tablePessoasJuridicas = (DefaultTableModel) jTable_PessoasJuridicas.getModel();
+            tablePessoasJuridicas.setRowCount(0);
 
-            Object[] linha = new Object[8];
+            Object[] coluna = new Object[9];
 
-            ArrayList<PessoasJuridicas> pessoaJuridica = new PessoasJuridicasBll().getAllPessoasJuridicas();
+            ArrayList<PessoasJuridicas> listaDePessoasJuridicas = new PessoasJuridicasBll().getAllPessoasJuridicas();
 
-            for (PessoasJuridicas pessoasJuridicas : pessoaJuridica) {
+            for (PessoasJuridicas pessoasJuridicas : listaDePessoasJuridicas) {
 
-                linha[0] = pessoasJuridicas.getEnderecos().getIden();
-                linha[1] = pessoasJuridicas.getEnderecos().getLogradouro();
-                linha[2] = pessoasJuridicas.getEnderecos().getRua();
-                linha[3] = pessoasJuridicas.getEnderecos().getNumero();
-                linha[4] = pessoasJuridicas.getEnderecos().getCep();
-                linha[5] = pessoasJuridicas.getEnderecos().getComplemento();
-                linha[6] = pessoasJuridicas.getEnderecos().getCidade().getNome();
-                linha[7] = pessoasJuridicas.getEnderecos().getCidade().getUf().getNome();
+                coluna[0] = pessoasJuridicas.getIden();
+                coluna[1] = pessoasJuridicas.getNomeFantasia();
+                coluna[2] = pessoasJuridicas.getCnpj();
+                coluna[3] = pessoasJuridicas.getCliente().getTelefone();
+                coluna[4] = pessoasJuridicas.getCliente().getEmail();
+                coluna[5] = pessoasJuridicas.getCliente().getEnderecos().getLogradouro();
+                coluna[6] = pessoasJuridicas.getCliente().getEnderecos().getCep();
+                coluna[7] = pessoasJuridicas.getCliente().getEnderecos().getCidade();
+                coluna[8] = pessoasJuridicas.getCliente().getEnderecos().getCidade().getUf();
 
-                tableEndereco.addRow(linha);
+                tablePessoasJuridicas.addRow(coluna);
             }
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -107,21 +108,21 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
         try {
 
-            int id = Integer.parseInt(jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 0).toString());
+            int id = Integer.parseInt(jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 0).toString());
 
-            String logradouro = jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 1).toString();
+            String logradouro = jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 1).toString();
 
-            String rua = jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 2).toString();
+            String rua = jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 2).toString();
 
-            int numero = Integer.parseInt(jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 3).toString());
+            int numero = Integer.parseInt(jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 3).toString());
 
-            int cep = Integer.parseInt(jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 4).toString());
+            int cep = Integer.parseInt(jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 4).toString());
 
-            String complemento = jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 5).toString();
+            String complemento = jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 5).toString();
 
-            String cidade = jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 6).toString();
+            String cidade = jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 6).toString();
 
-            String uf = jTableEndereco.getValueAt(jTableEndereco.getSelectedRow(), 7).toString();
+            String uf = jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 7).toString();
 
             jTextFieldIdPessoaJuridica.setText(id + "");
             jTextFieldCepPessoaJuridica.setText(cep + "");
@@ -213,10 +214,8 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         jTextFieldPesquisarPessoaJuridica = new javax.swing.JTextField();
         jButtonConsultarPessoaJuridica = new javax.swing.JButton();
         jButtonLimparPessoaJuridica = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableConsultaPessoaJuridica = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableEndereco = new javax.swing.JTable();
+        jTable_PessoasJuridicas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("[PESSOAS JURIDICA]");
@@ -470,57 +469,25 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
         jButtonLimparPessoaJuridica.setText("LIMPAR");
 
-        jTableConsultaPessoaJuridica.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_PessoasJuridicas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "RAZÃO SOCIAL", "CNPJ", "TELEFONE", "LOGRADOURO", "BAIRRO", "CIDADE", "UF"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTableConsultaPessoaJuridica);
-        if (jTableConsultaPessoaJuridica.getColumnModel().getColumnCount() > 0) {
-            jTableConsultaPessoaJuridica.getColumnModel().getColumn(0).setPreferredWidth(40);
-            jTableConsultaPessoaJuridica.getColumnModel().getColumn(1).setPreferredWidth(300);
-            jTableConsultaPessoaJuridica.getColumnModel().getColumn(2).setPreferredWidth(150);
-            jTableConsultaPessoaJuridica.getColumnModel().getColumn(3).setPreferredWidth(150);
-            jTableConsultaPessoaJuridica.getColumnModel().getColumn(4).setPreferredWidth(250);
-            jTableConsultaPessoaJuridica.getColumnModel().getColumn(5).setPreferredWidth(150);
-            jTableConsultaPessoaJuridica.getColumnModel().getColumn(6).setPreferredWidth(150);
-            jTableConsultaPessoaJuridica.getColumnModel().getColumn(7).setPreferredWidth(40);
-        }
-
-        jTableEndereco.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "LOGRADOURO", "RUA", "NUMERO", "CEP", "COMPLEMENTO", "CIDADE", "UF"
+                "ID", "NOME FANTASIA", "CNPJ", "TELEFONE", "E-MAIL", "LOGRADOURO", "CEP", "CIDADE", "UF"
             }
         ));
-        jTableEndereco.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable_PessoasJuridicas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableEnderecoMouseClicked(evt);
+                jTable_PessoasJuridicasMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTableEndereco);
+        jScrollPane2.setViewportView(jTable_PessoasJuridicas);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTextFieldPesquisarPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -528,8 +495,11 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                 .addComponent(jButtonConsultarPessoaJuridica)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonLimparPessoaJuridica)
-                .addContainerGap(338, Short.MAX_VALUE))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(389, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -539,11 +509,9 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                     .addComponent(jTextFieldPesquisarPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonConsultarPessoaJuridica)
                     .addComponent(jButtonLimparPessoaJuridica))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -614,6 +582,7 @@ try {
            pessoaJuridicaBll.addPessoasJuridicas(pessoaJuridica);
 
            JOptionPane.showMessageDialog(null, pessoaJuridica.getNomeFantasia()+" cadastrado com sucesso no sistema!");
+           preencherGridPessoaJuridica();
 
             limparCampos();
         } catch (Exception error) {
@@ -627,7 +596,7 @@ try {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
-    private void jTableEnderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEnderecoMouseClicked
+    private void jTable_PessoasJuridicasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_PessoasJuridicasMouseClicked
 
   try {
             preencherFormularioPessoaJuridica();
@@ -638,7 +607,7 @@ try {
 
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTableEnderecoMouseClicked
+    }//GEN-LAST:event_jTable_PessoasJuridicasMouseClicked
 
     private void jComboBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCidadeActionPerformed
       try{
@@ -712,11 +681,9 @@ try {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1PessoaFisica;
-    private javax.swing.JTable jTableConsultaPessoaJuridica;
-    private javax.swing.JTable jTableEndereco;
+    private javax.swing.JTable jTable_PessoasJuridicas;
     private javax.swing.JTextField jTextFieldCNPJPessoaJuridica;
     private javax.swing.JTextField jTextFieldCepPessoaJuridica;
     private javax.swing.JTextField jTextFieldComplementoPessoaJuridica;
