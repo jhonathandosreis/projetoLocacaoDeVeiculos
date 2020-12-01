@@ -39,7 +39,6 @@ public class ClientesBll {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addClientes(Clientes cliente) throws Exception {
         try{
-         
          clienteDal.addClientes(cliente);
         } catch (Exception error) {
             if(error.getMessage().contains("email_repetido")) throw new RuntimeException("E-mail "+cliente.getEmail()+" já cadastrado em nosso sistema");

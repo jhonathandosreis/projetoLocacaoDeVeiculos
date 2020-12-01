@@ -45,6 +45,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
     private CidadesBll cidadesBll;
     private UfsBll ufbll;
     private Ufs uf;
+    
     public TelaMotoristas() {
         initComponents();
         
@@ -285,6 +286,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
         });
 
         jLabel14.setText("Rua");
+
+        jTextField_UF.setEditable(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -613,6 +616,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
            double clienteTelefone = cliente.getTelefone();
            cliente = clienteBll.getClienteByTelefone(clienteTelefone);
            
+           motorista.setCliente(cliente);
            motorista.setRg(Integer.parseInt(jTextField_rgMotorista.getText()));
            motorista.setCpf(Double.parseDouble(jTextField_CpfMotorista.getText()));       
            motorista.setNumeroCnh(Double.parseDouble(jTextFieldCNHMotorista.getText()));
@@ -620,7 +624,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
            motorista.setDataValidade(data);
            motoristabll.addMotoristas(motorista);
            
-           JOptionPane.showMessageDialog(null, motorista.getNome()+" cadastrado com sucesso no sistema!");
+           JOptionPane.showMessageDialog(null, motorista.getCliente().getNome()+" cadastrado com sucesso no sistema!");
            limparCampos();
      
       }catch(Exception error){
