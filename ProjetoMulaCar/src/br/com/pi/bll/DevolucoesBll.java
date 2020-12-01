@@ -90,7 +90,7 @@ public class DevolucoesBll {
     //
     //--- READ ---------------------------------------------------------------------------------------->
     //
-    public ArrayList<Devolucoes> getConsulta() throws Exception {
+    public ArrayList<Devolucoes> getAllDevolucao() throws Exception {
         try {
 
             return devolucoesDal.getAllDevolucoes();
@@ -100,7 +100,7 @@ public class DevolucoesBll {
         }
     }
 
-    public Devolucoes getConsultaPorId(int dev_iden) throws Exception {
+    public Devolucoes getDevolucaoById(int dev_iden) throws Exception {
         try {
             return devolucoesDal.getDevolucoesById(dev_iden);
         } catch (Exception error) {

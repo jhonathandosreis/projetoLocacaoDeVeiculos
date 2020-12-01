@@ -58,10 +58,9 @@ public class DevolucoesDal {
 
             preparedStatement.executeUpdate();
         } catch (Exception error) {
-            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-                throw new RuntimeException("Não é possível registrar esta Devolução!");
-            }
+            throw error;
         }
+        
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
@@ -81,10 +80,10 @@ public class DevolucoesDal {
             preparedStatement.setInt(6, devolucao.getIden());
 
             preparedStatement.executeUpdate();
-        } catch (Exception error) {
-            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-                throw new RuntimeException("Não é possível alterar esta devolução!");
-            }
+       
+            } catch (Exception error) {
+            throw error;
+        
         }
 
     }
@@ -100,10 +99,10 @@ public class DevolucoesDal {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setInt(1, dev_iden);
             preparedStatement.executeUpdate();
-        } catch (Exception error) {
-            if (error.getMessage().contains("dev_loc_iden")) {
-                throw new RuntimeException("Não é possível deletar esta Devolução, pois, ainda esta vinculado a uma Locação!");
-            }
+        
+             } catch (Exception error) {
+            throw error;
+        
         }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
