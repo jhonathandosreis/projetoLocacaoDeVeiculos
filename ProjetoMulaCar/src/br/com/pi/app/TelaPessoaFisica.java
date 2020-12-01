@@ -213,7 +213,13 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
 
         jLabel8.setText("UF");
 
-        jComboBox_Cidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_Cidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_CidadesActionPerformed(evt);
+            }
+        });
+
+        jTextField_UF.setEditable(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -277,7 +283,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox_Cidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_UF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -371,7 +377,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCadastrar)
                     .addComponent(jButtonAlterar)
@@ -528,12 +534,21 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
            pessoaFisica.setCpf(Double.parseDouble(jTextFieldCPFPessoaFisica.getText()));       
            pessoaFisicaBll.addPessoasFisicas(pessoaFisica);
            
-           JOptionPane.showMessageDialog(null, pessoaFisica.getNome()+" cadastrado com sucesso no sistema!");
+           JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome()+" cadastrado com sucesso no sistema!");
            limparCampos();
             }catch(Exception error){
                 JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
            }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
+
+    private void jComboBox_CidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_CidadesActionPerformed
+         try{
+        cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
+        jTextField_UF.setText(cidade.getUf().getNome());
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas "+error.getMessage());
+        }
+    }//GEN-LAST:event_jComboBox_CidadesActionPerformed
 
     /**
      * @param args the command line arguments

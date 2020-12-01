@@ -41,7 +41,9 @@ public class PessoasJuridicasBll {
         try{
          pessoaJuridicaDal.addPessoasJuridicas(pessoaJuridica);
         } catch (Exception error) {
-            throw  error;
+           if(error.getMessage().contains("cpj_repetido")) throw new RuntimeException("Número "+pessoaJuridica.getCnpj()+" de cnpj já cadastrado em nosso sistema");
+             if(error.getMessage().contains("nomefantasia_repetido")) throw new RuntimeException("Nome fantasia "+pessoaJuridica.getNomeFantasia()+" já cadastrado em nosso sistema");
+             if(error.getMessage().contains("razaosocial_repetido")) throw new RuntimeException("Razão social "+pessoaJuridica.getRazaoSocial()+" já cadastrada em nosso sistema");
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|

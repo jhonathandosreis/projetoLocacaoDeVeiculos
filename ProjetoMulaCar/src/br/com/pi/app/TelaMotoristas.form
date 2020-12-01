@@ -476,6 +476,9 @@
                 <Component class="javax.swing.JTextField" name="jTextFieldRua">
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField_UF">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
