@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -69,6 +70,34 @@ public class TelaMotoristas extends javax.swing.JFrame {
         }
         
         this.setLocationRelativeTo(null);
+    }
+    
+    public void preencherGridMotorista() throws Exception {
+
+        try {
+            DefaultTableModel tableMotoristas = (DefaultTableModel) jTableConsultarMotorista.getModel();
+            tableMotoristas.setRowCount(0);
+
+            Object[] coluna = new Object[8];
+
+            ArrayList<Motoristas> listaMotoristas = motoristabll.getAllMotoristas();
+
+            for (Motoristas motorista : listaMotoristas) {
+
+                coluna[0] = motorista.getIden();
+                coluna[1] = motorista.getNome();
+                coluna[2] = motorista.getNumeroCnh();
+                coluna[3] = motorista.getCliente().getTelefone();
+                coluna[4] = motorista.getCliente().getEnderecos().getLogradouro();
+                coluna[5] = motorista.getCliente().getEnderecos().getCep();
+                coluna[6] = motorista.getCliente().getEnderecos().getCidade();
+                coluna[7] = motorista.getCliente().getEnderecos().getCidade().getUf();
+
+                tableMotoristas.addRow(coluna);
+            }
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void preencherComboboxCidades() throws Exception{
@@ -475,7 +504,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOME", "CNH", "TELEFONE", "LOGRADOURO", "BAIRRO", "CIDADE", "UF"
+                "ID", "NOME", "CNH", "TELEFONE", "LOGRADOURO", "CEP", "CIDADE", "UF"
             }
         ) {
             boolean[] canEdit = new boolean [] {

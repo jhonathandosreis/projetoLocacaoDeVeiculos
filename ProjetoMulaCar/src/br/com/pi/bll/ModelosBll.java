@@ -41,11 +41,21 @@ public class ModelosBll {
     //--- CREATE -------------------------------------------------------------------------------------->
     //
     public void addModelos(Modelos modelo) throws Exception {
+        
+        if (modelo.getNome().length() < 3) {
+            throw new Exception("Nome da categoria inválida\nNo mínimo 3 caracteres!");
+        }
 
+        if (modelo.getNome().length() > 30) {
+            throw new Exception("Nome da categoria inválida\nMáximo de caracteres excedido!");
+        }
+        
         try {
             modelosDal.addModelos(modelo);
-        } catch (Exception error) {
-            throw error;
+        } catch (Exception error) {  
+            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
+                throw new Exception("Existe um modelo com o mesmo nome cadastrado no banco de dados!");
+            }
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -54,11 +64,21 @@ public class ModelosBll {
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
     public void updateModelos(Modelos modelo) throws Exception {
+        
+        if (modelo.getNome().length() < 3) {
+            throw new Exception("Nome da categoria inválida\nNo mínimo 3 caracteres!");
+        }
 
+        if (modelo.getNome().length() > 30) {
+            throw new Exception("Nome da categoria inválida\nMáximo de caracteres excedido!");
+        }
+        
         try {
             modelosDal.updateModelos(modelo);
-        } catch (Exception error) {
-            throw error;
+        } catch (Exception error) {   
+            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
+                throw new Exception("Existe um modelo com o mesmo nome cadastrado no banco de dados!");
+            }
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -71,7 +91,9 @@ public class ModelosBll {
         try {
             modelosDal.deleteModelos(modelo.getIden());
         } catch (Exception error) {
-            throw error;
+            if (error.getMessage().contains("veiculos_vei_mod_iden_fkey")) {
+                throw new Exception("Existe um veículo vinculado a este modelo!");
+            }
         }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|

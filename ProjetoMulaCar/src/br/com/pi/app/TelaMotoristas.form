@@ -705,7 +705,7 @@
                             <Column editable="false" title="CNH" type="java.lang.Object"/>
                             <Column editable="false" title="TELEFONE" type="java.lang.Object"/>
                             <Column editable="false" title="LOGRADOURO" type="java.lang.Object"/>
-                            <Column editable="false" title="BAIRRO" type="java.lang.Object"/>
+                            <Column editable="false" title="CEP" type="java.lang.Object"/>
                             <Column editable="false" title="CIDADE" type="java.lang.Object"/>
                             <Column editable="false" title="UF" type="java.lang.Object"/>
                           </Table>

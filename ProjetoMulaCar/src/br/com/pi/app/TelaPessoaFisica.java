@@ -24,6 +24,7 @@ import br.com.pi.model.Enderecos;
 import br.com.pi.model.PessoasFisicas;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -55,12 +56,43 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         cidadeBll = new CidadesBll();
         
         preencherComboboxCidades();
+        preencherGridPessoaFisica();
         
         }catch(Exception error){
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
         
         this.setLocationRelativeTo(null);
+    }
+    
+     public void preencherGridPessoaFisica() throws Exception {
+
+        try {
+            DefaultTableModel tablePessoasFisicas = (DefaultTableModel) jTableConsultaPessoaFisica.getModel();
+            tablePessoasFisicas.setRowCount(0);
+
+            Object[] coluna = new Object[10];
+
+            ArrayList<PessoasFisicas> listaPessoasFisicas = pessoaFisicaBll.getAllPessoasFisicas();
+
+            for (PessoasFisicas pessoaFisica : listaPessoasFisicas) {
+
+                coluna[0] = pessoaFisica.getIden();
+                coluna[1] = pessoaFisica.getNome();
+                coluna[2] = pessoaFisica.getRg();
+                coluna[3] = pessoaFisica.getCpf();
+                coluna[4] = pessoaFisica.getCliente().getEmail();
+                coluna[5] = pessoaFisica.getCliente().getTelefone();
+                coluna[6] = pessoaFisica.getCliente().getEnderecos().getLogradouro();
+                coluna[7] = pessoaFisica.getCliente().getEnderecos().getCep();
+                coluna[8] = pessoaFisica.getCliente().getEnderecos().getCidade();
+                coluna[9] = pessoaFisica.getCliente().getEnderecos().getCidade().getUf();
+
+                tablePessoasFisicas.addRow(coluna);
+            }
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
      public void preencherComboboxCidades() throws Exception{
@@ -399,7 +431,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOME", "RG", "CPF", "E-MAIL", "TELEFONE", "LOGRADOURO", "BAIRRO", "CIDADE", "UF"
+                "ID", "NOME", "RG", "CPF", "E-MAIL", "TELEFONE", "LOGRADOURO", "CEP", "CIDADE", "UF"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -536,6 +568,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
            
            JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome()+" cadastrado com sucesso no sistema!");
            limparCampos();
+           preencherGridPessoaFisica();
             }catch(Exception error){
                 JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
            }

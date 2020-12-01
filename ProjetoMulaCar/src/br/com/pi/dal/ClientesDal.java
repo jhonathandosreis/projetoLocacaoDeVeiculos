@@ -34,8 +34,6 @@ public class ClientesDal {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     private Connection conexao;
-    private ClientesBll clienteBll;
-    private Clientes cliente;
     private EnderecosBll enderecoBll = new EnderecosBll();
     private Enderecos endereco = null;
 
@@ -76,7 +74,7 @@ public class ClientesDal {
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
-
+                Clientes cliente = new Clientes();
                 int endereco_id = rs.getInt("cli_end_iden");
                 endereco = enderecoBll.getConsultaPorId(endereco_id);
                 cliente = new Clientes();
@@ -92,14 +90,15 @@ public class ClientesDal {
     }
 
     public Clientes getClientesById(int cli_iden) throws Exception {
-        
+       
+        Clientes cliente = new Clientes();
         String sql = "SELECT * FROM clientes WHERE cli_iden=?";
         PreparedStatement preparedStatement1 = conexao.prepareStatement(sql);
         preparedStatement1.setInt(1, cli_iden);
         ResultSet rs = preparedStatement1.executeQuery();
         
             while (rs.next()) {
-
+               
                 int endereco_id = rs.getInt("cli_end_iden");
                 endereco = enderecoBll.getConsultaPorId(endereco_id);
                 cliente = new Clientes();
@@ -114,7 +113,7 @@ public class ClientesDal {
     }
     
     public Clientes getClientesByTelefone(double cli_telefone) throws Exception {
-        
+        Clientes cliente = new Clientes();
         String sql = "SELECT * FROM clientes WHERE cli_telefone=?";
         PreparedStatement preparedStatement1 = conexao.prepareStatement(sql);
         preparedStatement1.setDouble(1, cli_telefone);

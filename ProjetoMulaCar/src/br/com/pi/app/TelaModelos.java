@@ -22,6 +22,7 @@ import br.com.pi.model.Categorias;
 import br.com.pi.model.Marcas;
 import br.com.pi.model.Modelos;
 import br.com.pi.model.TiposDeVeiculos;
+import br.com.pi.util.Valida;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -110,6 +111,7 @@ public class TelaModelos extends javax.swing.JFrame {
         ArrayList<Categorias> lista = categoriasBll.getAllCategorias();
         jComboBoxCategoria.removeAllItems();
         jComboBoxCategoria.addItem("<SELECIONE>");
+        
 
         for (Categorias categorias : lista) {
             jComboBoxCategoria.addItem(categorias.getNome());
@@ -130,7 +132,6 @@ public class TelaModelos extends javax.swing.JFrame {
         for (TiposDeVeiculos tipos : lista2) {
             jComboBoxTipoDeVeiculos.addItem(tipos.getNome());
         }
-
     }
 
     public void limparCampos() {
@@ -139,6 +140,12 @@ public class TelaModelos extends javax.swing.JFrame {
         jComboBoxCategoria.removeAll();
         jComboBoxMarca.removeAll();
         jComboBoxTipoDeVeiculos.removeAll();
+    }
+    
+    public void ValidaModelos() {
+        Valida.campoVazio(jTextFieldNome.getText(), "Digite o nome do modelo!");
+        Valida.notNumber(jTextFieldNome.getText(), "");
+        Valida.notSpecialCharacters(jTextFieldNome.getText(), "");
     }
 
     //--- FIM METODOS --------------------------------------------------------------------------------->
@@ -343,6 +350,19 @@ public class TelaModelos extends javax.swing.JFrame {
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         try {
+            if (jComboBoxMarca.getSelectedItem() == "<SELECIONE>") {
+                throw new Exception ("Favor selecione uma marca!");
+            }
+            
+            if (jComboBoxCategoria.getSelectedItem() == "<SELECIONE>") {
+                throw new Exception ("Favor selecione uma categoria!");
+            }
+                      
+            if (jComboBoxTipoDeVeiculos.getSelectedItem() == "<SELECIONE>") {
+                throw new Exception ("Favor selecione um tipo de veículo!");
+            }
+            
+            ValidaModelos();
             String marcas = jComboBoxMarca.getSelectedItem().toString();
             marca = marcasBll.getMarcasByNome(marcas);
             modelo.setMarcas(marca);
@@ -360,7 +380,8 @@ public class TelaModelos extends javax.swing.JFrame {
 
             preencherGridModelos();
             limparCampos();
-
+            
+            JOptionPane.showMessageDialog(null, "Modelo cadastrado com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -368,6 +389,22 @@ public class TelaModelos extends javax.swing.JFrame {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         try {
+            if (jTableModelo.getSelectedRow() == -1) {
+                throw new Exception("Selecione um modelo a ser alterado!");
+            }
+            
+            if (jComboBoxMarca.getSelectedItem() == "<SELECIONE>") {
+                throw new Exception ("Favor selecione uma marca!");
+            }
+            
+            if (jComboBoxCategoria.getSelectedItem() == "<SELECIONE>") {
+                throw new Exception ("Favor selecione uma categoria!");
+            }
+                      
+            if (jComboBoxTipoDeVeiculos.getSelectedItem() == "<SELECIONE>") {
+                throw new Exception ("Favor selecione um tipo de veículo!");
+            }
+            
             String marcas = jComboBoxMarca.getSelectedItem().toString();
             marca = marcasBll.getMarcasByNome(marcas);
             modelo.setMarcas(marca);
@@ -386,7 +423,8 @@ public class TelaModelos extends javax.swing.JFrame {
 
             preencherGridModelos();
             limparCampos();
-
+            
+            JOptionPane.showMessageDialog(null, "Modelo alterado com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -394,11 +432,16 @@ public class TelaModelos extends javax.swing.JFrame {
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
         try {
+            if (jTableModelo.getSelectedRow() == -1) {
+                throw new Exception("Selecione um modelo a ser removido!");
+            }
+            
             modelo.setIden(Integer.parseInt(jTextFieldIdModelo.getText()));
             modelosBll.deleteModelos(modelo);
-
             preencherGridModelos();
             limparCampos();
+            
+            JOptionPane.showMessageDialog(null, "Modelo removido com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }

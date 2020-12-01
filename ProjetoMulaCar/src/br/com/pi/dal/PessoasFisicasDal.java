@@ -31,8 +31,6 @@ import java.util.ArrayList;
 public class PessoasFisicasDal {
 //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     private Connection conexao;
-    private PessoasFisicasBll pessoaFisicaBll;
-    private PessoasFisicas pessoaFisica;
     private Clientes cliente = null;
     private ClientesBll clienteBll = new ClientesBll();    
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
@@ -124,6 +122,7 @@ public class PessoasFisicasDal {
          ResultSet rs = statement.executeQuery(sql);
          
            if(rs.next()){
+                PessoasFisicas pessoaFisica = new PessoasFisicas();
                 int cli_id = rs.getInt("pfi_cli_iden");
                 cliente = clienteBll.getClienteById(cli_id);
                 pessoaFisica.setIden(rs.getInt("pfi_iden"));
