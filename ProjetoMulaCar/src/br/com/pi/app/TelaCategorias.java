@@ -265,7 +265,8 @@ public class TelaCategorias extends javax.swing.JFrame {
             categoriasBll.addCategorias(categoria);
             preencherGridCategorias();
             limparCampos();
-            JOptionPane.showMessageDialog(null, "Categoria inclusca com sucesso!");
+            
+            JOptionPane.showMessageDialog(null, "Categoria cadastrada com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -277,6 +278,7 @@ public class TelaCategorias extends javax.swing.JFrame {
             if (jTableCategoria.getSelectedRow() == -1) {
                 throw new Exception("Selecione uma categoria a ser alterada!");
             }
+            
             validacaoCategorias();
             categoria.setNome(jTextFieldNomeCategoria.getText());
             categoria.setValorDiarioLocacao(Float.parseFloat(jTextFieldValorDiarioLocacao.getText()));
@@ -284,6 +286,8 @@ public class TelaCategorias extends javax.swing.JFrame {
             categoriasBll.updateCategorias(categoria);
             preencherGridCategorias();
             limparCampos();
+            
+            JOptionPane.showMessageDialog(null, "Categoria alterada com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -293,12 +297,15 @@ public class TelaCategorias extends javax.swing.JFrame {
 
         try {
             if (jTableCategoria.getSelectedRow() == -1) {
-                throw new Exception("Selecione uma Categoria a ser removida!");
+                throw new Exception("Selecione uma categoria a ser removida!");
             }
+            
             categoria.setIden(Integer.parseInt(jTextFieldIDCategoria.getText()));
             categoriasBll.deleteCategorias(categoria);
             preencherGridCategorias();
             limparCampos();
+            
+            JOptionPane.showMessageDialog(null, "Categoria removida com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }

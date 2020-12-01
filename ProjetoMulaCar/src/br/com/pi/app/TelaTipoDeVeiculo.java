@@ -250,6 +250,8 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
             tiposVeiculosBll.addTiposDeVeiculos(tipoDeVeiculo);
             preencherGridTiposDeVeiculos();
             limparCampos();
+            
+            JOptionPane.showMessageDialog(null, "Tipo de veículo cadastrado com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -268,6 +270,8 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
             tiposVeiculosBll.updateTiposDeVeiculos(tipoDeVeiculo);
             preencherGridTiposDeVeiculos();
             limparCampos();
+            
+            JOptionPane.showMessageDialog(null, "Tipo de veículo cadastrado com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -285,6 +289,8 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
             tiposVeiculosBll.deleteTiposDeVeiculos(tipoDeVeiculo);
             preencherGridTiposDeVeiculos();
             limparCampos();
+            
+            JOptionPane.showMessageDialog(null, "Tipo de veículo cadastrado com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
