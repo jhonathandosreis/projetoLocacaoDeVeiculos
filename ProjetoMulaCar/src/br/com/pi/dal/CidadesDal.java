@@ -5,7 +5,9 @@
  */
 package br.com.pi.dal;
 
+import br.com.pi.bll.UfsBll;
 import br.com.pi.model.Cidades;
+import br.com.pi.model.Ufs;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +24,8 @@ public class CidadesDal {
     //
 
     private Connection conexao;
-
+    private Ufs uf = null;
+    private UfsBll ufBll = new UfsBll();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
@@ -157,12 +160,11 @@ public class CidadesDal {
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-
+                int idUF = rs.getInt("cid_ufs_iden");
+                uf = ufBll.getUfById(idUF);
                 cidade.setIden(rs.getInt("cid_iden"));
                 cidade.setNome(rs.getString("cid_nome"));
-
-                UfsDal uf = new UfsDal();
-                cidade.setUf(uf.getUfsById(rs.getInt("cid_ufs_iden")));
+                cidade.setUf(uf);
 
             }
         } catch (Exception error) {

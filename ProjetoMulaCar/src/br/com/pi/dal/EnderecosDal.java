@@ -6,6 +6,8 @@
 package br.com.pi.dal;
 
 
+import br.com.pi.bll.CidadesBll;
+import br.com.pi.model.Cidades;
 import br.com.pi.model.Enderecos;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
@@ -23,7 +25,8 @@ public class EnderecosDal {
     //
 
     private Connection conexao;
-
+    private Cidades cidade = null;
+    private CidadesBll cidadeBll = new CidadesBll();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
@@ -122,8 +125,8 @@ public class EnderecosDal {
                 endereco.setCep(rs.getDouble("end_cep"));
                 endereco.setComplemento(rs.getString("end_complemento"));
 
-                CidadesDal cidade = new CidadesDal();
-                endereco.setCidade(cidade.getCidadesById(rs.getInt("end_cid_iden")));
+                cidade = cidadeBll.getCidadesById(rs.getInt("end_cid_iden"));
+                endereco.setCidade(cidade);
 
                 lista.add(endereco);
             }
@@ -153,8 +156,8 @@ public class EnderecosDal {
                 endereco.setCep(rs.getDouble("end_cep"));
                 endereco.setComplemento(rs.getString("end_complemento"));
 
-                CidadesDal cidade = new CidadesDal();
-                endereco.setCidade(cidade.getCidadesById(rs.getInt("end_cid_iden")));
+                cidade = cidadeBll.getCidadesById(rs.getInt("end_cid_iden"));
+                endereco.setCidade(cidade);
 
             }
         } catch (Exception error) {
@@ -182,10 +185,8 @@ public class EnderecosDal {
                 endereco.setLogradouro(rs.getString("end_logradouro"));
                 endereco.setCep(rs.getDouble("end_cep"));
                 endereco.setComplemento(rs.getString("end_complemento"));
-
-                CidadesDal cidade = new CidadesDal();
-                endereco.setCidade(cidade.getCidadesById(rs.getInt("end_cid_iden")));
-
+                cidade = cidadeBll.getCidadesById(rs.getInt("end_cid_iden"));
+                endereco.setCidade(cidade);
             }
         } catch (Exception error) {
             throw error;

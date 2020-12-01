@@ -64,6 +64,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
            ufbll = new UfsBll();
            
            preencherComboboxCidades();
+           preencherGridMotorista();
            
         }catch(Exception error){
            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -98,6 +99,28 @@ public class TelaMotoristas extends javax.swing.JFrame {
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+      public void preencherFormularioMotoristas() throws Exception {
+       
+        int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
+        motorista = motoristabll.getMotoristaBy(id);
+
+        jTextFieldNomeMotorista.setText(motorista.getCliente().getNome());
+        jTextField_rgMotorista.setText(""+motorista.getRg());
+        jTextField_CpfMotorista.setText(""+motorista.getCpf());
+        jTextFieldCNHMotorista.setText(""+motorista.getNumeroCnh());
+        jFormattedTextField_Data_validade.setText(""+motorista.getDataValidade());
+        jTextField_CategoriaCNH.setText(motorista.getCategoriaCnh());
+        jTextFieldCepMotorista.setText(""+motorista.getCliente().getEnderecos().getCep());
+        jTextFieldLogradouroMotorista.setText(motorista.getCliente().getEnderecos().getLogradouro());
+        jTextFieldNumeroMotorista.setText(""+motorista.getCliente().getEnderecos().getNumero());
+        jTextFieldComplementoMotorista.setText(motorista.getCliente().getEnderecos().getComplemento());
+        jTextFieldRua.setText(motorista.getCliente().getEnderecos().getRua());
+        jComboBox_Cidade.setSelectedItem(motorista.getCliente().getEnderecos().getCidade());
+        jTextFieldTelefoneMotorista.setText(""+motorista.getCliente().getTelefone());
+        jTextFieldEmailMotorista.setText(""+motorista.getCliente().getTelefone());
+        
     }
     
     public void preencherComboboxCidades() throws Exception{
@@ -655,6 +678,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
            
            JOptionPane.showMessageDialog(null, motorista.getCliente().getNome()+" cadastrado com sucesso no sistema!");
            limparCampos();
+           preencherGridMotorista();
      
       }catch(Exception error){
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas "+error.getMessage());
