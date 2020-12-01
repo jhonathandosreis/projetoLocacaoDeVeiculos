@@ -30,11 +30,22 @@ public class CidadesBll {
     //--- CREATE -------------------------------------------------------------------------------------->
     //
     public void addCidades(Cidades cidade) throws Exception {
-        
+
         try {
+
+            if (cidade.getNome().length() < 2) {
+                throw new Exception("Nome da Cidade inválida\nNo mínimo 2 caracteres!");
+            }
+
+            if (cidade.getNome().length() > 50) {
+                throw new Exception("Nome da Cidade inválida\nMáximo de caracteres excedido!");
+            }
+
             cidadeDal.addCidades(cidade);
         } catch (Exception error) {
-            throw error;
+            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
+                throw new Exception("Existe uma Cidade com o mesmo nome cadastrada no banco de dados!");
+            }
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -43,11 +54,22 @@ public class CidadesBll {
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
     public void updateCidades(Cidades cidade) throws Exception {
-        
+
         try {
+
+            if (cidade.getNome().length() < 2) {
+                throw new Exception("Nome da Cidade inválida\nNo mínimo 2 caracteres!");
+            }
+
+            if (cidade.getNome().length() > 50) {
+                throw new Exception("Nome da Cidade inválida\nMáximo de caracteres excedido!");
+            }
+
             cidadeDal.updateCidades(cidade);
         } catch (Exception error) {
-            throw error;
+            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
+                throw new Exception("Existe uma Cidade com o mesmo nome cadastrada no banco de dados!");
+            }
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -56,7 +78,7 @@ public class CidadesBll {
     //--- DELETE -------------------------------------------------------------------------------------->
     //
     public void deleteCidades(Cidades cidade) throws Exception {
-        
+
         try {
             cidadeDal.deleteCidades(cidade.getIden());
         } catch (Exception error) {
@@ -69,23 +91,23 @@ public class CidadesBll {
     //--- READ ---------------------------------------------------------------------------------------->
     //
     public ArrayList<Cidades> getAllCidades() throws Exception {
-        
+
         try {
             return cidadeDal.getAllCidades();
         } catch (Exception error) {
             throw error;
         }
     }
-    
+
     public Cidades getCidadesById(int cid_iden) throws Exception {
-        
+
         try {
             return cidadeDal.getCidadesById(cid_iden);
         } catch (Exception error) {
             throw error;
         }
     }
-    
+
     public Cidades getCidadeNome(String nome) throws Exception {
         try {
             return cidadeDal.getCidadesByNome(nome);

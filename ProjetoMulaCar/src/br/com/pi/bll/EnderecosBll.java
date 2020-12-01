@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.pi.bll;
 
 import br.com.pi.dal.EnderecosDal;
 import br.com.pi.model.Enderecos;
 import java.util.ArrayList;
-import javax.management.RuntimeErrorException;
 
 /**
  *
@@ -18,16 +16,14 @@ import javax.management.RuntimeErrorException;
 public class EnderecosBll {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
-    
+
     private EnderecosDal endDal;
 
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
-
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-
-   public EnderecosBll() throws Exception {
+    public EnderecosBll() throws Exception {
         endDal = new EnderecosDal();
     }
 
@@ -37,12 +33,28 @@ public class EnderecosBll {
 
         try {
 
+            if (endereco.getRua().length() < 2) {
+                throw new Exception("Rua inválido\nNo mínimo 2 caracteres!");
+            }
+            if (endereco.getComplemento().length() < 10) {
+                throw new Exception("Complemento inválido\nNo mínimo 10 caracteres!");
+            }
+            if (endereco.getLogradouro().length() < 2) {
+                throw new Exception("Logradouro inválido\nNo mínimo 2 caracteres!");
+            }
+            if (endereco.getNumero() < 0) {
+                throw new Exception("Número do Endereço não pode ser menor do que 0 !");
+            }
+
+            if (endereco.getCep() == 8) {
+                throw new Exception("CEP é permitido apenas 8 caracteres!");
+            }
 
             endDal.addEnderecos(endereco);
 
         } catch (Exception error) {
-            if(error.getMessage().contains("cep_repetido")){
-            throw new RuntimeException("CEP "+endereco.getCep()+" já cadastrado em nosso sistema");
+            if (error.getMessage().contains("cep_repetido")) {
+                throw new RuntimeException("CEP " + endereco.getCep() + " já cadastrado em nosso sistema");
             }
             throw error;
         }
@@ -72,10 +84,29 @@ public class EnderecosBll {
 
         try {
 
+            if (endereco.getRua().length() < 2) {
+                throw new Exception("Rua inválido\nNo mínimo 2 caracteres!");
+            }
+            if (endereco.getComplemento().length() < 10) {
+                throw new Exception("Complemento inválido\nNo mínimo 10 caracteres!");
+            }
+            if (endereco.getLogradouro().length() < 2) {
+                throw new Exception("Logradouro inválido\nNo mínimo 2 caracteres!");
+            }
+            if (endereco.getNumero() < 0) {
+                throw new Exception("Número do Endereço não pode ser menor do que 0 !");
+            }
+
+            if (endereco.getCep() == 8) {
+                throw new Exception("CEP é permitido apenas 8 caracteres!");
+            }
 
             endDal.updateEnderecos(endereco);
 
         } catch (Exception error) {
+            if (error.getMessage().contains("cep_repetido")) {
+                throw new RuntimeException("CEP " + endereco.getCep() + " já cadastrado em nosso sistema");
+            }
             throw error;
         }
     }
@@ -101,8 +132,8 @@ public class EnderecosBll {
             throw error;
         }
     }
-    
-     public Enderecos getConsultaPorCEP(double cep) throws Exception {
+
+    public Enderecos getConsultaPorCEP(double cep) throws Exception {
         try {
             return endDal.getEnderecosByCEP(cep);
         } catch (Exception error) {
