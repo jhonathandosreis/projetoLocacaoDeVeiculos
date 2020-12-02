@@ -31,10 +31,12 @@ public class CidadesBll {
     //
     public void addCidades(Cidades cidade) throws Exception {
 
-//         if (cidade.getNome().replaceAll(cidade.getUf())   ) {
-//            throw new Exception("Existe uma Cidade com o mesmo nome cadastrada");
-//        }
         
+        
+//         if (cidade.getNome().equals(cidade.getUf())     ) {
+//            throw new Exception("Existe uma Cidade com o mesmo UF cadastrado");
+//        }
+
         if (cidade.getNome().length() < 2) {
             throw new Exception("Nome da Cidade inválida\nNo mínimo 2 caracteres!");
         }
