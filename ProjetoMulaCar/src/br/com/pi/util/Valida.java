@@ -123,10 +123,12 @@ public class Valida {
 
         String saida = type + "\nPlaca invalida.";
         if (message.length() > 0) {
-            if (message.length() < 8) {
+            if (message.length() < 7) {
                 throw new RuntimeException(saida);
+
             } else {
-                if (!message.matches("[A-Z]{3}[-][0-9]{4}")) {
+
+                if (!message.matches("[A-Z]{3}-\\d{4}")) {
                     throw new RuntimeException(saida);
                 }
             }

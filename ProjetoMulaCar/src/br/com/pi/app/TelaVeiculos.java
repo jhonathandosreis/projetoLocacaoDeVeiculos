@@ -177,16 +177,48 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jTextFieldCategoria.setText("");
         jTextAreaObservacoes.setText("");
     }
-    
-    public void ValidaVeículo() {
-        if (jRadioButtonMercosul.isSelected()) {
-            Valida.validarPlacaMercosul(jTextFieldPlaca.getText(), "Aceitamos somente modelo Mercusol");
-        }
+
+    public void ValidaVeículo() throws Exception {
         
         if (jRadioButtonMercosul.isSelected()) {
-            Valida.validaPlacaNacional(jTextFieldPlaca.getText(), "Aceitamos somente modelo Nacional");
+            Valida.validarPlacaMercosul(jTextFieldPlaca.getText(), "Ex: Mercosul BRA2E19");
         }
+
+        if (jRadioButtonNacional.isSelected()) {
+            Valida.validaPlacaNacional(jTextFieldPlaca.getText(), "Ex: Nacional PHL-4508");
+        }
+
+        if (jComboBoxStatus.getSelectedItem() == "<SELECIONE>") {
+            throw new Exception("Selecione o status do veículo!");
+        }
+
+        Valida.campoVazio(jTextFieldPlaca.getText(), "Selecione o modelo da placa\nLogo em seguida digite a placa do veículo!");
+        Valida.campoVazio(jTextFieldRenavam.getText(), "Digite o renavam do veículo!");
+        Valida.campoVazio(jTextFieldAno.getText(), "Ditie o ano do veículo!");
+        Valida.campoVazio(jTextFieldKM.getText(), "Digite a quilometragem do veículo!");
+        Valida.campoVazio(jTextFieldValorDeCompra.getText(), "Digite o valor da compra do veículo!");
+        Valida.campoVazio(jTextFieldQuantidadePassageiros.getText(), "Digite a quantidade de passageiros!");
+        Valida.campoVazio(jTextFieldTipoDeCombustivel.getText(), "Digite o tipo do combustível!");
+        Valida.campoVazio(jTextAreaObservacoes.getText(), "Digite os detalhes do veículo!");
+
+        Valida.notSpecialCharacters(jTextFieldRenavam.getText(), "Renavam do veículo não possui caracteres especiais");
+        Valida.notSpecialCharacters(jTextFieldAno.getText(), "Ano do veículo não possui caracteres especiais");
+        Valida.notSpecialCharacters(jTextFieldKM.getText(), "Quilometragem do veículo não possui caracteres especiais");
+        Valida.notSpecialCharacters(jTextFieldValorDeCompra.getText(), "Valor de compra do veículo não possui caracteres especiais");
+        Valida.notSpecialCharacters(jTextFieldQuantidadePassageiros.getText(), "Quantidade de passageiros do veículo não possui caracteres especiais");
+        Valida.notSpecialCharacters(jTextFieldTipoDeCombustivel.getText(), "Tipo do combustivel do veículo não possui caracteres especiais");
+        Valida.notSpecialCharacters(jTextAreaObservacoes.getText(), "O campo observações do veículo não possui caracteres especiais");
+
+        Valida.numberInteger(jTextFieldRenavam.getText(), "");
+        Valida.numberInteger(jTextFieldAno.getText(), "");
+        Valida.numberInteger(jTextFieldKM.getText(), "");
+        Valida.numberInteger(jTextFieldValorDeCompra.getText(), "");
+        Valida.numberInteger(jTextFieldQuantidadePassageiros.getText(), "");
+
+        Valida.notNumber(jTextFieldTipoDeCombustivel.getText(), "");
+        Valida.notNumber(jTextAreaObservacoes.getText(), "");
     }
+
     //--- FIM METODOS --------------------------------------------------------------------------------->
     //
     @SuppressWarnings("unchecked")
@@ -278,11 +310,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jTextFieldCategoria.setEditable(false);
 
         jTextFieldMarca.setEditable(false);
-        jTextFieldMarca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldMarcaActionPerformed(evt);
-            }
-        });
 
         jComboBoxModelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -599,13 +626,12 @@ public class TelaVeiculos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-
         try {
             ValidaVeículo();
             String nome = jComboBoxModelo.getSelectedItem().toString();
             modelo = modelosBll.getModeloByNome(nome);
             veiculo.setModelo(modelo);
-            
+
             veiculo.setPlaca(jTextFieldPlaca.getText());
             veiculo.setRenavam(jTextFieldRenavam.getText());
             veiculo.setAnoFabricacao(Integer.parseInt(jTextFieldAno.getText()));
@@ -618,14 +644,20 @@ public class TelaVeiculos extends javax.swing.JFrame {
             veiculosBll.addVeiculos(veiculo);
             preencherGridVeiculos();
             limparCampos();
+
+            JOptionPane.showMessageDialog(null, "Veículo cadastrado com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-
         try {
+            if (jTableVeiculo.getSelectedRow() == -1) {
+                throw new Exception("Selecione um veículo a ser alterado!");
+            }
+
+            ValidaVeículo();
             String nome = jComboBoxModelo.getSelectedItem().toString();
             modelo = modelosBll.getModeloByNome(nome);
             veiculo.setModelo(modelo);
@@ -643,25 +675,31 @@ public class TelaVeiculos extends javax.swing.JFrame {
             veiculosBll.updateVeiculos(veiculo);
             preencherGridVeiculos();
             limparCampos();
+
+            JOptionPane.showMessageDialog(null, "Veículo alterado com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
-
         try {
+            if (jTableVeiculo.getSelectedRow() == -1) {
+                throw new Exception("Selecione um veículo a ser removido!");
+            }
+
             veiculo.setIden(Integer.parseInt(jTextFieldIDVeiculo.getText()));
             veiculosBll.deleteVeiculos(veiculo);
             preencherGridVeiculos();
             limparCampos();
+
+            JOptionPane.showMessageDialog(null, "Veículo removido com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     private void jTableVeiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVeiculoMouseClicked
-
         try {
             preencherFormularioVeiculo();
         } catch (Exception error) {
@@ -674,7 +712,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jComboBoxModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxModeloActionPerformed
-
         try {
             modelo = modelosBll.getModeloByNome(jComboBoxModelo.getSelectedItem().toString());
             jTextFieldMarca.setText(modelo.getMarcas().getNome());
@@ -685,17 +722,13 @@ public class TelaVeiculos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBoxModeloActionPerformed
 
-    private void jTextFieldMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMarcaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldMarcaActionPerformed
+    private void jRadioButtonMercosulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMercosulActionPerformed
+        jTextFieldPlaca.setEnabled(true);
+    }//GEN-LAST:event_jRadioButtonMercosulActionPerformed
 
     private void jRadioButtonNacionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNacionalActionPerformed
-        jTextFieldPlaca.setEnabled(rootPaneCheckingEnabled);
+        jTextFieldPlaca.setEnabled(true);
     }//GEN-LAST:event_jRadioButtonNacionalActionPerformed
-
-    private void jRadioButtonMercosulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMercosulActionPerformed
-       jTextFieldPlaca.setEnabled(true);
-    }//GEN-LAST:event_jRadioButtonMercosulActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

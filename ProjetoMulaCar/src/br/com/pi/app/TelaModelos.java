@@ -356,6 +356,7 @@ public class TelaModelos extends javax.swing.JFrame {
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         try {
+            
             if (jComboBoxMarca.getSelectedItem() == "<SELECIONE>") {
                 throw new Exception ("Favor selecione uma marca!");
             }
