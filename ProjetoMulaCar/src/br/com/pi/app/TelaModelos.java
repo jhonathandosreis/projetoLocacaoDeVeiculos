@@ -97,6 +97,9 @@ public class TelaModelos extends javax.swing.JFrame {
 
         int id = Integer.parseInt(jTableModelo.getValueAt(jTableModelo.getSelectedRow(), 0).toString());
         String nome = jTableModelo.getValueAt(jTableModelo.getSelectedRow(), 1).toString();
+        String marcacombobox = jTableModelo.getValueAt(jTableModelo.getSelectedRow(), 2).toString();
+        String categoriacombobox = jTableModelo.getValueAt(jTableModelo.getSelectedRow(), 3).toString();
+        String tiposDeVeiculoscombobox = jTableModelo.getValueAt(jTableModelo.getSelectedRow(), 4).toString();
 
         jComboBoxMarca.setSelectedItem(marcasBll.getMarcasById(id).getNome());
         jComboBoxCategoria.setSelectedItem(categoriasBll.getCategoriasById(id).getNome());
@@ -104,6 +107,9 @@ public class TelaModelos extends javax.swing.JFrame {
 
         jTextFieldIdModelo.setText(id + "");
         jTextFieldNome.setText(nome);
+        jComboBoxMarca.setSelectedItem(marcacombobox);
+        jComboBoxCategoria.setSelectedItem(categoriacombobox);
+        jComboBoxTipoDeVeiculos.setSelectedItem(tiposDeVeiculoscombobox);
     }
 
     public void preencherComboboxModelos() throws Exception {
