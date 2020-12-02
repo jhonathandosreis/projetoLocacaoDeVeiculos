@@ -46,10 +46,8 @@ public class PessoasFisicasDal {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addPessoasFisicas (PessoasFisicas pessoaFisica) throws Exception {
        
-        try{
- 
         String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_cli_iden) values (?, ?, ?)";        
-      
+        try{
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
         preparedStatement2.setInt(1, pessoaFisica.getRg());
         preparedStatement2.setDouble(2, pessoaFisica.getCpf());
@@ -66,13 +64,13 @@ public class PessoasFisicasDal {
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updatePessoasFisicas (PessoasFisicas pessoaFisica) throws Exception {
         
+        String sqlPessoaFisica = "UPDATE pessoas_fisicas SET pfi_rg=?, pfi_cpf=?, pfi_cli_iden=? WHERE pfi_iden=?";        
         try{
-       
-        String sqlPessoaFisica = "UPDATE pessoas_fisicas SET pfi_rg=?, pfi_cpf=?, pfi_cli_iden=?";        
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
         preparedStatement2.setInt(1, pessoaFisica.getRg());
         preparedStatement2.setDouble(2, pessoaFisica.getCpf());
         preparedStatement2.setInt(3, pessoaFisica.getCliente().getIden());
+        preparedStatement2.setInt(4, pessoaFisica.getIden());
         preparedStatement2.executeUpdate();
         
         } catch (Exception error) {
@@ -106,9 +104,9 @@ public class PessoasFisicasDal {
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<PessoasFisicas> getAllPessoasFisicas() throws Exception {
         
+         String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_numero_cnh is null";
         try{
          ArrayList<PessoasFisicas> lista = new ArrayList<PessoasFisicas>();
-         String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_numero_cnh is null";
          Statement statement = conexao.createStatement();
          ResultSet rs = statement.executeQuery(sql);
          
@@ -131,9 +129,9 @@ public class PessoasFisicasDal {
 
     public PessoasFisicas getPessoasFisicasById(int pessoaFisica_iden) throws Exception {
         
+        String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_iden=?";
         try{
         PessoasFisicas pessoaFisica = new PessoasFisicas();
-        String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_iden=?";
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         preparedStatement.setInt(1, pessoaFisica_iden);
         

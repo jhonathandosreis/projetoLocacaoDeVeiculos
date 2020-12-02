@@ -16,7 +16,6 @@
 package br.com.pi.dal;
 
 import br.com.pi.bll.ClientesBll;
-import br.com.pi.bll.PessoasJuridicasBll;
 import br.com.pi.model.Clientes;
 import br.com.pi.model.PessoasJuridicas;
 import br.com.pi.util.Conexao;
@@ -71,12 +70,13 @@ public class PessoasJuridicasDal {
         try{
            
         
-            String sqlPessoaFisica = "UPDATE pessoas_juridicas SET pju_cnpj=?, pju_nome_fantasia=?, pju_razao_social=?, pju_cli_iden=?";        
+            String sqlPessoaFisica = "UPDATE pessoas_juridicas SET pju_cnpj=?, pju_nome_fantasia=?, pju_razao_social=?, pju_cli_iden=? WHERE pju_iden=?";        
             PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
             preparedStatement2.setDouble(1, pessoaJuridica.getCnpj());
             preparedStatement2.setString(2, pessoaJuridica.getNomeFantasia());
             preparedStatement2.setString(3, pessoaJuridica.getRazaoSocial());
             preparedStatement2.setInt(4, pessoaJuridica.getCliente().getIden());
+            preparedStatement2.setInt(5, pessoaJuridica.getIden());
             preparedStatement2.executeUpdate();
         
         } catch (Exception error) {

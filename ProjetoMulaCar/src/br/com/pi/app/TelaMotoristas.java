@@ -708,12 +708,15 @@ public class TelaMotoristas extends javax.swing.JFrame {
         if (jTableConsultarMotorista.getSelectedRow() == -1) {
                 throw new Exception("Selecione um motorista na tabela para ser alterado!");
             }
-          int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
-          motorista = motoristabll.getMotoristaBy(id);
-          SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-          Date data = formato.parse(jFormattedTextField_Data_validade.getText());
-           
+           int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
+           motorista = motoristabll.getMotoristaBy(id);
+           endereco = enderecoBll.getConsultaPorId(motorista.getCliente().getEnderecos().getIden());
+           cliente = clienteBll.getClienteById(motorista.getCliente().getIden());
            cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
+            
+           SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+           Date data = formato.parse(jFormattedTextField_Data_validade.getText());
+
            endereco.setCidade(cidade);
            endereco.setCep(Double.parseDouble(jTextFieldCepMotorista.getText()));
            endereco.setLogradouro(jTextFieldLogradouroMotorista.getText());
@@ -721,11 +724,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
            endereco.setNumero(Float.parseFloat(jTextFieldNumeroMotorista.getText()));
            endereco.setRua(jTextFieldRua.getText());
            enderecoBll.updateEndereco(endereco);
-           double cep = endereco.getCep();
-           endereco = enderecoBll.getConsultaPorCEP(cep);
-           
-          
-           cliente = clienteBll.getClienteById(motorista.getCliente().getIden());
+ 
            cliente.setEnderecos(endereco);
            cliente.setNome(jTextFieldNomeMotorista.getText());
            cliente.setTelefone(Double.parseDouble(jTextFieldTelefoneMotorista.getText()));

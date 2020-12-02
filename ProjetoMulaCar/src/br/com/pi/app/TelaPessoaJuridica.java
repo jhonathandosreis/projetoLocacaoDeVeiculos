@@ -609,7 +609,10 @@ try {
           
            int id = Integer.parseInt(jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 0).toString());
            pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(id);
+           endereco = enderecoBll.getConsultaPorId(pessoaJuridica.getCliente().getEnderecos().getIden());
+           cliente = clienteBll.getClienteById(pessoaJuridica.getCliente().getIden());
            cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
+           
            endereco.setCidade(cidade);
            endereco.setCep(Double.parseDouble(jTextFieldCepPessoaJuridica.getText()));
            endereco.setLogradouro(jTextFieldLogradouroPessoaJuridica.getText());
@@ -617,16 +620,13 @@ try {
            endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaJuridica.getText()));
            endereco.setRua(jTextFieldRuaPessoaJuridica.getText());
            enderecoBll.updateEndereco(endereco);
-           endereco = enderecoBll.getConsultaPorId(pessoaJuridica.getCliente().getEnderecos().getIden());
-           
-           cliente = clienteBll.getClienteById(pessoaJuridica.getCliente().getIden());
+
            cliente.setEnderecos(endereco);
            cliente.setNome(null);
            cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaJuridica.getText()));
            cliente.setEmail(jTextFieldEmailPessoaJuridica.getText());
            clienteBll.updateClientes(cliente);
 
-           
            pessoaJuridica.setCliente(cliente);
            pessoaJuridica.setCnpj(Double.parseDouble(jTextFieldCNPJPessoaJuridica.getText()));
            pessoaJuridica.setNomeFantasia(jTextFieldNomeFantasiaPessoaJuridica.getText());

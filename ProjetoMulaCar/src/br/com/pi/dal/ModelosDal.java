@@ -14,8 +14,14 @@
  */
 package br.com.pi.dal;
 
+import br.com.pi.bll.CategoriasBll;
+import br.com.pi.bll.MarcasBll;
+import br.com.pi.bll.TiposDeVeiculosBll;
+import br.com.pi.model.Categorias;
+import br.com.pi.model.Marcas;
 import java.sql.PreparedStatement;
 import br.com.pi.model.Modelos;
+import br.com.pi.model.TiposDeVeiculos;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,6 +37,12 @@ public class ModelosDal {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private Connection conexao;
+    private Marcas marca = null;
+    private MarcasBll marcaBll = new MarcasBll();
+    private Categorias categoria = null;
+    private CategoriasBll categoriaBll = new CategoriasBll();
+    private TiposDeVeiculos tiposDeVeiculos = null;
+    private TiposDeVeiculosBll tiposDeVeiculosBll = new TiposDeVeiculosBll();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -119,14 +131,14 @@ public class ModelosDal {
                 modelo.setNome(rs.getString("mod_nome"));
 
                 //Chave estrangeira
-                MarcasDal marcaDal = new MarcasDal();
-                modelo.setMarcas(marcaDal.getMarcasById(rs.getInt("mod_mar_iden")));
-
-                CategoriasDal categoriaDal = new CategoriasDal();
-                modelo.setCategoria(categoriaDal.getCategoriasById(rs.getInt("mod_cat_iden")));
+                marca = marcaBll.getMarcasById(rs.getInt("mod_mar_iden"));
+                modelo.setMarcas(marca);
                 
-                TiposDeVeiculosDal tiposDeVeiculosDal = new TiposDeVeiculosDal();
-                modelo.setTiposDeVeiculos(tiposDeVeiculosDal.getTiposDeVeiculosById(rs.getInt("mod_tve_iden")));
+                categoria = categoriaBll.getCategoriasById(rs.getInt("mod_cat_iden"));
+                modelo.setCategoria(categoria);
+                
+                tiposDeVeiculos = tiposDeVeiculosBll.getTiposDeVeiculosById(rs.getInt("mod_tve_iden"));
+                modelo.setTiposDeVeiculos(tiposDeVeiculos);
                 lista.add(modelo);
             }
         } catch (Exception error) {
@@ -151,14 +163,14 @@ public class ModelosDal {
                 modelo.setNome(rs.getString("mod_nome"));
 
                 //Chave estrangeira
-                MarcasDal marcaDal = new MarcasDal();
-                modelo.setMarcas(marcaDal.getMarcasById(rs.getInt("mod_mar_iden")));
-
-                CategoriasDal categoriaDal = new CategoriasDal();
-                modelo.setCategoria(categoriaDal.getCategoriasById(rs.getInt("mod_cat_iden")));
+                marca = marcaBll.getMarcasById(rs.getInt("mod_mar_iden"));
+                modelo.setMarcas(marca);
                 
-                TiposDeVeiculosDal tiposDeVeiculosDal = new TiposDeVeiculosDal();
-                modelo.setTiposDeVeiculos(tiposDeVeiculosDal.getTiposDeVeiculosById(rs.getInt("mod_tve_iden")));
+                categoria = categoriaBll.getCategoriasById(rs.getInt("mod_cat_iden"));
+                modelo.setCategoria(categoria);
+                
+                tiposDeVeiculos = tiposDeVeiculosBll.getTiposDeVeiculosById(rs.getInt("mod_tve_iden"));
+                modelo.setTiposDeVeiculos(tiposDeVeiculos);
             }
         } catch (Exception error) {
             throw error;

@@ -49,9 +49,8 @@ public class MotoristasDal {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addMotoristas (Motoristas motorista) throws Exception {
        
-        try{
-        
         String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_numero_cnh, pfi_categoria_cnh, pfi_data_de_validade, pfi_cli_iden) values (?, ?, ?, ?, ?, ?)";        
+        try{
         java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
         preparedStatement2.setInt(1, motorista.getRg());
@@ -72,9 +71,8 @@ public class MotoristasDal {
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateMotoristas (Motoristas motorista) throws Exception {
         
-        try{
-       
         String sqlPessoaFisica = "UPDATE pessoas_fisicas SET pfi_rg=?, pfi_cpf=?, pfi_numero_cnh=?, pfi_categoria_cnh=?, pfi_data_de_validade=?, pfi_cli_iden=? WHERE pfi_iden=?";        
+        try{
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
         java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
         preparedStatement2.setInt(1, motorista.getRg());
@@ -117,9 +115,9 @@ public class MotoristasDal {
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Motoristas> getAllMotoristas() throws Exception {
         
+         String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_numero_cnh IS NOT null";
         try{
          ArrayList<Motoristas> lista = new ArrayList<Motoristas>();
-         String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_numero_cnh IS NOT null";
          Statement statement = conexao.createStatement();
          ResultSet rs = statement.executeQuery(sql);
          
@@ -146,9 +144,9 @@ public class MotoristasDal {
 
     public Motoristas getMotoristasById(int mot_iden) throws Exception {
         
+        String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_iden=?";
         try{
         Motoristas motorista = new Motoristas();
-        String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_iden=?";
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         preparedStatement.setInt(1, mot_iden);
         
