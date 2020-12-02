@@ -16,7 +16,6 @@
 package br.com.pi.dal;
 
 import br.com.pi.bll.ClientesBll;
-import br.com.pi.bll.MotoristasBll;
 import br.com.pi.model.Clientes;
 import br.com.pi.model.Motoristas;
 import br.com.pi.util.Conexao;
@@ -34,8 +33,6 @@ public class MotoristasDal {
   
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     private Connection conexao;
-    private MotoristasBll motoristaBll;
-    private Motoristas motorista;
     private Clientes cliente = null;
     private ClientesBll clienteBll = new ClientesBll();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
@@ -53,23 +50,6 @@ public class MotoristasDal {
     public void addMotoristas (Motoristas motorista) throws Exception {
        
         try{
-//        String sqlCliente ="INSERT INTO clientes (cli_nome, cli_telefone, cli_email, cli_end_iden) values (?, ?, ?, ?)";
-//        PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente, Statement.RETURN_GENERATED_KEYS);
-//        
-//        preparedStatement1.setString(1, motorista.getNome());
-//        preparedStatement1.setDouble(2, motorista.getTelefone());
-//        preparedStatement1.setString(3, motorista.getEmail());
-//        preparedStatement1.setInt(4, motorista.getEnderecos().getIden());
-//        preparedStatement1.executeUpdate();
-//        
-//        try (ResultSet generatedKeys = preparedStatement1.getGeneratedKeys()) {
-//            if (generatedKeys.next()) {
-//                motorista.setCliente  (clienteBll.getClienteById((generatedKeys.getInt(1))) );
-//            }
-//            else {
-//                throw new Exception("(ERROR DAL) Erro ao criar motorista cliente!");
-//            }
-//        }
         
         String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_numero_cnh, pfi_categoria_cnh, pfi_data_de_validade, pfi_cli_iden) values (?, ?, ?, ?, ?, ?)";        
         java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
@@ -153,6 +133,7 @@ public class MotoristasDal {
          ResultSet rs = statement.executeQuery(sql);
          
            if(rs.next()){
+                Motoristas motorista = new Motoristas();
                 int cli_id = rs.getInt("pfi_cli_iden");
                 cliente = clienteBll.getClienteById(cli_id);
                 motorista.setIden(rs.getInt("pfi_iden"));
@@ -164,8 +145,7 @@ public class MotoristasDal {
                 motorista.setCliente(cliente);
                 lista.add(motorista);
            }
-           
-         
+
     return lista;
         } catch (Exception error) {
             throw  error;
@@ -176,8 +156,8 @@ public class MotoristasDal {
     public Motoristas getMotoristasById(int mot_iden) throws Exception {
         
         try{
-        motorista = new Motoristas();
-        String sql = "SELECT * FROM motoristas WHERE pfi_iden=?";
+        Motoristas motorista = new Motoristas();
+        String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_iden=?";
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         preparedStatement.setInt(1, mot_iden);
         

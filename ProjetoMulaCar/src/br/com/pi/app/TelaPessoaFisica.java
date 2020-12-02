@@ -71,28 +71,46 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             DefaultTableModel tablePessoasFisicas = (DefaultTableModel) jTableConsultaPessoaFisica.getModel();
             tablePessoasFisicas.setRowCount(0);
 
-            Object[] coluna = new Object[10];
+            Object[] coluna = new Object[8];
 
             ArrayList<PessoasFisicas> listaPessoasFisicas = pessoaFisicaBll.getAllPessoasFisicas();
 
             for (PessoasFisicas pessoaFisica : listaPessoasFisicas) {
 
                 coluna[0] = pessoaFisica.getIden();
-                coluna[1] = pessoaFisica.getNome();
+                coluna[1] = pessoaFisica.getCliente().getNome();
                 coluna[2] = pessoaFisica.getRg();
                 coluna[3] = pessoaFisica.getCpf();
                 coluna[4] = pessoaFisica.getCliente().getEmail();
                 coluna[5] = pessoaFisica.getCliente().getTelefone();
                 coluna[6] = pessoaFisica.getCliente().getEnderecos().getLogradouro();
                 coluna[7] = pessoaFisica.getCliente().getEnderecos().getCep();
-                coluna[8] = pessoaFisica.getCliente().getEnderecos().getCidade();
-                coluna[9] = pessoaFisica.getCliente().getEnderecos().getCidade().getUf();
-
+           
                 tablePessoasFisicas.addRow(coluna);
             }
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
+    }
+     
+     public void preencherFormularioPessoaJuridica() throws Exception {
+       
+        int id = Integer.parseInt(jTableConsultaPessoaFisica.getValueAt(jTableConsultaPessoaFisica.getSelectedRow(), 0).toString());
+        pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
+        
+        jTextFieldIdPessoaFisica.setText(""+pessoaFisica.getIden());
+        jTextFieldRGPessoaFisica.setText(""+pessoaFisica.getRg());
+        jTextFieldCPFPessoaFisica.setText(""+pessoaFisica.getCpf());
+        jTextFieldNomePessoaFisica.setText(pessoaFisica.getNome());
+        jTextFieldCepPessoaFisica.setText(""+pessoaFisica.getCliente().getEnderecos().getCep());
+        jTextFieldLogradouroPessoaFisica.setText(pessoaFisica.getCliente().getEnderecos().getLogradouro());
+        jTextFieldNumeroPessoaFisica.setText(""+pessoaFisica.getCliente().getEnderecos().getNumero());
+        jTextFieldComplementoPessoaFisica.setText(pessoaFisica.getCliente().getEnderecos().getComplemento());
+        jTextFieldRuaPessoaFisica.setText(pessoaFisica.getCliente().getEnderecos().getRua());
+        jComboBox_Cidades.setSelectedItem(pessoaFisica.getCliente().getEnderecos().getCidade());
+        jTextFieldTelefonePessoaFisica.setText(""+pessoaFisica.getCliente().getTelefone());
+        jTextFieldEmailPessoaFisica.setText(""+pessoaFisica.getCliente().getTelefone());
+        
     }
     
      public void preencherComboboxCidades() throws Exception{
@@ -160,7 +178,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         jTextFieldPesquisarPessoaFisica = new javax.swing.JTextField();
         jButtonConsultar = new javax.swing.JButton();
         jButtonLimparConsulta = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jTableConsultaPessoaFisica = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -431,30 +449,10 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOME", "RG", "CPF", "E-MAIL", "TELEFONE", "LOGRADOURO", "CEP", "CIDADE", "UF"
+                "ID", "NOME", "RG", "CPF", "EMAIL", "TELEFONE", "LOGRADOURO", "CEP"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTableConsultaPessoaFisica);
-        if (jTableConsultaPessoaFisica.getColumnModel().getColumnCount() > 0) {
-            jTableConsultaPessoaFisica.getColumnModel().getColumn(0).setPreferredWidth(40);
-            jTableConsultaPessoaFisica.getColumnModel().getColumn(1).setPreferredWidth(300);
-            jTableConsultaPessoaFisica.getColumnModel().getColumn(2).setPreferredWidth(100);
-            jTableConsultaPessoaFisica.getColumnModel().getColumn(3).setPreferredWidth(150);
-            jTableConsultaPessoaFisica.getColumnModel().getColumn(4).setPreferredWidth(300);
-            jTableConsultaPessoaFisica.getColumnModel().getColumn(5).setPreferredWidth(150);
-            jTableConsultaPessoaFisica.getColumnModel().getColumn(6).setPreferredWidth(250);
-            jTableConsultaPessoaFisica.getColumnModel().getColumn(7).setPreferredWidth(150);
-            jTableConsultaPessoaFisica.getColumnModel().getColumn(8).setPreferredWidth(150);
-            jTableConsultaPessoaFisica.getColumnModel().getColumn(9).setPreferredWidth(40);
-        }
+        ));
+        jScrollPane2.setViewportView(jTableConsultaPessoaFisica);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -462,13 +460,15 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextFieldPesquisarPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonConsultar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonLimparConsulta)
-                .addContainerGap(326, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 747, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jTextFieldPesquisarPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonConsultar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonLimparConsulta)))
+                .addContainerGap(352, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -478,9 +478,9 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                     .addComponent(jTextFieldPesquisarPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonConsultar)
                     .addComponent(jButtonLimparConsulta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -647,7 +647,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1PessoaFisica;
     private javax.swing.JTable jTableConsultaPessoaFisica;
     private javax.swing.JTextField jTextFieldCPFPessoaFisica;

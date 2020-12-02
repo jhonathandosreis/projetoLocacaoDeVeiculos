@@ -64,6 +64,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
            ufbll = new UfsBll();
            
            preencherComboboxCidades();
+           preencherGridMotorista();
            
         }catch(Exception error){
            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -78,26 +79,47 @@ public class TelaMotoristas extends javax.swing.JFrame {
             DefaultTableModel tableMotoristas = (DefaultTableModel) jTableConsultarMotorista.getModel();
             tableMotoristas.setRowCount(0);
 
-            Object[] coluna = new Object[8];
+            Object[] coluna = new Object[6];
 
             ArrayList<Motoristas> listaMotoristas = motoristabll.getAllMotoristas();
 
             for (Motoristas motorista : listaMotoristas) {
 
                 coluna[0] = motorista.getIden();
-                coluna[1] = motorista.getNome();
+                coluna[1] = motorista.getCliente().getNome();
                 coluna[2] = motorista.getNumeroCnh();
                 coluna[3] = motorista.getCliente().getTelefone();
                 coluna[4] = motorista.getCliente().getEnderecos().getLogradouro();
                 coluna[5] = motorista.getCliente().getEnderecos().getCep();
-                coluna[6] = motorista.getCliente().getEnderecos().getCidade();
-                coluna[7] = motorista.getCliente().getEnderecos().getCidade().getUf();
 
                 tableMotoristas.addRow(coluna);
             }
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+      public void preencherFormularioMotoristas() throws Exception {
+       
+        int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
+        motorista = motoristabll.getMotoristaBy(id);
+
+        jTextFieldIDMotorista.setText(""+motorista.getIden());
+        jTextFieldNomeMotorista.setText(motorista.getCliente().getNome());
+        jTextField_rgMotorista.setText(""+motorista.getRg());
+        jTextField_CpfMotorista.setText(""+motorista.getCpf());
+        jTextFieldCNHMotorista.setText(""+motorista.getNumeroCnh());
+        jFormattedTextField_Data_validade.setText(""+motorista.getDataValidade());
+        jTextField_CategoriaCNH.setText(motorista.getCategoriaCnh());
+        jTextFieldCepMotorista.setText(""+motorista.getCliente().getEnderecos().getCep());
+        jTextFieldLogradouroMotorista.setText(motorista.getCliente().getEnderecos().getLogradouro());
+        jTextFieldNumeroMotorista.setText(""+motorista.getCliente().getEnderecos().getNumero());
+        jTextFieldComplementoMotorista.setText(motorista.getCliente().getEnderecos().getComplemento());
+        jTextFieldRua.setText(motorista.getCliente().getEnderecos().getRua());
+        jComboBox_Cidade.setSelectedItem(motorista.getCliente().getEnderecos().getCidade());
+        jTextFieldTelefoneMotorista.setText(""+motorista.getCliente().getTelefone());
+        jTextFieldEmailMotorista.setText(""+motorista.getCliente().getTelefone());
+        
     }
     
     public void preencherComboboxCidades() throws Exception{
@@ -172,12 +194,12 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jTextFieldPesquisarMotorista = new javax.swing.JTextField();
         jButtonConsultarMotorista = new javax.swing.JButton();
         jButtonLimparConsulta = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableConsultarMotorista = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         jButtonSetaEsquerda1 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jButtonSetaDireita1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableConsultarMotorista = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("[MOTORISTAS]");
@@ -499,39 +521,26 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
         jButtonLimparConsulta.setText("LIMPAR");
 
-        jTableConsultarMotorista.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "NOME", "CNH", "TELEFONE", "LOGRADOURO", "CEP", "CIDADE", "UF"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTableConsultarMotorista);
-        if (jTableConsultarMotorista.getColumnModel().getColumnCount() > 0) {
-            jTableConsultarMotorista.getColumnModel().getColumn(0).setPreferredWidth(40);
-            jTableConsultarMotorista.getColumnModel().getColumn(1).setPreferredWidth(300);
-            jTableConsultarMotorista.getColumnModel().getColumn(2).setPreferredWidth(150);
-            jTableConsultarMotorista.getColumnModel().getColumn(3).setPreferredWidth(150);
-            jTableConsultarMotorista.getColumnModel().getColumn(4).setPreferredWidth(350);
-            jTableConsultarMotorista.getColumnModel().getColumn(5).setPreferredWidth(150);
-            jTableConsultarMotorista.getColumnModel().getColumn(6).setPreferredWidth(150);
-            jTableConsultarMotorista.getColumnModel().getColumn(7).setPreferredWidth(40);
-        }
-
         jLabel11.setText("CNH");
 
         jButtonSetaEsquerda1.setText("<<");
 
         jButtonSetaDireita1.setText(">>");
+
+        jTableConsultarMotorista.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
+            }
+        ));
+        jTableConsultarMotorista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableConsultarMotoristaMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableConsultarMotorista);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -539,12 +548,15 @@ public class TelaMotoristas extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextFieldPesquisarMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonConsultarMotorista)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonLimparConsulta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jTextFieldPesquisarMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonConsultarMotorista)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonLimparConsulta))
+                    .addComponent(jScrollPane2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jButtonSetaEsquerda1)
@@ -556,7 +568,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
                         .addGap(201, 201, 201)
                         .addComponent(jLabel11)))
                 .addGap(39, 39, 39))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -567,18 +578,17 @@ public class TelaMotoristas extends javax.swing.JFrame {
                     .addComponent(jButtonConsultarMotorista)
                     .addComponent(jButtonLimparConsulta)
                     .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonSetaEsquerda1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonSetaDireita1, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(97, 97, 97)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButtonSetaEsquerda1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButtonSetaDireita1, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGap(97, 97, 97)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -655,6 +665,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
            
            JOptionPane.showMessageDialog(null, motorista.getCliente().getNome()+" cadastrado com sucesso no sistema!");
            limparCampos();
+           preencherGridMotorista();
      
       }catch(Exception error){
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas "+error.getMessage());
@@ -669,6 +680,15 @@ public class TelaMotoristas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas "+error.getMessage());
         }
     }//GEN-LAST:event_jComboBox_CidadeActionPerformed
+
+    private void jTableConsultarMotoristaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultarMotoristaMouseClicked
+         try {
+            preencherFormularioMotoristas();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jTableConsultarMotoristaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -742,7 +762,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1PessoaFisica;
     private javax.swing.JTable jTableConsultarMotorista;
     private javax.swing.JTextField jTextFieldCNHMotorista;
