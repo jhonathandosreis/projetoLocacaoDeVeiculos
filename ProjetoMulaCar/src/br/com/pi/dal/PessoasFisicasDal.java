@@ -117,11 +117,11 @@ public class PessoasFisicasDal {
         
         try{
          ArrayList<PessoasFisicas> lista = new ArrayList<PessoasFisicas>();
-         String sql = "SELECT * FROM pessoas_fisicas";
+         String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_numero_cnh is null";
          Statement statement = conexao.createStatement();
          ResultSet rs = statement.executeQuery(sql);
          
-           if(rs.next()){
+           while(rs.next()){
                 PessoasFisicas pessoaFisica = new PessoasFisicas();
                 int cli_id = rs.getInt("pfi_cli_iden");
                 cliente = clienteBll.getClienteById(cli_id);

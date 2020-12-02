@@ -101,7 +101,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         jTextFieldIdPessoaFisica.setText(""+pessoaFisica.getIden());
         jTextFieldRGPessoaFisica.setText(""+pessoaFisica.getRg());
         jTextFieldCPFPessoaFisica.setText(""+pessoaFisica.getCpf());
-        jTextFieldNomePessoaFisica.setText(pessoaFisica.getNome());
+        jTextFieldNomePessoaFisica.setText(pessoaFisica.getCliente().getNome());
         jTextFieldCepPessoaFisica.setText(""+pessoaFisica.getCliente().getEnderecos().getCep());
         jTextFieldLogradouroPessoaFisica.setText(pessoaFisica.getCliente().getEnderecos().getLogradouro());
         jTextFieldNumeroPessoaFisica.setText(""+pessoaFisica.getCliente().getEnderecos().getNumero());
@@ -452,6 +452,11 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                 "ID", "NOME", "RG", "CPF", "EMAIL", "TELEFONE", "LOGRADOURO", "CEP"
             }
         ));
+        jTableConsultaPessoaFisica.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableConsultaPessoaFisicaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableConsultaPessoaFisica);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -582,6 +587,14 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas "+error.getMessage());
         }
     }//GEN-LAST:event_jComboBox_CidadesActionPerformed
+
+    private void jTableConsultaPessoaFisicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultaPessoaFisicaMouseClicked
+        try {
+            preencherFormularioPessoaJuridica();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jTableConsultaPessoaFisicaMouseClicked
 
     /**
      * @param args the command line arguments

@@ -79,7 +79,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                 linha[3] = devolucoes.getKmNaEntrega();
                 linha[4] = devolucoes.getStatus();
                 linha[5] = devolucoes.getMultaPorAtraso();
-                linha[6] = devolucoes.getTotalPago();  // ver como vai funiconar o pagamento , acrescentar na model e sql
+                //linha[6] = devolucoes.getTotalPago();  // ver como vai funiconar o pagamento , acrescentar na model e sql
 
                 tableDevolucao.addRow(linha);
             }

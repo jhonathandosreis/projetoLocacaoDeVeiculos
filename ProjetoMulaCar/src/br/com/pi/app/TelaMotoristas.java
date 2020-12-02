@@ -27,6 +27,7 @@ import br.com.pi.model.Ufs;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,7 +36,7 @@ import javax.swing.table.DefaultTableModel;
  * @author jhonlinux
  */
 public class TelaMotoristas extends javax.swing.JFrame {
-
+    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
     private Motoristas motorista;
     private MotoristasBll motoristabll;
     private Clientes cliente;
@@ -98,7 +99,14 @@ public class TelaMotoristas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+    public static String convertDate(Date dtConsulta) {
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
+            return formatter.format(dtConsulta);
+        } catch (Exception e) {
+            return null;
+        }
+    }
       public void preencherFormularioMotoristas() throws Exception {
        
         int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
@@ -109,7 +117,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jTextField_rgMotorista.setText(""+motorista.getRg());
         jTextField_CpfMotorista.setText(""+motorista.getCpf());
         jTextFieldCNHMotorista.setText(""+motorista.getNumeroCnh());
-        jFormattedTextField_Data_validade.setText(""+motorista.getDataValidade());
+        jFormattedTextField_Data_validade.setText(convertDate(motorista.getDataValidade()));
         jTextField_CategoriaCNH.setText(motorista.getCategoriaCnh());
         jTextFieldCepMotorista.setText(""+motorista.getCliente().getEnderecos().getCep());
         jTextFieldLogradouroMotorista.setText(motorista.getCliente().getEnderecos().getLogradouro());
@@ -470,6 +478,11 @@ public class TelaMotoristas extends javax.swing.JFrame {
         });
 
         jButtonAlterar.setText("ALTERAR");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
         jButtonRemover.setText("EXCLUIR");
 
@@ -532,7 +545,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
+                "ID", "NOME", "Nº CNH", "TELEFONE", "LOGRADOURO", "CEP"
             }
         ));
         jTableConsultarMotorista.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -633,7 +646,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
        try{
            
-           SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+           
            Date data = formato.parse(jFormattedTextField_Data_validade.getText());
            
            cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
@@ -689,6 +702,52 @@ public class TelaMotoristas extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jTableConsultarMotoristaMouseClicked
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+     try{
+        if (jTableConsultarMotorista.getSelectedRow() == -1) {
+                throw new Exception("Selecione um motorista na tabela para ser alterado!");
+            }
+        
+          SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+           Date data = formato.parse(jFormattedTextField_Data_validade.getText());
+           
+           cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
+           endereco.setCidade(cidade);
+           endereco.setCep(Double.parseDouble(jTextFieldCepMotorista.getText()));
+           endereco.setLogradouro(jTextFieldLogradouroMotorista.getText());
+           endereco.setComplemento(jTextFieldComplementoMotorista.getText());
+           endereco.setNumero(Float.parseFloat(jTextFieldNumeroMotorista.getText()));
+           endereco.setRua(jTextFieldRua.getText());
+           enderecoBll.AddEndereco(endereco);
+           double cep = endereco.getCep();
+           endereco = enderecoBll.getConsultaPorCEP(cep);
+           
+           cliente.setEnderecos(endereco);
+           cliente.setNome(jTextFieldNomeMotorista.getText());
+           cliente.setTelefone(Double.parseDouble(jTextFieldTelefoneMotorista.getText()));
+           cliente.setEmail(jTextFieldEmailMotorista.getText());
+           clienteBll.addClientes(cliente);
+           double clienteTelefone = cliente.getTelefone();
+           cliente = clienteBll.getClienteByTelefone(clienteTelefone);
+           
+           motorista.setCliente(cliente);
+           motorista.setRg(Integer.parseInt(jTextField_rgMotorista.getText()));
+           motorista.setCpf(Double.parseDouble(jTextField_CpfMotorista.getText()));       
+           motorista.setNumeroCnh(Double.parseDouble(jTextFieldCNHMotorista.getText()));
+           motorista.setCategoriaCnh(jTextField_CategoriaCNH.getText());
+           motorista.setDataValidade(data);
+           motoristabll.updateMotorista(motorista);
+           
+           JOptionPane.showMessageDialog(null, motorista.getCliente().getNome()+" alterado com sucesso no sistema!");
+           limparCampos();
+           preencherGridMotorista();
+        
+        
+         } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**
      * @param args the command line arguments

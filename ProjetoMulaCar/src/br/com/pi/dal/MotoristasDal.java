@@ -128,11 +128,11 @@ public class MotoristasDal {
         
         try{
          ArrayList<Motoristas> lista = new ArrayList<Motoristas>();
-         String sql = "SELECT * FROM pessoas_fisicas";
+         String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_numero_cnh IS NOT null";
          Statement statement = conexao.createStatement();
          ResultSet rs = statement.executeQuery(sql);
          
-           if(rs.next()){
+           while(rs.next()){
                 Motoristas motorista = new Motoristas();
                 int cli_id = rs.getInt("pfi_cli_iden");
                 cliente = clienteBll.getClienteById(cli_id);
