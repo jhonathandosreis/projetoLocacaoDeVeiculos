@@ -126,7 +126,19 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
            }
     }
      public void  limparCampos(){
-         
+         jTextFieldIdPessoaFisica.setText("");
+         jTextFieldRGPessoaFisica.setText("");
+         jTextFieldCPFPessoaFisica.setText("");
+         jTextFieldNomePessoaFisica.setText("");
+         jTextFieldCepPessoaFisica.setText("");
+         jTextFieldLogradouroPessoaFisica.setText("");
+         jTextFieldComplementoPessoaFisica.setText("");
+         jTextFieldRuaPessoaFisica.setText("");
+         jTextField_UF.setText("");
+         jTextFieldEmailPessoaFisica.setText("");
+         jTextFieldTelefonePessoaFisica.setText("");
+         jTextFieldNumeroPessoaFisica.setText("");
+         jComboBox_Cidades.setSelectedIndex(0);
      }
 
     /**
@@ -192,13 +204,9 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
 
         jLabelCPFPessoaFisica.setText("CPF");
 
-        jTextFieldCPFPessoaFisica.setText("000.000.000-00");
-
         jLabelNomePessoaFisica.setText("Nome");
 
         jLabel3RGPessoaFisica.setText("RG");
-
-        jTextFieldRGPessoaFisica.setText("000000-0");
 
         javax.swing.GroupLayout jPanel2PessoaFisicaLayout = new javax.swing.GroupLayout(jPanel2PessoaFisica);
         jPanel2PessoaFisica.setLayout(jPanel2PessoaFisicaLayout);
@@ -216,14 +224,14 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3RGPessoaFisica)
-                                .addComponent(jTextFieldRGPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextFieldRGPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabelCPFPessoaFisica)
-                                .addComponent(jTextFieldCPFPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(492, 492, 492))
+                                .addComponent(jTextFieldCPFPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(448, 448, 448))
                         .addComponent(jTextFieldNomePessoaFisica, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(290, Short.MAX_VALUE))
         );
         jPanel2PessoaFisicaLayout.setVerticalGroup(
             jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,8 +256,6 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados de Endereço"));
 
         jLabel2.setText("CEP");
-
-        jTextFieldCepPessoaFisica.setText("00-000-000");
 
         jLabel3.setText("LOGRADOURO");
 
@@ -281,8 +287,8 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jTextFieldCepPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
+                            .addComponent(jTextFieldCepPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jTextFieldLogradouroPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -344,11 +350,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
 
         jLabel4CPFPessoaFisica.setText("TELEFONE");
 
-        jTextFieldTelefonePessoaFisica.setText("(62) 9 9999-9999");
-
         jLabel1.setText("E-Mail");
-
-        jTextFieldEmailPessoaFisica.setText("prototipação@hotmail.com");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -358,12 +360,12 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4CPFPessoaFisica)
-                    .addComponent(jTextFieldTelefonePessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74)
+                    .addComponent(jTextFieldTelefonePessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldEmailPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(689, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -579,6 +581,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome()+" cadastrado com sucesso no sistema!");
            preencherGridPessoaFisica();
            limparCampos();
+           
             }catch(Exception error){
                 JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
            }

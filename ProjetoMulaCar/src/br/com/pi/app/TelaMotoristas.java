@@ -144,6 +144,22 @@ public class TelaMotoristas extends javax.swing.JFrame {
     }
     
     public void limparCampos(){
+      jTextFieldIDMotorista.setText("");
+      jTextFieldNomeMotorista.setText("");
+      jTextField_rgMotorista.setText("");
+      jTextField_CpfMotorista.setText("");
+      jTextFieldCNHMotorista.setText("");
+      jFormattedTextField_Data_validade.setText("");
+      jTextField_CategoriaCNH.setText("");
+      jTextFieldCepMotorista.setText("");
+      jTextFieldLogradouroMotorista.setText("");
+      jTextFieldNumeroMotorista.setText("");
+      jTextFieldComplementoMotorista.setText("");
+      jTextFieldRua.setText("");
+      jTextField_UF.setText("");
+      jTextFieldTelefoneMotorista.setText("");
+      jTextFieldEmailMotorista.setText("");
+      jComboBox_Cidade.setSelectedIndex(0);
       
     }
 
@@ -326,8 +342,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
         jLabel2.setText("CEP");
 
-        jTextFieldCepMotorista.setText("00-000-000");
-
         jLabel3.setText("LOGRADOURO");
 
         jLabel4.setText("N°");
@@ -358,8 +372,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jTextFieldCepMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
+                            .addComponent(jTextFieldCepMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jTextFieldLogradouroMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -387,7 +401,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
                                     .addComponent(jTextField_UF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(463, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -433,11 +447,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
         jLabel4CPFPessoaFisica.setText("TELEFONE");
 
-        jTextFieldTelefoneMotorista.setText("(62) 9 9999-9999");
-
         jLabel1.setText("E-Mail");
-
-        jTextFieldEmailMotorista.setText("prototipação@hotmail.com");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -447,12 +457,12 @@ public class TelaMotoristas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4CPFPessoaFisica)
-                    .addComponent(jTextFieldTelefoneMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74)
+                    .addComponent(jTextFieldTelefoneMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldEmailMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(941, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
