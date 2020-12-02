@@ -47,6 +47,16 @@ public class ClientesBll {
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
+    
+    //--- UPDATE--------------------------------------------------------------------------------------->
+    public void updateClientes(Clientes cliente) throws Exception { 
+         try{
+         clienteDal.updateClientes(cliente);
+        } catch (Exception error) {
+            
+        }
+    }
+    //--- FIM UPDATE ----------------------------------------------------------------------------------|
 
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Clientes> getAllClientes() throws Exception {

@@ -389,6 +389,11 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         });
 
         jButtonAlterar.setText("ALTERAR");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
         jButtonRemover.setText("EXCLUIR");
 
@@ -572,8 +577,8 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
            pessoaFisicaBll.addPessoasFisicas(pessoaFisica);
            
            JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome()+" cadastrado com sucesso no sistema!");
-           limparCampos();
            preencherGridPessoaFisica();
+           limparCampos();
             }catch(Exception error){
                 JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
            }
@@ -584,7 +589,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
         jTextField_UF.setText(cidade.getUf().getNome());
         }catch(Exception error){
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas "+error.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro combo Cidades "+error.getMessage());
         }
     }//GEN-LAST:event_jComboBox_CidadesActionPerformed
 
@@ -595,6 +600,48 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTableConsultaPessoaFisicaMouseClicked
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        try{ 
+        if (jTableConsultaPessoaFisica.getSelectedRow() == -1) {
+                throw new Exception("Selecione uma pessoa fisica na tabela para ser alterado!");
+            }
+            
+           int id = Integer.parseInt(jTableConsultaPessoaFisica.getValueAt(jTableConsultaPessoaFisica.getSelectedRow(), 0).toString());
+           pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
+           cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
+           endereco.setCidade(cidade);
+           endereco.setCep(Double.parseDouble(jTextFieldCepPessoaFisica.getText()));
+           endereco.setLogradouro(jTextFieldLogradouroPessoaFisica.getText());
+           endereco.setComplemento(jTextFieldComplementoPessoaFisica.getText());
+           endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaFisica.getText()));
+           endereco.setRua(jTextFieldRuaPessoaFisica.getText());
+           enderecoBll.updateEndereco(endereco);
+           double cep = endereco.getCep();
+           endereco = enderecoBll.getConsultaPorCEP(cep);
+           
+          
+           cliente = clienteBll.getClienteById(pessoaFisica.getCliente().getIden());
+           cliente.setEnderecos(endereco);
+           cliente.setNome(jTextFieldNomePessoaFisica.getText());
+           cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaFisica.getText()));
+           cliente.setEmail(jTextFieldEmailPessoaFisica.getText());
+           clienteBll.updateClientes(cliente);
+           
+           
+           pessoaFisica.setCliente(cliente);
+           pessoaFisica.setRg(Integer.parseInt(jTextFieldRGPessoaFisica.getText()));
+           pessoaFisica.setCpf(Double.parseDouble(jTextFieldCPFPessoaFisica.getText()));       
+           pessoaFisicaBll.updatePessoasFisicas(pessoaFisica);
+           
+           JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome()+" alterado com sucesso no sistema!");
+           preencherGridPessoaFisica();
+           limparCampos();
+           
+         } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -73,16 +73,7 @@ public class MotoristasDal {
     public void updateMotoristas (Motoristas motorista) throws Exception {
         
         try{
-        String sqlCliente ="UPDATE clientes SET cli_nome=?, cli_telefone=?, cli_email=?, cli_end_iden=? WHERE cli_iden=?";
-        PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);
-      
-        preparedStatement1.setString(1, motorista.getNome());
-        preparedStatement1.setDouble(2, motorista.getTelefone());
-        preparedStatement1.setString(3, motorista.getEmail());
-        preparedStatement1.setInt(4, motorista.getEnderecos().getIden());
-        preparedStatement1.setInt(5, motorista.getCliente().getIden());
-        preparedStatement1.executeUpdate();
-        
+       
         String sqlPessoaFisica = "UPDATE pessoas_fisicas SET pfi_rg=?, pfi_cpf=?, pfi_numero_cnh=?, pfi_categoria_cnh=?, pfi_data_de_validade=?, pfi_cli_iden=? WHERE pfi_iden=?";        
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
         java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());

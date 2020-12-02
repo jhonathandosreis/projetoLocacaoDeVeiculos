@@ -69,12 +69,7 @@ public class PessoasJuridicasDal {
     public void updatePessoasJuridicas (PessoasJuridicas pessoaJuridica) throws Exception {
         
         try{
-            String sqlCliente ="UPDATE clientes SET cli_telefone=?, cli_email=?, cli_end_iden=?";
-            PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);
-            preparedStatement1.setDouble(1, pessoaJuridica.getTelefone());
-            preparedStatement1.setString(2, pessoaJuridica.getEmail());
-            preparedStatement1.setInt(3, pessoaJuridica.getEnderecos().getIden());
-            preparedStatement1.executeUpdate();
+           
         
             String sqlPessoaFisica = "UPDATE pessoas_juridicas SET pju_cnpj=?, pju_nome_fantasia=?, pju_razao_social=?, pju_cli_iden=?";        
             PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);

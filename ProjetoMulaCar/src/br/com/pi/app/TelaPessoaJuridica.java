@@ -401,6 +401,11 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         });
 
         jButtonAlterar.setText("ALTERAR");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
         jButtonRemover.setText("EXCLUIR");
 
@@ -572,11 +577,6 @@ try {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
 
-
-
-
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jTable_PessoasJuridicasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_PessoasJuridicasMouseClicked
@@ -597,9 +597,49 @@ try {
         cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
         jTextFieldUf.setText(cidade.getUf().getNome());
         }catch(Exception error){
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas "+error.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro na combo Cidade "+error.getMessage());
         }
     }//GEN-LAST:event_jComboBoxCidadeActionPerformed
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+    try{
+          if (jTable_PessoasJuridicas.getSelectedRow() == -1) {
+                throw new Exception("Selecione uma pessoa juridica na tabela para ser alterado!");
+          }
+          
+           int id = Integer.parseInt(jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 0).toString());
+           pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(id);
+           cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
+           endereco.setCidade(cidade);
+           endereco.setCep(Double.parseDouble(jTextFieldCepPessoaJuridica.getText()));
+           endereco.setLogradouro(jTextFieldLogradouroPessoaJuridica.getText());
+           endereco.setComplemento(jTextFieldComplementoPessoaJuridica.getText());
+           endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaJuridica.getText()));
+           endereco.setRua(jTextFieldRuaPessoaJuridica.getText());
+           enderecoBll.updateEndereco(endereco);
+           endereco = enderecoBll.getConsultaPorId(pessoaJuridica.getCliente().getEnderecos().getIden());
+           
+           cliente = clienteBll.getClienteById(pessoaJuridica.getCliente().getIden());
+           cliente.setEnderecos(endereco);
+           cliente.setNome(null);
+           cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaJuridica.getText()));
+           cliente.setEmail(jTextFieldEmailPessoaJuridica.getText());
+           clienteBll.updateClientes(cliente);
+
+           
+           pessoaJuridica.setCliente(cliente);
+           pessoaJuridica.setCnpj(Double.parseDouble(jTextFieldCNPJPessoaJuridica.getText()));
+           pessoaJuridica.setNomeFantasia(jTextFieldNomeFantasiaPessoaJuridica.getText());
+           pessoaJuridica.setRazaoSocial(jTextFieldRazaoSocialPessoaJuridica.getText());
+           pessoaJuridicaBll.updatePessoasJuridicas(pessoaJuridica);
+           
+           JOptionPane.showMessageDialog(null, pessoaJuridica.getNomeFantasia()+" alterado com sucesso no sistema!");
+           preencherGridPessoaJuridica();
+            limparCampos();
+    }catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**
      * @param args the command line arguments

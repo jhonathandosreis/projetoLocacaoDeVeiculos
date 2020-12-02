@@ -15,7 +15,6 @@
 
 package br.com.pi.dal;
 import br.com.pi.bll.ClientesBll;
-import br.com.pi.bll.PessoasFisicasBll;
 import br.com.pi.model.Clientes;
 import br.com.pi.model.PessoasFisicas;
 import br.com.pi.util.Conexao;
@@ -68,15 +67,7 @@ public class PessoasFisicasDal {
     public void updatePessoasFisicas (PessoasFisicas pessoaFisica) throws Exception {
         
         try{
-        String sqlCliente ="UPDATE clientes SET cli_nome=?, cli_telefone=?, cli_email=?, cli_end_iden=?";
-        PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);
-        
-        preparedStatement1.setString(1, pessoaFisica.getNome());
-        preparedStatement1.setDouble(2, pessoaFisica.getTelefone());
-        preparedStatement1.setString(3, pessoaFisica.getEmail());
-        preparedStatement1.setInt(4, pessoaFisica.getEnderecos().getIden());
-        preparedStatement1.executeUpdate();
-        
+       
         String sqlPessoaFisica = "UPDATE pessoas_fisicas SET pfi_rg=?, pfi_cpf=?, pfi_cli_iden=?";        
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
         preparedStatement2.setInt(1, pessoaFisica.getRg());

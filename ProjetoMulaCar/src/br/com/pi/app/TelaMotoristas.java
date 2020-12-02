@@ -677,8 +677,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
            motoristabll.addMotoristas(motorista);
            
            JOptionPane.showMessageDialog(null, motorista.getCliente().getNome()+" cadastrado com sucesso no sistema!");
-           limparCampos();
            preencherGridMotorista();
+           limparCampos();
      
       }catch(Exception error){
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas "+error.getMessage());
@@ -690,7 +690,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
         cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
         jTextField_UF.setText(cidade.getUf().getNome());
         }catch(Exception error){
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas "+error.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro na combo Cidades "+error.getMessage());
         }
     }//GEN-LAST:event_jComboBox_CidadeActionPerformed
 
@@ -708,9 +708,10 @@ public class TelaMotoristas extends javax.swing.JFrame {
         if (jTableConsultarMotorista.getSelectedRow() == -1) {
                 throw new Exception("Selecione um motorista na tabela para ser alterado!");
             }
-        
+          int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
+          motorista = motoristabll.getMotoristaBy(id);
           SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-           Date data = formato.parse(jFormattedTextField_Data_validade.getText());
+          Date data = formato.parse(jFormattedTextField_Data_validade.getText());
            
            cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
            endereco.setCidade(cidade);
@@ -719,17 +720,17 @@ public class TelaMotoristas extends javax.swing.JFrame {
            endereco.setComplemento(jTextFieldComplementoMotorista.getText());
            endereco.setNumero(Float.parseFloat(jTextFieldNumeroMotorista.getText()));
            endereco.setRua(jTextFieldRua.getText());
-           enderecoBll.AddEndereco(endereco);
+           enderecoBll.updateEndereco(endereco);
            double cep = endereco.getCep();
            endereco = enderecoBll.getConsultaPorCEP(cep);
            
+          
+           cliente = clienteBll.getClienteById(motorista.getCliente().getIden());
            cliente.setEnderecos(endereco);
            cliente.setNome(jTextFieldNomeMotorista.getText());
            cliente.setTelefone(Double.parseDouble(jTextFieldTelefoneMotorista.getText()));
            cliente.setEmail(jTextFieldEmailMotorista.getText());
-           clienteBll.addClientes(cliente);
-           double clienteTelefone = cliente.getTelefone();
-           cliente = clienteBll.getClienteByTelefone(clienteTelefone);
+           clienteBll.updateClientes(cliente);
            
            motorista.setCliente(cliente);
            motorista.setRg(Integer.parseInt(jTextField_rgMotorista.getText()));
@@ -740,10 +741,9 @@ public class TelaMotoristas extends javax.swing.JFrame {
            motoristabll.updateMotorista(motorista);
            
            JOptionPane.showMessageDialog(null, motorista.getCliente().getNome()+" alterado com sucesso no sistema!");
-           limparCampos();
            preencherGridMotorista();
-        
-        
+           limparCampos();
+       
          } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }

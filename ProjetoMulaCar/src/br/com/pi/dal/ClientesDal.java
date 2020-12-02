@@ -63,6 +63,20 @@ public class ClientesDal {
         }
     }
     
+    public void updateClientes(Clientes cliente) throws Exception { 
+        try{    
+            String sqlCliente ="UPDATE clientes SET cli_telefone=?, cli_email=?, cli_end_iden=? WHERE cli_iden=?";
+            PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);
+            preparedStatement1.setDouble(1, cliente.getTelefone());
+            preparedStatement1.setString(2, cliente.getEmail());
+            preparedStatement1.setInt(3, cliente.getEnderecos().getIden());
+            preparedStatement1.setInt(4, cliente.getIden());
+            preparedStatement1.executeUpdate();
+            } catch (Exception error) {
+            throw  error;
+        }
+    }
+    
 
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Clientes> getAllClientes() throws Exception {
