@@ -136,7 +136,9 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     }
 
     public void limparCampos() {
-
+            jTextFieldCNPJPessoaJuridica.setText("");
+            jTextFieldRazaoSocialPessoaJuridica.setText("");
+            jTextFieldNomeFantasiaPessoaJuridica.setText("");
             jTextFieldIdPessoaJuridica.setText("");
             jTextFieldCepPessoaJuridica.setText("");
             jTextFieldLogradouroPessoaJuridica.setText("");
@@ -144,6 +146,8 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             jTextFieldComplementoPessoaJuridica.setText("");
             jTextFieldRuaPessoaJuridica.setText("");
             jTextFieldUf.setText("");
+            jTextFieldTelefonePessoaJuridica.setText("");
+            jTextFieldEmailPessoaJuridica.setText("");
             jComboBoxCidade.setSelectedIndex(0);
     }
 
@@ -215,8 +219,6 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
         jLabel3RGPessoaFisica.setText("CNPJ");
 
-        jTextFieldCNPJPessoaJuridica.setText("00.000.000/0000-00");
-
         javax.swing.GroupLayout jPanel2PessoaFisicaLayout = new javax.swing.GroupLayout(jPanel2PessoaFisica);
         jPanel2PessoaFisica.setLayout(jPanel2PessoaFisicaLayout);
         jPanel2PessoaFisicaLayout.setHorizontalGroup(
@@ -231,14 +233,14 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3RGPessoaFisica)
-                            .addComponent(jTextFieldCNPJPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldCNPJPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelCPFPessoaFisica)
-                            .addComponent(jTextFieldRazaoSocialPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextFieldRazaoSocialPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jTextFieldNomeFantasiaPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelNomePessoaFisica))
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(319, Short.MAX_VALUE))
         );
         jPanel2PessoaFisicaLayout.setVerticalGroup(
             jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,8 +265,6 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados de Endereço"));
 
         jLabel2.setText("CEP");
-
-        jTextFieldCepPessoaJuridica.setText("00-000-000");
 
         jLabel3.setText("LOGRADOURO");
 
@@ -356,11 +356,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
         jLabel4CPFPessoaFisica.setText("TELEFONE");
 
-        jTextFieldTelefonePessoaJuridica.setText("(62) 9 9999-9999");
-
         jLabel1.setText("E-Mail");
-
-        jTextFieldEmailPessoaJuridica.setText("prototipação@hotmail.com");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -370,12 +366,12 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4CPFPessoaFisica)
-                    .addComponent(jTextFieldTelefonePessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74)
+                    .addComponent(jTextFieldTelefonePessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldEmailPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(718, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -571,25 +567,19 @@ try {
 
            JOptionPane.showMessageDialog(null, pessoaJuridica.getNomeFantasia()+" cadastrado com sucesso no sistema!");
            preencherGridPessoaJuridica();
-
-            limparCampos();
+           limparCampos();
+           
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jTable_PessoasJuridicasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_PessoasJuridicasMouseClicked
-
   try {
             preencherFormularioPessoaJuridica();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
-
-
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_jTable_PessoasJuridicasMouseClicked
 
     private void jComboBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCidadeActionPerformed
@@ -635,7 +625,8 @@ try {
            
            JOptionPane.showMessageDialog(null, pessoaJuridica.getNomeFantasia()+" alterado com sucesso no sistema!");
            preencherGridPessoaJuridica();
-            limparCampos();
+           limparCampos();
+           
     }catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }

@@ -158,19 +158,19 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel3RGPessoaFisica" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextFieldRGPessoaFisica" min="-2" pref="83" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldRGPessoaFisica" min="-2" pref="112" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabelCPFPessoaFisica" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextFieldCPFPessoaFisica" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabelCPFPessoaFisica" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldCPFPessoaFisica" min="-2" pref="129" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="492" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="448" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jTextFieldNomePessoaFisica" alignment="0" min="-2" pref="799" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="290" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -215,9 +215,6 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldCPFPessoaFisica">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="000.000.000-00"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabelNomePessoaFisica">
                       <Properties>
@@ -232,9 +229,6 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldRGPessoaFisica">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="000000-0"/>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -259,10 +253,10 @@
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldCepPessoaFisica" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jTextFieldCepPessoaFisica" min="-2" pref="101" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jTextFieldLogradouroPessoaFisica" min="-2" pref="677" max="-2" attributes="0"/>
@@ -347,9 +341,6 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldCepPessoaFisica">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="00-000-000"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel3">
                       <Properties>
@@ -428,15 +419,15 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel4CPFPessoaFisica" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldTelefonePessoaFisica" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel4CPFPessoaFisica" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldTelefonePessoaFisica" min="-2" pref="135" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextFieldEmailPessoaFisica" min="-2" pref="235" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="689" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -468,9 +459,6 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldTelefonePessoaFisica">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="(62) 9 9999-9999"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel1">
                       <Properties>
@@ -478,9 +466,6 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldEmailPessoaFisica">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="prototipa&#xe7;&#xe3;o@hotmail.com"/>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>

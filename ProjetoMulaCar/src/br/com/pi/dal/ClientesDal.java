@@ -61,13 +61,14 @@ public class ClientesDal {
     }
     
     public void updateClientes(Clientes cliente) throws Exception { 
-            String sqlCliente ="UPDATE clientes SET cli_telefone=?, cli_email=?, cli_end_iden=? WHERE cli_iden=?";
+            String sqlCliente ="UPDATE clientes SET cli_nome=?, cli_telefone=?, cli_email=?, cli_end_iden=? WHERE cli_iden=?";
         try{    
             PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);
-            preparedStatement1.setDouble(1, cliente.getTelefone());
-            preparedStatement1.setString(2, cliente.getEmail());
-            preparedStatement1.setInt(3, cliente.getEnderecos().getIden());
-            preparedStatement1.setInt(4, cliente.getIden());
+            preparedStatement1.setString(1, cliente.getNome());
+            preparedStatement1.setDouble(2, cliente.getTelefone());
+            preparedStatement1.setString(3, cliente.getEmail());
+            preparedStatement1.setInt(4, cliente.getEnderecos().getIden());
+            preparedStatement1.setInt(5, cliente.getIden());
             preparedStatement1.executeUpdate();
             } catch (Exception error) {
             throw  error;
@@ -81,7 +82,6 @@ public class ClientesDal {
         ArrayList<Clientes> lista = new ArrayList<Clientes>();
         String sql = "SELECT * FROM clientes";
         try{
-
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
