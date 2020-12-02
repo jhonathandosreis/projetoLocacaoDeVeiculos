@@ -157,8 +157,8 @@ public class PessoasJuridicasDal {
                 cliente = clienteBll.getClienteById(cli_id);
                 pessoaJuridica.setIden(rs.getInt("pju_iden"));
                 pessoaJuridica.setCnpj(rs.getDouble("pju_cnpj"));
-                pessoaJuridica.setNomeFantasia("pju_nome_fantasia");
-                pessoaJuridica.setRazaoSocial("pju_razao_social");
+                pessoaJuridica.setNomeFantasia(rs.getString("pju_nome_fantasia"));
+                pessoaJuridica.setRazaoSocial(rs.getString("pju_razao_social"));
                 pessoaJuridica.setCliente(cliente);
         }       
         return pessoaJuridica;

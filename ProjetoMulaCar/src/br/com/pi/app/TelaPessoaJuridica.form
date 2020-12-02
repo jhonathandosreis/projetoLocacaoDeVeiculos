@@ -560,7 +560,7 @@
                     <Component class="javax.swing.JTable" name="jTable_PessoasJuridicas">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="9" rowCount="0">
+                          <Table columnCount="7" rowCount="0">
                             <Column editable="true" title="ID" type="java.lang.Object"/>
                             <Column editable="true" title="NOME FANTASIA" type="java.lang.Object"/>
                             <Column editable="true" title="CNPJ" type="java.lang.Object"/>
@@ -568,8 +568,6 @@
                             <Column editable="true" title="E-MAIL" type="java.lang.Object"/>
                             <Column editable="true" title="LOGRADOURO" type="java.lang.Object"/>
                             <Column editable="true" title="CEP" type="java.lang.Object"/>
-                            <Column editable="true" title="CIDADE" type="java.lang.Object"/>
-                            <Column editable="true" title="UF" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
