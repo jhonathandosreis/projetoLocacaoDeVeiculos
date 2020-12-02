@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 23/11/2020 22:41:51 
+ *  Criado em  : 23/11/2020 23:40:45 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -12,89 +12,102 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
+
 package br.com.pi.bll;
 
-import br.com.pi.dal.VeiculosDal;
-import br.com.pi.model.Veiculos;
+import br.com.pi.dal.DevolucoesDal;
+import br.com.pi.model.Devolucoes;
 import java.util.ArrayList;
 
 /**
  *
- * @author jhonlinux
+ * @author Gustavo Gabriel
  */
-public class VeiculosBll {
-
+public class DevolucoesBll {
+    
+    
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
-    //
-    private VeiculosDal veiculosDal;
+  
+    private DevolucoesDal devolucoesDal;
+  
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
-    //
-    public VeiculosBll() throws Exception {
-        veiculosDal = new VeiculosDal();
+  
+    public DevolucoesBll() throws Exception {
+        devolucoesDal = new DevolucoesDal();
     }
+  
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    //
-    public void addVeiculos(Veiculos veiculo) throws Exception {
-
+    public void addDevolucoes(Devolucoes devolucao) throws Exception {
         try {
-            veiculosDal.addVeiculos(veiculo);
+
+            
+            devolucoesDal.addDevolucoes(devolucao);
+
         } catch (Exception error) {
+
             throw error;
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
+    
+  //--- DELETE -------------------------------------------------------------------------------------->
+//
 
-    //--- UPDATE -------------------------------------------------------------------------------------->
-    //
-    public void updateVeiculos(Veiculos veiculo) throws Exception {
+    public void deleteDevolucoes(Devolucoes devolucao) throws Exception {
+
         try {
-            veiculosDal.updateVeiculos(veiculo);
+
+            devolucoesDal.deleteDevolucoes(devolucao.getIden());
+
         } catch (Exception error) {
             throw error;
         }
     }
-    //--- FIM UPDATE ----------------------------------------------------------------------------------|
-    //
 
-    //--- DELETE -------------------------------------------------------------------------------------->
-    //
-    public void deleteVeiculos(Veiculos veiculo) throws Exception {
-
-        try {
-            veiculosDal.deleteVeiculos(veiculo.getIden());
-        } catch (Exception error) {
-            throw error;
-        }
-    }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
+    //--- UPDATE -------------------------------------------------------------------------------------->
+    //
+    public void updateDevolucoes(Devolucoes devolucao) throws Exception {
 
+        try {
+            
+            devolucoesDal.updateDevolucoes(devolucao);
+            
+        } catch (Exception error) {
+            throw error;
+        }
+    }
+
+    //--- FIM UPDATE ----------------------------------------------------------------------------------|
+    //
     //--- READ ---------------------------------------------------------------------------------------->
     //
-    public ArrayList<Veiculos> getAllVeiculos() throws Exception {
-
+    public ArrayList<Devolucoes> getAllDevolucao() throws Exception {
         try {
-            return veiculosDal.getAllVeiculos();
+
+            return devolucoesDal.getAllDevolucoes();
+
         } catch (Exception error) {
             throw error;
         }
     }
 
-    public Veiculos getVeiculosById(int vei_iden) throws Exception {
-
+    public Devolucoes getDevolucaoById(int dev_iden) throws Exception {
         try {
-            return veiculosDal.getVeiculosById(vei_iden);
+            return devolucoesDal.getDevolucoesById(dev_iden);
         } catch (Exception error) {
             throw error;
         }
     }
+
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 }

@@ -1,0 +1,18 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix} -------------------------------------------------------------------------------------------------->
+${licensePrefix} Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
+${licensePrefix} Criado em  : ${date?date?string("dd/MM/yyyy")} ${time?time?string("HH:mm:ss")} 
+${licensePrefix} Instituição: FACULDADE SENAI FATESG
+${licensePrefix} Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
+${licensePrefix} Disciplina : Projeto Integrador
+${licensePrefix} Alunos     : Jhonathan dos Reis, Gustavo Gabriel e Miguel Neto
+${licensePrefix} Projeto    : Projeto Locação de Veículos
+${licensePrefix} Exercício  : Mula Car
+${licensePrefix} ---------------------------------------------------------------------------------------------------
+${licensePrefix} Propósito do arquivo: 
+${licensePrefix} ---------------------------------------------------------------------------------------------------| 
+<#if licenseLast??>
+${licenseLast}
+</#if>

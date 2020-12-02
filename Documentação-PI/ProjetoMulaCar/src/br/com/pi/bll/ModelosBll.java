@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 23/11/2020 22:41:51 
+ *  Criado em  : 23/11/2020 22:59:14 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -14,38 +14,48 @@
  */
 package br.com.pi.bll;
 
-import br.com.pi.dal.VeiculosDal;
-import br.com.pi.model.Veiculos;
+import br.com.pi.dal.ModelosDal;
+import br.com.pi.model.Modelos;
 import java.util.ArrayList;
 
 /**
  *
  * @author jhonlinux
  */
-public class VeiculosBll {
+public class ModelosBll {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
-    private VeiculosDal veiculosDal;
+    private ModelosDal modelosDal;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
     //
-    public VeiculosBll() throws Exception {
-        veiculosDal = new VeiculosDal();
+    public ModelosBll() throws Exception {
+        modelosDal = new ModelosDal();
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
     //
-    public void addVeiculos(Veiculos veiculo) throws Exception {
+    public void addModelos(Modelos modelo) throws Exception {
+        
+        if (modelo.getNome().length() < 3) {
+            throw new Exception("Nome da categoria inválida\nNo mínimo 3 caracteres!");
+        }
 
+        if (modelo.getNome().length() > 30) {
+            throw new Exception("Nome da categoria inválida\nMáximo de caracteres excedido!");
+        }
+        
         try {
-            veiculosDal.addVeiculos(veiculo);
-        } catch (Exception error) {
-            throw error;
+            modelosDal.addModelos(modelo);
+        } catch (Exception error) {  
+            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
+                throw new Exception("Existe um modelo com o mesmo nome cadastrado no banco de dados!");
+            }
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -53,11 +63,22 @@ public class VeiculosBll {
 
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
-    public void updateVeiculos(Veiculos veiculo) throws Exception {
+    public void updateModelos(Modelos modelo) throws Exception {
+        
+        if (modelo.getNome().length() < 3) {
+            throw new Exception("Nome da categoria inválida\nNo mínimo 3 caracteres!");
+        }
+
+        if (modelo.getNome().length() > 30) {
+            throw new Exception("Nome da categoria inválida\nMáximo de caracteres excedido!");
+        }
+        
         try {
-            veiculosDal.updateVeiculos(veiculo);
-        } catch (Exception error) {
-            throw error;
+            modelosDal.updateModelos(modelo);
+        } catch (Exception error) {   
+            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
+                throw new Exception("Existe um modelo com o mesmo nome cadastrado no banco de dados!");
+            }
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -65,12 +86,14 @@ public class VeiculosBll {
 
     //--- DELETE -------------------------------------------------------------------------------------->
     //
-    public void deleteVeiculos(Veiculos veiculo) throws Exception {
+    public void deleteModelos(Modelos modelo) throws Exception {
 
         try {
-            veiculosDal.deleteVeiculos(veiculo.getIden());
+            modelosDal.deleteModelos(modelo.getIden());
         } catch (Exception error) {
-            throw error;
+            if (error.getMessage().contains("veiculos_vei_mod_iden_fkey")) {
+                throw new Exception("Existe um veículo vinculado a este modelo!");
+            }
         }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
@@ -78,19 +101,27 @@ public class VeiculosBll {
 
     //--- READ ---------------------------------------------------------------------------------------->
     //
-    public ArrayList<Veiculos> getAllVeiculos() throws Exception {
+    public ArrayList<Modelos> getAllModelos() throws Exception {
 
         try {
-            return veiculosDal.getAllVeiculos();
+            return modelosDal.getAllModelos();
         } catch (Exception error) {
             throw error;
         }
     }
 
-    public Veiculos getVeiculosById(int vei_iden) throws Exception {
-
+    public Modelos getModelosById(int mod_iden) throws Exception {
         try {
-            return veiculosDal.getVeiculosById(vei_iden);
+            return modelosDal.getModelosById(mod_iden);
+        } catch (Exception error) {
+            throw error;
+        }
+    }
+    
+    public Modelos getModeloByNome(String mod_nome) throws Exception {
+        
+        try {
+            return modelosDal.getModelosByNome(mod_nome);
         } catch (Exception error) {
             throw error;
         }

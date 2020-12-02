@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 23/11/2020 22:41:51 
+ *  Criado em  : 15/11/2020 04:14:32 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -12,89 +12,65 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
+
 package br.com.pi.bll;
 
-import br.com.pi.dal.VeiculosDal;
-import br.com.pi.model.Veiculos;
+import br.com.pi.dal.ClientesDal;
+import br.com.pi.model.Clientes;
 import java.util.ArrayList;
 
 /**
  *
  * @author jhonlinux
  */
-public class VeiculosBll {
+public class ClientesBll {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
-    //
-    private VeiculosDal veiculosDal;
+    private ClientesDal clienteDal;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
-    //
-    public VeiculosBll() throws Exception {
-        veiculosDal = new VeiculosDal();
+    public ClientesBll() throws Exception {
+        clienteDal = new ClientesDal();
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
-
     //--- CREATE -------------------------------------------------------------------------------------->
-    //
-    public void addVeiculos(Veiculos veiculo) throws Exception {
-
-        try {
-            veiculosDal.addVeiculos(veiculo);
+    public void addClientes(Clientes cliente) throws Exception {
+        try{
+         clienteDal.addClientes(cliente);
         } catch (Exception error) {
-            throw error;
+            if(error.getMessage().contains("email_repetido")) throw new RuntimeException("E-mail "+cliente.getEmail()+" já cadastrado em nosso sistema");
+             if(error.getMessage().contains("telefone_repetido")) throw new RuntimeException("Telefone "+cliente.getTelefone()+" já cadastrado em nosso sistema");
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-
-    //--- UPDATE -------------------------------------------------------------------------------------->
-    //
-    public void updateVeiculos(Veiculos veiculo) throws Exception {
-        try {
-            veiculosDal.updateVeiculos(veiculo);
+    
+    //--- UPDATE--------------------------------------------------------------------------------------->
+    public void updateClientes(Clientes cliente) throws Exception { 
+         try{
+         clienteDal.updateClientes(cliente);
         } catch (Exception error) {
-            throw error;
+            
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
-    //
-
-    //--- DELETE -------------------------------------------------------------------------------------->
-    //
-    public void deleteVeiculos(Veiculos veiculo) throws Exception {
-
-        try {
-            veiculosDal.deleteVeiculos(veiculo.getIden());
-        } catch (Exception error) {
-            throw error;
-        }
-    }
-    //--- FIM DELETE ----------------------------------------------------------------------------------|
-    //
 
     //--- READ ---------------------------------------------------------------------------------------->
-    //
-    public ArrayList<Veiculos> getAllVeiculos() throws Exception {
-
-        try {
-            return veiculosDal.getAllVeiculos();
-        } catch (Exception error) {
-            throw error;
-        }
+    public ArrayList<Clientes> getAllClientes() throws Exception {
+        return clienteDal.getAllClientes();
+    }
+    
+    public Clientes getClienteById(int cliente_iden) throws Exception {
+        return clienteDal.getClientesById(cliente_iden);
+    }
+    
+    public Clientes getClienteByTelefone(double cliente_telefone) throws Exception {
+        return clienteDal.getClientesByTelefone(cliente_telefone);
     }
 
-    public Veiculos getVeiculosById(int vei_iden) throws Exception {
-
-        try {
-            return veiculosDal.getVeiculosById(vei_iden);
-        } catch (Exception error) {
-            throw error;
-        }
-    }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 }

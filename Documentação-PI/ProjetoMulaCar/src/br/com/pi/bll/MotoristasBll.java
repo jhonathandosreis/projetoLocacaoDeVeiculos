@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 23/11/2020 22:41:51 
+ *  Criado em  : 23/11/2020 23:05:49 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -12,89 +12,84 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
+
 package br.com.pi.bll;
 
-import br.com.pi.dal.VeiculosDal;
-import br.com.pi.model.Veiculos;
+import br.com.pi.dal.MotoristasDal;
+import br.com.pi.model.Motoristas;
 import java.util.ArrayList;
 
 /**
  *
- * @author jhonlinux
+ * @author Gustavo Gabriel
  */
-public class VeiculosBll {
-
+public class MotoristasBll {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
-    //
-    private VeiculosDal veiculosDal;
+    private MotoristasDal motoristaDal;  
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
-    //
-    public VeiculosBll() throws Exception {
-        veiculosDal = new VeiculosDal();
+    public MotoristasBll() throws Exception {
+        motoristaDal = new MotoristasDal();
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    //
-    public void addVeiculos(Veiculos veiculo) throws Exception {
-
-        try {
-            veiculosDal.addVeiculos(veiculo);
+    public void addMotoristas(Motoristas motoristas) throws Exception {
+        try{
+         
+         motoristaDal.addMotoristas(motoristas);
         } catch (Exception error) {
-            throw error;
+            if(error.getMessage().contains("cnh_repetida")) throw new RuntimeException("Número "+motoristas.getNumeroCnh()+" de cnh já cadastrado em nosso sistema");
+             if(error.getMessage().contains("cpf_repetido")) throw new RuntimeException("Número "+motoristas.getCpf()+" de cpf já cadastrado em nosso sistema");
+             if(error.getMessage().contains("rg_repetido")) throw new RuntimeException("Número "+motoristas.getRg()+" de rg já cadastrado em nosso sistema");
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-
+    
     //--- UPDATE -------------------------------------------------------------------------------------->
-    //
-    public void updateVeiculos(Veiculos veiculo) throws Exception {
-        try {
-            veiculosDal.updateVeiculos(veiculo);
+    public void updateMotorista(Motoristas motoristas) throws Exception {
+        try{
+         motoristaDal.updateMotoristas(motoristas);
         } catch (Exception error) {
-            throw error;
+            throw  error;
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
-    //
-    public void deleteVeiculos(Veiculos veiculo) throws Exception {
-
-        try {
-            veiculosDal.deleteVeiculos(veiculo.getIden());
+    public void deleteMotoristas(Motoristas motoristas) throws Exception {
+        try{
+         motoristaDal.deleteMotoristas(motoristas);
         } catch (Exception error) {
-            throw error;
+            throw  error;
         }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
-
+    
     //--- READ ---------------------------------------------------------------------------------------->
-    //
-    public ArrayList<Veiculos> getAllVeiculos() throws Exception {
-
-        try {
-            return veiculosDal.getAllVeiculos();
+    public ArrayList<Motoristas> getAllMotoristas() throws Exception {
+        try{
+         return motoristaDal.getAllMotoristas();
         } catch (Exception error) {
-            throw error;
+            throw  error;
         }
+        
     }
-
-    public Veiculos getVeiculosById(int vei_iden) throws Exception {
-
-        try {
-            return veiculosDal.getVeiculosById(vei_iden);
+    
+    public Motoristas getMotoristaBy(int mot_iden) throws Exception {
+         try{
+         return motoristaDal.getMotoristasById(mot_iden);
         } catch (Exception error) {
-            throw error;
+            throw  error;
         }
+        
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
-    //
+    //   
 }

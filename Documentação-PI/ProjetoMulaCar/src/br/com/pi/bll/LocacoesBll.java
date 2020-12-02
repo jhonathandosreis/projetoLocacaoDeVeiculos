@@ -1,7 +1,7 @@
 /*
  *  -------------------------------------------------------------------------------------------------->
  *  Licença    : MIT - Copyright 2019 Jhonathan, Gustavo e Miguel 
- *  Criado em  : 23/11/2020 22:41:51 
+ *  Criado em  : 23/11/2020 23:43:51 
  *  Instituição: FACULDADE SENAI FATESG
  *  Curso      : Análise e Desenvolvimento de sistemas - Módulo 3 - 2020/11
  *  Disciplina : Projeto Integrador
@@ -12,87 +12,77 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
+
 package br.com.pi.bll;
 
-import br.com.pi.dal.VeiculosDal;
-import br.com.pi.model.Veiculos;
+import br.com.pi.dal.LocacoesDal;
+import br.com.pi.model.Locacoes;
 import java.util.ArrayList;
 
 /**
  *
- * @author jhonlinux
+ * @author Gustavo Gabriel
  */
-public class VeiculosBll {
-
+public class LocacoesBll {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
-    //
-    private VeiculosDal veiculosDal;
+    private LocacoesDal locacoesDal;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
-    //
-    public VeiculosBll() throws Exception {
-        veiculosDal = new VeiculosDal();
+    public LocacoesBll() throws Exception {
+        locacoesDal = new LocacoesDal();
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    //
-    public void addVeiculos(Veiculos veiculo) throws Exception {
-
-        try {
-            veiculosDal.addVeiculos(veiculo);
+    public void addLocacoes(Locacoes locacao) throws Exception {
+        try{
+           locacoesDal.addLocacoes(locacao);
         } catch (Exception error) {
-            throw error;
+            throw  error;
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-
+    
     //--- UPDATE -------------------------------------------------------------------------------------->
-    //
-    public void updateVeiculos(Veiculos veiculo) throws Exception {
-        try {
-            veiculosDal.updateVeiculos(veiculo);
+    public void updateLocacoes(Locacoes locacao) throws Exception {
+        try{
+            locacoesDal.updateLocacoes(locacao);
         } catch (Exception error) {
-            throw error;
+            throw  error;
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
-    //
-    public void deleteVeiculos(Veiculos veiculo) throws Exception {
-
-        try {
-            veiculosDal.deleteVeiculos(veiculo.getIden());
+    public void deleteLocacoes(Locacoes locacao) throws Exception {
+        try{
+            locacoesDal.deleteLocacoes(locacao);
         } catch (Exception error) {
-            throw error;
+            throw  error;
         }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
-
+    
     //--- READ ---------------------------------------------------------------------------------------->
-    //
-    public ArrayList<Veiculos> getAllVeiculos() throws Exception {
-
-        try {
-            return veiculosDal.getAllVeiculos();
+    public ArrayList<Locacoes> getAllLocacoes() throws Exception {
+        try{
+        return locacoesDal.getAllLocacoes();
         } catch (Exception error) {
-            throw error;
+            throw  error;
         }
     }
-
-    public Veiculos getVeiculosById(int vei_iden) throws Exception {
-
-        try {
-            return veiculosDal.getVeiculosById(vei_iden);
+    
+    public Locacoes getLocacoesBy(int loc_iden) throws Exception {
+        try{
+        return locacoesDal.getLocacoesById(loc_iden);
         } catch (Exception error) {
-            throw error;
+            throw  error;
         }
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
