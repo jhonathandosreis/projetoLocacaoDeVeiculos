@@ -44,81 +44,83 @@ public class TelaCidades extends javax.swing.JFrame {
     public TelaCidades() {
         initComponents();
         try {
-            
+
             ufBll = new UfsBll();
             cidadeBll = new CidadesBll();
             uf = new Ufs();
             cidade = new Cidades();
-            
+
             preencherGridCidade();
             preencherComboboxUfs();
-            
+
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
         this.setLocationRelativeTo(null);
-        
+
     }
 
     //--- METODOS ------------------------------------------------------------------------------------->
     public void preencherGridCidade() {
-        
+
         try {
             DefaultTableModel tableCidade = (DefaultTableModel) jTableCidades.getModel();
             tableCidade.setRowCount(0);
-            
+
             Object[] linha = new Object[3];
-            
+
             ArrayList<Cidades> cidade = new CidadesBll().getAllCidades();
-            
+
             for (Cidades cidade1 : cidade) {
                 linha[0] = cidade1.getIden();
                 linha[1] = cidade1.getNome();
                 linha[2] = cidade1.getUf().getNome();
-                
+
                 tableCidade.addRow(linha);
             }
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     public void preencherFormularioCidade() throws Exception {
-        
+
         int id = Integer.parseInt(jTableCidades.getValueAt(jTableCidades.getSelectedRow(), 0).toString());
         String nome = jTableCidades.getValueAt(jTableCidades.getSelectedRow(), 1).toString();
         String idUf = cidadeBll.getCidadesById(id).getUf().getNome();
-        
+
         jComboBoxUf.setSelectedItem(ufBll.getUfById(id).getNome());
-        
+
         jTextFieldIDCidades.setText(id + "");
         jTextFieldCidade.setText(nome);
         jComboBoxUf.setSelectedItem(idUf);
     }
-    
+
     public void preencherComboboxUfs() throws Exception {
-        
+
         ArrayList<Ufs> lista = ufBll.getAllUfs();
         jComboBoxUf.removeAllItems();
         jComboBoxUf.addItem("<SELECIONE>");
-        
+
         for (Ufs uf : lista) {
             jComboBoxUf.addItem(uf.getNome());
         }
-        
+
     }
-    
+
     public void limparCampos() {
         jTextFieldIDCidades.setText("");
         jTextFieldCidade.setText("");
         jComboBoxUf.setSelectedIndex(0);
     }
-    
+
     public void validaCidade() {
-        
-         Valida.campoVazio(jTextFieldCidade.getText(), "Digite uma Cidade Brasileira!");
-         Valida.notNumber(jTextFieldCidade.getText(), "");
-         Valida.notSpecialCharacters(jTextFieldCidade.getText(), "");
+
+        Valida.campoVazio(jTextFieldCidade.getText(), "Digite uma Cidade Brasileira!");
+        Valida.notNumber(jTextFieldCidade.getText(), "");
+        Valida.notSpecialCharacters(jTextFieldCidade.getText(), "");
+
+
     }
 
     //--- FIM METODOS --------------------------------------------------------------------------------->
@@ -299,22 +301,22 @@ public class TelaCidades extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        
+
         try {
-            
+
             validaCidade();
-            
+
             String ufs = jComboBoxUf.getSelectedItem().toString();
             uf = ufBll.getUfsNome(ufs);
             cidade.setUf(uf);
-            
+
             cidade.setNome(jTextFieldCidade.getText().toUpperCase());
             cidadeBll.addCidades(cidade);
-            
+
             preencherGridCidade();
             limparCampos();
-            
-             JOptionPane.showMessageDialog(null, "Cidade cadastrada com sucesso!");
+
+            JOptionPane.showMessageDialog(null, "Cidade cadastrada com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -323,21 +325,21 @@ public class TelaCidades extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-        
+
         try {
             if (jTableCidades.getSelectedRow() == -1) {
                 throw new Exception("Selecione uma Cidade a ser alterada!");
             }
             validaCidade();
-            
+
             String ufs = jComboBoxUf.getSelectedItem().toString();
             uf = ufBll.getUfsNome(ufs);
             cidade.setUf(uf);
-            
+
             cidade.setNome(jTextFieldCidade.getText().toUpperCase());
             cidade.setIden(Integer.parseInt(jTextFieldIDCidades.getText()));
             cidadeBll.updateCidades(cidade);
-            
+
             preencherGridCidade();
             limparCampos();
         } catch (Exception error) {
@@ -348,14 +350,14 @@ public class TelaCidades extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
-        
+
         try {
             if (jTableCidades.getSelectedRow() == -1) {
                 throw new Exception("Selecione uma Cidade a ser removida!");
             }
             cidade.setIden(Integer.parseInt(jTextFieldIDCidades.getText()));
             cidadeBll.deleteCidades(cidade);
-            
+
             preencherGridCidade();
             limparCampos();
         } catch (Exception error) {
@@ -372,7 +374,6 @@ public class TelaCidades extends javax.swing.JFrame {
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableCidadesMouseClicked
