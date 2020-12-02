@@ -609,7 +609,10 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             
            int id = Integer.parseInt(jTableConsultaPessoaFisica.getValueAt(jTableConsultaPessoaFisica.getSelectedRow(), 0).toString());
            pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
+           endereco = enderecoBll.getConsultaPorId(pessoaFisica.getCliente().getEnderecos().getIden());
+           cliente = clienteBll.getClienteById(pessoaFisica.getCliente().getIden());
            cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
+           
            endereco.setCidade(cidade);
            endereco.setCep(Double.parseDouble(jTextFieldCepPessoaFisica.getText()));
            endereco.setLogradouro(jTextFieldLogradouroPessoaFisica.getText());
@@ -617,18 +620,13 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
            endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaFisica.getText()));
            endereco.setRua(jTextFieldRuaPessoaFisica.getText());
            enderecoBll.updateEndereco(endereco);
-           double cep = endereco.getCep();
-           endereco = enderecoBll.getConsultaPorCEP(cep);
-           
-          
-           cliente = clienteBll.getClienteById(pessoaFisica.getCliente().getIden());
+
            cliente.setEnderecos(endereco);
            cliente.setNome(jTextFieldNomePessoaFisica.getText());
            cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaFisica.getText()));
            cliente.setEmail(jTextFieldEmailPessoaFisica.getText());
            clienteBll.updateClientes(cliente);
-           
-           
+
            pessoaFisica.setCliente(cliente);
            pessoaFisica.setRg(Integer.parseInt(jTextFieldRGPessoaFisica.getText()));
            pessoaFisica.setCpf(Double.parseDouble(jTextFieldCPFPessoaFisica.getText()));       

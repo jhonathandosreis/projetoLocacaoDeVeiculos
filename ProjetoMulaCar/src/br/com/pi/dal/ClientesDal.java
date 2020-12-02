@@ -15,7 +15,6 @@
 
 package br.com.pi.dal;
 
-import br.com.pi.bll.ClientesBll;
 import br.com.pi.bll.EnderecosBll;
 import br.com.pi.model.Clientes;
 import br.com.pi.model.Enderecos;
@@ -47,11 +46,9 @@ public class ClientesDal {
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
     public void addClientes(Clientes cliente) throws Exception {
-        try{
-            
         String sqlCliente ="INSERT INTO clientes (cli_nome, cli_telefone, cli_email, cli_end_iden) values (?, ?, ?, ?)";
-        PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);
-        
+        try{    
+        PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);     
         preparedStatement1.setString(1, cliente.getNome());
         preparedStatement1.setDouble(2, cliente.getTelefone());
         preparedStatement1.setString(3, cliente.getEmail());
@@ -64,8 +61,8 @@ public class ClientesDal {
     }
     
     public void updateClientes(Clientes cliente) throws Exception { 
-        try{    
             String sqlCliente ="UPDATE clientes SET cli_telefone=?, cli_email=?, cli_end_iden=? WHERE cli_iden=?";
+        try{    
             PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);
             preparedStatement1.setDouble(1, cliente.getTelefone());
             preparedStatement1.setString(2, cliente.getEmail());
@@ -80,10 +77,10 @@ public class ClientesDal {
 
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Clientes> getAllClientes() throws Exception {
+       
         ArrayList<Clientes> lista = new ArrayList<Clientes>();
-        
         String sql = "SELECT * FROM clientes";
-        
+        try{
 
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
@@ -99,6 +96,9 @@ public class ClientesDal {
                 cliente.setEnderecos(endereco);
                 lista.add(cliente);
             }
+             } catch (Exception error) {
+            throw  error;
+        }
         return lista;
         
     }
