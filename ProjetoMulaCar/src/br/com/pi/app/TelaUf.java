@@ -16,6 +16,7 @@ package br.com.pi.app;
 
 import br.com.pi.bll.UfsBll;
 import br.com.pi.model.Ufs;
+import br.com.pi.util.Valida;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -40,6 +41,7 @@ public class TelaUf extends javax.swing.JFrame {
         initComponents();
 
         try {
+            
             ufBll = new UfsBll();
             uf = new Ufs();
 
@@ -89,6 +91,9 @@ public class TelaUf extends javax.swing.JFrame {
 
     public void ValidaUf() {
 
+         Valida.campoVazio(jTextFieldUfnome.getText(), "Digite uma Sigla UF de um Estado Brasileiro!");
+         Valida.notNumber(jTextFieldUfnome.getText(), "");
+         Valida.notSpecialCharacters(jTextFieldUfnome.getText(), "");
     }
 //    --- FIM METODOS --------------------------------------------------------------------------------->
 //    
@@ -257,11 +262,12 @@ public class TelaUf extends javax.swing.JFrame {
         try {
             ValidaUf();
 
-            uf.setNome(jTextFieldUfnome.getText());
+            uf.setNome(jTextFieldUfnome.getText().toUpperCase());
             ufBll.addUfs(uf);
 
             preencherGridUf();
             limparCampos();
+             JOptionPane.showMessageDialog(null, "UF cadastrado com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -278,12 +284,14 @@ public class TelaUf extends javax.swing.JFrame {
                 throw new Exception("Selecione uma UF a ser alterada!");
             }
             ValidaUf();
-            uf.setNome(jTextFieldUfnome.getText());
+            uf.setNome(jTextFieldUfnome.getText().toUpperCase());
             uf.setIden(Integer.parseInt(jTextFieldIDUf.getText()));
             ufBll.updateUfs(uf);
 
             preencherGridUf();
             limparCampos();
+            
+            JOptionPane.showMessageDialog(null, "UF alterado com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -308,6 +316,8 @@ public class TelaUf extends javax.swing.JFrame {
 
             preencherGridUf();
             limparCampos();
+            
+            JOptionPane.showMessageDialog(null, "UF removida com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }

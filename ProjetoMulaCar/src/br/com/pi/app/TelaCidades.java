@@ -18,6 +18,7 @@ import br.com.pi.bll.CidadesBll;
 import br.com.pi.bll.UfsBll;
 import br.com.pi.model.Cidades;
 import br.com.pi.model.Ufs;
+import br.com.pi.util.Valida;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -50,6 +51,7 @@ public class TelaCidades extends javax.swing.JFrame {
             cidade = new Cidades();
             
             preencherGridCidade();
+            preencherComboboxUfs();
             
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -85,14 +87,16 @@ public class TelaCidades extends javax.swing.JFrame {
         
         int id = Integer.parseInt(jTableCidades.getValueAt(jTableCidades.getSelectedRow(), 0).toString());
         String nome = jTableCidades.getValueAt(jTableCidades.getSelectedRow(), 1).toString();
+        String idUf = cidadeBll.getCidadesById(id).getUf().getNome();
         
         jComboBoxUf.setSelectedItem(ufBll.getUfById(id).getNome());
         
         jTextFieldIDCidades.setText(id + "");
         jTextFieldCidade.setText(nome);
+        jComboBoxUf.setSelectedItem(idUf);
     }
     
-    public void preencherComboboxModelos() throws Exception {
+    public void preencherComboboxUfs() throws Exception {
         
         ArrayList<Ufs> lista = ufBll.getAllUfs();
         jComboBoxUf.removeAllItems();
@@ -112,6 +116,9 @@ public class TelaCidades extends javax.swing.JFrame {
     
     public void validaCidade() {
         
+         Valida.campoVazio(jTextFieldCidade.getText(), "Digite uma Cidade Brasileira!");
+         Valida.notNumber(jTextFieldCidade.getText(), "");
+         Valida.notSpecialCharacters(jTextFieldCidade.getText(), "");
     }
 
     //--- FIM METODOS --------------------------------------------------------------------------------->
@@ -295,16 +302,19 @@ public class TelaCidades extends javax.swing.JFrame {
         
         try {
             
+            validaCidade();
+            
             String ufs = jComboBoxUf.getSelectedItem().toString();
             uf = ufBll.getUfsNome(ufs);
             cidade.setUf(uf);
             
-            cidade.setNome(jTextFieldCidade.getText());
+            cidade.setNome(jTextFieldCidade.getText().toUpperCase());
             cidadeBll.addCidades(cidade);
             
             preencherGridCidade();
             limparCampos();
             
+             JOptionPane.showMessageDialog(null, "Cidade cadastrada com sucesso!");
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -324,7 +334,7 @@ public class TelaCidades extends javax.swing.JFrame {
             uf = ufBll.getUfsNome(ufs);
             cidade.setUf(uf);
             
-            cidade.setNome(jTextFieldCidade.getText());
+            cidade.setNome(jTextFieldCidade.getText().toUpperCase());
             cidade.setIden(Integer.parseInt(jTextFieldIDCidades.getText()));
             cidadeBll.updateCidades(cidade);
             

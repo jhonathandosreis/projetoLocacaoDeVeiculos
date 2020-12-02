@@ -31,22 +31,27 @@ public class CidadesBll {
     //
     public void addCidades(Cidades cidade) throws Exception {
 
+//         if (cidade.getNome().replaceAll(cidade.getUf())   ) {
+//            throw new Exception("Existe uma Cidade com o mesmo nome cadastrada");
+//        }
+        
+        if (cidade.getNome().length() < 2) {
+            throw new Exception("Nome da Cidade inválida\nNo mínimo 2 caracteres!");
+        }
+
+        if (cidade.getNome().length() > 50) {
+            throw new Exception("Nome da Cidade inválida\nMáximo de caracteres excedido!");
+        }
         try {
-
-            if (cidade.getNome().length() < 2) {
-                throw new Exception("Nome da Cidade inválida\nNo mínimo 2 caracteres!");
-            }
-
-            if (cidade.getNome().length() > 50) {
-                throw new Exception("Nome da Cidade inválida\nMáximo de caracteres excedido!");
-            }
-
             cidadeDal.addCidades(cidade);
         } catch (Exception error) {
-            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-                throw new Exception("Existe uma Cidade com o mesmo nome cadastrada no banco de dados!");
-            }
+                  throw error;
         }
+    
+//            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
+//                throw new Exception("Existe uma Cidade com o mesmo nome cadastrada no banco de dados!");
+//            }
+        
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
@@ -55,22 +60,23 @@ public class CidadesBll {
     //
     public void updateCidades(Cidades cidade) throws Exception {
 
+        if (cidade.getNome().length() < 2) {
+            throw new Exception("Nome da Cidade inválida\nNo mínimo 2 caracteres!");
+        }
+
+        if (cidade.getNome().length() > 50) {
+            throw new Exception("Nome da Cidade inválida\nMáximo de caracteres excedido!");
+        }
         try {
-
-            if (cidade.getNome().length() < 2) {
-                throw new Exception("Nome da Cidade inválida\nNo mínimo 2 caracteres!");
-            }
-
-            if (cidade.getNome().length() > 50) {
-                throw new Exception("Nome da Cidade inválida\nMáximo de caracteres excedido!");
-            }
-
             cidadeDal.updateCidades(cidade);
         } catch (Exception error) {
-            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-                throw new Exception("Existe uma Cidade com o mesmo nome cadastrada no banco de dados!");
-            }
+                   throw error;
         }
+            
+//            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
+//                throw new Exception("Existe uma Cidade com o mesmo nome cadastrada no banco de dados!");
+//            }
+//        }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //

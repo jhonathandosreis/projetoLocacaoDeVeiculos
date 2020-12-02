@@ -29,17 +29,19 @@ public class UfsBll {
 
     public void addUfs(Ufs uf) throws Exception {
 
-        try {
+        
 
-            if (uf.getNome().length() == 2) {
-                throw new Exception("Sigla da UF é permitido apenas 2 caracteres!");
+             if (uf.getNome().trim().length() != 2) {
+                throw new Exception("Sigla da UF é permitido apenas com 2 caracteres!");
             }
-
+            
+try {
             ufDal.addUfs(uf);
         } catch (Exception error) {
             if (error.getMessage().contains("duplicate key value violates unique constraint")) {
                 throw new Exception("Existe um UF com o mesmo nome cadastrada no banco de dados!");
             }
+           
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -49,12 +51,12 @@ public class UfsBll {
     //
     public void updateUfs(Ufs uf) throws Exception {
 
-        try {
+       
 
-            if (uf.getNome().length() == 2) {
-                throw new Exception("Sigla da UF é permitido apenas 2 caracteres!");
+            if (uf.getNome().length() != 2) {
+                throw new Exception("Sigla da UF é permitido apenas com 2 caracteres!");
             }
-
+ try {
             ufDal.updateUfs(uf);
         } catch (Exception error) {
             if (error.getMessage().contains("duplicate key value violates unique constraint")) {
