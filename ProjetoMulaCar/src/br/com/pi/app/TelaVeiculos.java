@@ -128,6 +128,10 @@ public class TelaVeiculos extends javax.swing.JFrame {
             int anoFabricacao = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 7).toString());
             int capacidade = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 8).toString());
             String tipoDeCombustivel = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 9).toString();
+            String marcacombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 10).toString();
+            String categoriacombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 11).toString();
+            String tiposDeVeiculoscombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 12).toString();
+            String modeloscombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 13).toString();
 
             jComboBoxModelo.setSelectedItem(modelosBll.getModelosById(id).getNome());
             jTextFieldTipoDoVeiculo.setText(tiposDeVeiculosBll.getTiposDeVeiculosById(id).getNome());
@@ -144,7 +148,11 @@ public class TelaVeiculos extends javax.swing.JFrame {
             jTextFieldTipoDeCombustivel.setText(tipoDeCombustivel);
             jComboBoxStatus.setSelectedItem(status);
             jTextAreaObservacoes.setText(observacoes);
-            
+            jTextFieldMarca.setText(marcacombobox);
+            jTextFieldCategoria.setText(categoriacombobox);
+            jTextFieldTipoDoVeiculo.setText(tiposDeVeiculoscombobox);
+            jComboBoxModelo.setSelectedItem(modeloscombobox);
+
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }

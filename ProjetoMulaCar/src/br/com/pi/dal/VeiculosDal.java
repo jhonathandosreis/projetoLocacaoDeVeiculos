@@ -14,6 +14,8 @@
  */
 package br.com.pi.dal;
 
+import br.com.pi.bll.ModelosBll;
+import br.com.pi.model.Modelos;
 import java.sql.PreparedStatement;
 import br.com.pi.model.Veiculos;
 import br.com.pi.util.Conexao;
@@ -31,6 +33,8 @@ public class VeiculosDal {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private Connection conexao;
+    private Modelos modelo = null;
+    private ModelosBll modeloBll = new ModelosBll();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -140,8 +144,8 @@ public class VeiculosDal {
                 veiculo.setTipoDeCombustivel(rs.getString("vei_tipo_combustivel"));
 
                 //Chave estrangeira
-                ModelosDal modeloDal = new ModelosDal();
-                veiculo.setModelo(modeloDal.getModelosById(rs.getInt("vei_mod_iden")));
+                modelo = modeloBll.getModelosById(rs.getInt("vei_mod_iden"));
+                veiculo.setModelo(modelo);
                 lista.add(veiculo);
             }
         } catch (Exception error) {
@@ -174,8 +178,8 @@ public class VeiculosDal {
                 veiculo.setTipoDeCombustivel(rs.getString("vei_tipo_combustivel"));
 
                 //Chave estrangeira
-                ModelosDal modeloDal = new ModelosDal();
-                veiculo.setModelo(modeloDal.getModelosById(rs.getInt("vei_mod_iden")));
+                modelo = modeloBll.getModelosById(rs.getInt("vei_mod_iden"));
+                veiculo.setModelo(modelo);
             }
         } catch (Exception error) {
             throw error;
