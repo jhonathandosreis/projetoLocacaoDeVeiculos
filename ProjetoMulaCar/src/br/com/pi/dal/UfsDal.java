@@ -81,7 +81,6 @@ public class UfsDal {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, uf.getNome());
             preparedStatement.setInt(2, uf.getIden());
-
             preparedStatement.executeUpdate();
        } catch (Exception error) {
             throw  error;

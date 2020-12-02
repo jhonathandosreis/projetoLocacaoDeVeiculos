@@ -83,6 +83,7 @@ public class CidadesDal {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, cidade.getNome());
             preparedStatement.setInt(2, cidade.getUf().getIden());
+            preparedStatement.setInt(3, cidade.getIden());
 
             preparedStatement.executeUpdate();
         } catch (Exception error) {
