@@ -82,7 +82,7 @@ public class MotoristasBll {
         
     }
     
-    public Motoristas getMotoristaBy(int mot_iden) throws Exception {
+    public Motoristas getMotoristaById(int mot_iden) throws Exception {
          try{
          return motoristaDal.getMotoristasById(mot_iden);
         } catch (Exception error) {

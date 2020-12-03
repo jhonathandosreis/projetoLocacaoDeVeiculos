@@ -13,12 +13,16 @@
  *  ---------------------------------------------------------------------------------------------------| 
  */
 package br.com.pi.app;
-
 import br.com.pi.bll.CategoriasBll;
+import br.com.pi.bll.ClientesBll;
+import br.com.pi.bll.LocacoesBll;
 import br.com.pi.bll.MotoristasBll;
 import br.com.pi.bll.PessoasFisicasBll;
 import br.com.pi.bll.PessoasJuridicasBll;
+import br.com.pi.bll.VeiculosBll;
 import br.com.pi.model.Categorias;
+import br.com.pi.model.Clientes;
+import br.com.pi.model.Locacoes;
 import br.com.pi.model.Motoristas;
 import br.com.pi.model.PessoasFisicas;
 import br.com.pi.model.PessoasJuridicas;
@@ -27,31 +31,42 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import br.com.pi.util.*;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
- * @author jhonlinux
+ * @author GustavoDev
  */
 public class TelaLocacao extends javax.swing.JFrame {
-
+    
+    Locacoes locacao;
+    LocacoesBll locacaoBll;
+    Clientes cliente;
+    ClientesBll clienteBll;
     Motoristas motorista;
     MotoristasBll motoristabll;
     PessoasFisicas pessoaFisica;
     PessoasFisicasBll pessoaFisicaBll;
     PessoasJuridicas pessoaJuridica;     
     PessoasJuridicasBll pessoaJuridicaBll;
+    Veiculos veiculo;
+    VeiculosBll veiculoBll;
     Categorias categoria;
     CategoriasBll categoriaBll;
     
     public TelaLocacao() {
         initComponents();
         try{
+           locacao = new Locacoes();
+           locacaoBll = new LocacoesBll();
+           cliente = new Clientes();
+           clienteBll = new ClientesBll();
            motorista = new Motoristas();
            motoristabll = new MotoristasBll();
            pessoaFisica = new PessoasFisicas();
            pessoaFisicaBll = new PessoasFisicasBll();
            pessoaJuridica = new PessoasJuridicas();
            pessoaJuridicaBll = new PessoasJuridicasBll();
+           veiculo = new Veiculos();
+           veiculoBll = new VeiculosBll();
            categoria = new Categorias();
            categoriaBll = new CategoriasBll();
            
@@ -66,17 +81,17 @@ public class TelaLocacao extends javax.swing.JFrame {
         try{
             DefaultTableModel model =  (DefaultTableModel) jTable_VEICULOS.getModel();
             model.setNumRows(0);
-            int pos = 0;
-            while(pos < listaveiculos.size()){
-                String[] linha = new String[4];
-                Veiculos veiculo = listaveiculos.get(pos);
-                linha[0]= veiculo.getModelo().getCategoria().getNome();
-                linha[1]= veiculo.getTiposDeVeiculo().getNome();
-                linha[2]= veiculo.getModelo().getNome();
-                linha[3]= veiculo.getModelo().getMarcas().getNome();
-               
-                model.addRow(linha);
-                pos++;
+           
+            for(Veiculos veiculo : listaveiculos){
+                String[] coluna = new String[6];
+                coluna[0]= ""+veiculo.getIden();
+                coluna[1]= veiculo.getModelo().getCategoria().getNome();
+                coluna[2]= veiculo.getModelo().getTiposDeVeiculos().getNome();
+                coluna[3]= veiculo.getModelo().getNome();
+                coluna[4]= veiculo.getModelo().getMarcas().getNome();   
+                coluna[5]= veiculo.getPlaca(); 
+                
+                model.addRow(coluna);                
             }
         }catch(Exception erro){
             JOptionPane.showMessageDialog(rootPane, erro);
@@ -88,7 +103,7 @@ public class TelaLocacao extends javax.swing.JFrame {
         ArrayList<Motoristas> listaMotoristas = motoristabll.getAllMotoristas();
            // jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
             for(Motoristas motorista : listaMotoristas){
-                jComboBox_MotoristaLocacao.addItem(motorista.getCliente().getNome());
+                jComboBox_MotoristaLocacao.addItem( motorista.getIden()+"-"+motorista.getCliente().getNome());
             }
             } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -103,7 +118,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             ArrayList<PessoasFisicas> listaPessoasFisicas = pessoaFisicaBll.getAllPessoasFisicas();
            // jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
             for (PessoasFisicas pessoaFisica : listaPessoasFisicas) {
-               jComboBox_Cliente_Locacao.addItem(pessoaFisica.getCliente().getNome());
+               jComboBox_Cliente_Locacao.addItem(pessoaFisica.getCliente().getIden()+"-"+pessoaFisica.getCliente().getNome());
             }      
         }
         
@@ -111,7 +126,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             ArrayList<PessoasJuridicas> listaPessoasJuridicas = pessoaJuridicaBll.getAllPessoasJuridicas();
             //jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
             for (PessoasJuridicas pessoJurica : listaPessoasJuridicas) {
-               jComboBox_Cliente_Locacao.addItem(pessoJurica.getRazaoSocial());
+               jComboBox_Cliente_Locacao.addItem(pessoJurica.getCliente().getIden()+"-"+pessoJurica.getRazaoSocial());
             }
         }
         
@@ -119,7 +134,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             ArrayList<Motoristas> listaMotoristas = motoristabll.getAllMotoristas();
             //jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
             for(Motoristas motorista : listaMotoristas){
-                jComboBox_Cliente_Locacao.addItem(motorista.getCliente().getNome());
+                jComboBox_Cliente_Locacao.addItem(motorista.getCliente().getIden()+"-"+motorista.getCliente().getNome());
             }
         }
         } catch (Exception error) {
@@ -152,8 +167,6 @@ public class TelaLocacao extends javax.swing.JFrame {
         JradioButonMotodista = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         jComboBox_MotoristaLocacao = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_VEICULOS = new javax.swing.JTable();
         jButtonCadastrar = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
         jButtonRemover = new javax.swing.JButton();
@@ -163,7 +176,9 @@ public class TelaLocacao extends javax.swing.JFrame {
         jButton__listarPorMarca = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextArea_informacoesVeiculo = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable_VEICULOS = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("[LOCAÇÃO DO VEÍCULO]");
@@ -227,7 +242,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(3, 3, 3)
                                         .addComponent(jComboBox_Cliente_Locacao, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addComponent(jTextFieldDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -297,33 +312,6 @@ public class TelaLocacao extends javax.swing.JFrame {
                 .addGap(133, 133, 133))
         );
 
-        jTable_VEICULOS.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "CATEGORIA", "TIPO DE VEICULO", "MODELO", "MARCA", "PLACA"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, false, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable_VEICULOS);
-        if (jTable_VEICULOS.getColumnModel().getColumnCount() > 0) {
-            jTable_VEICULOS.getColumnModel().getColumn(0).setPreferredWidth(40);
-            jTable_VEICULOS.getColumnModel().getColumn(1).setPreferredWidth(300);
-            jTable_VEICULOS.getColumnModel().getColumn(2).setPreferredWidth(300);
-            jTable_VEICULOS.getColumnModel().getColumn(3).setPreferredWidth(150);
-            jTable_VEICULOS.getColumnModel().getColumn(4).setPreferredWidth(150);
-            jTable_VEICULOS.getColumnModel().getColumn(5).setPreferredWidth(150);
-            jTable_VEICULOS.getColumnModel().getColumn(6).setPreferredWidth(100);
-        }
-
         jButtonCadastrar.setText("CADASTRAR");
         jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -375,9 +363,24 @@ public class TelaLocacao extends javax.swing.JFrame {
 
         jLabel6.setText("DADOS DO VEICULO SELECIONADO");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        jTextArea_informacoesVeiculo.setColumns(20);
+        jTextArea_informacoesVeiculo.setRows(5);
+        jScrollPane2.setViewportView(jTextArea_informacoesVeiculo);
+
+        jTable_VEICULOS.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "CATEGORIA", "TIPO DE VEÍCULO", "MODELO", "MARCA", "PLACA"
+            }
+        ));
+        jTable_VEICULOS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_VEICULOSMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTable_VEICULOS);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -387,61 +390,53 @@ public class TelaLocacao extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jButtonCadastrar)
-                        .addGap(331, 331, 331)
-                        .addComponent(jButtonAlterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonRemover))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
+                                .addComponent(jButtonCadastrar)
+                                .addGap(256, 256, 256)
+                                .addComponent(jButtonAlterar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonRemover))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton_listarPorCategoria)
                                 .addGap(42, 42, 42)
                                 .addComponent(jButton_listarPorTipo)
                                 .addGap(46, 46, 46)
                                 .addComponent(jButton_listarPorModelo)
                                 .addGap(63, 63, 63)
-                                .addComponent(jButton__listarPorMarca))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel6)
-                                .addGap(70, 70, 70)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jButton__listarPorMarca)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton_listarPorCategoria)
-                            .addComponent(jButton_listarPorTipo)
-                            .addComponent(jButton_listarPorModelo)
-                            .addComponent(jButton__listarPorMarca))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addGap(81, 81, 81))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_listarPorCategoria)
+                    .addComponent(jButton_listarPorTipo)
+                    .addComponent(jButton_listarPorModelo)
+                    .addComponent(jButton__listarPorMarca)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCadastrar)
                     .addComponent(jButtonAlterar)
-                    .addComponent(jButtonRemover)
-                    .addComponent(jButtonCadastrar))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(jButtonRemover))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -458,7 +453,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -489,7 +484,26 @@ public class TelaLocacao extends javax.swing.JFrame {
     }//GEN-LAST:event_JradioButonMotodistaActionPerformed
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        // TODO add your handling code here:
+         try {
+            if (jTable_VEICULOS.getSelectedRow() == -1) {
+                throw new Exception("Selecione veículo na tabela para ser locado!");
+            }
+            if(JradioButonMotodista.isSelected()){
+                motorista = motoristabll.getMotoristaById(SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString()));
+                locacao.setCliente(motorista.getCliente());
+            }
+            if(jRadioButtonPFisica.isSelected()){
+                pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString()));
+                locacao.setCliente(pessoaFisica.getCliente());
+            }
+            if(jRadioButtonPJuridica.isSelected()){
+                pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString()));
+                locacao.setCliente(pessoaJuridica.getCliente());
+            }
+            
+             } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
@@ -499,7 +513,15 @@ public class TelaLocacao extends javax.swing.JFrame {
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonRemoverActionPerformed
-
+    
+    private int SplitReturnID (String combo){
+  
+            String[] split = combo.split("-");
+            int id = Integer.parseInt(split[0]);
+            return id;
+          
+    }
+    
     private void jButton_listarPorCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listarPorCategoriaActionPerformed
        try{
         TemplateOrdenadoPorCategoria objeto = new TemplateOrdenadoPorCategoria();
@@ -535,6 +557,19 @@ public class TelaLocacao extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton__listarPorMarcaActionPerformed
+
+    private void jTable_VEICULOSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_VEICULOSMouseClicked
+        try{ 
+        int id = Integer.parseInt(jTable_VEICULOS.getValueAt(jTable_VEICULOS.getSelectedRow(), 0).toString());
+         veiculo = veiculoBll.getVeiculosById(id);
+         String saida = "MODELO: "+veiculo.getModelo().getNome();
+         saida+= "\nMARCA: "+veiculo.getModelo().getMarcas();
+         saida+= "\nPLACA: "+veiculo.getPlaca();
+         jTextArea_informacoesVeiculo.setText(saida);
+         } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jTable_VEICULOSMouseClicked
 
     /**
      * @param args the command line arguments
@@ -595,10 +630,10 @@ public class TelaLocacao extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButtonPFisica;
     private javax.swing.JRadioButton jRadioButtonPJuridica;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable_VEICULOS;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea_informacoesVeiculo;
     private javax.swing.JTextField jTextFieldDataDevolucao;
     private javax.swing.JTextField jTextFieldDataLocacao;
     private javax.swing.JTextField jTextFieldLocacao;

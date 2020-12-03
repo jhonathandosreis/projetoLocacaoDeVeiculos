@@ -114,7 +114,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
     public void preencherFormularioMotoristas() throws Exception {
 
         int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
-        motorista = motoristabll.getMotoristaBy(id);
+        motorista = motoristabll.getMotoristaById(id);
 
         jTextFieldIDMotorista.setText("" + motorista.getIden());
         jTextFieldNomeMotorista.setText(motorista.getCliente().getNome());
@@ -759,7 +759,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
             }
             ValidaMotoristas();
             int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
-            motorista = motoristabll.getMotoristaBy(id);
+            motorista = motoristabll.getMotoristaById(id);
             endereco = enderecoBll.getConsultaPorId(motorista.getCliente().getEnderecos().getIden());
             cliente = clienteBll.getClienteById(motorista.getCliente().getIden());
             cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
@@ -805,7 +805,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
             }
 
             int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
-            motorista = motoristabll.getMotoristaBy(id);
+            motorista = motoristabll.getMotoristaById(id);
             endereco = enderecoBll.getConsultaPorId(motorista.getCliente().getEnderecos().getIden());
             cliente = clienteBll.getClienteById(motorista.getCliente().getIden());
 
