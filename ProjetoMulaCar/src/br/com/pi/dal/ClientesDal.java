@@ -92,7 +92,6 @@ public class ClientesDal {
         ArrayList<Clientes> lista = new ArrayList<Clientes>();
         String sql = "SELECT * FROM clientes";
         try{
-
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {

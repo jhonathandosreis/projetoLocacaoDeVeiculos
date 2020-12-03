@@ -47,10 +47,11 @@ public class UfsDal {
 
             preparedStatement.executeUpdate();
 
-        } catch (Exception error) {   
-                throw error;      
+        } catch (Exception error) {
+            throw error;
         }
     }
+
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
     //--- DELETE -------------------------------------------------------------------------------------->
@@ -64,7 +65,7 @@ public class UfsDal {
             preparedStatement.setInt(1, uf_iden);
             preparedStatement.executeUpdate();
         } catch (Exception error) {
-            throw  error;
+            throw error;
         }
 
     }
@@ -82,9 +83,9 @@ public class UfsDal {
             preparedStatement.setString(1, uf.getNome());
             preparedStatement.setInt(2, uf.getIden());
             preparedStatement.executeUpdate();
-       } catch (Exception error) {
-            throw  error;
-        
+        } catch (Exception error) {
+            throw error;
+
         }
 
     }

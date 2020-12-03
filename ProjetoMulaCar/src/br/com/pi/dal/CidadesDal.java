@@ -26,6 +26,7 @@ public class CidadesDal {
     private Connection conexao;
     private Ufs uf = null;
     private UfsBll ufBll = new UfsBll();
+
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
     //--- CONSTRUTORES -------------------------------------------------------------------------------->
@@ -48,9 +49,9 @@ public class CidadesDal {
             preparedStatement.setInt(2, cidade.getUf().getIden());
             preparedStatement.executeUpdate();
 
-       } catch (Exception error) {
-            throw  error;
-        
+        } catch (Exception error) {
+            throw error;
+
         }
 
     }
@@ -67,9 +68,9 @@ public class CidadesDal {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setInt(1, cid_iden);
             preparedStatement.executeUpdate();
-       } catch (Exception error) {
-            throw  error;
-        
+        } catch (Exception error) {
+            throw error;
+
         }
 
     }
@@ -90,8 +91,8 @@ public class CidadesDal {
 
             preparedStatement.executeUpdate();
         } catch (Exception error) {
-            throw  error;
-        
+            throw error;
+
         }
 
     }

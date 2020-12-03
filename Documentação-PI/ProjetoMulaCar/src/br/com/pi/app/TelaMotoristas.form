@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="[MOTORISTAS]"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jTabbedPane1PessoaFisica" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jTabbedPane1PessoaFisica" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1PessoaFisica">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Dados Gerais">
+                <Property name="tabTitle" type="java.lang.String" value="Dados Gerais"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel2PessoaFisica" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="jButtonCadastrar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
+                              <Component id="jButtonAlterar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="238" max="-2" attributes="0"/>
+                              <Component id="jButtonRemover" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="498" max="32767" attributes="0"/>
+                              <Component id="jButtonLimpar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jPanel2PessoaFisica" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButtonCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonRemover" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="148" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel2PessoaFisica">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Dados Gerais">
+                      <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabelIdPessoaFisica" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldIDMotorista" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel3RGPessoaFisica" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldCNHMotorista" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jLabel13" max="32767" attributes="0"/>
+                                      <Component id="jFormattedTextField_Data_validade" min="-2" pref="136" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabelNomePessoaFisica" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldNomeMotorista" min="-2" pref="304" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextField_rgMotorista" min="-2" pref="135" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jLabel6" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jTextField_CategoriaCNH" min="-2" pref="303" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jButtonSelecionarCNH2" min="-2" pref="192" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextField_CpfMotorista" min="-2" pref="301" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabelNomePessoaFisica" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextFieldNomeMotorista" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabelIdPessoaFisica" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldIDMotorista" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jTextField_rgMotorista" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel9" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jTextField_CpfMotorista" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel3RGPessoaFisica" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextFieldCNHMotorista" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jTextField_CategoriaCNH" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jFormattedTextField_Data_validade" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jButtonSelecionarCNH2" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabelIdPessoaFisica">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="ID"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextFieldIDMotorista">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabelNomePessoaFisica">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Nome"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextFieldNomeMotorista">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel3RGPessoaFisica">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="CNH"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextFieldCNHMotorista">
+                </Component>
+                <Component class="javax.swing.JButton" name="jButtonSelecionarCNH2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="SELECIONE A FOTO DA CNH"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel9">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="RG"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel10">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="CPF"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextField_rgMotorista">
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextField_CpfMotorista">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel6">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="CATEGORIA CNH"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel13">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="DATA DE VALIDADE DA CNH"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField_Data_validade">
+                  <Properties>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="##/##/####" subtype="-1" type="5"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextField_CategoriaCNH">
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel3">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Dados de Endere&#xe7;o">
+                      <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldCepMotorista" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldLogradouroMotorista" alignment="0" min="-2" pref="677" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldNumeroMotorista" min="-2" pref="55" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jTextFieldComplementoMotorista" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="401" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jComboBox_Cidade" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldRua" min="-2" pref="406" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jTextField_UF" min="-2" pref="80" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jTextFieldCepMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldLogradouroMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldNumeroMotorista" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jTextFieldComplementoMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldRua" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jComboBox_Cidade" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="5" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jTextField_UF" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="CEP"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextFieldCepMotorista">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="00-000-000"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="LOGRADOURO"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextFieldLogradouroMotorista">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel4">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="N&#xb0;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextFieldNumeroMotorista">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel5">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="COMPLEMENTO"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextFieldComplementoMotorista">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel7">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="CIDADE"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel8">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="UF"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jComboBox_Cidade">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox_CidadeActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel14">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Rua"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextFieldRua">
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextField_UF">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel4">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Dados para Contato">
+                      <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel4CPFPessoaFisica" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldTelefoneMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldEmailMotorista" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldEmailMotorista" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jLabel4CPFPessoaFisica" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldTelefoneMotorista" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel4CPFPessoaFisica">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="TELEFONE"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextFieldTelefoneMotorista">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="(62) 9 9999-9999"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="E-Mail"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextFieldEmailMotorista">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="prototipa&#xe7;&#xe3;o@hotmail.com"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="jButtonCadastrar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="CADASTRAR"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCadastrarActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonAlterar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="ALTERAR"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAlterarActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonRemover">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="EXCLUIR"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonLimpar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="LIMPAR"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel2">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Consulta Motorista">
+                <Property name="tabTitle" type="java.lang.String" value="Consulta Motorista"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel5" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel5" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel5">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jTextFieldPesquisarMotorista" min="-2" pref="561" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jButtonConsultarMotorista" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButtonLimparConsulta" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jScrollPane2" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="139" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jButtonSetaEsquerda1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel12" min="-2" pref="318" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButtonSetaDireita1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jTextFieldPesquisarMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonConsultarMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonLimparConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel12" min="-2" pref="199" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jButtonSetaEsquerda1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButtonSetaDireita1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="97" pref="97" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="jScrollPane2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="175" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="jTextFieldPesquisarMotorista">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Digite aqui o objeto de sua pesquisa....."/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButtonConsultarMotorista">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="CONSULTAR"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButtonLimparConsulta">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="LIMPAR"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel11">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="CNH"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButtonSetaEsquerda1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel12">
+                </Component>
+                <Component class="javax.swing.JButton" name="jButtonSetaDireita1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="jTableConsultarMotorista">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="6" rowCount="0">
+                            <Column editable="true" title="ID" type="java.lang.Object"/>
+                            <Column editable="true" title="NOME" type="java.lang.Object"/>
+                            <Column editable="true" title="N&#xba; CNH" type="java.lang.Object"/>
+                            <Column editable="true" title="TELEFONE" type="java.lang.Object"/>
+                            <Column editable="true" title="LOGRADOURO" type="java.lang.Object"/>
+                            <Column editable="true" title="CEP" type="java.lang.Object"/>
+                          </Table>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableConsultarMotoristaMouseClicked"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

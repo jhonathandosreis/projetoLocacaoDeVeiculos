@@ -41,10 +41,61 @@ public class VeiculosBll {
     //--- CREATE -------------------------------------------------------------------------------------->
     //
     public void addVeiculos(Veiculos veiculo) throws Exception {
+
+        if (veiculo.getPlaca().length() < 3) {
+            throw new Exception("Placa inválida\nEx: Mercosul BRA2E19\n Nacional PHL-4508");
+        }
+
+        if (veiculo.getPlaca().length() > 7) {
+            throw new Exception("Placa inválida\nEx: Mercosul BRA2E19\n Nacional PHL-4508");
+        }
+
+        if (veiculo.getRenavam().length() < 0) {
+            throw new Exception("Renavam inválido\nUm renavam possui 11 números!");
+        }
+
+        if (veiculo.getRenavam().length() > 11) {
+            throw new Exception("Renavam inválido\nMáximo de caracteres excedido!");
+        }
+
+        if (veiculo.getAnoFabricacao() < 2012) {
+            throw new Exception("Ano invalido\nNossa frota só possui veículos com ano de fabricação superior a 2012!");
+        }
+
+        if (veiculo.getAnoFabricacao() > 2020) {
+            throw new Exception("Ano invalido\nNossa frota só possui veículos com ano de fabricação até 2020!");
+        }
+
+        if (veiculo.getQuilimetragem() < 0) {
+            throw new Exception("Quilometragem inválida!\nNão existe veículo com KM negativo!");
+        }
+
+        if (veiculo.getQuilimetragem() > 300000) {
+            throw new Exception("Quilometragem inválida!\nNão existe veículo com KM 300000!");
+        }
+
+        if (veiculo.getPrecoDeCompra() < 0) {
+            throw new Exception("Valor inválido!\nNão existe veículo com valores negativo!");
+        }
+
+        if (veiculo.getQuilimetragem() > 80000) {
+            throw new Exception("Valor inválido!\nNossa frota não possui veículo com valor acima de 80.000!");
+        }
+
+        if (veiculo.getCapacidade() < 0) {
+            throw new Exception("Capacidade inválida!\nMínimo 5 passageiros!");
+        }
+
+        if (veiculo.getQuilimetragem() > 80000) {
+            throw new Exception("Capacidade inválida!\nMáximo 7 passageiros!");
+        }
+
         try {
             veiculosDal.addVeiculos(veiculo);
         } catch (Exception error) {
-            throw error;
+            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
+                throw new Exception("Existe um veículo com o mesmo nome cadastrada no banco de dados!");
+            }
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
@@ -53,10 +104,61 @@ public class VeiculosBll {
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
     public void updateVeiculos(Veiculos veiculo) throws Exception {
+
+        if (veiculo.getPlaca().length() < 3) {
+            throw new Exception("Placa inválida\nEx: Mercosul BRA2E19\n Nacional PHL-4508");
+        }
+
+        if (veiculo.getPlaca().length() > 7) {
+            throw new Exception("Placa inválida\nEx: Mercosul BRA2E19\n Nacional PHL-4508");
+        }
+
+        if (veiculo.getRenavam().length() < 0) {
+            throw new Exception("Renavam inválido\nUm renavam possui 11 números!");
+        }
+
+        if (veiculo.getRenavam().length() > 11) {
+            throw new Exception("Renavam inválido\nMáximo de caracteres excedido!");
+        }
+
+        if (veiculo.getAnoFabricacao() < 2012) {
+            throw new Exception("Ano invalido\nNossa frota só possui veículos com ano de fabricação superior a 2012!");
+        }
+
+        if (veiculo.getAnoFabricacao() > 2020) {
+            throw new Exception("Ano invalido\nNossa frota só possui veículos com ano de fabricação até 2020!");
+        }
+
+        if (veiculo.getQuilimetragem() < 0) {
+            throw new Exception("Quilometragem inválida!\nNão existe veículo com KM negativo!");
+        }
+
+        if (veiculo.getQuilimetragem() > 300000) {
+            throw new Exception("Quilometragem inválida!\nNão existe veículo com KM 300000!");
+        }
+
+        if (veiculo.getPrecoDeCompra() < 0) {
+            throw new Exception("Valor inválido!\nNão existe veículo com valores negativo!");
+        }
+
+        if (veiculo.getQuilimetragem() > 80000) {
+            throw new Exception("Valor inválido!\nNossa frota não possui veículo com valor acima de 80.000!");
+        }
+
+        if (veiculo.getCapacidade() < 0) {
+            throw new Exception("Capacidade inválida!\nMínimo 5 passageiros!");
+        }
+
+        if (veiculo.getQuilimetragem() > 80000) {
+            throw new Exception("Capacidade inválida!\nMáximo 7 passageiros!");
+        }
+
         try {
             veiculosDal.updateVeiculos(veiculo);
         } catch (Exception error) {
-            throw error;
+            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
+                throw new Exception("Existe um veículo com o mesmo nome cadastrada no banco de dados!");
+            }
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -69,7 +171,9 @@ public class VeiculosBll {
         try {
             veiculosDal.deleteVeiculos(veiculo.getIden());
         } catch (Exception error) {
-            throw error;
+            if (error.getMessage().contains("locacao_loc_vei_iden_fkey")) {
+                throw new Exception("Existe um veículo vinculado a esta locação!");
+            }
         }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
@@ -78,7 +182,7 @@ public class VeiculosBll {
     //--- READ ---------------------------------------------------------------------------------------->
     //
     public ArrayList<Veiculos> getAllVeiculos() throws Exception {
-        
+
         try {
             return veiculosDal.getAllVeiculos();
         } catch (Exception error) {
@@ -87,7 +191,7 @@ public class VeiculosBll {
     }
 
     public Veiculos getVeiculosById(int vei_iden) throws Exception {
-        
+
         try {
             return veiculosDal.getVeiculosById(vei_iden);
         } catch (Exception error) {
