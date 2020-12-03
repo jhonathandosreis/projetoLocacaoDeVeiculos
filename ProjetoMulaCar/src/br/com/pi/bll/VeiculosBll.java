@@ -134,7 +134,7 @@ public class VeiculosBll {
         }
 
         if (veiculo.getQuilimetragem() > 300000) {
-            throw new Exception("Quilometragem inválida!\nNão existe veículo com KM 300000!");
+            throw new Exception("Quilometragem inválida!\nNão existe veículo com KM 300000 em nossa frota!!");
         }
 
         if (veiculo.getPrecoDeCompra() < 0) {
@@ -145,11 +145,11 @@ public class VeiculosBll {
             throw new Exception("Valor inválido!\nNossa frota não possui veículo com valor acima de 80.000!");
         }
 
-        if (veiculo.getCapacidade() < 0) {
+        if (veiculo.getCapacidade() < 5) {
             throw new Exception("Capacidade inválida!\nMínimo 5 passageiros!");
         }
 
-        if (veiculo.getQuilimetragem() > 80000) {
+        if (veiculo.getQuilimetragem() > 7) {
             throw new Exception("Capacidade inválida!\nMáximo 7 passageiros!");
         }
 
