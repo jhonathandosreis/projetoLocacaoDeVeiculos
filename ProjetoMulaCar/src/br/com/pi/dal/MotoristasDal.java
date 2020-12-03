@@ -160,6 +160,32 @@ public class MotoristasDal {
             throw  error;
         }
     }
+    
+     public Motoristas getMotoristasByCpf(int mot_cpf) throws Exception {
+        
+        String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_cpf=?";
+        try{
+        Motoristas motorista = new Motoristas();
+        PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+        preparedStatement.setInt(1, mot_cpf);
+        
+        ResultSet rs = preparedStatement.executeQuery();
+        if(rs.next()){
+        int cli_id = rs.getInt("pfi_cli_iden");
+        cliente = clienteBll.getClienteById(cli_id);
+        motorista.setIden(rs.getInt("pfi_iden"));
+        motorista.setRg(rs.getInt("pfi_rg"));
+        motorista.setCpf(rs.getLong("pfi_cpf"));
+        motorista.setNumeroCnh(rs.getLong("pfi_numero_cnh"));
+        motorista.setCategoriaCnh(rs.getString("pfi_categoria_cnh"));
+        motorista.setDataValidade(rs.getDate("pfi_data_de_validade"));
+        motorista.setCliente(cliente);
+        }       
+        return motorista;
+        } catch (Exception error) {
+            throw  error;
+        }
+    }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 }

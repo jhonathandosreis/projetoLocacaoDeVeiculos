@@ -584,6 +584,77 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTableConsultaPessoaFisicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultaPessoaFisicaMouseClicked
+        try {
+            preencherFormularioPessoaJuridica();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jTableConsultaPessoaFisicaMouseClicked
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        try {
+            if (jTableConsultaPessoaFisica.getSelectedRow() == -1) {
+                throw new Exception("Selecione uma pessoa fisica na tabela para ser alterado!");
+            }
+
+            int id = Integer.parseInt(jTableConsultaPessoaFisica.getValueAt(jTableConsultaPessoaFisica.getSelectedRow(), 0).toString());
+            pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
+            endereco = enderecoBll.getConsultaPorId(pessoaFisica.getCliente().getEnderecos().getIden());
+            cliente = clienteBll.getClienteById(pessoaFisica.getCliente().getIden());
+
+            pessoaFisicaBll.deletePessoasFisicas(pessoaFisica);
+            clienteBll.deleteClientes(cliente);
+            enderecoBll.deleteEndereco(endereco);
+            JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome() + " removido com sucesso no sistema!");
+            preencherGridPessoaFisica();
+            limparCampos();
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        try {
+            if (jTableConsultaPessoaFisica.getSelectedRow() == -1) {
+                throw new Exception("Selecione uma pessoa fisica na tabela para ser alterado!");
+            }
+            validaFormularioPessoasFisicas();
+            int id = Integer.parseInt(jTableConsultaPessoaFisica.getValueAt(jTableConsultaPessoaFisica.getSelectedRow(), 0).toString());
+            pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
+            endereco = enderecoBll.getConsultaPorId(pessoaFisica.getCliente().getEnderecos().getIden());
+            cliente = clienteBll.getClienteById(pessoaFisica.getCliente().getIden());
+            cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
+
+            endereco.setCidade(cidade);
+            endereco.setCep(Double.parseDouble(jTextFieldCepPessoaFisica.getText()));
+            endereco.setLogradouro(jTextFieldLogradouroPessoaFisica.getText());
+            endereco.setComplemento(jTextFieldComplementoPessoaFisica.getText());
+            endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaFisica.getText()));
+            endereco.setRua(jTextFieldRuaPessoaFisica.getText());
+            enderecoBll.updateEndereco(endereco);
+
+            cliente.setEnderecos(endereco);
+            cliente.setNome(jTextFieldNomePessoaFisica.getText());
+            cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaFisica.getText()));
+            cliente.setEmail(jTextFieldEmailPessoaFisica.getText());
+            clienteBll.updateClientes(cliente);
+
+            pessoaFisica.setCliente(cliente);
+            pessoaFisica.setRg(Integer.parseInt(jTextFieldRGPessoaFisica.getText()));
+            pessoaFisica.setCpf(Double.parseDouble(jTextFieldCPFPessoaFisica.getText()));
+            pessoaFisicaBll.updatePessoasFisicas(pessoaFisica);
+
+            JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome() + " alterado com sucesso no sistema!");
+            preencherGridPessoaFisica();
+            limparCampos();
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
+
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
 
         try {
@@ -629,77 +700,6 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro combo Cidades " + error.getMessage());
         }
     }//GEN-LAST:event_jComboBox_CidadesActionPerformed
-
-    private void jTableConsultaPessoaFisicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultaPessoaFisicaMouseClicked
-        try {
-            preencherFormularioPessoaJuridica();
-        } catch (Exception error) {
-            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jTableConsultaPessoaFisicaMouseClicked
-
-    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-        try {
-            if (jTableConsultaPessoaFisica.getSelectedRow() == -1) {
-                throw new Exception("Selecione uma pessoa fisica na tabela para ser alterado!");
-            }
-            validaFormularioPessoasFisicas();
-            int id = Integer.parseInt(jTableConsultaPessoaFisica.getValueAt(jTableConsultaPessoaFisica.getSelectedRow(), 0).toString());
-            pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
-            endereco = enderecoBll.getConsultaPorId(pessoaFisica.getCliente().getEnderecos().getIden());
-            cliente = clienteBll.getClienteById(pessoaFisica.getCliente().getIden());
-            cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
-
-            endereco.setCidade(cidade);
-            endereco.setCep(Double.parseDouble(jTextFieldCepPessoaFisica.getText()));
-            endereco.setLogradouro(jTextFieldLogradouroPessoaFisica.getText());
-            endereco.setComplemento(jTextFieldComplementoPessoaFisica.getText());
-            endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaFisica.getText()));
-            endereco.setRua(jTextFieldRuaPessoaFisica.getText());
-            enderecoBll.updateEndereco(endereco);
-
-            cliente.setEnderecos(endereco);
-            cliente.setNome(jTextFieldNomePessoaFisica.getText());
-            cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaFisica.getText()));
-            cliente.setEmail(jTextFieldEmailPessoaFisica.getText());
-            clienteBll.updateClientes(cliente);
-
-            pessoaFisica.setCliente(cliente);
-            pessoaFisica.setRg(Integer.parseInt(jTextFieldRGPessoaFisica.getText()));
-            pessoaFisica.setCpf(Double.parseDouble(jTextFieldCPFPessoaFisica.getText()));
-            pessoaFisicaBll.updatePessoasFisicas(pessoaFisica);
-
-            JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome() + " alterado com sucesso no sistema!");
-            preencherGridPessoaFisica();
-            limparCampos();
-
-        } catch (Exception error) {
-            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButtonAlterarActionPerformed
-
-    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
-        try {
-            if (jTableConsultaPessoaFisica.getSelectedRow() == -1) {
-                throw new Exception("Selecione uma pessoa fisica na tabela para ser alterado!");
-            }
-
-            int id = Integer.parseInt(jTableConsultaPessoaFisica.getValueAt(jTableConsultaPessoaFisica.getSelectedRow(), 0).toString());
-            pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
-            endereco = enderecoBll.getConsultaPorId(pessoaFisica.getCliente().getEnderecos().getIden());
-            cliente = clienteBll.getClienteById(pessoaFisica.getCliente().getIden());
-
-            pessoaFisicaBll.deletePessoasFisicas(pessoaFisica);
-            clienteBll.deleteClientes(cliente);
-            enderecoBll.deleteEndereco(endereco);
-            JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome() + " removido com sucesso no sistema!");
-            preencherGridPessoaFisica();
-            limparCampos();
-
-        } catch (Exception error) {
-            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     /**
      * @param args the command line arguments
