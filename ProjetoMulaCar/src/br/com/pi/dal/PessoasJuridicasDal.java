@@ -46,9 +46,8 @@ public class PessoasJuridicasDal {
     
     //--- CREATE -------------------------------------------------------------------------------------->
      public void addPessoasJuridicas(PessoasJuridicas pessoaJuridica) throws Exception {
-       
-        try{       
             String sqlPessoaFisica = "INSERT INTO pessoas_juridicas (pju_cnpj, pju_nome_fantasia, pju_razao_social, pju_cli_iden) values (?, ?, ?, ?)";        
+        try{       
             PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
             preparedStatement2.setDouble(1, pessoaJuridica.getCnpj());
             preparedStatement2.setString(2, pessoaJuridica.getNomeFantasia());
@@ -67,10 +66,8 @@ public class PessoasJuridicasDal {
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updatePessoasJuridicas (PessoasJuridicas pessoaJuridica) throws Exception {
         
-        try{
-           
-        
             String sqlPessoaFisica = "UPDATE pessoas_juridicas SET pju_cnpj=?, pju_nome_fantasia=?, pju_razao_social=?, pju_cli_iden=? WHERE pju_iden=?";        
+        try{
             PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
             preparedStatement2.setDouble(1, pessoaJuridica.getCnpj());
             preparedStatement2.setString(2, pessoaJuridica.getNomeFantasia());
@@ -83,42 +80,34 @@ public class PessoasJuridicasDal {
             throw  error;
         }
     }
-
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
     public void deletePessoasJuridicas (PessoasJuridicas pessoaJuridica) throws Exception { 
-    try{
-            int idPessoaJuridica = pessoaJuridica.getIden();
-            int idCliente = pessoaJuridica.getCliente().getIden();
         
-            PreparedStatement preparedStatement1 = conexao.prepareStatement("DELETE FROM clientes where cli_iden =?");
-            preparedStatement1.setInt(1, idCliente);
-            preparedStatement1.executeUpdate();
-        
-            PreparedStatement preparedStatement2 = conexao.prepareStatement("DELETE FROM pessoas_juridicas where pju_iden =?");
-            preparedStatement1.setInt(1, idPessoaJuridica);
+        String sql = "DELETE FROM pessoas_juridicas where pju_iden =?";
+        try{          
+            PreparedStatement preparedStatement2 = conexao.prepareStatement(sql);
+            preparedStatement2.setInt(1, pessoaJuridica.getIden());
             preparedStatement2.executeUpdate();
         } catch (Exception error) {
             throw  error;
         
         } 
     }
-
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
     
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<PessoasJuridicas> getAllPessoasJuridicas() throws Exception {
-        
+            String sql = "SELECT * FROM pessoas_juridicas";
         try{
             ArrayList<PessoasJuridicas> lista = new ArrayList<PessoasJuridicas>();
-            String sql = "SELECT * FROM pessoas_juridicas";
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
          
-           if(rs.next()){
+           while(rs.next()){
                 PessoasJuridicas pessoaJuridica = new PessoasJuridicas();
                 int cli_id = rs.getInt("pju_cli_iden");
                 cliente = clienteBll.getClienteById(cli_id);
@@ -139,10 +128,9 @@ public class PessoasJuridicasDal {
     
     
     public PessoasJuridicas getPessoasJuridicasById(int pessoaJuridica_iden) throws Exception {
-        
+         String sql = "SELECT * FROM pessoas_juridicas WHERE pju_iden=?";
         try{
             PessoasJuridicas pessoaJuridica = new PessoasJuridicas();
-            String sql = "SELECT * FROM pessoas_juridicas WHERE pju_iden=?";
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setInt(1, pessoaJuridica_iden);
         
@@ -161,8 +149,6 @@ public class PessoasJuridicasDal {
             throw  error;
         }
     }  
-    
-
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 }

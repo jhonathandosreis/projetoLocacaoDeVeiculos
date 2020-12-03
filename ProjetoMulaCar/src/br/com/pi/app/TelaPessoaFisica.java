@@ -31,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
  * @author jhonlinux
  */
 public class TelaPessoaFisica extends javax.swing.JFrame {
-    
+
     PessoasFisicas pessoaFisica;
     PessoasFisicasBll pessoaFisicaBll;
     Clientes cliente;
@@ -40,32 +40,32 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
     EnderecosBll enderecoBll;
     Cidades cidade;
     CidadesBll cidadeBll;
-    
+
     public TelaPessoaFisica() {
         initComponents();
-        
-        try{
-            
-        pessoaFisica = new PessoasFisicas();
-        pessoaFisicaBll = new PessoasFisicasBll();
-        cliente = new Clientes();
-        clienteBll = new ClientesBll();
-        endereco = new Enderecos();
-        enderecoBll = new EnderecosBll();
-        cidade = new Cidades();
-        cidadeBll = new CidadesBll();
-        
-        preencherComboboxCidades();
-        preencherGridPessoaFisica();
-        
-        }catch(Exception error){
+
+        try {
+
+            pessoaFisica = new PessoasFisicas();
+            pessoaFisicaBll = new PessoasFisicasBll();
+            cliente = new Clientes();
+            clienteBll = new ClientesBll();
+            endereco = new Enderecos();
+            enderecoBll = new EnderecosBll();
+            cidade = new Cidades();
+            cidadeBll = new CidadesBll();
+
+            preencherComboboxCidades();
+            preencherGridPessoaFisica();
+
+        } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         this.setLocationRelativeTo(null);
     }
-    
-     public void preencherGridPessoaFisica() throws Exception {
+
+    public void preencherGridPessoaFisica() throws Exception {
 
         try {
             DefaultTableModel tablePessoasFisicas = (DefaultTableModel) jTableConsultaPessoaFisica.getModel();
@@ -85,61 +85,62 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                 coluna[5] = pessoaFisica.getCliente().getTelefone();
                 coluna[6] = pessoaFisica.getCliente().getEnderecos().getLogradouro();
                 coluna[7] = pessoaFisica.getCliente().getEnderecos().getCep();
-           
+
                 tablePessoasFisicas.addRow(coluna);
             }
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }
-     
-     public void preencherFormularioPessoaJuridica() throws Exception {
-       
+
+    public void preencherFormularioPessoaJuridica() throws Exception {
+
         int id = Integer.parseInt(jTableConsultaPessoaFisica.getValueAt(jTableConsultaPessoaFisica.getSelectedRow(), 0).toString());
         pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
-        
-        jTextFieldIdPessoaFisica.setText(""+pessoaFisica.getIden());
-        jTextFieldRGPessoaFisica.setText(""+pessoaFisica.getRg());
-        jTextFieldCPFPessoaFisica.setText(""+pessoaFisica.getCpf());
+
+        jTextFieldIdPessoaFisica.setText("" + pessoaFisica.getIden());
+        jTextFieldRGPessoaFisica.setText("" + pessoaFisica.getRg());
+        jTextFieldCPFPessoaFisica.setText("" + pessoaFisica.getCpf());
         jTextFieldNomePessoaFisica.setText(pessoaFisica.getCliente().getNome());
-        jTextFieldCepPessoaFisica.setText(""+pessoaFisica.getCliente().getEnderecos().getCep());
+        jTextFieldCepPessoaFisica.setText("" + pessoaFisica.getCliente().getEnderecos().getCep());
         jTextFieldLogradouroPessoaFisica.setText(pessoaFisica.getCliente().getEnderecos().getLogradouro());
-        jTextFieldNumeroPessoaFisica.setText(""+pessoaFisica.getCliente().getEnderecos().getNumero());
+        jTextFieldNumeroPessoaFisica.setText("" + pessoaFisica.getCliente().getEnderecos().getNumero());
         jTextFieldComplementoPessoaFisica.setText(pessoaFisica.getCliente().getEnderecos().getComplemento());
         jTextFieldRuaPessoaFisica.setText(pessoaFisica.getCliente().getEnderecos().getRua());
         jComboBox_Cidades.setSelectedItem(pessoaFisica.getCliente().getEnderecos().getCidade());
-        jTextFieldTelefonePessoaFisica.setText(""+pessoaFisica.getCliente().getTelefone());
-        jTextFieldEmailPessoaFisica.setText(""+pessoaFisica.getCliente().getTelefone());
-        
+        jTextFieldTelefonePessoaFisica.setText("" + pessoaFisica.getCliente().getTelefone());
+        jTextFieldEmailPessoaFisica.setText("" + pessoaFisica.getCliente().getTelefone());
+
     }
-    
-     public void preencherComboboxCidades() throws Exception{
-           try{
+
+    public void preencherComboboxCidades() throws Exception {
+        try {
             jComboBox_Cidades.removeAllItems();
             ArrayList<Cidades> listaCidades = cidadeBll.getAllCidades();
-            
+
             for (Cidades cidade : listaCidades) {
-               jComboBox_Cidades.addItem(cidade.getNome());
-            }  
-           }catch(Exception error){
-                JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-           }
+                jComboBox_Cidades.addItem(cidade.getNome());
+            }
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
     }
-     public void  limparCampos(){
-         jTextFieldIdPessoaFisica.setText("");
-         jTextFieldRGPessoaFisica.setText("");
-         jTextFieldCPFPessoaFisica.setText("");
-         jTextFieldNomePessoaFisica.setText("");
-         jTextFieldCepPessoaFisica.setText("");
-         jTextFieldLogradouroPessoaFisica.setText("");
-         jTextFieldComplementoPessoaFisica.setText("");
-         jTextFieldRuaPessoaFisica.setText("");
-         jTextField_UF.setText("");
-         jTextFieldEmailPessoaFisica.setText("");
-         jTextFieldTelefonePessoaFisica.setText("");
-         jTextFieldNumeroPessoaFisica.setText("");
-         jComboBox_Cidades.setSelectedIndex(0);
-     }
+
+    public void limparCampos() {
+        jTextFieldIdPessoaFisica.setText("");
+        jTextFieldRGPessoaFisica.setText("");
+        jTextFieldCPFPessoaFisica.setText("");
+        jTextFieldNomePessoaFisica.setText("");
+        jTextFieldCepPessoaFisica.setText("");
+        jTextFieldLogradouroPessoaFisica.setText("");
+        jTextFieldComplementoPessoaFisica.setText("");
+        jTextFieldRuaPessoaFisica.setText("");
+        jTextField_UF.setText("");
+        jTextFieldEmailPessoaFisica.setText("");
+        jTextFieldTelefonePessoaFisica.setText("");
+        jTextFieldNumeroPessoaFisica.setText("");
+        jComboBox_Cidades.setSelectedIndex(0);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify
@@ -398,6 +399,11 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         });
 
         jButtonRemover.setText("EXCLUIR");
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
 
         jButtonLimpar.setText("LIMPAR");
 
@@ -418,9 +424,9 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                         .addComponent(jButtonCadastrar)
                         .addGap(150, 150, 150)
                         .addComponent(jButtonAlterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(266, 266, 266)
                         .addComponent(jButtonRemover)
-                        .addGap(162, 162, 162)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonLimpar)
                         .addGap(57, 57, 57)))
                 .addContainerGap())
@@ -552,47 +558,47 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-       
-           try{
-           cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
-           endereco.setCidade(cidade);
-           endereco.setCep(Double.parseDouble(jTextFieldCepPessoaFisica.getText()));
-           endereco.setLogradouro(jTextFieldLogradouroPessoaFisica.getText());
-           endereco.setComplemento(jTextFieldComplementoPessoaFisica.getText());
-           endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaFisica.getText()));
-           endereco.setRua(jTextFieldRuaPessoaFisica.getText());
-           enderecoBll.AddEndereco(endereco);
-           double cep = endereco.getCep();
-           endereco = enderecoBll.getConsultaPorCEP(cep);
-           
-           cliente.setEnderecos(endereco);
-           cliente.setNome(jTextFieldNomePessoaFisica.getText());
-           cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaFisica.getText()));
-           cliente.setEmail(jTextFieldEmailPessoaFisica.getText());
-           clienteBll.addClientes(cliente);
-           double clienteTelefone = cliente.getTelefone();
-           cliente = clienteBll.getClienteByTelefone(clienteTelefone);
-           
-           pessoaFisica.setCliente(cliente);
-           pessoaFisica.setRg(Integer.parseInt(jTextFieldRGPessoaFisica.getText()));
-           pessoaFisica.setCpf(Double.parseDouble(jTextFieldCPFPessoaFisica.getText()));       
-           pessoaFisicaBll.addPessoasFisicas(pessoaFisica);
-           
-           JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome()+" cadastrado com sucesso no sistema!");
-           preencherGridPessoaFisica();
-           limparCampos();
-           
-            }catch(Exception error){
-                JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-           }
+
+        try {
+            cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
+            endereco.setCidade(cidade);
+            endereco.setCep(Double.parseDouble(jTextFieldCepPessoaFisica.getText()));
+            endereco.setLogradouro(jTextFieldLogradouroPessoaFisica.getText());
+            endereco.setComplemento(jTextFieldComplementoPessoaFisica.getText());
+            endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaFisica.getText()));
+            endereco.setRua(jTextFieldRuaPessoaFisica.getText());
+            enderecoBll.AddEndereco(endereco);
+            double cep = endereco.getCep();
+            endereco = enderecoBll.getConsultaPorCEP(cep);
+
+            cliente.setEnderecos(endereco);
+            cliente.setNome(jTextFieldNomePessoaFisica.getText());
+            cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaFisica.getText()));
+            cliente.setEmail(jTextFieldEmailPessoaFisica.getText());
+            clienteBll.addClientes(cliente);
+            double clienteTelefone = cliente.getTelefone();
+            cliente = clienteBll.getClienteByTelefone(clienteTelefone);
+
+            pessoaFisica.setCliente(cliente);
+            pessoaFisica.setRg(Integer.parseInt(jTextFieldRGPessoaFisica.getText()));
+            pessoaFisica.setCpf(Double.parseDouble(jTextFieldCPFPessoaFisica.getText()));
+            pessoaFisicaBll.addPessoasFisicas(pessoaFisica);
+
+            JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome() + " cadastrado com sucesso no sistema!");
+            preencherGridPessoaFisica();
+            limparCampos();
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jComboBox_CidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_CidadesActionPerformed
-         try{
-        cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
-        jTextField_UF.setText(cidade.getUf().getNome());
-        }catch(Exception error){
-            JOptionPane.showMessageDialog(null, "Erro combo Cidades "+error.getMessage());
+        try {
+            cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
+            jTextField_UF.setText(cidade.getUf().getNome());
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, "Erro combo Cidades " + error.getMessage());
         }
     }//GEN-LAST:event_jComboBox_CidadesActionPerformed
 
@@ -605,44 +611,67 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableConsultaPessoaFisicaMouseClicked
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-        try{ 
-        if (jTableConsultaPessoaFisica.getSelectedRow() == -1) {
+        try {
+            if (jTableConsultaPessoaFisica.getSelectedRow() == -1) {
                 throw new Exception("Selecione uma pessoa fisica na tabela para ser alterado!");
             }
-            
-           int id = Integer.parseInt(jTableConsultaPessoaFisica.getValueAt(jTableConsultaPessoaFisica.getSelectedRow(), 0).toString());
-           pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
-           endereco = enderecoBll.getConsultaPorId(pessoaFisica.getCliente().getEnderecos().getIden());
-           cliente = clienteBll.getClienteById(pessoaFisica.getCliente().getIden());
-           cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
-           
-           endereco.setCidade(cidade);
-           endereco.setCep(Double.parseDouble(jTextFieldCepPessoaFisica.getText()));
-           endereco.setLogradouro(jTextFieldLogradouroPessoaFisica.getText());
-           endereco.setComplemento(jTextFieldComplementoPessoaFisica.getText());
-           endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaFisica.getText()));
-           endereco.setRua(jTextFieldRuaPessoaFisica.getText());
-           enderecoBll.updateEndereco(endereco);
 
-           cliente.setEnderecos(endereco);
-           cliente.setNome(jTextFieldNomePessoaFisica.getText());
-           cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaFisica.getText()));
-           cliente.setEmail(jTextFieldEmailPessoaFisica.getText());
-           clienteBll.updateClientes(cliente);
+            int id = Integer.parseInt(jTableConsultaPessoaFisica.getValueAt(jTableConsultaPessoaFisica.getSelectedRow(), 0).toString());
+            pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
+            endereco = enderecoBll.getConsultaPorId(pessoaFisica.getCliente().getEnderecos().getIden());
+            cliente = clienteBll.getClienteById(pessoaFisica.getCliente().getIden());
+            cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
 
-           pessoaFisica.setCliente(cliente);
-           pessoaFisica.setRg(Integer.parseInt(jTextFieldRGPessoaFisica.getText()));
-           pessoaFisica.setCpf(Double.parseDouble(jTextFieldCPFPessoaFisica.getText()));       
-           pessoaFisicaBll.updatePessoasFisicas(pessoaFisica);
-           
-           JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome()+" alterado com sucesso no sistema!");
-           preencherGridPessoaFisica();
-           limparCampos();
-           
-         } catch (Exception error) {
+            endereco.setCidade(cidade);
+            endereco.setCep(Double.parseDouble(jTextFieldCepPessoaFisica.getText()));
+            endereco.setLogradouro(jTextFieldLogradouroPessoaFisica.getText());
+            endereco.setComplemento(jTextFieldComplementoPessoaFisica.getText());
+            endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaFisica.getText()));
+            endereco.setRua(jTextFieldRuaPessoaFisica.getText());
+            enderecoBll.updateEndereco(endereco);
+
+            cliente.setEnderecos(endereco);
+            cliente.setNome(jTextFieldNomePessoaFisica.getText());
+            cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaFisica.getText()));
+            cliente.setEmail(jTextFieldEmailPessoaFisica.getText());
+            clienteBll.updateClientes(cliente);
+
+            pessoaFisica.setCliente(cliente);
+            pessoaFisica.setRg(Integer.parseInt(jTextFieldRGPessoaFisica.getText()));
+            pessoaFisica.setCpf(Double.parseDouble(jTextFieldCPFPessoaFisica.getText()));
+            pessoaFisicaBll.updatePessoasFisicas(pessoaFisica);
+
+            JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome() + " alterado com sucesso no sistema!");
+            preencherGridPessoaFisica();
+            limparCampos();
+
+        } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        try {
+            if (jTableConsultaPessoaFisica.getSelectedRow() == -1) {
+                throw new Exception("Selecione uma pessoa fisica na tabela para ser alterado!");
+            }
+
+            int id = Integer.parseInt(jTableConsultaPessoaFisica.getValueAt(jTableConsultaPessoaFisica.getSelectedRow(), 0).toString());
+            pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
+            endereco = enderecoBll.getConsultaPorId(pessoaFisica.getCliente().getEnderecos().getIden());
+            cliente = clienteBll.getClienteById(pessoaFisica.getCliente().getIden());
+
+            pessoaFisicaBll.deletePessoasFisicas(pessoaFisica);
+            clienteBll.deleteClientes(cliente);
+            enderecoBll.deleteEndereco(endereco);
+            JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome() + " removido com sucesso no sistema!");
+            preencherGridPessoaFisica();
+            limparCampos();
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     /**
      * @param args the command line arguments

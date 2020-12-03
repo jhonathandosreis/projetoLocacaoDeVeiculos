@@ -96,9 +96,9 @@
                                   <Component id="jButtonCadastrar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
                                   <Component id="jButtonAlterar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="266" max="-2" attributes="0"/>
                                   <Component id="jButtonRemover" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jButtonLimpar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               </Group>
@@ -489,6 +489,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="EXCLUIR"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRemoverActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButtonLimpar">
                   <Properties>

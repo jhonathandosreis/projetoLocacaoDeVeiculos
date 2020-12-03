@@ -36,6 +36,7 @@ import javax.swing.table.DefaultTableModel;
  * @author jhonlinux
  */
 public class TelaMotoristas extends javax.swing.JFrame {
+
     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
     private Motoristas motorista;
     private MotoristasBll motoristabll;
@@ -47,33 +48,33 @@ public class TelaMotoristas extends javax.swing.JFrame {
     private CidadesBll cidadesBll;
     private UfsBll ufbll;
     private Ufs uf;
-    
+
     public TelaMotoristas() {
         initComponents();
-        
-        try{
-            
-           motorista = new Motoristas();
-           motoristabll = new MotoristasBll();
-           cliente = new Clientes();
-           clienteBll = new ClientesBll();
-           endereco = new Enderecos();
-           enderecoBll = new EnderecosBll();
-           cidade = new Cidades();
-           cidadesBll = new  CidadesBll();
-           uf = new Ufs();
-           ufbll = new UfsBll();
-           
-           preencherComboboxCidades();
-           preencherGridMotorista();
-           
-        }catch(Exception error){
-           JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+
+        try {
+
+            motorista = new Motoristas();
+            motoristabll = new MotoristasBll();
+            cliente = new Clientes();
+            clienteBll = new ClientesBll();
+            endereco = new Enderecos();
+            enderecoBll = new EnderecosBll();
+            cidade = new Cidades();
+            cidadesBll = new CidadesBll();
+            uf = new Ufs();
+            ufbll = new UfsBll();
+
+            preencherComboboxCidades();
+            preencherGridMotorista();
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         this.setLocationRelativeTo(null);
     }
-    
+
     public void preencherGridMotorista() throws Exception {
 
         try {
@@ -99,6 +100,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }
+
     public static String convertDate(Date dtConsulta) {
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
@@ -107,60 +109,61 @@ public class TelaMotoristas extends javax.swing.JFrame {
             return null;
         }
     }
-      public void preencherFormularioMotoristas() throws Exception {
-       
+
+    public void preencherFormularioMotoristas() throws Exception {
+
         int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
         motorista = motoristabll.getMotoristaBy(id);
 
-        jTextFieldIDMotorista.setText(""+motorista.getIden());
+        jTextFieldIDMotorista.setText("" + motorista.getIden());
         jTextFieldNomeMotorista.setText(motorista.getCliente().getNome());
-        jTextField_rgMotorista.setText(""+motorista.getRg());
-        jTextField_CpfMotorista.setText(""+motorista.getCpf());
-        jTextFieldCNHMotorista.setText(""+motorista.getNumeroCnh());
+        jTextField_rgMotorista.setText("" + motorista.getRg());
+        jTextField_CpfMotorista.setText("" + motorista.getCpf());
+        jTextFieldCNHMotorista.setText("" + motorista.getNumeroCnh());
         jFormattedTextField_Data_validade.setText(convertDate(motorista.getDataValidade()));
         jTextField_CategoriaCNH.setText(motorista.getCategoriaCnh());
-        jTextFieldCepMotorista.setText(""+motorista.getCliente().getEnderecos().getCep());
+        jTextFieldCepMotorista.setText("" + motorista.getCliente().getEnderecos().getCep());
         jTextFieldLogradouroMotorista.setText(motorista.getCliente().getEnderecos().getLogradouro());
-        jTextFieldNumeroMotorista.setText(""+motorista.getCliente().getEnderecos().getNumero());
+        jTextFieldNumeroMotorista.setText("" + motorista.getCliente().getEnderecos().getNumero());
         jTextFieldComplementoMotorista.setText(motorista.getCliente().getEnderecos().getComplemento());
         jTextFieldRua.setText(motorista.getCliente().getEnderecos().getRua());
         jComboBox_Cidade.setSelectedItem(motorista.getCliente().getEnderecos().getCidade());
-        jTextFieldTelefoneMotorista.setText(""+motorista.getCliente().getTelefone());
-        jTextFieldEmailMotorista.setText(""+motorista.getCliente().getTelefone());
-        
+        jTextFieldTelefoneMotorista.setText("" + motorista.getCliente().getTelefone());
+        jTextFieldEmailMotorista.setText("" + motorista.getCliente().getTelefone());
+
     }
-    
-    public void preencherComboboxCidades() throws Exception{
-           try{
+
+    public void preencherComboboxCidades() throws Exception {
+        try {
             jComboBox_Cidade.removeAllItems();
             ArrayList<Cidades> listaCidades = cidadesBll.getAllCidades();
-            
+
             for (Cidades cidade : listaCidades) {
-               jComboBox_Cidade.addItem(cidade.getNome());
-            }  
-           }catch(Exception error){
-                JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-           }
+                jComboBox_Cidade.addItem(cidade.getNome());
+            }
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
     }
-    
-    public void limparCampos(){
-      jTextFieldIDMotorista.setText("");
-      jTextFieldNomeMotorista.setText("");
-      jTextField_rgMotorista.setText("");
-      jTextField_CpfMotorista.setText("");
-      jTextFieldCNHMotorista.setText("");
-      jFormattedTextField_Data_validade.setText("");
-      jTextField_CategoriaCNH.setText("");
-      jTextFieldCepMotorista.setText("");
-      jTextFieldLogradouroMotorista.setText("");
-      jTextFieldNumeroMotorista.setText("");
-      jTextFieldComplementoMotorista.setText("");
-      jTextFieldRua.setText("");
-      jTextField_UF.setText("");
-      jTextFieldTelefoneMotorista.setText("");
-      jTextFieldEmailMotorista.setText("");
-      jComboBox_Cidade.setSelectedIndex(0);
-      
+
+    public void limparCampos() {
+        jTextFieldIDMotorista.setText("");
+        jTextFieldNomeMotorista.setText("");
+        jTextField_rgMotorista.setText("");
+        jTextField_CpfMotorista.setText("");
+        jTextFieldCNHMotorista.setText("");
+        jFormattedTextField_Data_validade.setText("");
+        jTextField_CategoriaCNH.setText("");
+        jTextFieldCepMotorista.setText("");
+        jTextFieldLogradouroMotorista.setText("");
+        jTextFieldNumeroMotorista.setText("");
+        jTextFieldComplementoMotorista.setText("");
+        jTextFieldRua.setText("");
+        jTextField_UF.setText("");
+        jTextFieldTelefoneMotorista.setText("");
+        jTextFieldEmailMotorista.setText("");
+        jComboBox_Cidade.setSelectedIndex(0);
+
     }
 
     /**
@@ -183,12 +186,12 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jButtonSelecionarCNH2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField_rgMotorista = new javax.swing.JTextField();
-        jTextField_CpfMotorista = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jFormattedTextField_Data_validade = new javax.swing.JFormattedTextField();
         jTextField_CategoriaCNH = new javax.swing.JTextField();
+        jTextField_rgMotorista = new javax.swing.JTextField();
+        jTextField_CpfMotorista = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldCepMotorista = new javax.swing.JTextField();
@@ -206,9 +209,9 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jTextField_UF = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel4CPFPessoaFisica = new javax.swing.JLabel();
-        jTextFieldTelefoneMotorista = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldEmailMotorista = new javax.swing.JTextField();
+        jTextFieldTelefoneMotorista = new javax.swing.JTextField();
         jButtonCadastrar = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
         jButtonRemover = new javax.swing.JButton();
@@ -268,11 +271,19 @@ public class TelaMotoristas extends javax.swing.JFrame {
                     .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
                         .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3RGPessoaFisica)
-                            .addComponent(jTextFieldCNHMotorista))
+                            .addComponent(jTextFieldCNHMotorista, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jFormattedTextField_Data_validade, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jFormattedTextField_Data_validade, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+                            .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
+                                .addComponent(jTextField_CategoriaCNH, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonSelecionarCNH2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 457, Short.MAX_VALUE))
                     .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
                         .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelNomePessoaFisica)
@@ -280,45 +291,35 @@ public class TelaMotoristas extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
-                            .addComponent(jTextField_rgMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(40, 40, 40)
-                .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
-                        .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
-                                .addComponent(jTextField_CategoriaCNH, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonSelecionarCNH2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
+                            .addComponent(jTextField_rgMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(71, 71, 71)
                         .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
-                            .addComponent(jTextField_CpfMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField_CpfMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2PessoaFisicaLayout.setVerticalGroup(
             jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
-                .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
+                .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2PessoaFisicaLayout.createSequentialGroup()
                         .addComponent(jLabelNomePessoaFisica)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldNomeMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
+                        .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldNomeMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField_rgMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2PessoaFisicaLayout.createSequentialGroup()
                         .addComponent(jLabelIdPessoaFisica)
                         .addGap(17, 17, 17)
                         .addComponent(jTextFieldIDMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2PessoaFisicaLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jTextField_rgMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2PessoaFisicaLayout.createSequentialGroup()
-                            .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel10))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField_CpfMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2PessoaFisicaLayout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(26, 26, 26))
+                    .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField_CpfMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
@@ -457,8 +458,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4CPFPessoaFisica)
-                    .addComponent(jTextFieldTelefoneMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(jTextFieldTelefoneMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldEmailMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -472,11 +473,12 @@ public class TelaMotoristas extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(14, 14, 14)
-                        .addComponent(jTextFieldEmailMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldEmailMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldTelefoneMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel4CPFPessoaFisica)
-                        .addGap(14, 14, 14)
-                        .addComponent(jTextFieldTelefoneMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -495,6 +497,11 @@ public class TelaMotoristas extends javax.swing.JFrame {
         });
 
         jButtonRemover.setText("EXCLUIR");
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
 
         jButtonLimpar.setText("LIMPAR");
 
@@ -654,58 +661,57 @@ public class TelaMotoristas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-       try{
-           
-           
-           Date data = formato.parse(jFormattedTextField_Data_validade.getText());
-           
-           cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
-           endereco.setCidade(cidade);
-           endereco.setCep(Double.parseDouble(jTextFieldCepMotorista.getText()));
-           endereco.setLogradouro(jTextFieldLogradouroMotorista.getText());
-           endereco.setComplemento(jTextFieldComplementoMotorista.getText());
-           endereco.setNumero(Float.parseFloat(jTextFieldNumeroMotorista.getText()));
-           endereco.setRua(jTextFieldRua.getText());
-           enderecoBll.AddEndereco(endereco);
-           double cep = endereco.getCep();
-           endereco = enderecoBll.getConsultaPorCEP(cep);
-           
-           cliente.setEnderecos(endereco);
-           cliente.setNome(jTextFieldNomeMotorista.getText());
-           cliente.setTelefone(Double.parseDouble(jTextFieldTelefoneMotorista.getText()));
-           cliente.setEmail(jTextFieldEmailMotorista.getText());
-           clienteBll.addClientes(cliente);
-           double clienteTelefone = cliente.getTelefone();
-           cliente = clienteBll.getClienteByTelefone(clienteTelefone);
-           
-           motorista.setCliente(cliente);
-           motorista.setRg(Integer.parseInt(jTextField_rgMotorista.getText()));
-           motorista.setCpf(Double.parseDouble(jTextField_CpfMotorista.getText()));       
-           motorista.setNumeroCnh(Double.parseDouble(jTextFieldCNHMotorista.getText()));
-           motorista.setCategoriaCnh(jTextField_CategoriaCNH.getText());
-           motorista.setDataValidade(data);
-           motoristabll.addMotoristas(motorista);
-           
-           JOptionPane.showMessageDialog(null, motorista.getCliente().getNome()+" cadastrado com sucesso no sistema!");
-           preencherGridMotorista();
-           limparCampos();
-     
-      }catch(Exception error){
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas "+error.getMessage());
+        try {
+
+            Date data = formato.parse(jFormattedTextField_Data_validade.getText());
+
+            cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
+            endereco.setCidade(cidade);
+            endereco.setCep(Double.parseDouble(jTextFieldCepMotorista.getText()));
+            endereco.setLogradouro(jTextFieldLogradouroMotorista.getText());
+            endereco.setComplemento(jTextFieldComplementoMotorista.getText());
+            endereco.setNumero(Float.parseFloat(jTextFieldNumeroMotorista.getText()));
+            endereco.setRua(jTextFieldRua.getText());
+            enderecoBll.AddEndereco(endereco);
+            double cep = endereco.getCep();
+            endereco = enderecoBll.getConsultaPorCEP(cep);
+
+            cliente.setEnderecos(endereco);
+            cliente.setNome(jTextFieldNomeMotorista.getText());
+            cliente.setTelefone(Double.parseDouble(jTextFieldTelefoneMotorista.getText()));
+            cliente.setEmail(jTextFieldEmailMotorista.getText());
+            clienteBll.addClientes(cliente);
+            double clienteTelefone = cliente.getTelefone();
+            cliente = clienteBll.getClienteByTelefone(clienteTelefone);
+
+            motorista.setCliente(cliente);
+            motorista.setRg(Integer.parseInt(jTextField_rgMotorista.getText()));
+            motorista.setCpf(Double.parseDouble(jTextField_CpfMotorista.getText()));
+            motorista.setNumeroCnh(Double.parseDouble(jTextFieldCNHMotorista.getText()));
+            motorista.setCategoriaCnh(jTextField_CategoriaCNH.getText());
+            motorista.setDataValidade(data);
+            motoristabll.addMotoristas(motorista);
+
+            JOptionPane.showMessageDialog(null, motorista.getCliente().getNome() + " cadastrado com sucesso no sistema!");
+            preencherGridMotorista();
+            limparCampos();
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas " + error.getMessage());
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jComboBox_CidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_CidadeActionPerformed
-        try{
-        cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
-        jTextField_UF.setText(cidade.getUf().getNome());
-        }catch(Exception error){
-            JOptionPane.showMessageDialog(null, "Erro na combo Cidades "+error.getMessage());
+        try {
+            cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
+            jTextField_UF.setText(cidade.getUf().getNome());
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + error.getMessage());
         }
     }//GEN-LAST:event_jComboBox_CidadeActionPerformed
 
     private void jTableConsultarMotoristaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultarMotoristaMouseClicked
-         try {
+        try {
             preencherFormularioMotoristas();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -714,49 +720,72 @@ public class TelaMotoristas extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableConsultarMotoristaMouseClicked
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-     try{
-        if (jTableConsultarMotorista.getSelectedRow() == -1) {
+        try {
+            if (jTableConsultarMotorista.getSelectedRow() == -1) {
                 throw new Exception("Selecione um motorista na tabela para ser alterado!");
             }
-           int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
-           motorista = motoristabll.getMotoristaBy(id);
-           endereco = enderecoBll.getConsultaPorId(motorista.getCliente().getEnderecos().getIden());
-           cliente = clienteBll.getClienteById(motorista.getCliente().getIden());
-           cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
-            
-           SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-           Date data = formato.parse(jFormattedTextField_Data_validade.getText());
+            int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
+            motorista = motoristabll.getMotoristaBy(id);
+            endereco = enderecoBll.getConsultaPorId(motorista.getCliente().getEnderecos().getIden());
+            cliente = clienteBll.getClienteById(motorista.getCliente().getIden());
+            cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
 
-           endereco.setCidade(cidade);
-           endereco.setCep(Double.parseDouble(jTextFieldCepMotorista.getText()));
-           endereco.setLogradouro(jTextFieldLogradouroMotorista.getText());
-           endereco.setComplemento(jTextFieldComplementoMotorista.getText());
-           endereco.setNumero(Float.parseFloat(jTextFieldNumeroMotorista.getText()));
-           endereco.setRua(jTextFieldRua.getText());
-           enderecoBll.updateEndereco(endereco);
- 
-           cliente.setEnderecos(endereco);
-           cliente.setNome(jTextFieldNomeMotorista.getText());
-           cliente.setTelefone(Double.parseDouble(jTextFieldTelefoneMotorista.getText()));
-           cliente.setEmail(jTextFieldEmailMotorista.getText());
-           clienteBll.updateClientes(cliente);
-           
-           motorista.setCliente(cliente);
-           motorista.setRg(Integer.parseInt(jTextField_rgMotorista.getText()));
-           motorista.setCpf(Double.parseDouble(jTextField_CpfMotorista.getText()));       
-           motorista.setNumeroCnh(Double.parseDouble(jTextFieldCNHMotorista.getText()));
-           motorista.setCategoriaCnh(jTextField_CategoriaCNH.getText());
-           motorista.setDataValidade(data);
-           motoristabll.updateMotorista(motorista);
-           
-           JOptionPane.showMessageDialog(null, motorista.getCliente().getNome()+" alterado com sucesso no sistema!");
-           preencherGridMotorista();
-           limparCampos();
-       
-         } catch (Exception error) {
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            Date data = formato.parse(jFormattedTextField_Data_validade.getText());
+
+            endereco.setCidade(cidade);
+            endereco.setCep(Double.parseDouble(jTextFieldCepMotorista.getText()));
+            endereco.setLogradouro(jTextFieldLogradouroMotorista.getText());
+            endereco.setComplemento(jTextFieldComplementoMotorista.getText());
+            endereco.setNumero(Float.parseFloat(jTextFieldNumeroMotorista.getText()));
+            endereco.setRua(jTextFieldRua.getText());
+            enderecoBll.updateEndereco(endereco);
+
+            cliente.setEnderecos(endereco);
+            cliente.setNome(jTextFieldNomeMotorista.getText());
+            cliente.setTelefone(Double.parseDouble(jTextFieldTelefoneMotorista.getText()));
+            cliente.setEmail(jTextFieldEmailMotorista.getText());
+            clienteBll.updateClientes(cliente);
+
+            motorista.setCliente(cliente);
+            motorista.setRg(Integer.parseInt(jTextField_rgMotorista.getText()));
+            motorista.setCpf(Double.parseDouble(jTextField_CpfMotorista.getText()));
+            motorista.setNumeroCnh(Double.parseDouble(jTextFieldCNHMotorista.getText()));
+            motorista.setCategoriaCnh(jTextField_CategoriaCNH.getText());
+            motorista.setDataValidade(data);
+            motoristabll.updateMotorista(motorista);
+
+            JOptionPane.showMessageDialog(null, motorista.getCliente().getNome() + " alterado com sucesso no sistema!");
+            preencherGridMotorista();
+            limparCampos();
+
+        } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        try {
+            if (jTableConsultarMotorista.getSelectedRow() == -1) {
+                throw new Exception("Selecione um motorista na tabela para ser alterado!");
+            }
+
+            int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
+            motorista = motoristabll.getMotoristaBy(id);
+            endereco = enderecoBll.getConsultaPorId(motorista.getCliente().getEnderecos().getIden());
+            cliente = clienteBll.getClienteById(motorista.getCliente().getIden());
+
+            motoristabll.deleteMotoristas(motorista);
+            clienteBll.deleteClientes(cliente);
+            enderecoBll.deleteEndereco(endereco);
+            JOptionPane.showMessageDialog(null, motorista.getCliente().getNome() + " removido com sucesso no sistema!");
+            preencherGridMotorista();
+            limparCampos();
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     /**
      * @param args the command line arguments
