@@ -120,7 +120,6 @@ public class TelaCidades extends javax.swing.JFrame {
         Valida.notNumber(jTextFieldCidade.getText(), "");
         Valida.notSpecialCharacters(jTextFieldCidade.getText(), "");
 
-
     }
 
     //--- FIM METODOS --------------------------------------------------------------------------------->

@@ -31,11 +31,19 @@ public class CidadesBll {
     //
     public void addCidades(Cidades cidade) throws Exception {
 
-        
-        
-//         if (cidade.getNome().equals(cidade.getUf())     ) {
-//            throw new Exception("Existe uma Cidade com o mesmo UF cadastrado");
-//        }
+        ArrayList<Cidades> lista = getAllCidades();
+
+        for (Cidades cidadeObj : lista) {
+
+            if (cidadeObj.getNome().equals(cidade.getNome())) {
+
+                if (cidadeObj.getUf().getNome().equals(cidade.getUf().getNome())) {
+                    throw new Exception("Existe uma Cidade com o mesmo UF cadastrado");
+
+                }
+            }
+
+        }
 
         if (cidade.getNome().length() < 2) {
             throw new Exception("Nome da Cidade inválida\nNo mínimo 2 caracteres!");
@@ -47,13 +55,9 @@ public class CidadesBll {
         try {
             cidadeDal.addCidades(cidade);
         } catch (Exception error) {
-                  throw error;
+            throw error;
         }
-    
-//            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-//                throw new Exception("Existe uma Cidade com o mesmo nome cadastrada no banco de dados!");
-//            }
-        
+
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
@@ -72,13 +76,9 @@ public class CidadesBll {
         try {
             cidadeDal.updateCidades(cidade);
         } catch (Exception error) {
-                   throw error;
+            throw error;
         }
-            
-//            if (error.getMessage().contains("duplicate key value violates unique constraint")) {
-//                throw new Exception("Existe uma Cidade com o mesmo nome cadastrada no banco de dados!");
-//            }
-//        }
+
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //

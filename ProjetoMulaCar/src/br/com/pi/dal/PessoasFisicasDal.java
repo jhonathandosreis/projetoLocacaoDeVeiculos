@@ -82,17 +82,10 @@ public class PessoasFisicasDal {
 
     //--- DELETE -------------------------------------------------------------------------------------->
     public void deletePessoasFisicas (PessoasFisicas pessoaFisica) throws Exception {
-        
+        String sql = "DELETE FROM pessoas_fisicas where pfi_iden =?";
         try{
-        int idPessoaFisica = pessoaFisica.getIden();
-        int idCliente = pessoaFisica.getCliente().getIden();
-        
-        PreparedStatement preparedStatement1 = conexao.prepareStatement("DELETE FROM clientes where cli_iden =?");
-        preparedStatement1.setInt(1, idCliente);
-        preparedStatement1.executeUpdate();
-        
-        PreparedStatement preparedStatement2 = conexao.prepareStatement("DELETE FROM pessoas_fisicas where pfi_iden =?");
-        preparedStatement1.setInt(1, idPessoaFisica);
+        PreparedStatement preparedStatement2 = conexao.prepareStatement(sql);
+        preparedStatement2.setInt(1, pessoaFisica.getIden());
         preparedStatement2.executeUpdate();
         } catch (Exception error) {
             throw  error;
@@ -121,7 +114,7 @@ public class PessoasFisicasDal {
                 lista.add(pessoaFisica);
            }
                  
-    return lista;
+         return lista;
         } catch (Exception error) {
             throw  error;
         }      

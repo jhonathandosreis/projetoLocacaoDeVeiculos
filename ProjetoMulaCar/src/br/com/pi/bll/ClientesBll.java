@@ -57,7 +57,16 @@ public class ClientesBll {
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
-
+    
+    //--- DELETE--------------------------------------------------------------------------------------->
+    public void deleteClientes(Clientes cliente) throws Exception {
+        try{
+            clienteDal.deleteClientes(cliente);
+         } catch (Exception error) {
+            
+        }
+    }
+    //--- FIM DELET ----------------------------------------------------------------------------------|
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Clientes> getAllClientes() throws Exception {
         return clienteDal.getAllClientes();

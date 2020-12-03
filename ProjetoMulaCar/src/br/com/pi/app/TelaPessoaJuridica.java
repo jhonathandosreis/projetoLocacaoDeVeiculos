@@ -22,6 +22,7 @@ import br.com.pi.model.Cidades;
 import br.com.pi.model.Clientes;
 import br.com.pi.model.Enderecos;
 import br.com.pi.model.PessoasJuridicas;
+import br.com.pi.util.Valida;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -36,7 +37,6 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     private PessoasJuridicasBll pessoaJuridicaBll = null;
     private EnderecosBll enderecoBll = null;
     private CidadesBll cidadesBll = null;
-    
 
     //--- FIM BLL'S ----------------------------------------------------------------------------------->
     //
@@ -46,7 +46,6 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     private ClientesBll clienteBll;
     private Enderecos endereco = null;
     private Cidades cidade = null;
- 
 
     //--- FIM CLASSES --------------------------------------------------------------------------------->
     //
@@ -57,14 +56,14 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
             pessoaJuridica = new PessoasJuridicas();
             pessoaJuridicaBll = new PessoasJuridicasBll();
-            
+
             enderecoBll = new EnderecosBll();
             cidadesBll = new CidadesBll();
             cliente = new Clientes();
             clienteBll = new ClientesBll();
             endereco = new Enderecos();
             cidade = new Cidades();
-          
+
             preencherComboboxCidades();
             preencherGridPessoaJuridica();
 
@@ -94,7 +93,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                 coluna[4] = pessoasJuridicas.getCliente().getEmail();
                 coluna[5] = pessoasJuridicas.getCliente().getEnderecos().getLogradouro();
                 coluna[6] = pessoasJuridicas.getCliente().getEnderecos().getCep();
-             
+
                 tablePessoasJuridicas.addRow(coluna);
             }
         } catch (Exception error) {
@@ -103,52 +102,79 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     }
 
     public void preencherFormularioPessoaJuridica() throws Exception {
-       
+
         int id = Integer.parseInt(jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 0).toString());
         pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(id);
-        
-        jTextFieldIdPessoaJuridica.setText(""+pessoaJuridica.getIden());
-        jTextFieldCNPJPessoaJuridica.setText(""+pessoaJuridica.getCnpj());
+
+        jTextFieldIdPessoaJuridica.setText("" + pessoaJuridica.getIden());
+        jTextFieldCNPJPessoaJuridica.setText("" + pessoaJuridica.getCnpj());
         jTextFieldRazaoSocialPessoaJuridica.setText(pessoaJuridica.getRazaoSocial());
         jTextFieldNomeFantasiaPessoaJuridica.setText(pessoaJuridica.getNomeFantasia());
-        jTextFieldCepPessoaJuridica.setText(""+pessoaJuridica.getCliente().getEnderecos().getCep());
+        jTextFieldCepPessoaJuridica.setText("" + pessoaJuridica.getCliente().getEnderecos().getCep());
         jTextFieldLogradouroPessoaJuridica.setText(pessoaJuridica.getCliente().getEnderecos().getLogradouro());
-        jTextFieldNumeroPessoaJuridica.setText(""+pessoaJuridica.getCliente().getEnderecos().getNumero());
+        jTextFieldNumeroPessoaJuridica.setText("" + pessoaJuridica.getCliente().getEnderecos().getNumero());
         jTextFieldComplementoPessoaJuridica.setText(pessoaJuridica.getCliente().getEnderecos().getComplemento());
         jTextFieldRuaPessoaJuridica.setText(pessoaJuridica.getCliente().getEnderecos().getRua());
         jComboBoxCidade.setSelectedItem(pessoaJuridica.getCliente().getEnderecos().getCidade());
-        jTextFieldTelefonePessoaJuridica.setText(""+pessoaJuridica.getCliente().getTelefone());
-        jTextFieldEmailPessoaJuridica.setText(""+pessoaJuridica.getCliente().getTelefone());
+        jTextFieldTelefonePessoaJuridica.setText("" + pessoaJuridica.getCliente().getTelefone());
+        jTextFieldEmailPessoaJuridica.setText("" + pessoaJuridica.getCliente().getTelefone());
+
+    }
+
+    public void validaFormularioPessoasJuridicas() {
+        Valida.campoVazio(jTextFieldCNPJPessoaJuridica.getText(), "Campo cnpj vazio!");
+        Valida.campoVazio(jTextFieldRazaoSocialPessoaJuridica.getText(), "Campo razão social vazio!");
+        Valida.campoVazio(jTextFieldNomeFantasiaPessoaJuridica.getText(), "Campo nome fantasia vazio!");
+        Valida.campoVazio(jTextFieldCepPessoaJuridica.getText(), "Campo cep vazio!");
+        Valida.campoVazio(jTextFieldLogradouroPessoaJuridica.getText(), "Campo logradouro vazio!");
+        Valida.campoVazio(jTextFieldNumeroPessoaJuridica.getText(), "Campo numero de endereço vazio!");
+        Valida.campoVazio(jTextFieldComplementoPessoaJuridica.getText(), "Campo complemento vazio!");
+        Valida.campoVazio(jTextFieldRuaPessoaJuridica.getText(), "Campo rua vazio!");
+        Valida.campoVazio(jTextFieldUf.getText(), "Campo uf vazio!");
+        Valida.campoVazio(jTextFieldTelefonePessoaJuridica.getText(), "Campo telefone vazio!");
+        Valida.campoVazio(jTextFieldEmailPessoaJuridica.getText(), "Campo e-mail vazio!");  
+        Valida.notSpecialCharacters(jTextFieldCNPJPessoaJuridica.getText(), "Campo cnpj não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldRazaoSocialPessoaJuridica.getText(), "Campo razão social não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldNomeFantasiaPessoaJuridica.getText(), "Campo nome fantasia não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldCepPessoaJuridica.getText(), "Campo cep não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldLogradouroPessoaJuridica.getText(), "Campo logradouro não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldNumeroPessoaJuridica.getText(), "Campo numero de endereço não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldComplementoPessoaJuridica.getText(), "Campo complemento não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldRuaPessoaJuridica.getText(), "Campo rua não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldUf.getText(), "Campo uf não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldTelefonePessoaJuridica.getText(), "Campo telefone não permite caracteres especiais!");
+        Valida.notNumber(jTextFieldNomeFantasiaPessoaJuridica.getText(), "Campo nome fantasia não permite números!");
+        Valida.notNumber(jTextFieldRazaoSocialPessoaJuridica.getText(), "Campo razão social não permite números!");
         
     }
-    
-    public void preencherComboboxCidades() throws Exception{
-           try{
+
+    public void preencherComboboxCidades() throws Exception {
+        try {
             jComboBoxCidade.removeAllItems();
             ArrayList<Cidades> listaCidades = cidadesBll.getAllCidades();
-            
+
             for (Cidades cidade : listaCidades) {
-               jComboBoxCidade.addItem(cidade.getNome());
-            }  
-           }catch(Exception error){
-                JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-           }
+                jComboBoxCidade.addItem(cidade.getNome());
+            }
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void limparCampos() {
-            jTextFieldCNPJPessoaJuridica.setText("");
-            jTextFieldRazaoSocialPessoaJuridica.setText("");
-            jTextFieldNomeFantasiaPessoaJuridica.setText("");
-            jTextFieldIdPessoaJuridica.setText("");
-            jTextFieldCepPessoaJuridica.setText("");
-            jTextFieldLogradouroPessoaJuridica.setText("");
-            jTextFieldNumeroPessoaJuridica.setText("");
-            jTextFieldComplementoPessoaJuridica.setText("");
-            jTextFieldRuaPessoaJuridica.setText("");
-            jTextFieldUf.setText("");
-            jTextFieldTelefonePessoaJuridica.setText("");
-            jTextFieldEmailPessoaJuridica.setText("");
-            jComboBoxCidade.setSelectedIndex(0);
+        jTextFieldCNPJPessoaJuridica.setText("");
+        jTextFieldRazaoSocialPessoaJuridica.setText("");
+        jTextFieldNomeFantasiaPessoaJuridica.setText("");
+        jTextFieldIdPessoaJuridica.setText("");
+        jTextFieldCepPessoaJuridica.setText("");
+        jTextFieldLogradouroPessoaJuridica.setText("");
+        jTextFieldNumeroPessoaJuridica.setText("");
+        jTextFieldComplementoPessoaJuridica.setText("");
+        jTextFieldRuaPessoaJuridica.setText("");
+        jTextFieldUf.setText("");
+        jTextFieldTelefonePessoaJuridica.setText("");
+        jTextFieldEmailPessoaJuridica.setText("");
+        jComboBoxCidade.setSelectedIndex(0);
     }
 
     //--- FIM METODOS --------------------------------------------------------------------------------->
@@ -404,6 +430,11 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         });
 
         jButtonRemover.setText("EXCLUIR");
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
 
         jButtonLimpar.setText("LIMPAR");
 
@@ -538,44 +569,44 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
 
-        
-try {
-           cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
-           endereco.setCidade(cidade);
-           endereco.setCep(Double.parseDouble(jTextFieldCepPessoaJuridica.getText()));
-           endereco.setLogradouro(jTextFieldLogradouroPessoaJuridica.getText());
-           endereco.setComplemento(jTextFieldComplementoPessoaJuridica.getText());
-           endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaJuridica.getText()));
-           endereco.setRua(jTextFieldRuaPessoaJuridica.getText());
-           enderecoBll.AddEndereco(endereco);
-           double cep = endereco.getCep();
-           endereco = enderecoBll.getConsultaPorCEP(cep);
-           
-           cliente.setEnderecos(endereco);
-           cliente.setNome(null);
-           cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaJuridica.getText()));
-           cliente.setEmail(jTextFieldEmailPessoaJuridica.getText());
-           clienteBll.addClientes(cliente);
-           double clienteTelefone = cliente.getTelefone();
-           cliente = clienteBll.getClienteByTelefone(clienteTelefone);
-           
-           pessoaJuridica.setCliente(cliente);
-           pessoaJuridica.setCnpj(Double.parseDouble(jTextFieldCNPJPessoaJuridica.getText()));
-           pessoaJuridica.setNomeFantasia(jTextFieldNomeFantasiaPessoaJuridica.getText());
-           pessoaJuridica.setRazaoSocial(jTextFieldRazaoSocialPessoaJuridica.getText());
-           pessoaJuridicaBll.addPessoasJuridicas(pessoaJuridica);
+        try {
+            validaFormularioPessoasJuridicas();
+            cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
+            endereco.setCidade(cidade);
+            endereco.setCep(Double.parseDouble(jTextFieldCepPessoaJuridica.getText()));
+            endereco.setLogradouro(jTextFieldLogradouroPessoaJuridica.getText());
+            endereco.setComplemento(jTextFieldComplementoPessoaJuridica.getText());
+            endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaJuridica.getText()));
+            endereco.setRua(jTextFieldRuaPessoaJuridica.getText());
+            enderecoBll.AddEndereco(endereco);
+            double cep = endereco.getCep();
+            endereco = enderecoBll.getConsultaPorCEP(cep);
 
-           JOptionPane.showMessageDialog(null, pessoaJuridica.getNomeFantasia()+" cadastrado com sucesso no sistema!");
-           preencherGridPessoaJuridica();
-           limparCampos();
-           
+            cliente.setEnderecos(endereco);
+            cliente.setNome(null);
+            cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaJuridica.getText()));
+            cliente.setEmail(jTextFieldEmailPessoaJuridica.getText());
+            clienteBll.addClientes(cliente);
+            double clienteTelefone = cliente.getTelefone();
+            cliente = clienteBll.getClienteByTelefone(clienteTelefone);
+
+            pessoaJuridica.setCliente(cliente);
+            pessoaJuridica.setCnpj(Double.parseDouble(jTextFieldCNPJPessoaJuridica.getText()));
+            pessoaJuridica.setNomeFantasia(jTextFieldNomeFantasiaPessoaJuridica.getText());
+            pessoaJuridica.setRazaoSocial(jTextFieldRazaoSocialPessoaJuridica.getText());
+            pessoaJuridicaBll.addPessoasJuridicas(pessoaJuridica);
+
+            JOptionPane.showMessageDialog(null, pessoaJuridica.getNomeFantasia() + " cadastrado com sucesso no sistema!");
+            preencherGridPessoaJuridica();
+            limparCampos();
+
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jTable_PessoasJuridicasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_PessoasJuridicasMouseClicked
-  try {
+        try {
             preencherFormularioPessoaJuridica();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -583,54 +614,77 @@ try {
     }//GEN-LAST:event_jTable_PessoasJuridicasMouseClicked
 
     private void jComboBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCidadeActionPerformed
-      try{
-        cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
-        jTextFieldUf.setText(cidade.getUf().getNome());
-        }catch(Exception error){
-            JOptionPane.showMessageDialog(null, "Erro na combo Cidade "+error.getMessage());
+        try {
+            cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
+            jTextFieldUf.setText(cidade.getUf().getNome());
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, "Erro na combo Cidade " + error.getMessage());
         }
     }//GEN-LAST:event_jComboBoxCidadeActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-    try{
-          if (jTable_PessoasJuridicas.getSelectedRow() == -1) {
+        try {
+            if (jTable_PessoasJuridicas.getSelectedRow() == -1) {
                 throw new Exception("Selecione uma pessoa juridica na tabela para ser alterado!");
-          }
-          
-           int id = Integer.parseInt(jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 0).toString());
-           pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(id);
-           endereco = enderecoBll.getConsultaPorId(pessoaJuridica.getCliente().getEnderecos().getIden());
-           cliente = clienteBll.getClienteById(pessoaJuridica.getCliente().getIden());
-           cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
-           
-           endereco.setCidade(cidade);
-           endereco.setCep(Double.parseDouble(jTextFieldCepPessoaJuridica.getText()));
-           endereco.setLogradouro(jTextFieldLogradouroPessoaJuridica.getText());
-           endereco.setComplemento(jTextFieldComplementoPessoaJuridica.getText());
-           endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaJuridica.getText()));
-           endereco.setRua(jTextFieldRuaPessoaJuridica.getText());
-           enderecoBll.updateEndereco(endereco);
+            }
+            validaFormularioPessoasJuridicas();
+            int id = Integer.parseInt(jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 0).toString());
+            pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(id);
+            endereco = enderecoBll.getConsultaPorId(pessoaJuridica.getCliente().getEnderecos().getIden());
+            cliente = clienteBll.getClienteById(pessoaJuridica.getCliente().getIden());
+            cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
 
-           cliente.setEnderecos(endereco);
-           cliente.setNome(null);
-           cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaJuridica.getText()));
-           cliente.setEmail(jTextFieldEmailPessoaJuridica.getText());
-           clienteBll.updateClientes(cliente);
+            endereco.setCidade(cidade);
+            endereco.setCep(Double.parseDouble(jTextFieldCepPessoaJuridica.getText()));
+            endereco.setLogradouro(jTextFieldLogradouroPessoaJuridica.getText());
+            endereco.setComplemento(jTextFieldComplementoPessoaJuridica.getText());
+            endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaJuridica.getText()));
+            endereco.setRua(jTextFieldRuaPessoaJuridica.getText());
+            enderecoBll.updateEndereco(endereco);
 
-           pessoaJuridica.setCliente(cliente);
-           pessoaJuridica.setCnpj(Double.parseDouble(jTextFieldCNPJPessoaJuridica.getText()));
-           pessoaJuridica.setNomeFantasia(jTextFieldNomeFantasiaPessoaJuridica.getText());
-           pessoaJuridica.setRazaoSocial(jTextFieldRazaoSocialPessoaJuridica.getText());
-           pessoaJuridicaBll.updatePessoasJuridicas(pessoaJuridica);
-           
-           JOptionPane.showMessageDialog(null, pessoaJuridica.getNomeFantasia()+" alterado com sucesso no sistema!");
-           preencherGridPessoaJuridica();
-           limparCampos();
-           
-    }catch (Exception error) {
+            cliente.setEnderecos(endereco);
+            cliente.setNome(null);
+            cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaJuridica.getText()));
+            cliente.setEmail(jTextFieldEmailPessoaJuridica.getText());
+            clienteBll.updateClientes(cliente);
+
+            pessoaJuridica.setCliente(cliente);
+            pessoaJuridica.setCnpj(Double.parseDouble(jTextFieldCNPJPessoaJuridica.getText()));
+            pessoaJuridica.setNomeFantasia(jTextFieldNomeFantasiaPessoaJuridica.getText());
+            pessoaJuridica.setRazaoSocial(jTextFieldRazaoSocialPessoaJuridica.getText());
+            pessoaJuridicaBll.updatePessoasJuridicas(pessoaJuridica);
+
+            JOptionPane.showMessageDialog(null, pessoaJuridica.getNomeFantasia() + " alterado com sucesso no sistema!");
+            preencherGridPessoaJuridica();
+            limparCampos();
+
+        } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        try {
+            if (jTable_PessoasJuridicas.getSelectedRow() == -1) {
+                throw new Exception("Selecione uma pessoa juridica na tabela para ser alterado!");
+            }
+
+            int id = Integer.parseInt(jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 0).toString());
+            pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(id);
+            endereco = enderecoBll.getConsultaPorId(pessoaJuridica.getCliente().getEnderecos().getIden());
+            cliente = clienteBll.getClienteById(pessoaJuridica.getCliente().getIden());
+
+            pessoaJuridicaBll.deletePessoasJuridicas(pessoaJuridica);
+            clienteBll.deleteClientes(cliente);
+            enderecoBll.deleteEndereco(endereco);
+            JOptionPane.showMessageDialog(null, pessoaJuridica.getNomeFantasia() + " removido com sucesso no sistema!");
+            preencherGridPessoaJuridica();
+            limparCampos();
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     /**
      * @param args the command line arguments

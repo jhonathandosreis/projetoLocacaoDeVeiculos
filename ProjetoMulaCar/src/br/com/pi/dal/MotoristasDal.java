@@ -93,17 +93,10 @@ public class MotoristasDal {
 
     //--- DELETE -------------------------------------------------------------------------------------->
     public void deleteMotoristas (Motoristas motorista) throws Exception {
-        
+        String sql = "DELETE FROM pessoas_fisicas WHERE pfi_iden =?";
         try{
-        int idMotorista = motorista.getIden();
-        int idCliente = motorista.getCliente().getIden();
-        
-        PreparedStatement preparedStatement1 = conexao.prepareStatement("DELETE FROM clientes WHERE cli_iden =?");
-        preparedStatement1.setInt(1, idCliente);
-        preparedStatement1.executeUpdate();
-        
-        PreparedStatement preparedStatement2 = conexao.prepareStatement("DELETE FROM pessoas_fisicas WHERE pfi_iden =?");
-        preparedStatement1.setInt(1, idMotorista);
+        PreparedStatement preparedStatement2 = conexao.prepareStatement(sql);
+        preparedStatement2.setInt(1, motorista.getIden());
         preparedStatement2.executeUpdate();
         } catch (Exception error) {
             throw  error;

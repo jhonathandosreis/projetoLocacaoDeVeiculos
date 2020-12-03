@@ -75,6 +75,16 @@ public class ClientesDal {
         }
     }
     
+    public void deleteClientes(Clientes cliente) throws Exception{
+        try{
+        PreparedStatement preparedStatement1 = conexao.prepareStatement("DELETE FROM clientes where cli_iden =?");
+        preparedStatement1.setInt(1, cliente.getIden());
+        preparedStatement1.executeUpdate();
+        } catch (Exception error) {
+            throw  error;
+        }
+    }
+    
 
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Clientes> getAllClientes() throws Exception {

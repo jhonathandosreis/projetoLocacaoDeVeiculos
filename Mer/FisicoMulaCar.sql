@@ -52,7 +52,7 @@ CREATE TABLE pessoas_fisicas (
     pfi_cpf BIGINT CONSTRAINT cpf_repetido UNIQUE,
     pfi_numero_cnh BIGINT CONSTRAINT cnh_repetida UNIQUE,
     pfi_categoria_cnh VARCHAR(20),
-    pfi_data_validade VARCHAR(30),
+    pfi_data_validade DATE,
     pfi_cli_iden INTEGER,
     FOREIGN KEY (pfi_cli_iden) REFERENCES clientes (cli_iden)
 );
