@@ -24,6 +24,7 @@ import br.com.pi.model.Clientes;
 import br.com.pi.model.Enderecos;
 import br.com.pi.model.Motoristas;
 import br.com.pi.model.Ufs;
+import br.com.pi.util.Valida;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -144,6 +145,38 @@ public class TelaMotoristas extends javax.swing.JFrame {
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public void ValidaMotoristas() {
+        Valida.campoVazio(jTextFieldNomeMotorista.getText(), "Campo nome vazio!");
+        Valida.campoVazio(jTextField_rgMotorista.getText(), "Campo rg vazio!");
+        Valida.campoVazio(jTextField_CpfMotorista.getText(), "Campo cpf vazio!");
+        Valida.campoVazio(jTextFieldCNHMotorista.getText(), "Campo cnh vazio!");
+        Valida.campoVazio(jFormattedTextField_Data_validade.getText(), "Campo data de validade vazio!");
+        Valida.campoVazio(jTextField_CategoriaCNH.getText(), "Campo categoria cnh vazio!");
+        Valida.campoVazio(jTextFieldCepMotorista.getText(), "Campo cep vazio!");
+        Valida.campoVazio(jTextFieldLogradouroMotorista.getText(), "Campo logradouro vazio!");
+        Valida.campoVazio(jTextFieldNumeroMotorista.getText(), "Campo numero do endereço vazio!");
+        Valida.campoVazio(jTextFieldComplementoMotorista.getText(), "Campo complemento vazio!");
+        Valida.campoVazio(jTextFieldRua.getText(), "Campo rua vazio!");
+        Valida.campoVazio(jTextField_UF.getText(), "Campo uf vazio!");
+        Valida.campoVazio(jTextFieldTelefoneMotorista.getText(), "Campo telefone vazio!");
+        Valida.campoVazio(jTextFieldEmailMotorista.getText(), "Campo e-mail vazio!");
+        Valida.notSpecialCharacters(jTextFieldNomeMotorista.getText(), "Campo nome não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextField_rgMotorista.getText(), "Campo rg não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextField_CpfMotorista.getText(), "Campo cpf não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldCNHMotorista.getText(), "Campo cnh não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jFormattedTextField_Data_validade.getText(), "Campo data de validade não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextField_CategoriaCNH.getText(), "Campo categoria cnh não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldCepMotorista.getText(), "Campo cep não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldLogradouroMotorista.getText(), "Campo logradouro não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldNumeroMotorista.getText(), "Campo numero do endereço não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldComplementoMotorista.getText(), "Campo complemento não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldRua.getText(), "Campo rua não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextField_UF.getText(), "Campo uf não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldTelefoneMotorista.getText(), "Campo telefone não permite caracteres especiais!");
+        Valida.notNumber(jTextFieldNomeMotorista.getText(), "Campo nome não permite números!");
+      
     }
 
     public void limparCampos() {
@@ -662,7 +695,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         try {
-
+            ValidaMotoristas();
             Date data = formato.parse(jFormattedTextField_Data_validade.getText());
 
             cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
@@ -724,6 +757,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
             if (jTableConsultarMotorista.getSelectedRow() == -1) {
                 throw new Exception("Selecione um motorista na tabela para ser alterado!");
             }
+            ValidaMotoristas();
             int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
             motorista = motoristabll.getMotoristaBy(id);
             endereco = enderecoBll.getConsultaPorId(motorista.getCliente().getEnderecos().getIden());

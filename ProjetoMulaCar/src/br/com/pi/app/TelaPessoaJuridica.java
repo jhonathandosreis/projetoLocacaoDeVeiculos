@@ -22,6 +22,7 @@ import br.com.pi.model.Cidades;
 import br.com.pi.model.Clientes;
 import br.com.pi.model.Enderecos;
 import br.com.pi.model.PessoasJuridicas;
+import br.com.pi.util.Valida;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -118,6 +119,33 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         jTextFieldTelefonePessoaJuridica.setText("" + pessoaJuridica.getCliente().getTelefone());
         jTextFieldEmailPessoaJuridica.setText("" + pessoaJuridica.getCliente().getTelefone());
 
+    }
+
+    public void validaFormularioPessoasJuridicas() {
+        Valida.campoVazio(jTextFieldCNPJPessoaJuridica.getText(), "Campo cnpj vazio!");
+        Valida.campoVazio(jTextFieldRazaoSocialPessoaJuridica.getText(), "Campo razão social vazio!");
+        Valida.campoVazio(jTextFieldNomeFantasiaPessoaJuridica.getText(), "Campo nome fantasia vazio!");
+        Valida.campoVazio(jTextFieldCepPessoaJuridica.getText(), "Campo cep vazio!");
+        Valida.campoVazio(jTextFieldLogradouroPessoaJuridica.getText(), "Campo logradouro vazio!");
+        Valida.campoVazio(jTextFieldNumeroPessoaJuridica.getText(), "Campo numero de endereço vazio!");
+        Valida.campoVazio(jTextFieldComplementoPessoaJuridica.getText(), "Campo complemento vazio!");
+        Valida.campoVazio(jTextFieldRuaPessoaJuridica.getText(), "Campo rua vazio!");
+        Valida.campoVazio(jTextFieldUf.getText(), "Campo uf vazio!");
+        Valida.campoVazio(jTextFieldTelefonePessoaJuridica.getText(), "Campo telefone vazio!");
+        Valida.campoVazio(jTextFieldEmailPessoaJuridica.getText(), "Campo e-mail vazio!");  
+        Valida.notSpecialCharacters(jTextFieldCNPJPessoaJuridica.getText(), "Campo cnpj não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldRazaoSocialPessoaJuridica.getText(), "Campo razão social não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldNomeFantasiaPessoaJuridica.getText(), "Campo nome fantasia não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldCepPessoaJuridica.getText(), "Campo cep não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldLogradouroPessoaJuridica.getText(), "Campo logradouro não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldNumeroPessoaJuridica.getText(), "Campo numero de endereço não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldComplementoPessoaJuridica.getText(), "Campo complemento não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldRuaPessoaJuridica.getText(), "Campo rua não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldUf.getText(), "Campo uf não permite caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldTelefonePessoaJuridica.getText(), "Campo telefone não permite caracteres especiais!");
+        Valida.notNumber(jTextFieldNomeFantasiaPessoaJuridica.getText(), "Campo nome fantasia não permite números!");
+        Valida.notNumber(jTextFieldRazaoSocialPessoaJuridica.getText(), "Campo razão social não permite números!");
+        
     }
 
     public void preencherComboboxCidades() throws Exception {
@@ -542,6 +570,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
 
         try {
+            validaFormularioPessoasJuridicas();
             cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
             endereco.setCidade(cidade);
             endereco.setCep(Double.parseDouble(jTextFieldCepPessoaJuridica.getText()));
@@ -598,7 +627,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             if (jTable_PessoasJuridicas.getSelectedRow() == -1) {
                 throw new Exception("Selecione uma pessoa juridica na tabela para ser alterado!");
             }
-
+            validaFormularioPessoasJuridicas();
             int id = Integer.parseInt(jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 0).toString());
             pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(id);
             endereco = enderecoBll.getConsultaPorId(pessoaJuridica.getCliente().getEnderecos().getIden());
@@ -639,7 +668,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             if (jTable_PessoasJuridicas.getSelectedRow() == -1) {
                 throw new Exception("Selecione uma pessoa juridica na tabela para ser alterado!");
             }
-            
+
             int id = Integer.parseInt(jTable_PessoasJuridicas.getValueAt(jTable_PessoasJuridicas.getSelectedRow(), 0).toString());
             pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(id);
             endereco = enderecoBll.getConsultaPorId(pessoaJuridica.getCliente().getEnderecos().getIden());
