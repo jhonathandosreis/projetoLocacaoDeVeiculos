@@ -95,14 +95,15 @@ CREATE TABLE veiculos (
     vei_ano_fabricacao INTEGER,
     vei_numero_passageiros INTEGER,
     vei_tipo_combustivel VARCHAR(20),
+    vei_capacidade_combustivel INTEGER,
     vei_mod_iden INTEGER,
     FOREIGN KEY (vei_mod_iden) REFERENCES modelos (mod_iden)
 );
 
 CREATE TABLE locacoes (
     loc_codigo SERIAL PRIMARY KEY,
-    loc_data_locacao DATE,
-    loc_data_prevista_devolucao DATE,
+    loc_data_locacao VARCHAR(20),
+    loc_data_prevista_devolucao VARCHAR(20),
     loc_km_inicial NUMERIC(30),
     loc_valor_locacao NUMERIC(50),
     loc_valor_caucao NUMERIC(50),
@@ -117,12 +118,13 @@ CREATE TABLE locacoes (
 
 CREATE TABLE devolucoes (
     dev_iden SERIAL PRIMARY KEY,
-    dev_data_devolucao VARCHAR(20),
+    dev_data_devolucao DATE,
     dev_multa_por_atraso NUMERIC(50),
-    dev_status VARCHAR(15),
     dev_km_na_entrega NUMERIC(50),
     dev_loc_iden INTEGER,
-    FOREIGN KEY (dev_loc_iden) REFERENCES locacoes (loc_codigo)
+    dev_vei_iden INTEGER,
+    FOREIGN KEY (dev_loc_iden) REFERENCES locacoes (loc_iden),
+    FOREIGN KEY (dev_vei_iden) REFERENCES locacoes (vei_iden)
 );
  
 

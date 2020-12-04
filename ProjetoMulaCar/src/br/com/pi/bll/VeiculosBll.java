@@ -42,14 +42,6 @@ public class VeiculosBll {
     //
     public void addVeiculos(Veiculos veiculo) throws Exception {
 
-        if (veiculo.getPlaca().length() < 3) {
-            throw new Exception("Placa inválida\nEx: Mercosul BRA2E19\n Nacional PHL-4508");
-        }
-
-        if (veiculo.getPlaca().length() > 7) {
-            throw new Exception("Placa inválida\nEx: Mercosul BRA2E19\n Nacional PHL-4508");
-        }
-
         if (veiculo.getRenavam().length() < 0) {
             throw new Exception("Renavam inválido\nUm renavam possui 11 números!");
         }
@@ -78,15 +70,23 @@ public class VeiculosBll {
             throw new Exception("Valor inválido!\nNão existe veículo com valores negativo!");
         }
 
-        if (veiculo.getQuilimetragem() > 80000) {
+        if (veiculo.getPrecoDeCompra() > 80000) {
             throw new Exception("Valor inválido!\nNossa frota não possui veículo com valor acima de 80.000!");
         }
+        
+        if (veiculo.getCapacidadeCombustivel() > 90) {
+            throw new Exception("Capacidade inválido!\nNossa frota não possui veículo com capacidade de combustivel acima de 90 litros!");
+        }
+        
+        if (veiculo.getCapacidadeCombustivel() < 70) {
+            throw new Exception("Capacidade inválido!\nNossa frota não possui veículo com capacidade de combustivel abaixo de 70 litros!");
+        }
 
-        if (veiculo.getCapacidade() < 0) {
+        if (veiculo.getCapacidade() < 4) {
             throw new Exception("Capacidade inválida!\nMínimo 5 passageiros!");
         }
 
-        if (veiculo.getQuilimetragem() > 80000) {
+        if (veiculo.getCapacidade() > 7) {
             throw new Exception("Capacidade inválida!\nMáximo 7 passageiros!");
         }
 

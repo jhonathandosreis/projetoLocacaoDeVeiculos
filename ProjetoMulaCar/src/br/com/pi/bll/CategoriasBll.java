@@ -50,23 +50,43 @@ public class CategoriasBll {
             throw new Exception("Nome da categoria inválida\nMáximo de caracteres excedido!");
         }
 
-        if (categoria.getNome().contains("Econômico") && categoria.getValorDiarioLocacao() != 70.00) {
+        if (categoria.getNome().equals("ECONÔMICO") && categoria.getValorDiarioLocacao() < 70.00) {
+            throw new Exception("O valor não pode ser menor que R$ 70,00 a diaria");
+        }
+        
+        if (categoria.getNome().equals("ECONÔMICO") && categoria.getValorDiarioLocacao() > 70.00) {
             throw new Exception("O valor não pode ser maior que R$ 70,00 a diaria");
         }
 
-        if (categoria.getNome().contains("Intermediário") && categoria.getValorDiarioLocacao() != 90.00) {
+        if (categoria.getNome().equals("INTERMEDIÁRIO") && categoria.getValorDiarioLocacao() < 90.00) {
+            throw new Exception("O valor não pode ser menor que R$ 90,00 a diaria");
+        }
+        
+        if (categoria.getNome().equals("INTERMEDIÁRIO") && categoria.getValorDiarioLocacao() > 90.00) {
             throw new Exception("O valor não pode ser maior que R$ 90,00 a diaria");
         }
 
-        if (categoria.getNome().contains("SUV") && categoria.getValorDiarioLocacao() != 120.00) {
+        if (categoria.getNome().equals("SUV") && categoria.getValorDiarioLocacao() < 120.00) {
+            throw new Exception("O valor não pode ser menor que R$ 120,00 a diaria");
+        }
+        
+        if (categoria.getNome().equals("SUV") && categoria.getValorDiarioLocacao() > 120.00) {
             throw new Exception("O valor não pode ser maior que R$ 120,00 a diaria");
         }
 
-        if (categoria.getNome().contains("Executivo") && categoria.getValorDiarioLocacao() != 160.00) {
+        if (categoria.getNome().equals("EXECUTIVO") && categoria.getValorDiarioLocacao() < 160.00) {
+            throw new Exception("O valor não pode ser menor que R$ 160,00 a diaria");
+        }
+        
+        if (categoria.getNome().equals("EXECUTIVO") && categoria.getValorDiarioLocacao() > 160.00) {
             throw new Exception("O valor não pode ser maior que R$ 160,00 a diaria");
         }
 
-        if (categoria.getNome().contains("Utilitário") && categoria.getValorDiarioLocacao() != 200.00) {
+        if (categoria.getNome().equals("UTILITÁRIO") && categoria.getValorDiarioLocacao() < 200.00) {
+            throw new Exception("O valor não pode ser menor que R$ 200,00 a diaria");
+        }
+        
+        if (categoria.getNome().equals("UTILITÁRIO") && categoria.getValorDiarioLocacao() > 200.00) {
             throw new Exception("O valor não pode ser maior que R$ 200,00 a diaria");
         }
 
@@ -93,23 +113,43 @@ public class CategoriasBll {
             throw new Exception("Nome da categoria inválida\nMáximo de caracteres excedido!");
         }
 
-        if (categoria.getNome().contains("Econômico") && categoria.getValorDiarioLocacao() != 70.00) {
+        if (categoria.getNome().equals("ECONÔMICO") && categoria.getValorDiarioLocacao() < 70.00) {
+            throw new Exception("O valor não pode ser menor que R$ 70,00 a diaria");
+        }
+        
+        if (categoria.getNome().equals("ECONÔMICO") && categoria.getValorDiarioLocacao() > 70.00) {
             throw new Exception("O valor não pode ser maior que R$ 70,00 a diaria");
         }
 
-        if (categoria.getNome().contains("Intermediário") && categoria.getValorDiarioLocacao() != 90.00) {
+        if (categoria.getNome().equals("INTERMEDIÁRIO") && categoria.getValorDiarioLocacao() < 90.00) {
+            throw new Exception("O valor não pode ser menor que R$ 90,00 a diaria");
+        }
+        
+        if (categoria.getNome().equals("INTERMEDIÁRIO") && categoria.getValorDiarioLocacao() > 90.00) {
             throw new Exception("O valor não pode ser maior que R$ 90,00 a diaria");
         }
 
-        if (categoria.getNome().contains("SUV") && categoria.getValorDiarioLocacao() != 120.00) {
+        if (categoria.getNome().equals("SUV") && categoria.getValorDiarioLocacao() < 120.00) {
+            throw new Exception("O valor não pode ser menor que R$ 120,00 a diaria");
+        }
+        
+        if (categoria.getNome().equals("SUV") && categoria.getValorDiarioLocacao() > 120.00) {
             throw new Exception("O valor não pode ser maior que R$ 120,00 a diaria");
         }
 
-        if (categoria.getNome().contains("Executivo") && categoria.getValorDiarioLocacao() != 160.00) {
+        if (categoria.getNome().equals("EXECUTIVO") && categoria.getValorDiarioLocacao() < 160.00) {
+            throw new Exception("O valor não pode ser menor que R$ 160,00 a diaria");
+        }
+        
+        if (categoria.getNome().equals("EXECUTIVO") && categoria.getValorDiarioLocacao() > 160.00) {
             throw new Exception("O valor não pode ser maior que R$ 160,00 a diaria");
         }
 
-        if (categoria.getNome().contains("Utilitário") && categoria.getValorDiarioLocacao() != 200.00) {
+        if (categoria.getNome().equals("UTILITÁRIO") && categoria.getValorDiarioLocacao() < 200.00) {
+            throw new Exception("O valor não pode ser menor que R$ 200,00 a diaria");
+        }
+        
+        if (categoria.getNome().equals("UTILITÁRIO") && categoria.getValorDiarioLocacao() > 200.00) {
             throw new Exception("O valor não pode ser maior que R$ 200,00 a diaria");
         }
         

@@ -27,9 +27,9 @@ public class Devolucoes {
     private int iden = 0;
     private Date dataDevolucao = null;
     private int multaPorAtraso = 0;
-    private String status = "";
     private int kmNaEntrega = 0;
     private Locacoes locacao = null;
+    private Veiculos veiculo = null;
 
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
@@ -39,13 +39,13 @@ public class Devolucoes {
 
     }
 
-    public Devolucoes(int iden, Date dataDevolucao,int multaPorAtraso, String status, int kmNaEntrega, Locacoes locacao) {
+    public Devolucoes(int iden, Date dataDevolucao,int multaPorAtraso, String status, int kmNaEntrega, Locacoes locacao , Veiculos veiculo) {
         this.iden = iden;
         this.dataDevolucao = dataDevolucao;
         this.multaPorAtraso = multaPorAtraso;
-        this.status = status;
         this.kmNaEntrega = kmNaEntrega;
         this.locacao = locacao;
+        this.veiculo = veiculo;
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -64,8 +64,8 @@ public class Devolucoes {
         return multaPorAtraso;
     }
 
-    public String getStatus() {
-        return status;
+     public Veiculos getVeiculo() {
+        return veiculo;
     }
 
     public int getKmNaEntrega() {
@@ -84,16 +84,16 @@ public class Devolucoes {
         this.iden = iden;
     }
 
+     public void setVeiculo(Veiculos veiculo) {
+        this.veiculo = veiculo;
+    }
+     
     public void setDataDevolucao(Date dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
 
     public void setMultaPorAtraso(int multaPorAtraso) {
         this.multaPorAtraso = multaPorAtraso;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public void setKmNaEntrega(int kmNaEntrega) {
@@ -106,4 +106,5 @@ public class Devolucoes {
     //--- FIM SET -------------------------------------------------------------------------------------|
     //
 
+ 
 }

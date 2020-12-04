@@ -14,10 +14,13 @@
  */
 package br.com.pi.dal;
 
+import br.com.pi.bll.LocacoesBll;
+import br.com.pi.bll.VeiculosBll;
 import br.com.pi.model.Devolucoes;
+import br.com.pi.model.Locacoes;
+import br.com.pi.model.Veiculos;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -32,6 +35,10 @@ public class DevolucoesDal {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private Connection conexao;
+    private LocacoesBll locacoesBll;
+    private Locacoes locacao;
+    private Veiculos veiculo;
+    private VeiculosBll veiculoBll;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -46,21 +53,23 @@ public class DevolucoesDal {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addDevolucoes(Devolucoes devolucao) throws Exception {
 
-        String sql = "INSERT INTO devolucoes (dev_data_devolucao, dev_multa_por_atraso , dev_status , dev_km_na_entrega , dev_loc_iden ) VALEUS (?,?,?,?,?)";
+        String sql = "INSERT INTO devolucoes (dev_data_devolucao, dev_multa_por_atraso , dev_km_na_entrega , dev_loc_codigo , dev_vei_iden) VALEUS (?,?,?,?,?,?)";
         try {
 
+            java.sql.Date dataDevolucao = new java.sql.Date(devolucao.getDataDevolucao().getTime());
+
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setDate(1, (Date) devolucao.getDataDevolucao());
+            preparedStatement.setDate(1, dataDevolucao);
             preparedStatement.setInt(2, devolucao.getMultaPorAtraso());
-            preparedStatement.setString(3, devolucao.getStatus());
-            preparedStatement.setInt(4, devolucao.getKmNaEntrega());
-            preparedStatement.setInt(5, devolucao.getLocacao().getIden());
+            preparedStatement.setInt(3, devolucao.getKmNaEntrega());
+            preparedStatement.setInt(4, devolucao.getLocacao().getIden());
+            preparedStatement.setInt(5, devolucao.getVeiculo().getIden());
 
             preparedStatement.executeUpdate();
         } catch (Exception error) {
             throw error;
         }
-        
+
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
@@ -68,22 +77,25 @@ public class DevolucoesDal {
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateDevolucoes(Devolucoes devolucao) throws Exception {
 
-        String sql = "UPDATE devolucoes SET dev_data_devolucao=?, dev_multa_por_atraso=? , dev_status=? , dev_km_na_entrega=? , dev_loc_iden=?  WHERE dev_iden=?";
+        String sql = "UPDATE devolucoes SET dev_data_devolucao=?, dev_multa_por_atraso=? , dev_km_na_entrega=? , dev_loc_codigo=? , dev_vei_iden=? WHERE dev_iden=?";
 
         try {
+
+            java.sql.Date dataDevolucao = new java.sql.Date(devolucao.getDataDevolucao().getTime());
+
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setDate(1, (Date) devolucao.getDataDevolucao());
+            preparedStatement.setDate(1, dataDevolucao);
             preparedStatement.setInt(2, devolucao.getMultaPorAtraso());
-            preparedStatement.setString(3, devolucao.getStatus());
-            preparedStatement.setInt(4, devolucao.getKmNaEntrega());
-            preparedStatement.setInt(5, devolucao.getLocacao().getIden());
+            preparedStatement.setInt(3, devolucao.getKmNaEntrega());
+            preparedStatement.setInt(4, devolucao.getLocacao().getIden());
+            preparedStatement.setInt(5, devolucao.getVeiculo().getIden());
             preparedStatement.setInt(6, devolucao.getIden());
 
             preparedStatement.executeUpdate();
-       
-            } catch (Exception error) {
+
+        } catch (Exception error) {
             throw error;
-        
+
         }
 
     }
@@ -99,10 +111,10 @@ public class DevolucoesDal {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setInt(1, dev_iden);
             preparedStatement.executeUpdate();
-        
-             } catch (Exception error) {
+
+        } catch (Exception error) {
             throw error;
-        
+
         }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
@@ -114,19 +126,25 @@ public class DevolucoesDal {
 
         String sql = "SELECT * FROM devolucoes";
         try {
+
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
+
                 Devolucoes devolucao = new Devolucoes();
 
                 devolucao.setIden(rs.getInt("dev_iden"));
                 devolucao.setDataDevolucao(rs.getDate("dev_data_devolucao"));
                 devolucao.setMultaPorAtraso(rs.getInt("dev_multa_por_atraso"));
-                devolucao.setStatus(rs.getString("dev_status"));
                 devolucao.setKmNaEntrega(rs.getInt("dev_km_na_entrega"));
 
-                LocacoesDal locacao = new LocacoesDal();
-                devolucao.setLocacao(locacao.getLocacoesById(rs.getInt(" dev_loc_iden")));
+                int loc_codigo = rs.getInt(" dev_loc_codigo");
+                locacao = locacoesBll.getLocacoesBy(loc_codigo);
+                devolucao.setLocacao(locacao);
+
+                int vei_iden = rs.getInt(" dev_vei_iden");
+                veiculo = veiculoBll.getVeiculosById(vei_iden);
+                devolucao.setVeiculo(veiculo);
 
                 lista.add(devolucao);
             }
@@ -138,9 +156,9 @@ public class DevolucoesDal {
     }
 
     public Devolucoes getDevolucoesById(int dev_iden) throws Exception {
-        
+
         Devolucoes devolucao = new Devolucoes();
-       
+
         String sql = "SELECT * FROM devolucoes WHERE dev_iden=?";
 
         try {
@@ -154,11 +172,15 @@ public class DevolucoesDal {
                 devolucao.setIden(rs.getInt("dev_iden"));
                 devolucao.setDataDevolucao(rs.getDate("dev_data_devolucao"));
                 devolucao.setMultaPorAtraso(rs.getInt("dev_multa_por_atraso"));
-                devolucao.setStatus(rs.getString("dev_status"));
                 devolucao.setKmNaEntrega(rs.getInt("dev_km_na_entrega"));
 
-                LocacoesDal locacao = new LocacoesDal();
-                devolucao.setLocacao(locacao.getLocacoesById(rs.getInt(" dev_loc_iden")));
+                int loc_codigo = rs.getInt(" dev_loc_codigo");
+                locacao = locacoesBll.getLocacoesBy(loc_codigo);
+                devolucao.setLocacao(locacao);
+
+                int vei_iden = rs.getInt(" dev_vei_iden");
+                veiculo = veiculoBll.getVeiculosById(vei_iden);
+                devolucao.setVeiculo(veiculo);
 
             }
         } catch (Exception error) {
