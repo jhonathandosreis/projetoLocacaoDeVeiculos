@@ -83,7 +83,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
 
                 linha[0] = modelo1.getIden();
                 linha[1] = modelo1.getPlaca();
-                linha[2] = modelo1.getQuilimetragem();
+                linha[2] = modelo1.getQuilometragem();
                 linha[3] = modelo1.getRenavam();
                 linha[4] = modelo1.getStatus();
                 linha[5] = modelo1.getObservacoes();
@@ -123,7 +123,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
 
             int id = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 0).toString());
             String placa = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 1).toString();
-            int quilometragem = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 2).toString());
+            double quilometragem = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 2).toString());
             String renavam = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 3).toString();
             String status = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 4).toString();
             String observacoes = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 5).toString();
@@ -355,8 +355,8 @@ public class TelaVeiculos extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jTextFieldIDVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jRadioButtonNacional)
                             .addComponent(jRadioButtonMercosul)))
                     .addComponent(jComboBoxModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -667,7 +667,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
             veiculo.setPlaca(jTextFieldPlaca.getText());
             veiculo.setRenavam(jTextFieldRenavam.getText());
             veiculo.setAnoFabricacao(Integer.parseInt(jTextFieldAno.getText()));
-            veiculo.setQuilimetragem(Integer.parseInt(jTextFieldKM.getText()));
+            veiculo.setQuilometragem(Integer.parseInt(jTextFieldKM.getText()));
             veiculo.setPrecoDeCompra(Integer.parseInt(jTextFieldValorDeCompra.getText()));
             veiculo.setCapacidade(Integer.parseInt(jTextFieldQuantidadePassageiros.getText()));
             veiculo.setTipoDeCombustivel(jTextFieldTipoDeCombustivel.getText());
@@ -699,7 +699,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
             veiculo.setPlaca(jTextFieldPlaca.getText());
             veiculo.setRenavam(jTextFieldRenavam.getText());
             veiculo.setAnoFabricacao(Integer.parseInt(jTextFieldAno.getText()));
-            veiculo.setQuilimetragem(Integer.parseInt(jTextFieldKM.getText()));
+            veiculo.setQuilometragem(Integer.parseInt(jTextFieldKM.getText()));
             veiculo.setPrecoDeCompra(Integer.parseInt(jTextFieldValorDeCompra.getText()));
             veiculo.setCapacidade(Integer.parseInt(jTextFieldQuantidadePassageiros.getText()));
             veiculo.setTipoDeCombustivel(jTextFieldTipoDeCombustivel.getText());

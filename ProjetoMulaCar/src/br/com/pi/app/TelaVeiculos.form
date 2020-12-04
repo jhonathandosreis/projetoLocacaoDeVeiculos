@@ -113,10 +113,10 @@
                                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextFieldIDVeiculo" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jRadioButtonNacional" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButtonMercosul" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jRadioButtonMercosul" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jComboBoxModelo" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>

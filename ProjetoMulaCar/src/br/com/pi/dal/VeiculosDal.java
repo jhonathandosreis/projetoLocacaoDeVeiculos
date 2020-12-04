@@ -56,7 +56,7 @@ public class VeiculosDal {
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, veiculo.getPlaca());
-            preparedStatement.setInt(2, veiculo.getQuilimetragem());
+            preparedStatement.setDouble(2, veiculo.getQuilometragem());
             preparedStatement.setString(3, veiculo.getRenavam());
             preparedStatement.setString(4, veiculo.getStatus());
             preparedStatement.setString(5, veiculo.getObservacoes());
@@ -83,7 +83,7 @@ public class VeiculosDal {
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, veiculo.getPlaca());
-            preparedStatement.setInt(2, veiculo.getQuilimetragem());
+            preparedStatement.setDouble(2, veiculo.getQuilometragem());
             preparedStatement.setString(3, veiculo.getRenavam());
             preparedStatement.setString(4, veiculo.getStatus());
             preparedStatement.setString(5, veiculo.getObservacoes());
@@ -136,7 +136,7 @@ public class VeiculosDal {
                 
                 veiculo.setIden(rs.getInt("vei_iden"));
                 veiculo.setPlaca(rs.getString("vei_placa"));
-                veiculo.setQuilimetragem(rs.getInt("vei_km"));
+                veiculo.setQuilometragem(rs.getInt("vei_km"));
                 veiculo.setRenavam(rs.getString("vei_renavam"));
                 veiculo.setStatus(rs.getString("vei_status"));
                 veiculo.setObservacoes(rs.getString("vei_observacoes"));
@@ -171,7 +171,7 @@ public class VeiculosDal {
                 
                 veiculo.setIden(rs.getInt("vei_iden"));
                 veiculo.setPlaca(rs.getString("vei_placa"));
-                veiculo.setQuilimetragem(rs.getInt("vei_km"));
+                veiculo.setQuilometragem(rs.getInt("vei_km"));
                 veiculo.setRenavam(rs.getString("vei_renavam"));
                 veiculo.setStatus(rs.getString("vei_status"));
                 veiculo.setObservacoes(rs.getString("vei_observacoes"));
