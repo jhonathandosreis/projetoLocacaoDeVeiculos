@@ -14,7 +14,9 @@
  */
 package br.com.pi.dal;
 
+import br.com.pi.bll.PessoasFisicasBll;
 import br.com.pi.model.Fotos;
+import br.com.pi.model.PessoasFisicas;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,6 +33,8 @@ public class FotosDal {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private Connection conexao;
+    private PessoasFisicas pessoaFisica = null;
+    private PessoasFisicasBll pessoaFisicaBll = new PessoasFisicasBll();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -135,6 +139,34 @@ public class FotosDal {
             throw error;
         }
         return foto;
+    }
+    
+    public ArrayList<Fotos> getFotos(int fot_iden) throws Exception {
+           
+        ArrayList<Fotos> fotos = new ArrayList<Fotos>();
+
+        String sql = "SELECT * FROM fotos WHERE fot_iden =?";
+        
+        try {
+
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1, fot_iden);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Fotos foto = new Fotos();
+                foto.setFot_iden(rs.getInt("fot_iden"));
+                foto.setFot_caminho(rs.getString("fot_caminho"));
+                
+                //Chave estrangeira
+                pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(rs.getInt("fot_pfi_iden"));
+                foto.setPessoasFisicas(pessoaFisica);       
+                fotos.add(foto);
+            }
+        } catch (Exception error) {
+            throw error;
+        }
+        return fotos;
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //

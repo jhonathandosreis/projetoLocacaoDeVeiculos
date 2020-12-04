@@ -58,11 +58,11 @@ public class VeiculosBll {
             throw new Exception("Ano invalido\nNossa frota só possui veículos com ano de fabricação até 2020!");
         }
 
-        if (veiculo.getQuilimetragem() < 0) {
+        if (veiculo.getQuilometragem() < 0) {
             throw new Exception("Quilometragem inválida!\nNão existe veículo com KM negativo!");
         }
 
-        if (veiculo.getQuilimetragem() > 300000) {
+        if (veiculo.getQuilometragem() > 300000) {
             throw new Exception("Quilometragem inválida!\nNão existe veículo com KM 300000!");
         }
 
@@ -129,11 +129,11 @@ public class VeiculosBll {
             throw new Exception("Ano invalido\nNossa frota só possui veículos com ano de fabricação até 2020!");
         }
 
-        if (veiculo.getQuilimetragem() < 0) {
+        if (veiculo.getQuilometragem() < 0) {
             throw new Exception("Quilometragem inválida!\nNão existe veículo com KM negativo!");
         }
 
-        if (veiculo.getQuilimetragem() > 300000) {
+        if (veiculo.getQuilometragem() > 300000) {
             throw new Exception("Quilometragem inválida!\nNão existe veículo com KM 300000 em nossa frota!!");
         }
 
@@ -141,7 +141,7 @@ public class VeiculosBll {
             throw new Exception("Valor inválido!\nNão existe veículo com valores negativo!");
         }
 
-        if (veiculo.getQuilimetragem() > 80000) {
+        if (veiculo.getPrecoDeCompra() > 80000) {
             throw new Exception("Valor inválido!\nNossa frota não possui veículo com valor acima de 80.000!");
         }
 
@@ -149,7 +149,7 @@ public class VeiculosBll {
             throw new Exception("Capacidade inválida!\nMínimo 5 passageiros!");
         }
 
-        if (veiculo.getQuilimetragem() > 7) {
+        if (veiculo.getCapacidade()> 7) {
             throw new Exception("Capacidade inválida!\nMáximo 7 passageiros!");
         }
 
