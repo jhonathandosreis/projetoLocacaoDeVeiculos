@@ -212,7 +212,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
         Valida.notSpecialCharacters(jTextField_rgMotorista.getText(), "Campo rg não permite caracteres especiais!");
         Valida.notSpecialCharacters(jTextField_CpfMotorista.getText(), "Campo cpf não permite caracteres especiais!");
         Valida.notSpecialCharacters(jTextFieldCNHMotorista.getText(), "Campo cnh não permite caracteres especiais!");
-        Valida.notSpecialCharacters(jFormattedTextField_Data_validade.getText(), "Campo data de validade não permite caracteres especiais!");
         Valida.notSpecialCharacters(jTextField_CategoriaCNH.getText(), "Campo categoria cnh não permite caracteres especiais!");
         Valida.notSpecialCharacters(jTextFieldCepMotorista.getText(), "Campo cep não permite caracteres especiais!");
         Valida.notSpecialCharacters(jTextFieldLogradouroMotorista.getText(), "Campo logradouro não permite caracteres especiais!");
