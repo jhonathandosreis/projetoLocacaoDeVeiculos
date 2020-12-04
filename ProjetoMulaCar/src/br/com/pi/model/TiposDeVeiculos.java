@@ -60,7 +60,7 @@ public class TiposDeVeiculos {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.trim().toUpperCase();
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //

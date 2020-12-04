@@ -95,14 +95,15 @@ CREATE TABLE veiculos (
     vei_ano_fabricacao INTEGER,
     vei_numero_passageiros INTEGER,
     vei_tipo_combustivel VARCHAR(20),
+    vei_capacidade_combustivel VARCHAR(20),
     vei_mod_iden INTEGER,
     FOREIGN KEY (vei_mod_iden) REFERENCES modelos (mod_iden)
 );
 
 CREATE TABLE locacoes (
     loc_codigo SERIAL PRIMARY KEY,
-    loc_data_locacao DATE,
-    loc_data_prevista_devolucao DATE,
+    loc_data_locacao VARCHAR(20),
+    loc_data_prevista_devolucao VARCHAR(20),
     loc_km_inicial NUMERIC(30),
     loc_valor_locacao NUMERIC(50),
     loc_valor_caucao NUMERIC(50),

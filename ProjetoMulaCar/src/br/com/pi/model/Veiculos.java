@@ -33,6 +33,7 @@ public class Veiculos {
     private String observacoes = "";
     private int capacidade = 0;
     private String tipoDeCombustivel = "";
+    private String capacidadeCombustivel = "";
     private Modelos modelo = null;
     private TiposDeVeiculos tiposDeVeiculo = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
@@ -46,7 +47,7 @@ public class Veiculos {
     
     public Veiculos(int iden, String placa, int quilometragem, String renavam, 
             String status, int precoDeCompra, int anoFabricacao, String observacoes, 
-            int capacidade, String tipoDeCombustivel, Modelos modelo, TiposDeVeiculos tiposDeVeiculos) {
+            int capacidade, String tipoDeCombustivel, Modelos modelo, TiposDeVeiculos tiposDeVeiculos, String capacidadeCombustivel) {
         this.iden = iden;
         this.placa = placa;
         this.quilimetragem = quilometragem;
@@ -59,6 +60,7 @@ public class Veiculos {
         this.tipoDeCombustivel = tipoDeCombustivel;
         this.modelo = modelo;
         this.tiposDeVeiculo = tiposDeVeiculos;
+        this.capacidadeCombustivel = capacidadeCombustivel;
         
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
@@ -113,6 +115,10 @@ public class Veiculos {
     public TiposDeVeiculos getTiposDeVeiculo() {
         return tiposDeVeiculo;
     }
+    
+    public String getCapacidadeCombustivel() {
+        return capacidadeCombustivel;
+    }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
 
@@ -123,7 +129,7 @@ public class Veiculos {
     }
 
     public void setPlaca(String placa) {
-        this.placa = placa;
+        this.placa = placa.trim().toUpperCase();
     }
 
     public void setQuilimetragem(int quilimetragem) {
@@ -135,7 +141,7 @@ public class Veiculos {
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        this.status = status.trim().toUpperCase();
     }
 
     public void setPrecoDeCompra(int precoDeCompra) {
@@ -147,7 +153,7 @@ public class Veiculos {
     }
 
     public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
+        this.observacoes = observacoes.trim().toUpperCase();
     }
 
     public void setCapacidade(int capacidade) {
@@ -155,7 +161,7 @@ public class Veiculos {
     }
     
     public void setTipoDeCombustivel(String tipoDeCombustivel) {
-        this.tipoDeCombustivel = tipoDeCombustivel;
+        this.tipoDeCombustivel = tipoDeCombustivel.trim().toUpperCase();
     }
     
     public void setModelo(Modelos modelo) {
@@ -164,6 +170,10 @@ public class Veiculos {
     
     public void setTiposDeVeiculo(TiposDeVeiculos tiposDeVeiculo) {
         this.tiposDeVeiculo = tiposDeVeiculo;
+    }
+    
+    public void setCapacidadeCombustivel(String capacidadeCombustivel) {
+        this.capacidadeCombustivel = capacidadeCombustivel.trim().toUpperCase();
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //    

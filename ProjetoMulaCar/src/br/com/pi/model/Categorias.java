@@ -66,7 +66,7 @@ public class Categorias {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.trim().toUpperCase();
     }
 
     public void setValorDiarioLocacao(float valorDiarioLocacao) {
