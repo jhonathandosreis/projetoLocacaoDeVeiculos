@@ -64,7 +64,7 @@ public class VeiculosDal {
             preparedStatement.setInt(7, veiculo.getAnoFabricacao());
             preparedStatement.setInt(8, veiculo.getCapacidade());
             preparedStatement.setString(9, veiculo.getTipoDeCombustivel());
-            preparedStatement.setString(10, veiculo.getCapacidadeCombustivel());
+            preparedStatement.setInt(10, veiculo.getCapacidadeCombustivel());
             preparedStatement.setInt(11, veiculo.getModelo().getIden());
             preparedStatement.executeUpdate();
         } catch (Exception error) {
@@ -91,7 +91,7 @@ public class VeiculosDal {
             preparedStatement.setInt(7, veiculo.getAnoFabricacao());
             preparedStatement.setInt(8, veiculo.getCapacidade());
             preparedStatement.setString(9, veiculo.getTipoDeCombustivel());
-            preparedStatement.setString(10, veiculo.getCapacidadeCombustivel());
+            preparedStatement.setInt(10, veiculo.getCapacidadeCombustivel());
             preparedStatement.setInt(11, veiculo.getModelo().getIden());
             preparedStatement.setInt(12, veiculo.getIden());
             preparedStatement.executeUpdate();
@@ -144,7 +144,7 @@ public class VeiculosDal {
                 veiculo.setAnoFabricacao(rs.getInt("vei_ano_fabricacao"));
                 veiculo.setCapacidade(rs.getInt("vei_numero_passageiros"));
                 veiculo.setTipoDeCombustivel(rs.getString("vei_tipo_combustivel"));
-                veiculo.setCapacidadeCombustivel(rs.getString("vei_capacidade_combustivel"));
+                veiculo.setCapacidadeCombustivel(rs.getInt("vei_capacidade_combustivel"));
 
                 //Chave estrangeira
                 modelo = modeloBll.getModelosById(rs.getInt("vei_mod_iden"));
@@ -179,7 +179,7 @@ public class VeiculosDal {
                 veiculo.setAnoFabricacao(rs.getInt("vei_ano_fabricacao"));
                 veiculo.setCapacidade(rs.getInt("vei_numero_passageiros"));
                 veiculo.setTipoDeCombustivel(rs.getString("vei_tipo_combustivel"));
-                veiculo.setCapacidadeCombustivel(rs.getString("vei_capacidade_combustivel"));
+                veiculo.setCapacidadeCombustivel(rs.getInt("vei_capacidade_combustivel"));
 
                 //Chave estrangeira
                 modelo = modeloBll.getModelosById(rs.getInt("vei_mod_iden"));

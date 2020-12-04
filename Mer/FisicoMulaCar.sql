@@ -95,7 +95,7 @@ CREATE TABLE veiculos (
     vei_ano_fabricacao INTEGER,
     vei_numero_passageiros INTEGER,
     vei_tipo_combustivel VARCHAR(20),
-    vei_capacidade_combustivel VARCHAR(20),
+    vei_capacidade_combustivel INTEGER,
     vei_mod_iden INTEGER,
     FOREIGN KEY (vei_mod_iden) REFERENCES modelos (mod_iden)
 );
