@@ -586,6 +586,8 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             cliente.setNome(null);
             cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaJuridica.getText()));
             cliente.setEmail(jTextFieldEmailPessoaJuridica.getText());
+            cliente.setStatus("ADIMPLENTE");
+            cliente.setMulta(0);
             clienteBll.addClientes(cliente);
             double clienteTelefone = cliente.getTelefone();
             cliente = clienteBll.getClienteByTelefone(clienteTelefone);

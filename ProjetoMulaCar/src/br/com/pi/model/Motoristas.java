@@ -38,15 +38,14 @@ public class Motoristas extends PessoasFisicas {
         
     }
     
-    public Motoristas( double numeroCnh, String categoriaCnh, Date dataValidade, ArrayList<Fotos> fotos ,
-        int iden, int rg, double cpf, String nome, double telefone, String email, Enderecos enderecos, Clientes cliente) {
-        super(iden, nome, telefone, email, enderecos, cliente, rg, cpf);
+    public Motoristas( double numeroCnh, String categoriaCnh, Date dataValidade,
+        int iden, int rg, double cpf,String status, float multa, String nome, double telefone, String email, Enderecos enderecos, Clientes cliente) {
+       // super(iden, nome, telefone, email, enderecos, cliente, rg, cpf, status, multa);
         
         this.iden = iden;
         this.numeroCnh = numeroCnh;
         this.categoriaCnh = categoriaCnh;
         this.dataValidade = dataValidade;
-        this.fotos = fotos;
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -64,13 +63,13 @@ public class Motoristas extends PessoasFisicas {
     public String getCategoriaCnh() {
         return categoriaCnh;
     }
-
-    public ArrayList<Fotos> getFotos() {
-        return fotos;
-    }
     
     public Date getDataValidade() {
         return dataValidade;
+    }
+    
+    public ArrayList<Fotos> getFotos() {
+        return fotos;
     }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
@@ -89,12 +88,12 @@ public class Motoristas extends PessoasFisicas {
         this.categoriaCnh = categoriacnh;
     }
 
-    public void setFotos(ArrayList<Fotos> fotos) {
-        this.fotos = fotos;
-    }
-    
     public void setDataValidade(Date dataValidade) {
          this.dataValidade = dataValidade;
+    }
+    
+    public void setFotos(ArrayList<Fotos> fotos) {
+        this.fotos = fotos;
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //
