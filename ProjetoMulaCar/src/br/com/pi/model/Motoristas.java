@@ -37,8 +37,8 @@ public class Motoristas extends PessoasFisicas {
     }
     
     public Motoristas( double numeroCnh, String categoriaCnh, Date dataValidade,
-        int iden, int rg, double cpf, String nome, double telefone, String email, Enderecos enderecos, Clientes cliente) {
-        super(iden, nome, telefone, email, enderecos, cliente, rg, cpf);
+        int iden, int rg, double cpf,String status, float multa, String nome, double telefone, String email, Enderecos enderecos, Clientes cliente) {
+       // super(iden, nome, telefone, email, enderecos, cliente, rg, cpf, status, multa);
         
         this.iden = iden;
         this.numeroCnh = numeroCnh;

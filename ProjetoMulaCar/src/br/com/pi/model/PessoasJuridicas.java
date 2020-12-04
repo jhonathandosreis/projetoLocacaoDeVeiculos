@@ -36,8 +36,8 @@ public class PessoasJuridicas extends Clientes {
     }
 
     public PessoasJuridicas(int iden, String nome, double telefone, String email,
-            double cnpj, String nomeFantasia, String razaoSocial, Clientes cliente, Enderecos enderecos) {
-        super(iden, nome, telefone, email, enderecos);
+            double cnpj, String nomeFantasia, String razaoSocial, Clientes cliente, Enderecos enderecos,String status, float multa) {
+        super(iden, nome, telefone, email, enderecos, status, multa);
         this.iden = iden;
         this.cnpj = cnpj;
         this.nomeFantasia = nomeFantasia;
