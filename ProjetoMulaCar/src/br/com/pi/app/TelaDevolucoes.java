@@ -16,8 +16,10 @@ package br.com.pi.app;
 
 import br.com.pi.bll.DevolucoesBll;
 import br.com.pi.bll.LocacoesBll;
+import br.com.pi.bll.VeiculosBll;
 import br.com.pi.model.Devolucoes;
 import br.com.pi.model.Locacoes;
+import br.com.pi.model.Veiculos;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -31,13 +33,14 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     //--- BLL´S --------------------------------------------------------------------------------------->
     private DevolucoesBll devolucaoBll = null;
     private LocacoesBll locacaoBll = null;
+    private VeiculosBll veiculosBll = null;
 
     //--- FIM BLL'S ----------------------------------------------------------------------------------->
     //
     //--- CLASSES -------------------------------------------------------------------------------------> 
     private Devolucoes devolucao = null;
     private Locacoes locacao = null;
-
+    private Veiculos veiculo = null;
     //--- FIM CLASSES --------------------------------------------------------------------------------->
     //
     public TelaDevolucoes() {
@@ -47,10 +50,12 @@ public class TelaDevolucoes extends javax.swing.JFrame {
 
             devolucao = new Devolucoes();
             locacao = new Locacoes();
-
+            veiculo = new Veiculos();
+            
             devolucaoBll = new DevolucoesBll();
             locacaoBll = new LocacoesBll();
-
+            veiculosBll = new VeiculosBll();
+            
             preencherComboboxLocacoes();
             preencherGridDevolucoes();
 
@@ -67,7 +72,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
             DefaultTableModel tableDevolucao = (DefaultTableModel) jTableDevolucao.getModel();
             tableDevolucao.setRowCount(0);
 
-            Object[] linha = new Object[7];
+            Object[] linha = new Object[6];
 
             ArrayList<Devolucoes> devolucao = new DevolucoesBll().getAllDevolucao();
 
@@ -77,9 +82,8 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                 linha[1] = devolucoes.getLocacao().getCliente().getNome();
                 linha[2] = devolucoes.getDataDevolucao();
                 linha[3] = devolucoes.getKmNaEntrega();
-                linha[4] = devolucoes.getStatus();
+                linha[4] = devolucoes.getVeiculo().getCapacidadeCombustivel();
                 linha[5] = devolucoes.getMultaPorAtraso();
-                //linha[6] = devolucoes.getTotalPago();  // ver como vai funiconar o pagamento , acrescentar na model e sql
 
                 tableDevolucao.addRow(linha);
             }
@@ -100,16 +104,14 @@ public class TelaDevolucoes extends javax.swing.JFrame {
 
             int kmNaEntrega = Integer.parseInt(jTableDevolucao.getValueAt(jTableDevolucao.getSelectedRow(), 3).toString());
 
-            String status = jTableDevolucao.getValueAt(jTableDevolucao.getSelectedRow(), 4).toString();
+            String LitroVeiculoEntrega = jTableDevolucao.getValueAt(jTableDevolucao.getSelectedRow(), 4).toString();
 
             int multaPorAtraso = Integer.parseInt(jTableDevolucao.getValueAt(jTableDevolucao.getSelectedRow(), 5).toString());
-
-            double totalPago = Double.parseDouble(jTableDevolucao.getValueAt(jTableDevolucao.getSelectedRow(), 6).toString());
 
             jTextFieldIDDevolucao.setText(id + "");
             jTextFieldDataDevolucao.setText(data);
             jTextFieldKmNaEntrega.setText(kmNaEntrega + "");
-            jTextFieldStatusDoVeiculo.setText(status);
+            jTextFieldCapacidadeLitroVeiculo.setText(LitroVeiculoEntrega + "");
             jTextFieldMultaPorAtraso.setText(multaPorAtraso + "");
 
         } catch (Exception error) {
@@ -118,6 +120,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     }
 
     public void preencherComboboxLocacoes() throws Exception {
+
         try {
             jComboBoxLocacaoCliente.removeAllItems();
             ArrayList<Locacoes> lista = locacaoBll.getAllLocacoes();
@@ -135,8 +138,13 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         jTextFieldIDDevolucao.setText("");
         jTextFieldDataDevolucao.setText("");
         jTextFieldKmNaEntrega.setText("");
-        jTextFieldStatusDoVeiculo.setText("");
+        jTextFieldCapacidadeLitroVeiculo.setText("");
         jTextFieldMultaPorAtraso.setText("");
+        jTextFieldDataLocacao.setText("");
+        jTextFieldKMInicial.setText("");
+        jTextFieldLitroVeiculoEntrega.setText("");
+        jTextFieldDataLocacao.setText("");
+
         jComboBoxLocacaoCliente.setSelectedIndex(0);
     }
 
@@ -162,19 +170,18 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         jTextFieldMultaPorAtraso = new javax.swing.JTextField();
         jComboBoxLocacaoCliente = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldDataLocacao = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldKMInicial = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldCapacidadeLitroVeiculo = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jTextField4 = new javax.swing.JTextField();
+        jTextFieldLitroVeiculoEntrega = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jButtonDevolver = new javax.swing.JButton();
-        jButtonFinalizar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -222,13 +229,6 @@ public class TelaDevolucoes extends javax.swing.JFrame {
             }
         });
 
-        jButtonFinalizar.setText("FINALIZAR");
-        jButtonFinalizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFinalizarActionPerformed(evt);
-            }
-        });
-
         jButtonCancelar.setText("CANCELAR");
 
         jLabel5.setText("PAGAMENTO");
@@ -246,9 +246,9 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                             .addComponent(jLabel10))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldCapacidadeLitroVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldKMInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,7 +285,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextFieldLitroVeiculoEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jTextFieldKmNaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(42, 42, 42)))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,10 +293,8 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                                .addGap(94, 94, 94)
                                 .addComponent(jButtonDevolver)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonFinalizar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonCancelar))
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -304,7 +302,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextFieldMultaPorAtraso, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(44, Short.MAX_VALUE))
+                        .addContainerGap(48, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)
@@ -335,7 +333,6 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonDevolver)
-                            .addComponent(jButtonFinalizar)
                             .addComponent(jButtonCancelar))
                         .addGap(49, 49, 49))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -353,20 +350,20 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel11)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldLitroVeiculoEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(34, 34, 34))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel7)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel9)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldKMInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel10)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldCapacidadeLitroVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelIdPessoaFisica)
@@ -379,11 +376,11 @@ public class TelaDevolucoes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "LOCAÇÃO / CLIENTE", "DATA DA DEVOLUÇÃO", "KM NA ENTREGA", "STATUS VEÍCULO", "MULTA POR ATRASO", "TOTAL PAGO"
+                "ID", "LOCAÇÃO / CLIENTE", "DATA DA DEVOLUÇÃO", "KM NA ENTREGA", "LIT/VEÍCULO/ENTREGA", "MULTA PAGA POR ATRASO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true, false, true, true
+                false, false, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -441,22 +438,17 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonFinalizarActionPerformed
-
     private void jButtonDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevolverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonDevolverActionPerformed
 
     private void jTableDevolucaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableDevolucaoMouseClicked
 
-  try {
+        try {
             preencherFormularioDevolucao();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableDevolucaoMouseClicked
@@ -500,7 +492,6 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonDevolver;
-    private javax.swing.JButton jButtonFinalizar;
     private javax.swing.JComboBox<String> jComboBoxLocacaoCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -519,13 +510,13 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTableDevolucao;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextFieldCapacidadeLitroVeiculo;
     private javax.swing.JTextField jTextFieldDataDevolucao;
+    private javax.swing.JTextField jTextFieldDataLocacao;
     private javax.swing.JTextField jTextFieldIDDevolucao;
+    private javax.swing.JTextField jTextFieldKMInicial;
     private javax.swing.JTextField jTextFieldKmNaEntrega;
+    private javax.swing.JTextField jTextFieldLitroVeiculoEntrega;
     private javax.swing.JTextField jTextFieldMultaPorAtraso;
     // End of variables declaration//GEN-END:variables
 }

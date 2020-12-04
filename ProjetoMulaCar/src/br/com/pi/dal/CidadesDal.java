@@ -113,8 +113,10 @@ public class CidadesDal {
                 cidade.setIden(rs.getInt("cid_iden"));
                 cidade.setNome(rs.getString("cid_nome"));
 
-                UfsDal uf = new UfsDal();
-                cidade.setUf(uf.getUfsById(rs.getInt("cid_ufs_iden")));
+                int uf_iden = rs.getInt("cid_ufs_iden");
+                uf = ufBll.getUfById(uf_iden);
+                cidade.setUf(uf);
+                
 
                 lista.add(cidade);
             }
@@ -140,8 +142,10 @@ public class CidadesDal {
                 cidade.setIden(rs.getInt("cid_iden"));
                 cidade.setNome(rs.getString("cid_nome"));
 
-                UfsDal uf = new UfsDal();
-                cidade.setUf(uf.getUfsById(rs.getInt("cid_ufs_iden")));
+                int uf_iden = rs.getInt("cid_ufs_iden");
+                uf = ufBll.getUfById(uf_iden);
+                cidade.setUf(uf);
+                
 
             }
         } catch (Exception error) {
