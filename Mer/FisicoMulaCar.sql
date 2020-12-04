@@ -122,10 +122,6 @@ CREATE TABLE devolucoes (
     dev_multa_por_atraso NUMERIC(50),
     dev_km_na_entrega NUMERIC(50),
     dev_loc_iden INTEGER,
-    dev_vei_iden INTEGER,
-    FOREIGN KEY (dev_loc_iden) REFERENCES locacoes (loc_iden),
-    FOREIGN KEY (dev_vei_iden) REFERENCES locacoes (vei_iden)
+    FOREIGN KEY (dev_loc_iden) REFERENCES locacoes (loc_iden)
 );
  
-
- fisico

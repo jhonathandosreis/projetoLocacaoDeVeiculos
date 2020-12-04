@@ -30,13 +30,16 @@ import br.com.pi.model.Veiculos;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import br.com.pi.util.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author GustavoDev
  */
 public class TelaLocacao extends javax.swing.JFrame {
-    
+    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
     Locacoes locacao;
     LocacoesBll locacaoBll;
     Clientes cliente;
@@ -76,6 +79,25 @@ public class TelaLocacao extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
         this.setLocationRelativeTo(null);
+    }
+    public static String convertDate(Date dtConsulta) {
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
+            return formatter.format(dtConsulta);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public int DiferencaEntreDatas(Date data1, Date data2) throws Exception{
+            if(data1.compareTo(data2) >=0 ) throw new Exception("Data de devolução inválida!");
+            long diferencaMS = data1.getTime() - data1.getTime();
+            long diferencaSegundos = diferencaMS / 1000;
+            long diferencaMinutos = diferencaSegundos / 60;
+            long diferencaHoras = diferencaMinutos / 60;
+            long diferencaDias = diferencaHoras / 24;
+            int dias = (int) diferencaDias;
+            return dias;
     }
      private void imprimirNaGrid(ArrayList<Veiculos> listaveiculos){
         try{
@@ -501,7 +523,29 @@ public class TelaLocacao extends javax.swing.JFrame {
                 pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString()));
                 locacao.setCliente(pessoaJuridica.getCliente());
             }
+            int id = Integer.parseInt(jTable_VEICULOS.getValueAt(jTable_VEICULOS.getSelectedRow(), 0).toString());
+            veiculo = veiculoBll.getVeiculosById(id);
+            locacao.setVeiculos(veiculo);
+
+            Date dataLocacao = formato.parse(jTextFieldDataLocacao.getText());
+            Date dataPrevista = formato.parse(jTextFieldDataDevolucao.getText());
+            locacao.setDataDeLocacao(dataLocacao);
+            locacao.setDataPrevistDeDevolucao(dataPrevista);
+            locacao.setKmInicial(veiculo.getQuilometragem());
+            // CALCULO
+            int dias = DiferencaEntreDatas(dataLocacao,dataPrevista);
+            float valorDiaria = veiculo.getModelo().getCategoria().getValorDiarioLocacao();
+            float valorLocacao = valorDiaria * dias;
+            float valorCaucao = (float) (valorLocacao + (valorLocacao * 1.5));
+            float valorSeguro =  (float) (valorLocacao * 0.009);
+            float valorTotal = valorLocacao + valorCaucao + valorSeguro;
             
+            locacao.setValorLocacao(valorLocacao);
+            locacao.setValorCaucao(valorCaucao);
+            locacao.setValorSeguro(valorSeguro);
+            locacao.setValorTotalPago(valorTotal);          
+            
+            locacaoBll.addLocacoes(locacao); //FALTA CONVERÇAR COM A TELA FINALIZAR LOCAÇÃO PARA AI SIM MANDAR ADICIONAR
              } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
