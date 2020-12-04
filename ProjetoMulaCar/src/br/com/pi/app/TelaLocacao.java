@@ -389,13 +389,10 @@ public class TelaLocacao extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "CÓDIGO", "PLACA DO VEÍCULO", "CPF/CNPJ", "KM INICIAL", "DATA DA LOCAÇÃO", "DATA PREVISTA", "VALOR FINAL"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -409,7 +406,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -430,14 +427,13 @@ public class TelaLocacao extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(23, 23, 23)
                                         .addComponent(jLabel6))))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jButtonCadastrar)
-                                    .addGap(256, 256, 256)
-                                    .addComponent(jButtonAlterar)
-                                    .addGap(277, 277, 277)
-                                    .addComponent(jButtonRemover))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonCadastrar)
+                                .addGap(256, 256, 256)
+                                .addComponent(jButtonAlterar)
+                                .addGap(277, 277, 277)
+                                .addComponent(jButtonRemover))
+                            .addComponent(jScrollPane1))
                         .addGap(0, 19, Short.MAX_VALUE)))
                 .addContainerGap())
         );
