@@ -114,11 +114,15 @@ public class TelaCidades extends javax.swing.JFrame {
         jComboBoxUf.setSelectedIndex(0);
     }
 
-    public void validaCidade() {
+    public void validaCidade() throws Exception {
 
         Valida.campoVazio(jTextFieldCidade.getText(), "Digite uma Cidade Brasileira!");
         Valida.notNumber(jTextFieldCidade.getText(), "");
         Valida.notSpecialCharacters(jTextFieldCidade.getText(), "");
+       
+        if (jComboBoxUf.getSelectedItem() == "<SELECIONE>") {
+            throw new Exception("Selecione uma UF!");
+        }
 
     }
 
