@@ -21,7 +21,6 @@ import br.com.pi.model.Locacoes;
 import br.com.pi.model.Veiculos;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -54,7 +53,7 @@ public class DevolucoesDal {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addDevolucoes(Devolucoes devolucao) throws Exception {
 
-        String sql = "INSERT INTO devolucoes (dev_data_devolucao, dev_multa_por_atraso , dev_km_na_entrega , dev_loc_iden , dev_vei_iden) VALEUS (?,?,?,?,?,?)";
+        String sql = "INSERT INTO devolucoes (dev_data_devolucao, dev_multa_por_atraso , dev_km_na_entrega , dev_loc_codigo , dev_vei_iden) VALEUS (?,?,?,?,?,?)";
         try {
 
             java.sql.Date dataDevolucao = new java.sql.Date(devolucao.getDataDevolucao().getTime());
@@ -78,7 +77,7 @@ public class DevolucoesDal {
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateDevolucoes(Devolucoes devolucao) throws Exception {
 
-        String sql = "UPDATE devolucoes SET dev_data_devolucao=?, dev_multa_por_atraso=? , dev_km_na_entrega=? , dev_loc_iden=? , dev_vei_iden=? WHERE dev_iden=?";
+        String sql = "UPDATE devolucoes SET dev_data_devolucao=?, dev_multa_por_atraso=? , dev_km_na_entrega=? , dev_loc_codigo=? , dev_vei_iden=? WHERE dev_iden=?";
 
         try {
 
@@ -139,8 +138,8 @@ public class DevolucoesDal {
                 devolucao.setMultaPorAtraso(rs.getInt("dev_multa_por_atraso"));
                 devolucao.setKmNaEntrega(rs.getInt("dev_km_na_entrega"));
 
-                int loc_iden = rs.getInt(" dev_loc_iden");
-                locacao = locacoesBll.getLocacoesBy(loc_iden);
+                int loc_codigo = rs.getInt(" dev_loc_codigo");
+                locacao = locacoesBll.getLocacoesBy(loc_codigo);
                 devolucao.setLocacao(locacao);
 
                 int vei_iden = rs.getInt(" dev_vei_iden");
@@ -175,8 +174,8 @@ public class DevolucoesDal {
                 devolucao.setMultaPorAtraso(rs.getInt("dev_multa_por_atraso"));
                 devolucao.setKmNaEntrega(rs.getInt("dev_km_na_entrega"));
 
-                int loc_iden = rs.getInt(" dev_loc_iden");
-                locacao = locacoesBll.getLocacoesBy(loc_iden);
+                int loc_codigo = rs.getInt(" dev_loc_codigo");
+                locacao = locacoesBll.getLocacoesBy(loc_codigo);
                 devolucao.setLocacao(locacao);
 
                 int vei_iden = rs.getInt(" dev_vei_iden");
