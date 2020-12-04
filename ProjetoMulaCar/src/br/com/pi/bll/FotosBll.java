@@ -89,6 +89,10 @@ public class FotosBll {
             throw error;
         }
     }
+    
+    public ArrayList<Fotos> getFotos(int fot_pfi_iden) throws Exception {
+        return fotoDal.getFotos(fot_pfi_iden);
+    }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //    
 }

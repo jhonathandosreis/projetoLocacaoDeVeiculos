@@ -25,7 +25,7 @@ public class Veiculos {
     //
     private int iden = 0;
     private String placa = "";
-    private int quilimetragem = 0;
+    private double quilometragem = 0;
     private String renavam = "";
     private String status = "";
     private int precoDeCompra = 0;
@@ -50,7 +50,7 @@ public class Veiculos {
             int capacidade, String tipoDeCombustivel, Modelos modelo, TiposDeVeiculos tiposDeVeiculos, int capacidadeCombustivel) {
         this.iden = iden;
         this.placa = placa;
-        this.quilimetragem = quilometragem;
+        this.quilometragem = quilometragem;
         this.renavam = renavam;
         this.status = status;
         this.precoDeCompra = precoDeCompra;
@@ -76,8 +76,8 @@ public class Veiculos {
         return placa;
     }
 
-    public int getQuilimetragem() {
-        return quilimetragem;
+    public double getQuilometragem() {
+        return quilometragem;
     }
 
     public String getRenavam() {
@@ -132,8 +132,8 @@ public class Veiculos {
         this.placa = placa.trim().toUpperCase();
     }
 
-    public void setQuilimetragem(int quilimetragem) {
-        this.quilimetragem = quilimetragem;
+    public void setQuilometragem(double quilometragem) {
+        this.quilometragem = quilometragem;
     }
 
     public void setRenavam(String renavam) {

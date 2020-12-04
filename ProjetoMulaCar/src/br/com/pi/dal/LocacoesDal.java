@@ -88,7 +88,7 @@ public class LocacoesDal {
         
         try{
         String sql = "UPDATE locacoes SET loc_data_locacao=?, loc_data_prevista_devolucao=?, loc_km_inicial=?,"
-                + " loc_valor_locacao=?, loc_valor_caucao=?, loc_valor_seguro=?, loc_valor_total_pago=?, loc_cli_iden=?, loc_vei_iden=?)";
+                + " loc_valor_locacao=?, loc_valor_caucao=?, loc_valor_seguro=?, loc_valor_total_pago=?, loc_cli_iden=?, loc_vei_iden=? WHERE loc_codigo=?)";
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         
         java.sql.Date dataLocacao = new java.sql.Date(locacao.getDataDeLocacao().getTime());
@@ -119,7 +119,7 @@ public class LocacoesDal {
         
         try{
             
-           String sql = "DELETE FROM locacoes WHERE loc_iden=?";
+           String sql = "DELETE FROM locacoes WHERE loc_codigo=?";
            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
            preparedStatement.setInt(1, locacao.getIden());
            preparedStatement.executeUpdate();
@@ -145,7 +145,7 @@ public class LocacoesDal {
                 cliente = clienteBll.getClienteById(cli_id);
                 int vei_id = rs.getInt("loc_vei_iden");
                 veiculo = veiculoBll.getVeiculosById(vei_id);
-                locacao.setIden(rs.getInt("loc_iden"));
+                locacao.setIden(rs.getInt("loc_codigo"));
                 locacao.setDataDeLocacao(rs.getDate("loc_data_locacao"));
                 locacao.setDataPrevistDeDevolucao(rs.getDate("loc_data_prevista_devolucao"));
                 locacao.setKmInicial(rs.getDouble("loc_km_inicial"));
@@ -166,7 +166,7 @@ public class LocacoesDal {
     public Locacoes getLocacoesById(int loc_iden) throws Exception {
         try{
         locacao = new Locacoes();
-        String sql = "SELECT * FROM locacoes WHERE loc_iden=?";
+        String sql = "SELECT * FROM locacoes WHERE loc_codigo=?";
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         preparedStatement.setInt(1, loc_iden);
         ResultSet rs = preparedStatement.executeQuery();
@@ -176,7 +176,7 @@ public class LocacoesDal {
                 cliente = clienteBll.getClienteById(cli_id);
                 int vei_id = rs.getInt("loc_vei_iden");
                 veiculo = veiculoBll.getVeiculosById(vei_id);
-                locacao.setIden(rs.getInt("loc_iden"));
+                locacao.setIden(rs.getInt("loc_codigo"));
                 locacao.setDataDeLocacao(rs.getDate("loc_data_locacao"));
                 locacao.setDataPrevistDeDevolucao(rs.getDate("loc_data_prevista_devolucao"));
                 locacao.setKmInicial(rs.getDouble("loc_km_inicial"));
