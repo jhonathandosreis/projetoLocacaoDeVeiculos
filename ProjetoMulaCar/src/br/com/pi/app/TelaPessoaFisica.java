@@ -639,8 +639,6 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             cliente.setNome(jTextFieldNomePessoaFisica.getText());
             cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaFisica.getText()));
             cliente.setEmail(jTextFieldEmailPessoaFisica.getText());
-            cliente.setStatus("ADIMPLENTE");
-            cliente.setMulta(0);
             clienteBll.updateClientes(cliente);
 
             pessoaFisica.setCliente(cliente);
@@ -676,6 +674,8 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             cliente.setNome(jTextFieldNomePessoaFisica.getText());
             cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaFisica.getText()));
             cliente.setEmail(jTextFieldEmailPessoaFisica.getText());
+            cliente.setStatus("ADIMPLENTE");
+            cliente.setMulta(0);
             clienteBll.addClientes(cliente);
             double clienteTelefone = cliente.getTelefone();
             cliente = clienteBll.getClienteByTelefone(clienteTelefone);

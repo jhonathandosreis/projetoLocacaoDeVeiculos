@@ -105,15 +105,17 @@ public class TelaLocacao extends javax.swing.JFrame {
             model.setNumRows(0);
            
             for(Veiculos veiculo : listaveiculos){
+                if(veiculo.getStatus().equals("DISPONIVEL")){
                 String[] coluna = new String[6];
                 coluna[0]= ""+veiculo.getIden();
                 coluna[1]= veiculo.getModelo().getCategoria().getNome();
                 coluna[2]= veiculo.getModelo().getTiposDeVeiculos().getNome();
                 coluna[3]= veiculo.getModelo().getNome();
                 coluna[4]= veiculo.getModelo().getMarcas().getNome();   
-                coluna[5]= veiculo.getPlaca(); 
+                coluna[5]= veiculo.getPlaca();                               
+                model.addRow(coluna);    
+                }
                 
-                model.addRow(coluna);                
             }
         }catch(Exception erro){
             JOptionPane.showMessageDialog(rootPane, erro);
@@ -140,7 +142,9 @@ public class TelaLocacao extends javax.swing.JFrame {
             ArrayList<PessoasFisicas> listaPessoasFisicas = pessoaFisicaBll.getAllPessoasFisicas();
            // jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
             for (PessoasFisicas pessoaFisica : listaPessoasFisicas) {
+                if(pessoaFisica.getCliente().getStatus().equals("ADIMPLENTE")){
                jComboBox_Cliente_Locacao.addItem(pessoaFisica.getCliente().getIden()+"-"+pessoaFisica.getCliente().getNome());
+                }
             }      
         }
         
@@ -148,7 +152,9 @@ public class TelaLocacao extends javax.swing.JFrame {
             ArrayList<PessoasJuridicas> listaPessoasJuridicas = pessoaJuridicaBll.getAllPessoasJuridicas();
             //jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
             for (PessoasJuridicas pessoJurica : listaPessoasJuridicas) {
+                 if(pessoJurica.getCliente().getStatus().equals("ADIMPLENTE")){
                jComboBox_Cliente_Locacao.addItem(pessoJurica.getCliente().getIden()+"-"+pessoJurica.getRazaoSocial());
+            }
             }
         }
         
@@ -156,7 +162,9 @@ public class TelaLocacao extends javax.swing.JFrame {
             ArrayList<Motoristas> listaMotoristas = motoristabll.getAllMotoristas();
             //jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
             for(Motoristas motorista : listaMotoristas){
+                 if(motorista.getCliente().getStatus().equals("ADIMPLENTE")){
                 jComboBox_Cliente_Locacao.addItem(motorista.getCliente().getIden()+"-"+motorista.getCliente().getNome());
+            }
             }
         }
         } catch (Exception error) {
@@ -511,6 +519,9 @@ public class TelaLocacao extends javax.swing.JFrame {
          try {
             if (jTable_VEICULOS.getSelectedRow() == -1) {
                 throw new Exception("Selecione veículo na tabela para ser locado!");
+            }
+            if(jComboBox_MotoristaLocacao.getSelectedIndex() == -1){
+                throw new Exception("Para locar deve indicar quem será o motorista!");
             }
             if(JradioButonMotodista.isSelected()){
                 motorista = motoristabll.getMotoristaById(SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString()));
