@@ -75,7 +75,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
             DefaultTableModel tableVeiculos = (DefaultTableModel) jTableVeiculo.getModel();
             tableVeiculos.setRowCount(0);
 
-            Object[] linha = new Object[14];
+            Object[] linha = new Object[15];
 
             ArrayList<Veiculos> veiculos = new VeiculosBll().getAllVeiculos();
 
@@ -131,11 +131,11 @@ public class TelaVeiculos extends javax.swing.JFrame {
             int anoFabricacao = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 7).toString());
             int capacidade = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 8).toString());
             String tipoDeCombustivel = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 9).toString();
-            String capacidadeCombustivel = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 10).toString();
-            String marcacombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 11).toString();
-            String categoriacombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 12).toString();
-            String tiposDeVeiculoscombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 13).toString();
-            String modeloscombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 14).toString();
+            int capacidadeCombustivel = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 10).toString());
+            String modeloscombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 11).toString();
+            String marcacombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 12).toString();
+            String categoriacombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 13).toString();
+            String tiposDeVeiculoscombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 14).toString();
 
             jComboBoxModelo.setSelectedItem(modelosBll.getModelosById(id).getNome());
             jTextFieldTipoDoVeiculo.setText(tiposDeVeiculosBll.getTiposDeVeiculosById(id).getNome());
@@ -150,7 +150,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
             jTextFieldValorDeCompra.setText(precoCompra + "");
             jTextFieldQuantidadePassageiros.setText(capacidade + "");
             jTextFieldTipoDeCombustivel.setText(tipoDeCombustivel);
-            jTextFieldCapacidadeTanque.setText(capacidadeCombustivel);
+            jTextFieldCapacidadeTanque.setText(capacidadeCombustivel + "");
             jComboBoxStatus.setSelectedItem(status);
             jTextAreaObservacoes.setText(observacoes);
             jTextFieldMarca.setText(marcacombobox);
@@ -215,14 +215,13 @@ public class TelaVeiculos extends javax.swing.JFrame {
         Valida.notSpecialCharacters(jTextAreaObservacoes.getText(), "O campo observações do veículo não é permitido caracteres especiais!");
         Valida.notSpecialCharacters(jTextFieldCapacidadeTanque.getText(), "O campo capacidade do tanque do veículo não é permitido caracteres especiais!");
 
-        Valida.numberInteger(jTextFieldRenavam.getText(), "");
-        Valida.numberInteger(jTextFieldAno.getText(), "");
-        Valida.numberInteger(jTextFieldKM.getText(), "");
-        Valida.numberInteger(jTextFieldValorDeCompra.getText(), "");
-        Valida.numberInteger(jTextFieldQuantidadePassageiros.getText(), "");
+        Valida.numberInteger(jTextFieldRenavam.getText(), "Campo renavam aceita somente números!");
+        Valida.numberInteger(jTextFieldAno.getText(), "Campo ano aceita somente números!");
+        Valida.numberInteger(jTextFieldKM.getText(), "Campo quilometragem aceita somente números!");
+        Valida.numberInteger(jTextFieldValorDeCompra.getText(), "Campo valor de compra aceita somente números!");
+        Valida.numberInteger(jTextFieldQuantidadePassageiros.getText(), "Campo capacidade aceita somente números!");
 
-        Valida.notNumber(jTextFieldTipoDeCombustivel.getText(), "");
-        Valida.notNumber(jTextAreaObservacoes.getText(), "");
+        Valida.notNumber(jTextFieldTipoDeCombustivel.getText(), "Campo tipo de combustivel não é permitido números!");
     }
 
     //--- FIM METODOS --------------------------------------------------------------------------------->
@@ -539,11 +538,11 @@ public class TelaVeiculos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "PLACA", "KM", "RENAVAM", "STATUS", "OBSERVAÇÕES", "VALOR DE COMPRA", "ANO", "CAPACIDADE", "TIPO DE COMBUSTIVEL", "MODELO", "MARCA", "CATEGORIA", "TIPO DE VEICULO"
+                "ID", "PLACA", "KM", "RENAVAM", "STATUS", "OBSERVAÇÕES", "VALOR DE COMPRA", "ANO", "CAPACIDADE", "TIPO DE COMBUSTIVEL", "CAPACIDADE DO TANQUE", "MODELO", "MARCA", "CATEGORIA", "TIPO DE VEICULO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -571,12 +570,15 @@ public class TelaVeiculos extends javax.swing.JFrame {
             jTableVeiculo.getColumnModel().getColumn(9).setMinWidth(160);
             jTableVeiculo.getColumnModel().getColumn(9).setPreferredWidth(160);
             jTableVeiculo.getColumnModel().getColumn(9).setMaxWidth(160);
-            jTableVeiculo.getColumnModel().getColumn(10).setPreferredWidth(130);
-            jTableVeiculo.getColumnModel().getColumn(11).setPreferredWidth(150);
-            jTableVeiculo.getColumnModel().getColumn(12).setMinWidth(100);
-            jTableVeiculo.getColumnModel().getColumn(12).setPreferredWidth(100);
-            jTableVeiculo.getColumnModel().getColumn(12).setMaxWidth(100);
-            jTableVeiculo.getColumnModel().getColumn(13).setPreferredWidth(170);
+            jTableVeiculo.getColumnModel().getColumn(10).setMinWidth(180);
+            jTableVeiculo.getColumnModel().getColumn(10).setPreferredWidth(180);
+            jTableVeiculo.getColumnModel().getColumn(10).setMaxWidth(180);
+            jTableVeiculo.getColumnModel().getColumn(11).setPreferredWidth(130);
+            jTableVeiculo.getColumnModel().getColumn(12).setPreferredWidth(150);
+            jTableVeiculo.getColumnModel().getColumn(13).setMinWidth(100);
+            jTableVeiculo.getColumnModel().getColumn(13).setPreferredWidth(100);
+            jTableVeiculo.getColumnModel().getColumn(13).setMaxWidth(100);
+            jTableVeiculo.getColumnModel().getColumn(14).setPreferredWidth(170);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -647,7 +649,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
             veiculo.setPrecoDeCompra(Integer.parseInt(jTextFieldValorDeCompra.getText()));
             veiculo.setCapacidade(Integer.parseInt(jTextFieldQuantidadePassageiros.getText()));
             veiculo.setTipoDeCombustivel(jTextFieldTipoDeCombustivel.getText());
-            veiculo.setCapacidadeCombustivel(jTextFieldCapacidadeTanque.getText());
+            veiculo.setCapacidadeCombustivel(Integer.parseInt(jTextFieldCapacidadeTanque.getText()));
             veiculo.setStatus(jComboBoxStatus.getSelectedItem().toString());
             veiculo.setObservacoes(jTextAreaObservacoes.getText());
             veiculosBll.addVeiculos(veiculo);
@@ -679,7 +681,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
             veiculo.setPrecoDeCompra(Integer.parseInt(jTextFieldValorDeCompra.getText()));
             veiculo.setCapacidade(Integer.parseInt(jTextFieldQuantidadePassageiros.getText()));
             veiculo.setTipoDeCombustivel(jTextFieldTipoDeCombustivel.getText());
-            veiculo.setCapacidadeCombustivel(jTextFieldCapacidadeTanque.getText());
+            veiculo.setCapacidadeCombustivel(Integer.parseInt(jTextFieldCapacidadeTanque.getText()));
             veiculo.setStatus(jComboBoxStatus.getSelectedItem().toString());
             veiculo.setObservacoes(jTextAreaObservacoes.getText());
             veiculosBll.updateVeiculos(veiculo);
