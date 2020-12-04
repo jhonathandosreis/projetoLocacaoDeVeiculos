@@ -760,6 +760,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
             cliente.setNome(jTextFieldNomeMotorista.getText());
             cliente.setTelefone(Double.parseDouble(jTextFieldTelefoneMotorista.getText()));
             cliente.setEmail(jTextFieldEmailMotorista.getText());
+            cliente.setStatus("ADIMPLENTE");
+            cliente.setMulta(0);
             clienteBll.addClientes(cliente);
             double clienteTelefone = cliente.getTelefone();
             cliente = clienteBll.getClienteByTelefone(clienteTelefone);
