@@ -53,7 +53,7 @@ public class DevolucoesDal {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addDevolucoes(Devolucoes devolucao) throws Exception {
 
-        String sql = "INSERT INTO devolucoes (dev_data_devolucao, dev_multa_por_atraso , dev_km_na_entrega , dev_loc_codigo , dev_vei_iden) VALEUS (?,?,?,?,?,?)";
+        String sql = "INSERT INTO devolucoes (dev_data_devolucao, dev_multa_por_atraso , dev_km_na_entrega , dev_loc_codigo ) VALEUS (?,?,?,?,?)";
         try {
 
             java.sql.Date dataDevolucao = new java.sql.Date(devolucao.getDataDevolucao().getTime());
@@ -63,7 +63,7 @@ public class DevolucoesDal {
             preparedStatement.setInt(2, devolucao.getMultaPorAtraso());
             preparedStatement.setInt(3, devolucao.getKmNaEntrega());
             preparedStatement.setInt(4, devolucao.getLocacao().getIden());
-            preparedStatement.setInt(5, devolucao.getVeiculo().getIden());
+            
 
             preparedStatement.executeUpdate();
         } catch (Exception error) {
@@ -77,7 +77,7 @@ public class DevolucoesDal {
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateDevolucoes(Devolucoes devolucao) throws Exception {
 
-        String sql = "UPDATE devolucoes SET dev_data_devolucao=?, dev_multa_por_atraso=? , dev_km_na_entrega=? , dev_loc_codigo=? , dev_vei_iden=? WHERE dev_iden=?";
+        String sql = "UPDATE devolucoes SET dev_data_devolucao=?, dev_multa_por_atraso=? , dev_km_na_entrega=? , dev_loc_codigo=? WHERE dev_iden=?";
 
         try {
 
@@ -87,9 +87,8 @@ public class DevolucoesDal {
             preparedStatement.setDate(1, dataDevolucao);
             preparedStatement.setInt(2, devolucao.getMultaPorAtraso());
             preparedStatement.setInt(3, devolucao.getKmNaEntrega());
-            preparedStatement.setInt(4, devolucao.getLocacao().getIden());
-            preparedStatement.setInt(5, devolucao.getVeiculo().getIden());
-            preparedStatement.setInt(6, devolucao.getIden());
+            preparedStatement.setInt(4, devolucao.getLocacao().getIden()); 
+            preparedStatement.setInt(5, devolucao.getIden());
 
             preparedStatement.executeUpdate();
 
@@ -142,10 +141,7 @@ public class DevolucoesDal {
                 locacao = locacoesBll.getLocacoesBy(loc_codigo);
                 devolucao.setLocacao(locacao);
 
-                int vei_iden = rs.getInt(" dev_vei_iden");
-                veiculo = veiculoBll.getVeiculosById(vei_iden);
-                devolucao.setVeiculo(veiculo);
-
+               
                 lista.add(devolucao);
             }
         } catch (Exception error) {
@@ -178,9 +174,7 @@ public class DevolucoesDal {
                 locacao = locacoesBll.getLocacoesBy(loc_codigo);
                 devolucao.setLocacao(locacao);
 
-                int vei_iden = rs.getInt(" dev_vei_iden");
-                veiculo = veiculoBll.getVeiculosById(vei_iden);
-                devolucao.setVeiculo(veiculo);
+          
 
             }
         } catch (Exception error) {

@@ -29,7 +29,7 @@ public class Devolucoes {
     private int multaPorAtraso = 0;
     private int kmNaEntrega = 0;
     private Locacoes locacao = null;
-    private Veiculos veiculo = null;
+ 
 
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
@@ -39,13 +39,13 @@ public class Devolucoes {
 
     }
 
-    public Devolucoes(int iden, Date dataDevolucao,int multaPorAtraso, String status, int kmNaEntrega, Locacoes locacao , Veiculos veiculo) {
+    public Devolucoes(int iden, Date dataDevolucao,int multaPorAtraso, String status, int kmNaEntrega, Locacoes locacao) {
         this.iden = iden;
         this.dataDevolucao = dataDevolucao;
         this.multaPorAtraso = multaPorAtraso;
         this.kmNaEntrega = kmNaEntrega;
         this.locacao = locacao;
-        this.veiculo = veiculo;
+       
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -64,9 +64,6 @@ public class Devolucoes {
         return multaPorAtraso;
     }
 
-     public Veiculos getVeiculo() {
-        return veiculo;
-    }
 
     public int getKmNaEntrega() {
         return kmNaEntrega;
@@ -84,9 +81,6 @@ public class Devolucoes {
         this.iden = iden;
     }
 
-     public void setVeiculo(Veiculos veiculo) {
-        this.veiculo = veiculo;
-    }
      
     public void setDataDevolucao(Date dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
