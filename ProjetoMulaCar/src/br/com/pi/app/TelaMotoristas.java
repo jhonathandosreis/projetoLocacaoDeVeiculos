@@ -25,6 +25,7 @@ import br.com.pi.model.Clientes;
 import br.com.pi.model.Enderecos;
 import br.com.pi.model.Fotos;
 import br.com.pi.model.Motoristas;
+import br.com.pi.model.PessoasFisicas;
 import br.com.pi.model.Ufs;
 import br.com.pi.util.Valida;
 import java.awt.Image;
@@ -48,6 +49,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
     private Motoristas motorista;
+    private PessoasFisicas pessoaFisica;
     private MotoristasBll motoristabll;
     private Clientes cliente;
     private ClientesBll clienteBll;
@@ -70,6 +72,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
         try {
 
             motorista = new Motoristas();
+            pessoaFisica = new PessoasFisicas();
             motoristabll = new MotoristasBll();
             cliente = new Clientes();
             clienteBll = new ClientesBll();
@@ -930,7 +933,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
 
         String NomeDoArquivo = f.getName();
-        File destino = new File("\\home\\jhonlinux\\Imagens\\Papéis de parede\\" + NomeDoArquivo);
+        File destino = new File("/home/jhonlinux/Imagens/" + NomeDoArquivo);
 
             destino = destino.getAbsoluteFile();
 
@@ -940,7 +943,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
                 foto.setFot_caminho(destino.getAbsoluteFile().toString());
                 
 
-                foto.setPessoasFisicas(motorista);
+                foto.setPessoasFisicas(pessoaFisica);
                 fotoBll.addFotos(foto);
 
                 if (!destino.exists()) {
@@ -948,9 +951,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
                 }
                 JOptionPane.showMessageDialog(null, "Salvo com sucesso");
 
-                this.dispose();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Deu erro aqui!" + e.getMessage());
+                JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
             }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 

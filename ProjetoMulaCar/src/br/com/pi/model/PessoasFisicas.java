@@ -15,6 +15,8 @@
 
 package br.com.pi.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author jhonlinux
@@ -28,6 +30,7 @@ public class PessoasFisicas extends Clientes {
     private int rg = 0;
     private double cpf = 0;
     private Clientes cliente = null;
+    private ArrayList<Fotos> fotos = new ArrayList<>();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -54,6 +57,10 @@ public class PessoasFisicas extends Clientes {
         return iden;
     }
 
+     public ArrayList<Fotos> getFotos() {
+        return fotos;
+    }
+    
     public int getRg() {
         return rg;
     }
@@ -80,6 +87,10 @@ public class PessoasFisicas extends Clientes {
 
     public void setCpf(double cpf) {
         this.cpf = cpf;
+    }
+    
+    public void setFotos(ArrayList<Fotos> fotos) {
+        this.fotos = fotos;
     }
 
     public void setCliente(Clientes cliente) {
