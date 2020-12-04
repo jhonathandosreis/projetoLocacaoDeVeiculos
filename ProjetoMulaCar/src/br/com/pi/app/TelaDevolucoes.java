@@ -82,7 +82,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                 linha[1] = devolucoes.getLocacao().getCliente().getNome();
                 linha[2] = devolucoes.getDataDevolucao();
                 linha[3] = devolucoes.getKmNaEntrega();
-                linha[4] = devolucoes.getVeiculo().getCapacidadeTanque();
+                linha[4] = devolucoes.getVeiculo().getCapacidadeCombustivel();
                 linha[5] = devolucoes.getMultaPorAtraso();
 
                 tableDevolucao.addRow(linha);

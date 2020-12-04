@@ -118,12 +118,13 @@ CREATE TABLE locacoes (
 
 CREATE TABLE devolucoes (
     dev_iden SERIAL PRIMARY KEY,
-    dev_data_devolucao VARCHAR(20),
+    dev_data_devolucao DATE,
     dev_multa_por_atraso NUMERIC(50),
-    dev_status VARCHAR(15),
     dev_km_na_entrega NUMERIC(50),
     dev_loc_iden INTEGER,
-    FOREIGN KEY (dev_loc_iden) REFERENCES locacoes (loc_codigo)
+    dev_vei_iden INTEGER,
+    FOREIGN KEY (dev_loc_iden) REFERENCES locacoes (loc_iden),
+    FOREIGN KEY (dev_vei_iden) REFERENCES locacoes (vei_iden)
 );
  
 
