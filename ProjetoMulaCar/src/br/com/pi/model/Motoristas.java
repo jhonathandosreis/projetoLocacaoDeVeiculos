@@ -14,6 +14,7 @@
  */
 
 package br.com.pi.model;
+import java.util.ArrayList;
 import java.util.Date;
 /**
  *
@@ -27,6 +28,7 @@ public class Motoristas extends PessoasFisicas {
     private double numeroCnh = 0;
     private String categoriaCnh = "";
     private Date dataValidade = null;
+    private ArrayList<Fotos> fotos = new ArrayList<>();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -65,6 +67,10 @@ public class Motoristas extends PessoasFisicas {
     public Date getDataValidade() {
         return dataValidade;
     }
+    
+    public ArrayList<Fotos> getFotos() {
+        return fotos;
+    }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
 
@@ -84,6 +90,10 @@ public class Motoristas extends PessoasFisicas {
 
     public void setDataValidade(Date dataValidade) {
          this.dataValidade = dataValidade;
+    }
+    
+    public void setFotos(ArrayList<Fotos> fotos) {
+        this.fotos = fotos;
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //

@@ -57,7 +57,7 @@ public class PessoasFisicas extends Clientes {
         return iden;
     }
 
-     public ArrayList<Fotos> getFotos() {
+    public ArrayList<Fotos> getFotos() {
         return fotos;
     }
     
