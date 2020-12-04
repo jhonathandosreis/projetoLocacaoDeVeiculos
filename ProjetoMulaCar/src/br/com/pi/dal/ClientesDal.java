@@ -46,13 +46,15 @@ public class ClientesDal {
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
     public void addClientes(Clientes cliente) throws Exception {
-        String sqlCliente ="INSERT INTO clientes (cli_nome, cli_telefone, cli_email, cli_end_iden) values (?, ?, ?, ?)";
+        String sqlCliente ="INSERT INTO clientes (cli_nome, cli_telefone, cli_email, cli_status, cli_multa cli_end_iden) values (?, ?, ?, ?, ?, ?)";
         try{    
         PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);     
         preparedStatement1.setString(1, cliente.getNome());
         preparedStatement1.setDouble(2, cliente.getTelefone());
         preparedStatement1.setString(3, cliente.getEmail());
-        preparedStatement1.setInt(4, cliente.getEnderecos().getIden());
+        preparedStatement1.setString(4, cliente.getStatus());
+        preparedStatement1.setFloat(5, cliente.getMulta());
+        preparedStatement1.setInt(6, cliente.getEnderecos().getIden());
         preparedStatement1.executeUpdate();
         
         } catch (Exception error) {
@@ -61,14 +63,16 @@ public class ClientesDal {
     }
     
     public void updateClientes(Clientes cliente) throws Exception { 
-            String sqlCliente ="UPDATE clientes SET cli_nome=?, cli_telefone=?, cli_email=?, cli_end_iden=? WHERE cli_iden=?";
+            String sqlCliente ="UPDATE clientes SET cli_nome=?, cli_telefone=?, cli_email=?, cli_status=?, cli_multa=?, cli_end_iden=? WHERE cli_iden=?";
         try{    
             PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);
             preparedStatement1.setString(1, cliente.getNome());
             preparedStatement1.setDouble(2, cliente.getTelefone());
             preparedStatement1.setString(3, cliente.getEmail());
-            preparedStatement1.setInt(4, cliente.getEnderecos().getIden());
-            preparedStatement1.setInt(5, cliente.getIden());
+            preparedStatement1.setString(4, cliente.getStatus());
+            preparedStatement1.setFloat(5, cliente.getMulta());
+            preparedStatement1.setInt(6, cliente.getEnderecos().getIden());
+            preparedStatement1.setInt(7, cliente.getIden());
             preparedStatement1.executeUpdate();
             } catch (Exception error) {
             throw  error;
@@ -103,6 +107,8 @@ public class ClientesDal {
                 cliente.setNome(rs.getString("cli_nome"));
                 cliente.setTelefone(rs.getDouble("cli_telefone"));
                 cliente.setEmail(rs.getString("cli_email"));
+                cliente.setStatus(rs.getString("cli_status"));
+                cliente.setMulta(rs.getFloat("cli_multa"));
                 cliente.setEnderecos(endereco);
                 lista.add(cliente);
             }

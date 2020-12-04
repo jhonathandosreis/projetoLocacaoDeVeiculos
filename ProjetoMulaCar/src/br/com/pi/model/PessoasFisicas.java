@@ -41,8 +41,8 @@ public class PessoasFisicas extends Clientes {
     }
 
     public PessoasFisicas(int iden, String nome, double telefone, String email,
-            Enderecos enderecos, Clientes cliente, int rg, double cpf) {
-        super(iden, nome, telefone, email, enderecos);
+            Enderecos enderecos,String status, float multa, Clientes cliente, int rg, double cpf) {
+        super(iden, nome, telefone, email, enderecos, status, multa);
         this.iden = iden;
         this.rg = rg;
         this.cpf = cpf;
