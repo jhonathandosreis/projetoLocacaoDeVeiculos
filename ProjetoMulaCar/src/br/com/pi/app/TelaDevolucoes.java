@@ -16,8 +16,11 @@ package br.com.pi.app;
 
 import br.com.pi.bll.DevolucoesBll;
 import br.com.pi.bll.LocacoesBll;
+import br.com.pi.bll.VeiculosBll;
 import br.com.pi.model.Devolucoes;
 import br.com.pi.model.Locacoes;
+import br.com.pi.model.Veiculos;
+import br.com.pi.util.Valida;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,13 +38,13 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     //--- BLL´S --------------------------------------------------------------------------------------->
     private DevolucoesBll devolucaoBll = null;
     private LocacoesBll locacaoBll = null;
-
+    private VeiculosBll veiculoBll = null;
     //--- FIM BLL'S ----------------------------------------------------------------------------------->
     //
     //--- CLASSES -------------------------------------------------------------------------------------> 
     private Devolucoes devolucao = null;
     private Locacoes locacao = null;
-
+    private Veiculos veiculo = null;
     //--- FIM CLASSES --------------------------------------------------------------------------------->
     //
     public TelaDevolucoes() {
@@ -51,12 +54,22 @@ public class TelaDevolucoes extends javax.swing.JFrame {
 
             devolucao = new Devolucoes();
             locacao = new Locacoes();
+            veiculo = new Veiculos();
 
             devolucaoBll = new DevolucoesBll();
             locacaoBll = new LocacoesBll();
-
+            veiculoBll = new VeiculosBll();         
+            
             preencherComboboxLocacoes();
             preencherGridDevolucoes();
+            
+            jTextFieldKMInicial.setEnabled(false);
+            jTextFieldCapacidadeLitroVeiculo.setEnabled(false);
+            jTextFieldIDDevolucao.setEnabled(false);
+            jFormattedTextFieldDataPreLocacao.setEnabled(false);
+            jTextFieldMultaPorAtraso.setEnabled(false);
+            jButtonDevolver.setEnabled(false);
+            jButtonCancelar.setEnabled(false);
 
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -113,16 +126,18 @@ public class TelaDevolucoes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    public int DiferencaEntreDatas(Date data1, Date data2) throws Exception{
-            if(data1.compareTo(data2) >=0 ) throw new Exception("Data de devolução inválida!");
-            long diferencaMS = data1.getTime() - data1.getTime();
-            long diferencaSegundos = diferencaMS / 1000;
-            long diferencaMinutos = diferencaSegundos / 60;
-            long diferencaHoras = diferencaMinutos / 60;
-            long diferencaDias = diferencaHoras / 24;
-            int dias = (int) diferencaDias;
-            return dias;
+
+    public int DiferencaEntreDatas(Date data1, Date data2) throws Exception {
+        if (data1.compareTo(data2) >= 0) {
+            throw new Exception("Data de devolução inválida!");
+        }
+        long diferencaMS = data1.getTime() - data1.getTime();
+        long diferencaSegundos = diferencaMS / 1000;
+        long diferencaMinutos = diferencaSegundos / 60;
+        long diferencaHoras = diferencaMinutos / 60;
+        long diferencaDias = diferencaHoras / 24;
+        int dias = (int) diferencaDias;
+        return dias;
     }
 
     public void preencherComboboxLocacoes() throws Exception {
@@ -138,6 +153,24 @@ public class TelaDevolucoes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public void ValidaDevolucoes() throws Exception{
+        
+        Valida.campoVazio(jFormattedDataDevolucao.getText(), "Digite uma data válida ! \n Campo Vazio ");
+        Valida.numberInteger(jFormattedDataDevolucao.getText(), "Campo data aceita apenas números ");
+        Valida.notSpecialCharacters(jFormattedDataDevolucao.getText(), "Campo data não é permitido caracteres especiais! ");
+        
+        Valida.campoVazio(jTextFieldKmNaEntrega.getText(), "Digite um Km válida ! \n Campo Vazio ");
+        Valida.numberInteger(jTextFieldKmNaEntrega.getText(), "Campo Km aceita apenas números ");
+        Valida.notSpecialCharacters(jTextFieldKmNaEntrega.getText(), "Campo Km não é permitido caracteres especiais! ");
+        
+        Valida.campoVazio(jTextFieldLitroVeiculoEntrega.getText(), "Digite uma capacidade de combustivél/Litro válida! \n Campo Vazio ");
+        Valida.numberInteger(jTextFieldLitroVeiculoEntrega.getText(), "Campo capacidade de combustivél/Litro aceita apenas números ");
+        Valida.notSpecialCharacters(jTextFieldLitroVeiculoEntrega.getText(), "Campo capacidade de combustivél/Litro não é permitido caracteres especiais! ");
+         
+        
+    }
+
 
     public void limparCampos() {
 
@@ -146,10 +179,9 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         jTextFieldKmNaEntrega.setText("");
         jTextFieldCapacidadeLitroVeiculo.setText("");
         jTextFieldMultaPorAtraso.setText("");
-        jTextFieldDataLocacao.setText("");
+        jFormattedTextFieldDataPreLocacao.setText("");
         jTextFieldKMInicial.setText("");
         jTextFieldLitroVeiculoEntrega.setText("");
-        jTextFieldDataLocacao.setText("");
 
         jComboBoxLocacaoCliente.setSelectedIndex(0);
     }
@@ -175,7 +207,6 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         jTextFieldMultaPorAtraso = new javax.swing.JTextField();
         jComboBoxLocacaoCliente = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jTextFieldDataLocacao = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -191,6 +222,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButtonGerarCalculo = new javax.swing.JButton();
         jFormattedDataDevolucao = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDataPreLocacao = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDevolucao = new javax.swing.JTable();
 
@@ -253,6 +285,12 @@ public class TelaDevolucoes extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        try {
+            jFormattedTextFieldDataPreLocacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -265,10 +303,10 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(jLabel10))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldCapacidadeLitroVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldKMInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldCapacidadeLitroVeiculo)
+                            .addComponent(jTextFieldKMInicial)
+                            .addComponent(jFormattedTextFieldDataPreLocacao, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
                         .addGap(42, 42, 42))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,7 +419,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel7)
-                                    .addComponent(jTextFieldDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jFormattedTextFieldDataPreLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel9)
@@ -467,16 +505,30 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     private void jButtonDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevolverActionPerformed
 
         try {
-            //  ValidaDevolucoes;
+             ValidaDevolucoes();
 
             Date data = formato.parse(jFormattedDataDevolucao.getText());
-
             devolucao.setDataDevolucao(data);
-            devolucao.setKmNaEntrega(Integer.parseInt(jTextFieldKmNaEntrega.getText()));
+           
             devolucao.setMultaPorAtraso(Integer.parseInt(jTextFieldMultaPorAtraso.getText()));
-
             locacao = locacaoBll.getLocacoesBy(Integer.parseInt(jComboBoxLocacaoCliente.getSelectedItem().toString()));
             devolucao.setLocacao(locacao);
+
+            devolucao.setKmNaEntrega(Integer.parseInt(jTextFieldKmNaEntrega.getText()));
+          
+             //--- UPDATE KM NA ENTREGA ----------------------------------------------------------------------------->
+            //
+            
+            veiculo = locacao.getVeiculos();
+            veiculo.setQuilometragem(Integer.parseInt(jTextFieldKmNaEntrega.getText()));
+            veiculoBll.updateVeiculos(veiculo);
+           
+             //--- DADOS LOCATÁRIO ---------------------------------------------------------------------------------->
+            //
+                       
+            jFormattedTextFieldDataPreLocacao.setText(convertDate(locacao.getDataDeLocacao()));        
+            jTextFieldKMInicial.setText(locacao.getKmInicial() + "");
+            jTextFieldCapacidadeLitroVeiculo.setText(locacao.getVeiculos().getCapacidadeCombustivel() + "");
 
             devolucaoBll.addDevolucoes(devolucao);
 
@@ -504,32 +556,37 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     private void jButtonGerarCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarCalculoActionPerformed
 
         try {
-            //      ValidaDevolucoes();
+             jButtonDevolver.setEnabled(true);
+             jButtonCancelar.setEnabled(true);
+            
+             ValidaDevolucoes();
+             
+            locacao = locacaoBll.getLocacoesBy(Integer.parseInt(jComboBoxLocacaoCliente.getSelectedItem().toString()));
 
+            //--- CÁLCULO ATRASO/DIAS ----------------------------------------------------------------------------->
+            //
             Date data = formato.parse(jFormattedDataDevolucao.getText());
             
-            locacao = locacaoBll.getLocacoesBy(Integer.parseInt(jComboBoxLocacaoCliente.getSelectedItem().toString()));
-            
-          
             float valorCategoria = locacao.getVeiculos().getModelo().getCategoria().getValorDiarioLocacao();
-            
-        //  int diferencaData = 
-            
-            
-            
-            
-            
-            
+            float diferencaData = DiferencaEntreDatas(locacao.getDataPrevistDeDevolucao(), data);
+            float multaAtraso = (diferencaData * valorCategoria);
+          
+
+            //--- CÁLCULO DE LITROS COMBUSTÍVEL R$ 6,00 L -------------------------------------------------------->
+            //
             float multaLitro;
-           
             float litroEntregue = Float.parseFloat(jTextFieldLitroVeiculoEntrega.getText());
             float capacidadeLitro = locacao.getVeiculos().getCapacidadeCombustivel();
-            
-            multaLitro = (capacidadeLitro - litroEntregue ) * 6;
-            
+            multaLitro = (capacidadeLitro - litroEntregue) * 6;
+
+            //--- CÁLCULO TOTAL MULTA POR ATRASO ----------------------------------------------------------------->
+            //
+            float total = multaAtraso + multaLitro;
+         
+            jTextFieldMultaPorAtraso.setText("R$ " + total);
 
         } catch (Exception error) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar motoristas " + error.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao registrar devolução " + error.getMessage());
         }
 
         // TODO add your handling code here:
@@ -577,6 +634,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     private javax.swing.JButton jButtonGerarCalculo;
     private javax.swing.JComboBox<String> jComboBoxLocacaoCliente;
     private javax.swing.JFormattedTextField jFormattedDataDevolucao;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDataPreLocacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -595,7 +653,6 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTableDevolucao;
     private javax.swing.JTextField jTextFieldCapacidadeLitroVeiculo;
-    private javax.swing.JTextField jTextFieldDataLocacao;
     private javax.swing.JTextField jTextFieldIDDevolucao;
     private javax.swing.JTextField jTextFieldKMInicial;
     private javax.swing.JTextField jTextFieldKmNaEntrega;
