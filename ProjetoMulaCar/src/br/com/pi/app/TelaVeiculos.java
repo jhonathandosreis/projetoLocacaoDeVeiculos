@@ -273,7 +273,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableVeiculo = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("[VEÍCULOS]");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Veículo"));

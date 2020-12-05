@@ -23,7 +23,8 @@ import javax.swing.JOptionPane;
 
 
 public class TelaMenuPrincipal extends javax.swing.JFrame {
-
+    
+    
     public TelaMenuPrincipal() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -43,7 +44,9 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
-        jDesktopPanePrincipal = new javax.swing.JDesktopPane();
+        jDesktopPanePrincipal = new javax.swing.JDesktopPane() {
+
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuFuncionario = new javax.swing.JMenu();
         jMenuItemLoginFuncionario = new javax.swing.JMenuItem();
@@ -91,11 +94,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jDesktopPanePrincipal.setLayout(jDesktopPanePrincipalLayout);
         jDesktopPanePrincipalLayout.setHorizontalGroup(
             jDesktopPanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1131, Short.MAX_VALUE)
+            .addGap(0, 1143, Short.MAX_VALUE)
         );
         jDesktopPanePrincipalLayout.setVerticalGroup(
             jDesktopPanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 627, Short.MAX_VALUE)
+            .addGap(0, 799, Short.MAX_VALUE)
         );
 
         jMenuFuncionario.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/funcionario-cad.png")); // NOI18N

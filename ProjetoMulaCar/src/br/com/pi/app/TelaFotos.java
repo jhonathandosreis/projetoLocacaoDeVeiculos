@@ -62,7 +62,7 @@ public class TelaFotos extends javax.swing.JFrame {
         jTextFieldCaminhoDoArquivo = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel16.setText("Foto");
 
