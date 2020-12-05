@@ -7,6 +7,7 @@ package br.com.pi.bll;
 
 import br.com.pi.dal.UfsDal;
 import br.com.pi.model.Ufs;
+import br.com.pi.util.Valida;
 import java.util.ArrayList;
 
 /**
@@ -29,11 +30,16 @@ public class UfsBll {
 
     public void addUfs(Ufs uf) throws Exception {
 
-        if (uf.getNome().trim().length() != 2) {
-            throw new Exception("Sigla da UF é permitido apenas com 2 caracteres!");
+        if (uf.getNome().length() != 2) {
+            throw new Exception("Campo UF é permitido apenas com 2 caracteres!");
         }
 
+        Valida.campoVazio(uf.getNome(), "Campo UF deve ser preenchido!");
+        Valida.notNumber(uf.getNome(), "");
+        Valida.notSpecialCharacters(uf.getNome(), "");
+        
         try {
+
             ufDal.addUfs(uf);
         } catch (Exception error) {
             if (error.getMessage().contains("duplicate key value violates unique constraint")) {
