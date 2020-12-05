@@ -198,6 +198,9 @@ public class TelaMotoristas extends javax.swing.JFrame {
        Valida.SomenteNumero(jTextFieldTelefoneMotorista.getText(), "Campo telefone deve conter somente números!"); 
        Valida.SomenteNumero(jTextField_CpfMotorista.getText(), "Campo cpf deve conter somente números!");
        Valida.SomenteNumero(jTextField_rgMotorista.getText(), "Campo rg deve conter somente números!");
+       Valida.campoVazio(jTextFieldNomeMotorista.getText(), "Campo nome deve ser preenchido!");
+       Valida.notNumber(jTextFieldNomeMotorista.getText(), "Campo nome não deve conter números!");
+       Valida.notSpecialCharacters(jTextFieldNomeMotorista.getText(), "Campo nome não deve conter caracteres especiais!");
  
     }
 

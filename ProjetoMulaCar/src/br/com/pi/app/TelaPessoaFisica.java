@@ -121,6 +121,9 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
        Valida.SomenteNumero(jTextFieldTelefonePessoaFisica.getText(), "Campo telefone deve conter somente números!"); 
        Valida.SomenteNumero(jTextFieldCPFPessoaFisica.getText(), "Campo cpf deve conter somente números!");
        Valida.SomenteNumero(jTextFieldRGPessoaFisica.getText(), "Campo rg deve conter somente números!");
+       Valida.campoVazio(jTextFieldNomePessoaFisica.getText(), "Campo nome deve ser preenchido!");
+       Valida.notNumber(jTextFieldNomePessoaFisica.getText(), "Campo nome não deve conter números!");
+       Valida.notSpecialCharacters(jTextFieldNomePessoaFisica.getText(), "Campo nome não deve conter caracteres especiais!");
     }
 
     public void preencherComboboxCidades() throws Exception {
