@@ -109,9 +109,9 @@ public class FotosDal {
                 foto.setFot_iden(rs.getInt("fot_iden"));
                 foto.setFot_caminho(rs.getString("fot_caminho"));
 
-                //chave estrangeira
-                PessoasFisicasDal pessoaFisicaDal = new PessoasFisicasDal();
-                foto.setPessoasFisicas(pessoaFisicaDal.getPessoasFisicasById(rs.getInt("fot_pfi_iden")));
+                //Chave estrangeira
+                pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(rs.getInt("fot_pfi_iden"));
+                foto.setPessoasFisicas(pessoaFisica);   
             }
         } catch (Exception error) {
             throw error;
@@ -123,7 +123,7 @@ public class FotosDal {
 
         Fotos foto = new Fotos();
 
-        String sql = "SELECT * FROM fotos";
+        String sql = "SELECT * FROM fotos WHERE fot_iden=?";
         try {
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
@@ -132,8 +132,8 @@ public class FotosDal {
                 foto.setFot_caminho(rs.getString("fot_caminho"));
 
                 //chave estrangeira
-                PessoasFisicasDal pessoaFisicaDal = new PessoasFisicasDal();
-                foto.setPessoasFisicas(pessoaFisicaDal.getPessoasFisicasById(rs.getInt("fot_pfi_iden")));
+                pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(rs.getInt("fot_pfi_iden"));
+                foto.setPessoasFisicas(pessoaFisica);   
             }
         } catch (Exception error) {
             throw error;
