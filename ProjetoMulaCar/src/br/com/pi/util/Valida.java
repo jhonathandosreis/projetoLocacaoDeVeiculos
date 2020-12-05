@@ -43,7 +43,7 @@ public class Valida {
      * @param type
      */
     public static void notSpecialCharacters(String message, String type) {
-        String vetor[] = new String[]{"!", "#", "$", "%", "\\", "&", "’", "(", ")", "*", "+", "\"", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}"};
+        String vetor[] = new String[]{"!", "#", "$", "%", "\\", "&", "’", "(", ")", "*", "+", "\"", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`","'", "{", "|", "}"};
         String saida = type + "Campo não permite Carácter Especiais.";
         for (String string : vetor) {
             if (message.contains(string)) {

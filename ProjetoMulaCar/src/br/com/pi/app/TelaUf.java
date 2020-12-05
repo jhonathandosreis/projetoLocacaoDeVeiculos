@@ -89,12 +89,7 @@ public class TelaUf extends javax.swing.JFrame {
         jTextFieldUfnome.setText("");
     }
 
-    public void ValidaUf() {
-
-         Valida.campoVazio(jTextFieldUfnome.getText(), "Digite uma Sigla UF de um Estado Brasileiro!");
-         Valida.notNumber(jTextFieldUfnome.getText(), "");
-         Valida.notSpecialCharacters(jTextFieldUfnome.getText(), "");
-    }
+    
 //    --- FIM METODOS --------------------------------------------------------------------------------->
 //    
 
@@ -260,7 +255,7 @@ public class TelaUf extends javax.swing.JFrame {
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
 
         try {
-            ValidaUf();
+          
 
             uf.setNome(jTextFieldUfnome.getText().toUpperCase());
             ufBll.addUfs(uf);
@@ -283,7 +278,7 @@ public class TelaUf extends javax.swing.JFrame {
             if (jTableUf.getSelectedRow() == -1) {
                 throw new Exception("Selecione uma UF a ser alterada!");
             }
-            ValidaUf();
+            
             uf.setNome(jTextFieldUfnome.getText().toUpperCase());
             uf.setIden(Integer.parseInt(jTextFieldIDUf.getText()));
             ufBll.updateUfs(uf);
@@ -295,12 +290,6 @@ public class TelaUf extends javax.swing.JFrame {
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
-
-
-
-
-
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAlterarActionPerformed
