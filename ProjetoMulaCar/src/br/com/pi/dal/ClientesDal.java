@@ -46,7 +46,7 @@ public class ClientesDal {
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
     public void addClientes(Clientes cliente) throws Exception {
-        String sqlCliente ="INSERT INTO clientes (cli_nome, cli_telefone, cli_email, cli_status, cli_multa cli_end_iden) values (?, ?, ?, ?, ?, ?)";
+        String sqlCliente ="INSERT INTO clientes (cli_nome, cli_telefone, cli_email, cli_status, cli_multa, cli_end_iden) values (?, ?, ?, ?, ?, ?)";
         try{    
         PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);     
         preparedStatement1.setString(1, cliente.getNome());

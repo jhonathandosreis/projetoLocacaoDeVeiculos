@@ -49,7 +49,7 @@ public class MotoristasDal {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addMotoristas (Motoristas motorista) throws Exception {
        
-        String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_numero_cnh, pfi_categoria_cnh, pfi_data_de_validade, pfi_cli_iden) values (?, ?, ?, ?, ?, ?)";        
+        String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_numero_cnh, pfi_categoria_cnh, pfi_data_validade, pfi_cli_iden) values (?, ?, ?, ?, ?, ?)";        
         try{
         java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
@@ -71,7 +71,7 @@ public class MotoristasDal {
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateMotoristas (Motoristas motorista) throws Exception {
         
-        String sqlPessoaFisica = "UPDATE pessoas_fisicas SET pfi_rg=?, pfi_cpf=?, pfi_numero_cnh=?, pfi_categoria_cnh=?, pfi_data_de_validade=?, pfi_cli_iden=? WHERE pfi_iden=?";        
+        String sqlPessoaFisica = "UPDATE pessoas_fisicas SET pfi_rg=?, pfi_cpf=?, pfi_numero_cnh=?, pfi_categoria_cnh=?, pfi_data_validade=?, pfi_cli_iden=? WHERE pfi_iden=?";        
         try{
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
         java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
@@ -123,7 +123,7 @@ public class MotoristasDal {
                 motorista.setCpf(rs.getLong("pfi_cpf"));
                 motorista.setNumeroCnh(rs.getLong("pfi_numero_cnh"));
                 motorista.setCategoriaCnh(rs.getString("pfi_categoria_cnh"));
-                motorista.setDataValidade(rs.getDate("pfi_data_de_validade"));
+                motorista.setDataValidade(rs.getDate("pfi_data_validade"));
                 motorista.setCliente(cliente);
                 lista.add(motorista);
            }
@@ -152,7 +152,7 @@ public class MotoristasDal {
         motorista.setCpf(rs.getLong("pfi_cpf"));
         motorista.setNumeroCnh(rs.getLong("pfi_numero_cnh"));
         motorista.setCategoriaCnh(rs.getString("pfi_categoria_cnh"));
-        motorista.setDataValidade(rs.getDate("pfi_data_de_validade"));
+        motorista.setDataValidade(rs.getDate("pfi_data_validade"));
         motorista.setCliente(cliente);
         }       
         return motorista;
@@ -178,7 +178,7 @@ public class MotoristasDal {
         motorista.setCpf(rs.getLong("pfi_cpf"));
         motorista.setNumeroCnh(rs.getLong("pfi_numero_cnh"));
         motorista.setCategoriaCnh(rs.getString("pfi_categoria_cnh"));
-        motorista.setDataValidade(rs.getDate("pfi_data_de_validade"));
+        motorista.setDataValidade(rs.getDate("pfi_data_validade"));
         motorista.setCliente(cliente);
         }       
         return motorista;

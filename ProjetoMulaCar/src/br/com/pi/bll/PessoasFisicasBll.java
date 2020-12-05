@@ -39,9 +39,14 @@ public class PessoasFisicasBll {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addPessoasFisicas(PessoasFisicas pessoaFisica) throws Exception {
         try{
-         pessoaFisicaDal.addPessoasFisicas(pessoaFisica);
+        if(pessoaFisica.getCpf() == 0) throw new RuntimeException("Campo cpf deve ser preenchido");
+        if(pessoaFisica.getRg() == 0) throw new RuntimeException("Campo rg deve ser preenchido");
+        if(pessoaFisica.getCliente().getIden() == 0) throw new RuntimeException("Erro ao inserir cliente em pessoa fisica");       
+        pessoaFisicaDal.addPessoasFisicas(pessoaFisica);
+        
         } catch (Exception error) {
-            throw  error;
+            if(error.getMessage().contains("cpf_repetido")) throw new RuntimeException("Cpf ("+pessoaFisica.getCpf()+") já cadastrado em nosso sistema");
+            if(error.getMessage().contains("rg_repetido")) throw new RuntimeException("Rg ("+pessoaFisica.getRg()+") já cadastrado em nosso sistema");
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|

@@ -77,6 +77,27 @@ public class EnderecosDal {
         }
 
     }
+    
+    public void deleteLast() throws Exception {
+        int id = 0;
+        String sql = "SELECT *\n" +
+                     "FROM enderecos\n" +
+                     "ORDER by end_iden DESC limit 1";   
+        String sql2 = "DELETE FROM enderecos WHERE end_iden =?";
+        try {
+            Statement statement = conexao.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            if (rs.next()) {            
+               id = (rs.getInt("end_iden"));
+            }
+
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql2);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (Exception error) {
+            throw  error;
+         }
+    }
 
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
@@ -193,6 +214,7 @@ public class EnderecosDal {
         }
         return endereco;
     }
+     
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 
