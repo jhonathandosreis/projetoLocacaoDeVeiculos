@@ -123,9 +123,18 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelNomePessoaFisica" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextFieldNomeMotorista" min="-2" pref="362" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jTextFieldNomeMotorista" alignment="0" min="-2" pref="362" max="-2" attributes="0"/>
+                                      <Component id="jLabelNomePessoaFisica" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextField_rgMotorista" min="-2" pref="159" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
@@ -134,48 +143,16 @@
                                           <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-<<<<<<< HEAD
-                                  <EmptySpace min="-2" pref="606" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabelIdPessoaFisica" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextFieldIDMotorista" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabelNomePessoaFisica" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextFieldNomeMotorista" min="-2" pref="304" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextField_rgMotorista" min="-2" pref="159" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextField_CpfMotorista" min="-2" pref="204" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
-=======
-                                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jLabel6" min="-2" pref="102" max="-2" attributes="0"/>
                                       <Component id="jLabel3RGPessoaFisica" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel6" max="32767" attributes="0"/>
+                                      <Component id="jTextField_CategoriaCNH" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jTextFieldCNHMotorista" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextField_CategoriaCNH" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
                                   </Group>
->>>>>>> 1234c6c70e3742bc28cb23bbd203a038fa955afa
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField_rgMotorista" min="-2" pref="159" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="772" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -189,14 +166,15 @@
                                   <Component id="jTextFieldIDMotorista" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="jLabelNomePessoaFisica" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabelNomePessoaFisica" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextFieldNomeMotorista" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jTextField_rgMotorista" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jTextFieldNomeMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextField_rgMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -349,7 +327,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="473" max="32767" attributes="0"/>
+                          <EmptySpace pref="497" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
