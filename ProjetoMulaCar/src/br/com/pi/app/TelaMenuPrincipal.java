@@ -23,7 +23,8 @@ import javax.swing.JOptionPane;
 
 
 public class TelaMenuPrincipal extends javax.swing.JFrame {
-
+    
+    
     public TelaMenuPrincipal() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -43,7 +44,9 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
-        jDesktopPanePrincipal = new javax.swing.JDesktopPane();
+        jDesktopPanePrincipal = new javax.swing.JDesktopPane() {
+
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuFuncionario = new javax.swing.JMenu();
         jMenuItemLoginFuncionario = new javax.swing.JMenuItem();
@@ -91,16 +94,18 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jDesktopPanePrincipal.setLayout(jDesktopPanePrincipalLayout);
         jDesktopPanePrincipalLayout.setHorizontalGroup(
             jDesktopPanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1131, Short.MAX_VALUE)
+            .addGap(0, 1143, Short.MAX_VALUE)
         );
         jDesktopPanePrincipalLayout.setVerticalGroup(
             jDesktopPanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 651, Short.MAX_VALUE)
+            .addGap(0, 799, Short.MAX_VALUE)
         );
 
+        jMenuFuncionario.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/funcionario-cad.png")); // NOI18N
         jMenuFuncionario.setText("Funcionario");
         jMenuFuncionario.setToolTipText("");
 
+        jMenuItemLoginFuncionario.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/perfil.png")); // NOI18N
         jMenuItemLoginFuncionario.setText("Login");
         jMenuItemLoginFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +114,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuFuncionario.add(jMenuItemLoginFuncionario);
 
+        jMenuItemSair.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/botao-x.png")); // NOI18N
         jMenuItemSair.setText("Sair");
         jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,8 +125,10 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuFuncionario);
 
+        jMenuCliente.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/grupo-de-usuarios.png")); // NOI18N
         jMenuCliente.setText("CLiente");
 
+        jMenuItemPessoaFisica.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/adicionar-usuario (1).png")); // NOI18N
         jMenuItemPessoaFisica.setText("Pessoal Física");
         jMenuItemPessoaFisica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,6 +137,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuCliente.add(jMenuItemPessoaFisica);
 
+        jMenuItemPessoaJuridica.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/adicionar-usuario (2).png")); // NOI18N
         jMenuItemPessoaJuridica.setText("Pessoa Jurídica");
         jMenuItemPessoaJuridica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +146,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuCliente.add(jMenuItemPessoaJuridica);
 
+        jMenuItemMotorista.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/adicionar-usuario (3).png")); // NOI18N
         jMenuItemMotorista.setText("Motorista");
         jMenuItemMotorista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +155,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuCliente.add(jMenuItemMotorista);
 
+        jMenuItemCidade.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/cidade.png")); // NOI18N
         jMenuItemCidade.setText("Cidade");
         jMenuItemCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +164,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuCliente.add(jMenuItemCidade);
 
+        jMenuItemUF.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/destino.png")); // NOI18N
         jMenuItemUF.setText("UF");
         jMenuItemUF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,8 +175,10 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuCliente);
 
+        jMenuVeiculo.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/carro-sedan-na-frente.png")); // NOI18N
         jMenuVeiculo.setText("Veículo");
 
+        jMenuItemVeiculo.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/crossover (1).png")); // NOI18N
         jMenuItemVeiculo.setText("Veículos");
         jMenuItemVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,6 +187,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuVeiculo.add(jMenuItemVeiculo);
 
+        jMenuItemMarcas.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/crossover.png")); // NOI18N
         jMenuItemMarcas.setText("Marcas");
         jMenuItemMarcas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +196,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuVeiculo.add(jMenuItemMarcas);
 
+        jMenuItemModelo.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/carrinho-de-bebe.png")); // NOI18N
         jMenuItemModelo.setText("Modelos");
         jMenuItemModelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,6 +205,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuVeiculo.add(jMenuItemModelo);
 
+        jMenuItemCategoria.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/hatchback.png")); // NOI18N
         jMenuItemCategoria.setText("Categorias");
         jMenuItemCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,6 +214,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuVeiculo.add(jMenuItemCategoria);
 
+        jMenuItemTIpoDeVeiculo.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/sedan.png")); // NOI18N
         jMenuItemTIpoDeVeiculo.setText("Tipo de Veículos");
         jMenuItemTIpoDeVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,8 +225,10 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuVeiculo);
 
+        jMenuLocacao.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/chaves.png")); // NOI18N
         jMenuLocacao.setText("Locação");
 
+        jMenuItemLocacao.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/combinado2 (1).png")); // NOI18N
         jMenuItemLocacao.setText("Locação");
         jMenuItemLocacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,6 +237,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuLocacao.add(jMenuItemLocacao);
 
+        jMenuItemDevolucao.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/combinado (1).png")); // NOI18N
         jMenuItemDevolucao.setText("Devolução");
         jMenuItemDevolucao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,8 +248,10 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuLocacao);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/desconhecido.png")); // NOI18N
         jMenu5.setText("Sobre");
 
+        jMenuItemDesenvolvedores.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/computador-desktop.png")); // NOI18N
         jMenuItemDesenvolvedores.setText("Desenvolvedores");
         jMenu5.add(jMenuItemDesenvolvedores);
 
@@ -247,7 +270,9 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPanePrincipal)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPanePrincipal)
+                .addContainerGap())
         );
 
         jDesktopPanePrincipal.getAccessibleContext().setAccessibleDescription("");

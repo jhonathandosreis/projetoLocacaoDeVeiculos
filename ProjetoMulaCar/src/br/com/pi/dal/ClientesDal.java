@@ -136,6 +136,8 @@ public class ClientesDal {
                 cliente.setNome(rs.getString("cli_nome"));
                 cliente.setTelefone(rs.getDouble("cli_telefone"));
                 cliente.setEmail(rs.getString("cli_email"));
+                cliente.setStatus(rs.getString("cli_status"));
+                cliente.setMulta(rs.getFloat("cli_multa"));
                 cliente.setEnderecos(endereco);
                 
             }
@@ -158,6 +160,8 @@ public class ClientesDal {
                 cliente.setNome(rs.getString("cli_nome"));
                 cliente.setTelefone(rs.getDouble("cli_telefone"));
                 cliente.setEmail(rs.getString("cli_email"));
+                cliente.setStatus(rs.getString("cli_status"));
+                cliente.setMulta(rs.getFloat("cli_multa"));
                 cliente.setEnderecos(endereco);
                 
             }
