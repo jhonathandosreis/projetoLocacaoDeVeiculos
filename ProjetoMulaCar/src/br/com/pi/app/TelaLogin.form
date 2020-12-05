@@ -115,6 +115,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldLogin">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="MulaCar"/>
+          </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextFieldLoginMouseClicked"/>
           </Events>

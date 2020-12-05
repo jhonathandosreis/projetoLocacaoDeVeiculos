@@ -55,6 +55,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel2.setText("SENHA");
 
+        jTextFieldLogin.setText("MulaCar");
         jTextFieldLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextFieldLoginMouseClicked(evt);

@@ -131,7 +131,8 @@ public class Valida {
             }
         }
     }
-    public static void SomenteNumero(String message, String type) { 
+
+    public static void SomenteNumero(String message, String type) {
         long valor;
         String saida = type;
         if (message.length() != 0) {
@@ -141,6 +142,5 @@ public class Valida {
                 throw new RuntimeException(saida);
             }
         }
-} 
-
+    }
 }
