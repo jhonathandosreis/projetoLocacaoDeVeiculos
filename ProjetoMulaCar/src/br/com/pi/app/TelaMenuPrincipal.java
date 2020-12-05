@@ -148,7 +148,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuCliente);
 
-        jMenuVeiculo.setIcon(new javax.swing.ImageIcon("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/carro-sedan-na-frente.png")); // NOI18N
+        jMenuVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/carro-sedan-na-frente.png"))); // NOI18N
         jMenuVeiculo.setText("Veículo");
 
         jMenuItemVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/sedan.png"))); // NOI18N
