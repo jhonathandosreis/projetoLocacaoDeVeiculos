@@ -125,7 +125,7 @@
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/botao-de-login.png"/>
+              <Image iconType="3" name="/br/com/pi/icons/botao-de-login.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ENTRAR"/>
           </Properties>
@@ -136,7 +136,7 @@
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/backspace.png"/>
+              <Image iconType="3" name="/br/com/pi/icons/backspace.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SAIR"/>
           </Properties>
@@ -157,7 +157,7 @@
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/login.png"/>
+              <Image iconType="3" name="/br/com/pi/icons/login.png"/>
             </Property>
           </Properties>
         </Component>

@@ -155,7 +155,7 @@
         <Component class="javax.swing.JButton" name="jButtonCadastrar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/salve.png"/>
+              <Image iconType="3" name="/br/com/pi/icons/salve.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CADASTRAR"/>
           </Properties>
@@ -166,7 +166,7 @@
         <Component class="javax.swing.JButton" name="jButtonAlterar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/editar.png"/>
+              <Image iconType="3" name="/br/com/pi/icons/editar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ALTERAR"/>
           </Properties>
@@ -177,7 +177,7 @@
         <Component class="javax.swing.JButton" name="jButtonRemover">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/lixo.png"/>
+              <Image iconType="3" name="/br/com/pi/icons/lixo.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="REMOVER"/>
           </Properties>
@@ -227,7 +227,7 @@
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/ProjetoMulaCar/src/br/com/pi/icons/limpar-limpo.png"/>
+              <Image iconType="3" name="/br/com/pi/icons/limpar-limpo.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="LIMPAR"/>
           </Properties>

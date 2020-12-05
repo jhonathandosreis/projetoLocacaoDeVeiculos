@@ -96,9 +96,9 @@
                                   <Component id="jButtonCadastrar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
                                   <Component id="jButtonAlterar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="266" max="-2" attributes="0"/>
-                                  <Component id="jButtonRemover" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jButtonRemover" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
                                   <Component id="jButtonLimpar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               </Group>
@@ -116,7 +116,7 @@
                           <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="32" max="32767" attributes="0"/>
+                          <EmptySpace pref="15" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButtonCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButtonAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -290,7 +290,7 @@
                                   <Component id="jTextFieldNumeroPessoaFisica" min="-2" pref="51" max="-2" attributes="0"/>
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="215" max="32767" attributes="0"/>
+                              <EmptySpace pref="241" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -471,6 +471,9 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="jButtonCadastrar">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/br/com/pi/icons/salve.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="CADASTRAR"/>
                   </Properties>
                   <Events>
@@ -479,6 +482,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButtonAlterar">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/br/com/pi/icons/editar.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="ALTERAR"/>
                   </Properties>
                   <Events>
@@ -487,6 +493,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButtonRemover">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/br/com/pi/icons/lixo.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="EXCLUIR"/>
                   </Properties>
                   <Events>
@@ -495,6 +504,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButtonLimpar">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/br/com/pi/icons/limpar-limpo.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="LIMPAR"/>
                   </Properties>
                   <Events>
