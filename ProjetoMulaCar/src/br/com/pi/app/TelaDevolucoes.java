@@ -231,7 +231,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDevolucao = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("[DEVOLUÇÃO DO VEÍCULO]");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Devolução"));

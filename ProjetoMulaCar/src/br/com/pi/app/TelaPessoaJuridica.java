@@ -211,7 +211,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_PessoasJuridicas = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("[PESSOAS JURIDICA]");
 
         jPanel2PessoaFisica.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados Gerais"));

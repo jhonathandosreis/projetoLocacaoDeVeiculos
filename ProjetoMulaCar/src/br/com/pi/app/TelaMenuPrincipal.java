@@ -48,9 +48,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         };
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuFuncionario = new javax.swing.JMenu();
-        jMenuItemLoginFuncionario = new javax.swing.JMenuItem();
-        jMenuItemSair = new javax.swing.JMenuItem();
         jMenuCliente = new javax.swing.JMenu();
         jMenuItemPessoaFisica = new javax.swing.JMenuItem();
         jMenuItemPessoaJuridica = new javax.swing.JMenuItem();
@@ -100,30 +97,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             jDesktopPanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 801, Short.MAX_VALUE)
         );
-
-        jMenuFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/funcionario-cad.png"))); // NOI18N
-        jMenuFuncionario.setText("Funcionario");
-        jMenuFuncionario.setToolTipText("");
-
-        jMenuItemLoginFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/perfil.png"))); // NOI18N
-        jMenuItemLoginFuncionario.setText("Login");
-        jMenuItemLoginFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemLoginFuncionarioActionPerformed(evt);
-            }
-        });
-        jMenuFuncionario.add(jMenuItemLoginFuncionario);
-
-        jMenuItemSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/botao-x.png"))); // NOI18N
-        jMenuItemSair.setText("Sair");
-        jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemSairActionPerformed(evt);
-            }
-        });
-        jMenuFuncionario.add(jMenuItemSair);
-
-        jMenuBar1.add(jMenuFuncionario);
 
         jMenuCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/grupo-de-usuarios.png"))); // NOI18N
         jMenuCliente.setText("CLiente");
@@ -280,19 +253,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemLoginFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoginFuncionarioActionPerformed
-        try {
-            TelaLogin telaLogin = new TelaLogin();
-            telaLogin.setVisible(true);
-        } catch (Exception error) {
-            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jMenuItemLoginFuncionarioActionPerformed
-
-    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jMenuItemSairActionPerformed
-
     private void jMenuItemPessoaFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPessoaFisicaActionPerformed
         try {
             TelaPessoaFisica telaPessoaFisica = new TelaPessoaFisica();
@@ -444,7 +404,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenu jMenuCliente;
-    private javax.swing.JMenu jMenuFuncionario;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
@@ -455,13 +414,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemDesenvolvedores;
     private javax.swing.JMenuItem jMenuItemDevolucao;
     private javax.swing.JMenuItem jMenuItemLocacao;
-    private javax.swing.JMenuItem jMenuItemLoginFuncionario;
     private javax.swing.JMenuItem jMenuItemMarcas;
     private javax.swing.JMenuItem jMenuItemModelo;
     private javax.swing.JMenuItem jMenuItemMotorista;
     private javax.swing.JMenuItem jMenuItemPessoaFisica;
     private javax.swing.JMenuItem jMenuItemPessoaJuridica;
-    private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemTIpoDeVeiculo;
     private javax.swing.JMenuItem jMenuItemUF;
     private javax.swing.JMenuItem jMenuItemVeiculo;

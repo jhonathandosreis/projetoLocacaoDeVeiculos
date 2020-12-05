@@ -6,7 +6,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="[LOCA&#xc7;&#xc3;O DO VE&#xcd;CULO]"/>
   </Properties>
   <SyntheticProperties>
