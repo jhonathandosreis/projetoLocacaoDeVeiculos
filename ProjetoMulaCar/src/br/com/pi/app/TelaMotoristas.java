@@ -698,6 +698,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         try {
+            int chegou = 0;
             ValidaMotoristas();
             Date data = formato.parse(jFormattedTextField_Data_validade.getText());
 
@@ -711,7 +712,9 @@ public class TelaMotoristas extends javax.swing.JFrame {
             enderecoBll.AddEndereco(endereco);
             double cep = endereco.getCep();
             endereco = enderecoBll.getConsultaPorCEP(cep);
-
+            
+            chegou = 1;
+            
             cliente.setEnderecos(endereco);
             cliente.setNome(jTextFieldNomeMotorista.getText());
             cliente.setTelefone(Double.parseDouble(jTextFieldTelefoneMotorista.getText()));
@@ -721,7 +724,9 @@ public class TelaMotoristas extends javax.swing.JFrame {
             clienteBll.addClientes(cliente);
             double clienteTelefone = cliente.getTelefone();
             cliente = clienteBll.getClienteByTelefone(clienteTelefone);
-
+            
+            chegou = 2;
+            
             motorista.setCliente(cliente);
             motorista.setRg(Integer.parseInt(jTextField_rgMotorista.getText()));
             motorista.setCpf(Double.parseDouble(jTextField_CpfMotorista.getText()));
@@ -735,6 +740,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
             limparCampos();
 
         } catch (Exception error) {
+            
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
