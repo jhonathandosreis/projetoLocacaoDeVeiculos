@@ -17,6 +17,7 @@ package br.com.pi.bll;
 
 import br.com.pi.dal.ClientesDal;
 import br.com.pi.model.Clientes;
+import br.com.pi.util.Valida;
 import java.util.ArrayList;
 
 /**
@@ -39,10 +40,18 @@ public class ClientesBll {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addClientes(Clientes cliente) throws Exception {
         try{
+            
+         Valida.campoVazio(cliente.getNome(), "Campo nome deve ser preenchido!");
+         Valida.campoVazio(cliente.getEmail(), "Campo email deve ser preenchido!");
+         Valida.notNumber(cliente.getNome(), "Campo nome não deve conter números!");
+         Valida.notSpecialCharacters(cliente.getNome(), "Campo nome não deve conter caracteres especiais!");
+         if(cliente.getTelefone() == 0) throw new RuntimeException ("Campo telefone deve ser preenchido!");
+         if(cliente.getEnderecos().getIden() == 0) throw new RuntimeException ("Erro ao cadastrar endereço!"); // validando se a chave estrangeira esta persistindo
          clienteDal.addClientes(cliente);
+         
         } catch (Exception error) {
-            if(error.getMessage().contains("email_repetido")) throw new RuntimeException("E-mail "+cliente.getEmail()+" já cadastrado em nosso sistema");
-             if(error.getMessage().contains("telefone_repetido")) throw new RuntimeException("Telefone "+cliente.getTelefone()+" já cadastrado em nosso sistema");
+            if(error.getMessage().contains("email_repetido")) throw new RuntimeException("E-mail ("+cliente.getEmail()+") já cadastrado em nosso sistema!");
+             if(error.getMessage().contains("telefone_repetido")) throw new RuntimeException("Telefone ("+cliente.getTelefone()+") já cadastrado em nosso sistema!");
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|

@@ -17,6 +17,7 @@ package br.com.pi.bll;
 
 import br.com.pi.dal.PessoasJuridicasDal;
 import br.com.pi.model.PessoasJuridicas;
+import br.com.pi.util.Valida;
 import java.util.ArrayList;
 
 /**
@@ -39,6 +40,9 @@ public class PessoasJuridicasBll {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addPessoasJuridicas(PessoasJuridicas pessoaJuridica) throws Exception {
         try{
+         Valida.campoVazio(pessoaJuridica.getNomeFantasia(), "Campo nome fantasia deve ser preenchido!");
+         Valida.campoVazio(pessoaJuridica.getRazaoSocial(), "Campo razão social deve ser preenchido!");
+        if(pessoaJuridica.getCliente().getIden() == 0) throw new RuntimeException("Erro ao inserir cliente em pessoa juridica");
          pessoaJuridicaDal.addPessoasJuridicas(pessoaJuridica);
         } catch (Exception error) {
            if(error.getMessage().contains("cpj_repetido")) throw new RuntimeException("Número "+pessoaJuridica.getCnpj()+" de cnpj já cadastrado em nosso sistema");

@@ -97,7 +97,7 @@ public class Valida {
      * @param type
      */
     public static void campoVazio(String message, String type) {
-        String saida = type + "\nCampo vazio.";
+        String saida = type;
         if (message.trim().equals("")) {
             throw new RuntimeException(saida);
         }
@@ -131,4 +131,16 @@ public class Valida {
             }
         }
     }
+    public static void SomenteNumero(String message, String type) { 
+        long valor;
+        String saida = type;
+        if (message.length() != 0) {
+            try {
+                valor = Long.parseLong(message);
+            } catch (NumberFormatException ex) {
+                throw new RuntimeException(saida);
+            }
+        }
+} 
+
 }

@@ -115,29 +115,12 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
     }
     
     public void validaFormularioPessoasFisicas(){
-           Valida.campoVazio(jTextFieldRGPessoaFisica.getText(), "Campo rg vazio!");
-           Valida.campoVazio(jTextFieldCPFPessoaFisica.getText(), "Campo cpf vazio!");
-           Valida.campoVazio(jTextFieldNomePessoaFisica.getText(), "Campo nome vazio!");
-           Valida.campoVazio(jTextFieldCepPessoaFisica.getText(), "Campo cep vazio!");
-           Valida.campoVazio(jTextFieldLogradouroPessoaFisica.getText(), "Campo logradouro vazio!");
-           Valida.campoVazio(jTextFieldNumeroPessoaFisica.getText(), "Campo numero de endereco vazio!");
-           Valida.campoVazio(jTextFieldComplementoPessoaFisica.getText(), "Campo complemento vazio!");
-           Valida.campoVazio(jTextFieldRuaPessoaFisica.getText(), "Campo rua vazio!");
-           Valida.campoVazio(jTextField_UF.getText(), "Campo uf vazio!");
-           Valida.campoVazio(jTextFieldTelefonePessoaFisica.getText(), "Campo telefone não permite caracteres especiais!");
-           Valida.campoVazio(jTextFieldEmailPessoaFisica.getText(), "Campo e-mail não permite caracteres especiais!");
-           Valida.notSpecialCharacters(jTextFieldRGPessoaFisica.getText(), "Campo rg não permite caracteres especiais!");
-           Valida.notSpecialCharacters(jTextFieldCPFPessoaFisica.getText(), "Campo cpf não permite caracteres especiais!");
-           Valida.notSpecialCharacters(jTextFieldNomePessoaFisica.getText(), "Campo nome não permite caracteres especiais!");
-           Valida.notSpecialCharacters(jTextFieldCepPessoaFisica.getText(), "Campo cep não permite caracteres especiais!");
-           Valida.notSpecialCharacters(jTextFieldLogradouroPessoaFisica.getText(), "Campo logradouro não permite caracteres especiais!");
-           Valida.notSpecialCharacters(jTextFieldNumeroPessoaFisica.getText(), "Campo numero de endereco não permite caracteres especiais!");
-           Valida.notSpecialCharacters(jTextFieldComplementoPessoaFisica.getText(), "Campo complemento não permite caracteres especiais!");
-           Valida.notSpecialCharacters(jTextFieldRuaPessoaFisica.getText(), "Campo rua não permite caracteres especiais!");
-           Valida.notSpecialCharacters(jTextField_UF.getText(), "Campo uf não permite caracteres especiais!");
-           Valida.notSpecialCharacters(jTextFieldTelefonePessoaFisica.getText(), "Campo telefone não permite caracteres especiais!");
-           Valida.notNumber(jTextFieldNomePessoaFisica.getText(), "Campo nome não permite números!");
-           
+        
+       Valida.SomenteNumero(jTextFieldCepPessoaFisica.getText(), "Campo cep deve conter somente números!");
+       Valida.SomenteNumero(jTextFieldNumeroPessoaFisica.getText(), "Campo número do endereço deve conter somente números!");
+       Valida.SomenteNumero(jTextFieldTelefonePessoaFisica.getText(), "Campo telefone deve conter somente números!"); 
+       Valida.SomenteNumero(jTextFieldCPFPessoaFisica.getText(), "Campo cpf deve conter somente números!");
+       Valida.SomenteNumero(jTextFieldRGPessoaFisica.getText(), "Campo rg deve conter somente números!");
     }
 
     public void preencherComboboxCidades() throws Exception {
@@ -433,6 +416,11 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         });
 
         jButtonLimpar.setText("LIMPAR");
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -467,7 +455,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCadastrar)
                     .addComponent(jButtonAlterar)
@@ -525,7 +513,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                     .addComponent(jButtonLimparConsulta))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -560,7 +548,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             jPanel1PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1PessoaFisicaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1PessoaFisica)
+                .addComponent(jTabbedPane1PessoaFisica, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -702,6 +690,10 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro combo Cidades " + error.getMessage());
         }
     }//GEN-LAST:event_jComboBox_CidadesActionPerformed
+
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+      limparCampos();
+    }//GEN-LAST:event_jButtonLimparActionPerformed
 
     /**
      * @param args the command line arguments
