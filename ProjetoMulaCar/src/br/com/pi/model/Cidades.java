@@ -53,7 +53,7 @@ public class Cidades {
     //--- SET ----------------------------------------------------------------------------------------->
     //
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.trim().toUpperCase();
     }
 
      public void setUf(Ufs uf) {
