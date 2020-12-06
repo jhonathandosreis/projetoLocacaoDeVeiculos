@@ -31,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
  * @author jhonlinux
  */
 public class TelaVeiculos extends javax.swing.JFrame {
-
+    
     //--- BLL´S --------------------------------------------------------------------------------------->
     private VeiculosBll veiculosBll = null;
     private ModelosBll modelosBll = null;
@@ -46,7 +46,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
     private Modelos modelo = null;
     //--- FIM CLASSES --------------------------------------------------------------------------------->
     //
-
+    
     public TelaVeiculos() {
         initComponents();
 
@@ -123,7 +123,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
 
             int id = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 0).toString());
             String placa = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 1).toString();
-            double quilometragem = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 2).toString());
+            double quilometragem = Double.parseDouble(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 2).toString());
             String renavam = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 3).toString();
             String status = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 4).toString();
             String observacoes = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 5).toString();
@@ -151,12 +151,14 @@ public class TelaVeiculos extends javax.swing.JFrame {
             jTextFieldQuantidadePassageiros.setText(capacidade + "");
             jTextFieldTipoDeCombustivel.setText(tipoDeCombustivel);
             jTextFieldCapacidadeTanque.setText(capacidadeCombustivel + "");
-            jComboBoxStatus.setSelectedItem(status);
+            jTextFieldStatus.setText(status);
             jTextAreaObservacoes.setText(observacoes);
             jTextFieldMarca.setText(marcacombobox);
             jTextFieldCategoria.setText(categoriacombobox);
             jTextFieldTipoDoVeiculo.setText(tiposDeVeiculoscombobox);
             jComboBoxModelo.setSelectedItem(modeloscombobox);
+            
+            jTextFieldPlaca.setEnabled(true);
 
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -173,7 +175,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jTextFieldValorDeCompra.setText("");
         jTextFieldQuantidadePassageiros.setText("");
         jTextFieldTipoDeCombustivel.setText("");
-        jComboBoxStatus.setSelectedItem("<SELECIONE>");
+        jTextFieldStatus.setText("");
         jComboBoxModelo.setSelectedItem("");
         jTextFieldMarca.setText("");
         jTextFieldTipoDoVeiculo.setText("");
@@ -190,10 +192,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
 
         if (jRadioButtonNacional.isSelected()) {
             Valida.validaPlacaNacional(jTextFieldPlaca.getText(), "Ex: Nacional PHL-4508");
-        }
-
-        if (jComboBoxStatus.getSelectedItem() == "<SELECIONE>") {
-            throw new Exception("Selecione o status do veículo!");
         }
 
         Valida.campoVazio(jTextFieldPlaca.getText(), "Selecione o modelo da placa\nLogo em seguida digite a placa do veículo!");
@@ -246,7 +244,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextFieldValorDeCompra = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jComboBoxStatus = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -266,6 +263,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jRadioButtonMercosul = new javax.swing.JRadioButton();
         jLabel15 = new javax.swing.JLabel();
         jTextFieldCapacidadeTanque = new javax.swing.JTextField();
+        jTextFieldStatus = new javax.swing.JTextField();
         jButtonCadastrar = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
         jButtonRemover = new javax.swing.JButton();
@@ -293,8 +291,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jLabel7.setText("Valor de Compra");
 
         jLabel8.setText("Categoria");
-
-        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<SELECIONE>", "DISPONIVEL" }));
 
         jLabel9.setText("Status");
 
@@ -343,6 +339,9 @@ public class TelaVeiculos extends javax.swing.JFrame {
         });
 
         jLabel15.setText("Capacidade do Tanque");
+
+        jTextFieldStatus.setEditable(false);
+        jTextFieldStatus.setText("DISPONIVEL");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -408,7 +407,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
                             .addComponent(jTextFieldTipoDoVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
@@ -422,7 +420,8 @@ public class TelaVeiculos extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel12))))
+                                    .addComponent(jLabel12)))
+                            .addComponent(jTextFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -461,10 +460,10 @@ public class TelaVeiculos extends javax.swing.JFrame {
                                 .addComponent(jTextFieldCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addGap(26, 26, 26)
+                                    .addGap(27, 27, 27)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jTextFieldTipoDoVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jTextFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel9)))
@@ -673,12 +672,12 @@ public class TelaVeiculos extends javax.swing.JFrame {
             veiculo.setPlaca(jTextFieldPlaca.getText());
             veiculo.setRenavam(jTextFieldRenavam.getText());
             veiculo.setAnoFabricacao(Integer.parseInt(jTextFieldAno.getText()));
-            veiculo.setQuilometragem(Integer.parseInt(jTextFieldKM.getText()));
+            veiculo.setQuilometragem(Double.parseDouble(jTextFieldKM.getText()));
             veiculo.setPrecoDeCompra(Integer.parseInt(jTextFieldValorDeCompra.getText()));
             veiculo.setCapacidade(Integer.parseInt(jTextFieldQuantidadePassageiros.getText()));
             veiculo.setTipoDeCombustivel(jTextFieldTipoDeCombustivel.getText());
             veiculo.setCapacidadeCombustivel(Integer.parseInt(jTextFieldCapacidadeTanque.getText()));
-            veiculo.setStatus(jComboBoxStatus.getSelectedItem().toString());
+            veiculo.setStatus(jTextFieldStatus.getText());
             veiculo.setObservacoes(jTextAreaObservacoes.getText());
             veiculosBll.addVeiculos(veiculo);
             preencherGridVeiculos();
@@ -705,12 +704,12 @@ public class TelaVeiculos extends javax.swing.JFrame {
             veiculo.setPlaca(jTextFieldPlaca.getText());
             veiculo.setRenavam(jTextFieldRenavam.getText());
             veiculo.setAnoFabricacao(Integer.parseInt(jTextFieldAno.getText()));
-            veiculo.setQuilometragem(Integer.parseInt(jTextFieldKM.getText()));
+            veiculo.setQuilometragem(Double.parseDouble(jTextFieldKM.getText()));
             veiculo.setPrecoDeCompra(Integer.parseInt(jTextFieldValorDeCompra.getText()));
             veiculo.setCapacidade(Integer.parseInt(jTextFieldQuantidadePassageiros.getText()));
             veiculo.setTipoDeCombustivel(jTextFieldTipoDeCombustivel.getText());
             veiculo.setCapacidadeCombustivel(Integer.parseInt(jTextFieldCapacidadeTanque.getText()));
-            veiculo.setStatus(jComboBoxStatus.getSelectedItem().toString());
+            veiculo.setStatus(jTextFieldStatus.getText());
             veiculo.setObservacoes(jTextAreaObservacoes.getText());
             veiculosBll.updateVeiculos(veiculo);
             preencherGridVeiculos();
@@ -810,7 +809,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JComboBox<String> jComboBoxModelo;
-    private javax.swing.JComboBox<String> jComboBoxStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -843,6 +841,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPlaca;
     private javax.swing.JTextField jTextFieldQuantidadePassageiros;
     private javax.swing.JTextField jTextFieldRenavam;
+    private javax.swing.JTextField jTextFieldStatus;
     private javax.swing.JTextField jTextFieldTipoDeCombustivel;
     private javax.swing.JTextField jTextFieldTipoDoVeiculo;
     private javax.swing.JTextField jTextFieldValorDeCompra;
