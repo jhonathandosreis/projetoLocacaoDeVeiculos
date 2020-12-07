@@ -43,7 +43,7 @@ public class ClientesBll {
             
          
          Valida.campoVazio(cliente.getEmail(), "Campo email deve ser preenchido!");
-         if(cliente.getTelefone() == 0) throw new RuntimeException ("Campo telefone deve ser preenchido!");
+         Valida.campoVazio(cliente.getTelefone(), "Campo telefone deve ser preenchido!");
          if(cliente.getEnderecos().getIden() == 0) throw new RuntimeException ("Erro ao cadastrar endereço!"); // validando se a chave estrangeira esta persistindo
          clienteDal.addClientes(cliente);
          
@@ -84,7 +84,7 @@ public class ClientesBll {
         return clienteDal.getClientesById(cliente_iden);
     }
     
-    public Clientes getClienteByTelefone(double cliente_telefone) throws Exception {
+    public Clientes getClienteByTelefone(String cliente_telefone) throws Exception {
         return clienteDal.getClientesByTelefone(cliente_telefone);
     }
 

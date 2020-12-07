@@ -17,6 +17,7 @@ package br.com.pi.bll;
 
 import br.com.pi.dal.PessoasFisicasDal;
 import br.com.pi.model.PessoasFisicas;
+import br.com.pi.util.Valida;
 import java.util.ArrayList;
 
 /**
@@ -39,8 +40,8 @@ public class PessoasFisicasBll {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addPessoasFisicas(PessoasFisicas pessoaFisica) throws Exception {
         try{
-        if(pessoaFisica.getCpf() == 0) throw new RuntimeException("Campo cpf deve ser preenchido");
-        if(pessoaFisica.getRg() == 0) throw new RuntimeException("Campo rg deve ser preenchido");
+        Valida.campoVazio(pessoaFisica.getCpf(), "Campo cpf deve ser preenchido!");
+        Valida.campoVazio(pessoaFisica.getRg(), "Campo rg deve ser preenchido!");
         if(pessoaFisica.getCliente().getIden() == 0) throw new RuntimeException("Erro ao inserir cliente em pessoa fisica");       
         pessoaFisicaDal.addPessoasFisicas(pessoaFisica);
         

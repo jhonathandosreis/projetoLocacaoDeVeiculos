@@ -49,7 +49,7 @@ public class PessoasJuridicasDal {
             String sqlPessoaFisica = "INSERT INTO pessoas_juridicas (pju_cnpj, pju_nome_fantasia, pju_razao_social, pju_cli_iden) values (?, ?, ?, ?)";        
         try{       
             PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
-            preparedStatement2.setDouble(1, pessoaJuridica.getCnpj());
+            preparedStatement2.setString(1, pessoaJuridica.getCnpj());
             preparedStatement2.setString(2, pessoaJuridica.getNomeFantasia());
             preparedStatement2.setString(3, pessoaJuridica.getRazaoSocial());
             preparedStatement2.setInt(4, pessoaJuridica.getCliente().getIden());
@@ -69,7 +69,7 @@ public class PessoasJuridicasDal {
             String sqlPessoaFisica = "UPDATE pessoas_juridicas SET pju_cnpj=?, pju_nome_fantasia=?, pju_razao_social=?, pju_cli_iden=? WHERE pju_iden=?";        
         try{
             PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
-            preparedStatement2.setDouble(1, pessoaJuridica.getCnpj());
+            preparedStatement2.setString(1, pessoaJuridica.getCnpj());
             preparedStatement2.setString(2, pessoaJuridica.getNomeFantasia());
             preparedStatement2.setString(3, pessoaJuridica.getRazaoSocial());
             preparedStatement2.setInt(4, pessoaJuridica.getCliente().getIden());
@@ -112,7 +112,7 @@ public class PessoasJuridicasDal {
                 int cli_id = rs.getInt("pju_cli_iden");
                 cliente = clienteBll.getClienteById(cli_id);
                 pessoaJuridica.setIden(rs.getInt("pju_iden"));
-                pessoaJuridica.setCnpj(rs.getDouble("pju_cnpj"));
+                pessoaJuridica.setCnpj(rs.getString("pju_cnpj"));
                 pessoaJuridica.setNomeFantasia(rs.getString("pju_nome_fantasia"));
                 pessoaJuridica.setRazaoSocial(rs.getString("pju_razao_social"));
                 pessoaJuridica.setCliente(cliente);
@@ -139,7 +139,7 @@ public class PessoasJuridicasDal {
                 int cli_id = rs.getInt("pju_cli_iden");
                 cliente = clienteBll.getClienteById(cli_id);
                 pessoaJuridica.setIden(rs.getInt("pju_iden"));
-                pessoaJuridica.setCnpj(rs.getDouble("pju_cnpj"));
+                pessoaJuridica.setCnpj(rs.getString("pju_cnpj"));
                 pessoaJuridica.setNomeFantasia(rs.getString("pju_nome_fantasia"));
                 pessoaJuridica.setRazaoSocial(rs.getString("pju_razao_social"));
                 pessoaJuridica.setCliente(cliente);

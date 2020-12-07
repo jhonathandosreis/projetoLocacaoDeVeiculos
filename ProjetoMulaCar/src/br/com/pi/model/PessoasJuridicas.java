@@ -23,7 +23,7 @@ public class PessoasJuridicas extends Clientes {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private int iden = 0;
-    private double cnpj = 0;
+    private String cnpj ="";
     private String nomeFantasia = "";
     private String razaoSocial = "";
     private Clientes cliente = null;
@@ -35,8 +35,8 @@ public class PessoasJuridicas extends Clientes {
     public PessoasJuridicas() {
     }
 
-    public PessoasJuridicas(int iden, String nome, double telefone, String email,
-            double cnpj, String nomeFantasia, String razaoSocial, Clientes cliente, Enderecos enderecos,String status, float multa) {
+    public PessoasJuridicas(int iden, String nome, String telefone, String email,
+            String cnpj, String nomeFantasia, String razaoSocial, Clientes cliente, Enderecos enderecos,String status, float multa) {
         super(iden, nome, telefone, email, enderecos, status, multa);
         this.iden = iden;
         this.cnpj = cnpj;
@@ -53,7 +53,7 @@ public class PessoasJuridicas extends Clientes {
         return iden;
     }
 
-    public double getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
@@ -77,7 +77,7 @@ public class PessoasJuridicas extends Clientes {
         this.iden = iden;
     }
 
-    public void setCnpj(double cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 

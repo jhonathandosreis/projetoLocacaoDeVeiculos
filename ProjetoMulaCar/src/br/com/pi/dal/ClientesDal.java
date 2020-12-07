@@ -50,7 +50,7 @@ public class ClientesDal {
         try{    
         PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);     
         preparedStatement1.setString(1, cliente.getNome());
-        preparedStatement1.setDouble(2, cliente.getTelefone());
+        preparedStatement1.setString(2, cliente.getTelefone());
         preparedStatement1.setString(3, cliente.getEmail());
         preparedStatement1.setString(4, cliente.getStatus());
         preparedStatement1.setFloat(5, cliente.getMulta());
@@ -67,7 +67,7 @@ public class ClientesDal {
         try{    
             PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);
             preparedStatement1.setString(1, cliente.getNome());
-            preparedStatement1.setDouble(2, cliente.getTelefone());
+            preparedStatement1.setString(2, cliente.getTelefone());
             preparedStatement1.setString(3, cliente.getEmail());
             preparedStatement1.setString(4, cliente.getStatus());
             preparedStatement1.setFloat(5, cliente.getMulta());
@@ -105,7 +105,7 @@ public class ClientesDal {
                 cliente = new Clientes();
                 cliente.setIden(rs.getInt("cli_iden"));
                 cliente.setNome(rs.getString("cli_nome"));
-                cliente.setTelefone(rs.getDouble("cli_telefone"));
+                cliente.setTelefone(rs.getString("cli_telefone"));
                 cliente.setEmail(rs.getString("cli_email"));
                 cliente.setStatus(rs.getString("cli_status"));
                 cliente.setMulta(rs.getFloat("cli_multa"));
@@ -134,7 +134,7 @@ public class ClientesDal {
                 cliente = new Clientes();
                 cliente.setIden(rs.getInt("cli_iden"));
                 cliente.setNome(rs.getString("cli_nome"));
-                cliente.setTelefone(rs.getDouble("cli_telefone"));
+                cliente.setTelefone(rs.getString("cli_telefone"));
                 cliente.setEmail(rs.getString("cli_email"));
                 cliente.setStatus(rs.getString("cli_status"));
                 cliente.setMulta(rs.getFloat("cli_multa"));
@@ -144,11 +144,11 @@ public class ClientesDal {
         return cliente;
     }
     
-    public Clientes getClientesByTelefone(double cli_telefone) throws Exception {
+    public Clientes getClientesByTelefone(String cli_telefone) throws Exception {
         Clientes cliente = new Clientes();
         String sql = "SELECT * FROM clientes WHERE cli_telefone=?";
         PreparedStatement preparedStatement1 = conexao.prepareStatement(sql);
-        preparedStatement1.setDouble(1, cli_telefone);
+        preparedStatement1.setString(1, cli_telefone);
         ResultSet rs = preparedStatement1.executeQuery();
 
             while (rs.next()) {
@@ -158,7 +158,7 @@ public class ClientesDal {
                 cliente = new Clientes();
                 cliente.setIden(rs.getInt("cli_iden"));
                 cliente.setNome(rs.getString("cli_nome"));
-                cliente.setTelefone(rs.getDouble("cli_telefone"));
+                cliente.setTelefone(rs.getString("cli_telefone"));
                 cliente.setEmail(rs.getString("cli_email"));
                 cliente.setStatus(rs.getString("cli_status"));
                 cliente.setMulta(rs.getFloat("cli_multa"));

@@ -29,9 +29,9 @@ CREATE TABLE cidades (
 CREATE TABLE Enderecos (
     end_iden SERIAL PRIMARY KEY,
     end_rua VARCHAR(100),
-    end_numero INTEGER,
+    end_numero VARCHAR(20),
     end_logradouro VARCHAR(50),
-    end_cep BIGINT CONSTRAINT cep_repetido UNIQUE,
+    end_cep VARCHAR(20) CONSTRAINT cep_repetido UNIQUE,
     end_complemento VARCHAR(200),
     end_cid_iden INTEGER,
     FOREIGN KEY (end_cid_iden) REFERENCES cidades (cid_iden)
@@ -40,7 +40,7 @@ CREATE TABLE Enderecos (
 CREATE TABLE clientes (
     cli_iden SERIAL PRIMARY KEY,
     cli_nome VARCHAR(80),
-    cli_telefone BIGINT CONSTRAINT telefone_repetido UNIQUE,
+    cli_telefone VARCHAR(20) CONSTRAINT telefone_repetido UNIQUE,
     cli_email VARCHAR(80) CONSTRAINT email_repetido UNIQUE,
     cli_status VARCHAR(20),
     cli_multa NUMERIC(20),
@@ -50,9 +50,9 @@ CREATE TABLE clientes (
 
 CREATE TABLE pessoas_fisicas (
     pfi_iden SERIAL PRIMARY KEY,
-    pfi_rg INTEGER CONSTRAINT rg_repetido UNIQUE,
-    pfi_cpf BIGINT CONSTRAINT cpf_repetido UNIQUE,
-    pfi_numero_cnh BIGINT CONSTRAINT cnh_repetida UNIQUE,
+    pfi_rg VARCHAR(20) CONSTRAINT rg_repetido UNIQUE,
+    pfi_cpf VARCHAR(20) CONSTRAINT cpf_repetido UNIQUE,
+    pfi_numero_cnh VARCHAR(20) CONSTRAINT cnh_repetida UNIQUE,
     pfi_categoria_cnh VARCHAR(20),
     pfi_data_validade DATE,
     pfi_cli_iden INTEGER,
@@ -68,7 +68,7 @@ CREATE TABLE fotos (
 
 CREATE TABLE pessoas_juridicas (
     pju_iden SERIAL PRIMARY KEY,
-    pju_cnpj BIGINT CONSTRAINT cpj_repetido UNIQUE,
+    pju_cnpj VARCHAR(20) CONSTRAINT cpj_repetido UNIQUE,
     pju_nome_fantasia VARCHAR(200) CONSTRAINT nomeFantasia_repetido UNIQUE,
     pju_razao_social VARCHAR(150) CONSTRAINT razaoSocial_repetido UNIQUE,
     pju_cli_iden INTEGER,
