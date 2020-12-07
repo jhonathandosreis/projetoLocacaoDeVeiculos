@@ -53,9 +53,9 @@ public class MotoristasDal {
         try{
         java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
-        preparedStatement2.setInt(1, motorista.getRg());
-        preparedStatement2.setDouble(2, motorista.getCpf());
-        preparedStatement2.setDouble(3, motorista.getNumeroCnh());
+        preparedStatement2.setString(1, motorista.getRg());
+        preparedStatement2.setString(2, motorista.getCpf());
+        preparedStatement2.setString(3, motorista.getNumeroCnh());
         preparedStatement2.setString(4, motorista.getCategoriaCnh());
         preparedStatement2.setDate(5, dataValidade);
         preparedStatement2.setInt(6, motorista.getCliente().getIden());
@@ -75,9 +75,9 @@ public class MotoristasDal {
         try{
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
         java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
-        preparedStatement2.setInt(1, motorista.getRg());
-        preparedStatement2.setDouble(2, motorista.getCpf());
-        preparedStatement2.setDouble(3, motorista.getNumeroCnh());
+        preparedStatement2.setString(1, motorista.getRg());
+        preparedStatement2.setString(2, motorista.getCpf());
+        preparedStatement2.setString(3, motorista.getNumeroCnh());
         preparedStatement2.setString(4, motorista.getCategoriaCnh());
         preparedStatement2.setDate(5, dataValidade);
         preparedStatement2.setInt(6, motorista.getCliente().getIden());
@@ -119,9 +119,9 @@ public class MotoristasDal {
                 int cli_id = rs.getInt("pfi_cli_iden");
                 cliente = clienteBll.getClienteById(cli_id);
                 motorista.setIden(rs.getInt("pfi_iden"));
-                motorista.setRg(rs.getInt("pfi_rg"));
-                motorista.setCpf(rs.getLong("pfi_cpf"));
-                motorista.setNumeroCnh(rs.getLong("pfi_numero_cnh"));
+                motorista.setRg(rs.getString("pfi_rg"));
+                motorista.setCpf(rs.getString("pfi_cpf"));
+                motorista.setNumeroCnh(rs.getString("pfi_numero_cnh"));
                 motorista.setCategoriaCnh(rs.getString("pfi_categoria_cnh"));
                 motorista.setDataValidade(rs.getDate("pfi_data_validade"));
                 motorista.setCliente(cliente);
@@ -148,9 +148,9 @@ public class MotoristasDal {
         int cli_id = rs.getInt("pfi_cli_iden");
         cliente = clienteBll.getClienteById(cli_id);
         motorista.setIden(rs.getInt("pfi_iden"));
-        motorista.setRg(rs.getInt("pfi_rg"));
-        motorista.setCpf(rs.getLong("pfi_cpf"));
-        motorista.setNumeroCnh(rs.getLong("pfi_numero_cnh"));
+        motorista.setRg(rs.getString("pfi_rg"));
+        motorista.setCpf(rs.getString("pfi_cpf"));
+        motorista.setNumeroCnh(rs.getString("pfi_numero_cnh"));
         motorista.setCategoriaCnh(rs.getString("pfi_categoria_cnh"));
         motorista.setDataValidade(rs.getDate("pfi_data_validade"));
         motorista.setCliente(cliente);
@@ -174,9 +174,9 @@ public class MotoristasDal {
         int cli_id = rs.getInt("pfi_cli_iden");
         cliente = clienteBll.getClienteById(cli_id);
         motorista.setIden(rs.getInt("pfi_iden"));
-        motorista.setRg(rs.getInt("pfi_rg"));
-        motorista.setCpf(rs.getLong("pfi_cpf"));
-        motorista.setNumeroCnh(rs.getLong("pfi_numero_cnh"));
+        motorista.setRg(rs.getString("pfi_rg"));
+        motorista.setCpf(rs.getString("pfi_cpf"));
+        motorista.setNumeroCnh(rs.getString("pfi_numero_cnh"));
         motorista.setCategoriaCnh(rs.getString("pfi_categoria_cnh"));
         motorista.setDataValidade(rs.getDate("pfi_data_validade"));
         motorista.setCliente(cliente);

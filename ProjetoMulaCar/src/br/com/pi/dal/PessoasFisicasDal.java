@@ -49,8 +49,8 @@ public class PessoasFisicasDal {
         String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_cli_iden) values (?, ?, ?)";        
         try{
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
-        preparedStatement2.setInt(1, pessoaFisica.getRg());
-        preparedStatement2.setDouble(2, pessoaFisica.getCpf());
+        preparedStatement2.setString(1, pessoaFisica.getRg());
+        preparedStatement2.setString(2, pessoaFisica.getCpf());
         preparedStatement2.setInt(3, pessoaFisica.getCliente().getIden());
         preparedStatement2.executeUpdate();
         
@@ -67,8 +67,8 @@ public class PessoasFisicasDal {
         String sqlPessoaFisica = "UPDATE pessoas_fisicas SET pfi_rg=?, pfi_cpf=?, pfi_cli_iden=? WHERE pfi_iden=?";        
         try{
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
-        preparedStatement2.setInt(1, pessoaFisica.getRg());
-        preparedStatement2.setDouble(2, pessoaFisica.getCpf());
+        preparedStatement2.setString(1, pessoaFisica.getRg());
+        preparedStatement2.setString(2, pessoaFisica.getCpf());
         preparedStatement2.setInt(3, pessoaFisica.getCliente().getIden());
         preparedStatement2.setInt(4, pessoaFisica.getIden());
         preparedStatement2.executeUpdate();
@@ -108,8 +108,8 @@ public class PessoasFisicasDal {
                 int cli_id = rs.getInt("pfi_cli_iden");
                 cliente = clienteBll.getClienteById(cli_id);
                 pessoaFisica.setIden(rs.getInt("pfi_iden"));
-                pessoaFisica.setRg(rs.getInt("pfi_rg"));
-                pessoaFisica.setCpf(rs.getLong("pfi_cpf"));
+                pessoaFisica.setRg(rs.getString("pfi_rg"));
+                pessoaFisica.setCpf(rs.getString("pfi_cpf"));
                 pessoaFisica.setCliente(cliente);
                 lista.add(pessoaFisica);
            }
@@ -133,8 +133,8 @@ public class PessoasFisicasDal {
         int cli_id = rs.getInt("pfi_cli_iden");
         cliente = clienteBll.getClienteById(cli_id);
         pessoaFisica.setIden(rs.getInt("pfi_iden"));
-        pessoaFisica.setRg(rs.getInt("pfi_rg"));
-        pessoaFisica.setCpf(rs.getLong("pfi_cpf"));
+        pessoaFisica.setRg(rs.getString("pfi_rg"));
+        pessoaFisica.setCpf(rs.getString("pfi_cpf"));
         pessoaFisica.setCliente(cliente);
         }       
         return pessoaFisica;

@@ -18,7 +18,6 @@ import br.com.pi.bll.CidadesBll;
 import br.com.pi.bll.UfsBll;
 import br.com.pi.model.Cidades;
 import br.com.pi.model.Ufs;
-import br.com.pi.util.Valida;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -114,17 +113,7 @@ public class TelaCidades extends javax.swing.JFrame {
         jComboBoxUf.setSelectedIndex(0);
     }
 
-    public void validaCidade() throws Exception {
-
-        Valida.campoVazio(jTextFieldCidade.getText(), "Digite uma Cidade Brasileira!");
-        Valida.notNumber(jTextFieldCidade.getText(), "");
-        Valida.notSpecialCharacters(jTextFieldCidade.getText(), "");
-       
-        if (jComboBoxUf.getSelectedItem() == "<SELECIONE>") {
-            throw new Exception("Selecione uma UF!");
-        }
-
-    }
+  
 
     //--- FIM METODOS --------------------------------------------------------------------------------->
     //
@@ -254,6 +243,11 @@ public class TelaCidades extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/limpar-limpo.png"))); // NOI18N
         jButton1.setText("LIMPAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -318,13 +312,12 @@ public class TelaCidades extends javax.swing.JFrame {
 
         try {
 
-            validaCidade();
 
             String ufs = jComboBoxUf.getSelectedItem().toString();
             uf = ufBll.getUfsNome(ufs);
             cidade.setUf(uf);
 
-            cidade.setNome(jTextFieldCidade.getText().toUpperCase());
+            cidade.setNome(jTextFieldCidade.getText());
             cidadeBll.addCidades(cidade);
 
             preencherGridCidade();
@@ -344,13 +337,13 @@ public class TelaCidades extends javax.swing.JFrame {
             if (jTableCidades.getSelectedRow() == -1) {
                 throw new Exception("Selecione uma Cidade a ser alterada!");
             }
-            validaCidade();
+           
 
             String ufs = jComboBoxUf.getSelectedItem().toString();
             uf = ufBll.getUfsNome(ufs);
             cidade.setUf(uf);
 
-            cidade.setNome(jTextFieldCidade.getText().toUpperCase());
+            cidade.setNome(jTextFieldCidade.getText());
             cidade.setIden(Integer.parseInt(jTextFieldIDCidades.getText()));
             cidadeBll.updateCidades(cidade);
 
@@ -391,6 +384,12 @@ public class TelaCidades extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableCidadesMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+            limparCampos();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

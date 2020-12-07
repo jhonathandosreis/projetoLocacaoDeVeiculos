@@ -713,33 +713,33 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
             cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
             endereco.setCidade(cidade);
-            endereco.setCep(Double.parseDouble(jTextFieldCepMotorista.getText()));
+            endereco.setCep(jTextFieldCepMotorista.getText());
             endereco.setLogradouro(jTextFieldLogradouroMotorista.getText());
             endereco.setComplemento(jTextFieldComplementoMotorista.getText());
-            endereco.setNumero(Float.parseFloat(jTextFieldNumeroMotorista.getText()));
+            endereco.setNumero(jTextFieldNumeroMotorista.getText());
             endereco.setRua(jTextFieldRua.getText());
             enderecoBll.AddEndereco(endereco);
-            double cep = endereco.getCep();
+            String cep = endereco.getCep();
             endereco = enderecoBll.getConsultaPorCEP(cep);
             
             chegou = 1;
             
             cliente.setEnderecos(endereco);
             cliente.setNome(jTextFieldNomeMotorista.getText());
-            cliente.setTelefone(Double.parseDouble(jTextFieldTelefoneMotorista.getText()));
+            cliente.setTelefone(jTextFieldTelefoneMotorista.getText());
             cliente.setEmail(jTextFieldEmailMotorista.getText());
             cliente.setStatus("ADIMPLENTE");
             cliente.setMulta(0);
             clienteBll.addClientes(cliente);
-            double clienteTelefone = cliente.getTelefone();
+            String clienteTelefone = cliente.getTelefone();
             cliente = clienteBll.getClienteByTelefone(clienteTelefone);
             
             chegou = 2;
             
             motorista.setCliente(cliente);
-            motorista.setRg(Integer.parseInt(jTextField_rgMotorista.getText()));
-            motorista.setCpf(Double.parseDouble(jTextField_CpfMotorista.getText()));
-            motorista.setNumeroCnh(Double.parseDouble(jTextFieldCNHMotorista.getText()));
+            motorista.setRg(jTextField_rgMotorista.getText());
+            motorista.setCpf(jTextField_CpfMotorista.getText());
+            motorista.setNumeroCnh(jTextFieldCNHMotorista.getText());
             motorista.setCategoriaCnh(jTextField_CategoriaCNH.getText());
             motorista.setDataValidade(data);
             motoristabll.addMotoristas(motorista);
@@ -788,23 +788,23 @@ public class TelaMotoristas extends javax.swing.JFrame {
             Date data = formato.parse(jFormattedTextField_Data_validade.getText());
 
             endereco.setCidade(cidade);
-            endereco.setCep(Double.parseDouble(jTextFieldCepMotorista.getText()));
+            endereco.setCep(jTextFieldCepMotorista.getText());
             endereco.setLogradouro(jTextFieldLogradouroMotorista.getText());
             endereco.setComplemento(jTextFieldComplementoMotorista.getText());
-            endereco.setNumero(Float.parseFloat(jTextFieldNumeroMotorista.getText()));
+            endereco.setNumero(jTextFieldNumeroMotorista.getText());
             endereco.setRua(jTextFieldRua.getText());
             enderecoBll.updateEndereco(endereco);
 
             cliente.setEnderecos(endereco);
             cliente.setNome(jTextFieldNomeMotorista.getText());
-            cliente.setTelefone(Double.parseDouble(jTextFieldTelefoneMotorista.getText()));
+            cliente.setTelefone(jTextFieldTelefoneMotorista.getText());
             cliente.setEmail(jTextFieldEmailMotorista.getText());
             clienteBll.updateClientes(cliente);
 
             motorista.setCliente(cliente);
-            motorista.setRg(Integer.parseInt(jTextField_rgMotorista.getText()));
-            motorista.setCpf(Double.parseDouble(jTextField_CpfMotorista.getText()));
-            motorista.setNumeroCnh(Double.parseDouble(jTextFieldCNHMotorista.getText()));
+            motorista.setRg(jTextField_rgMotorista.getText());
+            motorista.setCpf(jTextField_CpfMotorista.getText());
+            motorista.setNumeroCnh(jTextFieldCNHMotorista.getText());
             motorista.setCategoriaCnh(jTextField_CategoriaCNH.getText());
             motorista.setDataValidade(data);
             motoristabll.updateMotorista(motorista);

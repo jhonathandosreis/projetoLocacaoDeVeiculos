@@ -25,22 +25,22 @@ public class Motoristas extends PessoasFisicas {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private int iden =0;
-    private double numeroCnh = 0;
+    private String numeroCnh = "";
     private String categoriaCnh = "";
     private Date dataValidade = null;
     private ArrayList<Fotos> fotos = new ArrayList<>();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
-    //--- CONSTRUTORES -------------------------------------------------------------------------------->
+    //--- CONSTRUTORES --------s------------------------------------------------------------------------>
     //
     public Motoristas() {
         
     }
     
-    public Motoristas( double numeroCnh, String categoriaCnh, Date dataValidade,
-        int iden, int rg, double cpf,String status, float multa, String nome, double telefone, String email, Enderecos enderecos, Clientes cliente) {
-       // super(iden, nome, telefone, email, enderecos, cliente, rg, cpf, status, multa);
+    public Motoristas( String numeroCnh, String categoriaCnh, Date dataValidade,
+        int iden, String rg, String cpf,String status, float multa, String nome, String telefone, String email, Enderecos enderecos, Clientes cliente) {
+       super( iden,nome,telefone,email,enderecos,status, multa, cliente, rg, cpf);
         
         this.iden = iden;
         this.numeroCnh = numeroCnh;
@@ -56,7 +56,7 @@ public class Motoristas extends PessoasFisicas {
         return iden;
     }
 
-    public double getNumeroCnh() {
+    public String getNumeroCnh() {
         return numeroCnh;
     }
     
@@ -80,7 +80,7 @@ public class Motoristas extends PessoasFisicas {
         this.iden = iden;
     }
 
-    public void setNumeroCnh(double numeroCnh) {
+    public void setNumeroCnh(String numeroCnh) {
         this.numeroCnh = numeroCnh;
     }
     

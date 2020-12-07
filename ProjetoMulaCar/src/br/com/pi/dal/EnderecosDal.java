@@ -46,9 +46,9 @@ public class EnderecosDal {
 
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, endereco.getRua());
-            preparedStatement.setFloat(2, endereco.getNumero());
+            preparedStatement.setString(2, endereco.getNumero());
             preparedStatement.setString(3, endereco.getLogradouro());
-            preparedStatement.setDouble(4, endereco.getCep());
+            preparedStatement.setString(4, endereco.getCep());
             preparedStatement.setString(5, endereco.getComplemento());
             preparedStatement.setInt(6, endereco.getCidade().getIden());
 
@@ -110,9 +110,9 @@ public class EnderecosDal {
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, endereco.getRua());
-            preparedStatement.setFloat(2, endereco.getNumero());
+            preparedStatement.setString(2, endereco.getNumero());
             preparedStatement.setString(3, endereco.getLogradouro());
-            preparedStatement.setDouble(4, endereco.getCep());
+            preparedStatement.setString(4, endereco.getCep());
             preparedStatement.setString(5, endereco.getComplemento());
             preparedStatement.setInt(6, endereco.getCidade().getIden());
             preparedStatement.setInt(7, endereco.getIden());
@@ -141,9 +141,9 @@ public class EnderecosDal {
 
                 endereco.setIden(rs.getInt("end_iden"));
                 endereco.setRua(rs.getString("end_rua"));
-                endereco.setNumero(rs.getFloat("end_numero"));
+                endereco.setNumero(rs.getString("end_numero"));
                 endereco.setLogradouro(rs.getString("end_logradouro"));
-                endereco.setCep(rs.getDouble("end_cep"));
+                endereco.setCep(rs.getString("end_cep"));
                 endereco.setComplemento(rs.getString("end_complemento"));
 
                 cidade = cidadeBll.getCidadesById(rs.getInt("end_cid_iden"));
@@ -172,9 +172,9 @@ public class EnderecosDal {
 
                 endereco.setIden(rs.getInt("end_iden"));
                 endereco.setRua(rs.getString("end_rua"));
-                endereco.setNumero(rs.getFloat("end_numero"));
+                endereco.setNumero(rs.getString("end_numero"));
                 endereco.setLogradouro(rs.getString("end_logradouro"));
-                endereco.setCep(rs.getDouble("end_cep"));
+                endereco.setCep(rs.getString("end_cep"));
                 endereco.setComplemento(rs.getString("end_complemento"));
 
                 cidade = cidadeBll.getCidadesById(rs.getInt("end_cid_iden"));
@@ -187,7 +187,7 @@ public class EnderecosDal {
         return endereco;
     }
     
-     public Enderecos getEnderecosByCEP(double cep) throws Exception {
+     public Enderecos getEnderecosByCEP(String cep) throws Exception {
 
         Enderecos endereco = new Enderecos();
         String sql = "SELECT * FROM enderecos WHERE end_cep=?";
@@ -195,16 +195,16 @@ public class EnderecosDal {
         try {
 
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setDouble(1, cep);
+            preparedStatement.setString(1, cep);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
 
                 endereco.setIden(rs.getInt("end_iden"));
                 endereco.setRua(rs.getString("end_rua"));
-                endereco.setNumero(rs.getFloat("end_numero"));
+                endereco.setNumero(rs.getString("end_numero"));
                 endereco.setLogradouro(rs.getString("end_logradouro"));
-                endereco.setCep(rs.getDouble("end_cep"));
+                endereco.setCep(rs.getString("end_cep"));
                 endereco.setComplemento(rs.getString("end_complemento"));
                 cidade = cidadeBll.getCidadesById(rs.getInt("end_cid_iden"));
                 endereco.setCidade(cidade);

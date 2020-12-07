@@ -25,7 +25,7 @@ public class Clientes {
     //
     private int iden = 0;
     private String nome = "";
-    private double telefone = 0;
+    private String telefone = "";
     private String email = "";
     private Enderecos enderecos = null;
     private String status = "";
@@ -39,7 +39,7 @@ public class Clientes {
         
     }
     
-    public Clientes(int iden, String nome, double telefone, String email, Enderecos enderecos, String status, float multa) {
+    public Clientes(int iden, String nome, String telefone, String email, Enderecos enderecos, String status, float multa) {
         
         this.iden = iden;
         this.nome = nome;
@@ -62,7 +62,7 @@ public class Clientes {
         return nome;
     }
 
-    public double getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
@@ -94,7 +94,7 @@ public class Clientes {
         this.nome = nome;
     }
 
-    public void setTelefone(double telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 

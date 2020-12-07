@@ -27,8 +27,8 @@ public class PessoasFisicas extends Clientes {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private int iden = 0;
-    private int rg = 0;
-    private double cpf = 0;
+    private String rg = "";
+    private String cpf = "";
     private Clientes cliente = null;
     private ArrayList<Fotos> fotos = new ArrayList<>();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
@@ -40,8 +40,8 @@ public class PessoasFisicas extends Clientes {
         
     }
 
-    public PessoasFisicas(int iden, String nome, double telefone, String email,
-            Enderecos enderecos,String status, float multa, Clientes cliente, int rg, double cpf) {
+    public PessoasFisicas(int iden, String nome, String telefone, String email,
+            Enderecos enderecos,String status, float multa, Clientes cliente, String rg, String cpf) {
         super(iden, nome, telefone, email, enderecos, status, multa);
         this.iden = iden;
         this.rg = rg;
@@ -61,11 +61,11 @@ public class PessoasFisicas extends Clientes {
         return fotos;
     }
     
-    public int getRg() {
+    public String getRg() {
         return rg;
     }
 
-    public double getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
@@ -81,11 +81,11 @@ public class PessoasFisicas extends Clientes {
         this.iden = iden;
     }
 
-    public void setRg(int rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 
-    public void setCpf(double cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
     

@@ -623,24 +623,23 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
 
             endereco.setCidade(cidade);
-            endereco.setCep(Double.parseDouble(jTextFieldCepPessoaFisica.getText()));
+            endereco.setCep(jTextFieldCepPessoaFisica.getText());
             endereco.setLogradouro(jTextFieldLogradouroPessoaFisica.getText());
             endereco.setComplemento(jTextFieldComplementoPessoaFisica.getText());
-            endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaFisica.getText()));
+            endereco.setNumero(jTextFieldNumeroPessoaFisica.getText());
             endereco.setRua(jTextFieldRuaPessoaFisica.getText());
             enderecoBll.updateEndereco(endereco);
 
             cliente.setEnderecos(endereco);
             cliente.setNome(jTextFieldNomePessoaFisica.getText());
-            cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaFisica.getText()));
+            cliente.setTelefone(jTextFieldTelefonePessoaFisica.getText());
             cliente.setEmail(jTextFieldEmailPessoaFisica.getText());
             clienteBll.updateClientes(cliente);
 
             pessoaFisica.setCliente(cliente);
-            pessoaFisica.setRg(Integer.parseInt(jTextFieldRGPessoaFisica.getText()));
-            pessoaFisica.setCpf(Double.parseDouble(jTextFieldCPFPessoaFisica.getText()));
+            pessoaFisica.setRg(jTextFieldRGPessoaFisica.getText());
+            pessoaFisica.setCpf(jTextFieldCPFPessoaFisica.getText());
             pessoaFisicaBll.updatePessoasFisicas(pessoaFisica);
-
             JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome() + " alterado com sucesso no sistema!");
             preencherGridPessoaFisica();
             limparCampos();
@@ -656,28 +655,28 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             validaFormularioPessoasFisicas();
             cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
             endereco.setCidade(cidade);
-            endereco.setCep(Double.parseDouble(jTextFieldCepPessoaFisica.getText()));
+            endereco.setCep(jTextFieldCepPessoaFisica.getText());
             endereco.setLogradouro(jTextFieldLogradouroPessoaFisica.getText());
             endereco.setComplemento(jTextFieldComplementoPessoaFisica.getText());
-            endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaFisica.getText()));
+            endereco.setNumero(jTextFieldNumeroPessoaFisica.getText());
             endereco.setRua(jTextFieldRuaPessoaFisica.getText());
             enderecoBll.AddEndereco(endereco);
-            double cep = endereco.getCep();
+            String cep = endereco.getCep();
             endereco = enderecoBll.getConsultaPorCEP(cep);
 
             cliente.setEnderecos(endereco);
             cliente.setNome(jTextFieldNomePessoaFisica.getText());
-            cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaFisica.getText()));
+            cliente.setTelefone(jTextFieldTelefonePessoaFisica.getText());
             cliente.setEmail(jTextFieldEmailPessoaFisica.getText());
             cliente.setStatus("ADIMPLENTE");
             cliente.setMulta(0);
             clienteBll.addClientes(cliente);
-            double clienteTelefone = cliente.getTelefone();
+            String clienteTelefone = cliente.getTelefone();
             cliente = clienteBll.getClienteByTelefone(clienteTelefone);
 
             pessoaFisica.setCliente(cliente);
-            pessoaFisica.setRg(Integer.parseInt(jTextFieldRGPessoaFisica.getText()));
-            pessoaFisica.setCpf(Double.parseDouble(jTextFieldCPFPessoaFisica.getText()));
+            pessoaFisica.setRg(jTextFieldRGPessoaFisica.getText());
+            pessoaFisica.setCpf(jTextFieldCPFPessoaFisica.getText());
             pessoaFisicaBll.addPessoasFisicas(pessoaFisica);
 
             JOptionPane.showMessageDialog(null, pessoaFisica.getCliente().getNome() + " cadastrado com sucesso no sistema!");

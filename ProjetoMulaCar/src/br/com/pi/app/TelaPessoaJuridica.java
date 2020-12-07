@@ -107,7 +107,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(id);
 
         jTextFieldIdPessoaJuridica.setText("" + pessoaJuridica.getIden());
-        jTextFieldCNPJPessoaJuridica.setText("" + pessoaJuridica.getCnpj());
+        jTextFieldCNPJPessoaJuridica.setText(pessoaJuridica.getCnpj());
         jTextFieldRazaoSocialPessoaJuridica.setText(pessoaJuridica.getRazaoSocial());
         jTextFieldNomeFantasiaPessoaJuridica.setText(pessoaJuridica.getNomeFantasia());
         jTextFieldCepPessoaJuridica.setText("" + pessoaJuridica.getCliente().getEnderecos().getCep());
@@ -116,8 +116,8 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         jTextFieldComplementoPessoaJuridica.setText(pessoaJuridica.getCliente().getEnderecos().getComplemento());
         jTextFieldRuaPessoaJuridica.setText(pessoaJuridica.getCliente().getEnderecos().getRua());
         jComboBoxCidade.setSelectedItem(pessoaJuridica.getCliente().getEnderecos().getCidade());
-        jTextFieldTelefonePessoaJuridica.setText("" + pessoaJuridica.getCliente().getTelefone());
-        jTextFieldEmailPessoaJuridica.setText("" + pessoaJuridica.getCliente().getTelefone());
+        jTextFieldTelefonePessoaJuridica.setText( pessoaJuridica.getCliente().getTelefone());
+        jTextFieldEmailPessoaJuridica.setText(pessoaJuridica.getCliente().getEmail());
 
     }
 
@@ -558,27 +558,27 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             validaFormularioPessoasJuridicas();
             cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
             endereco.setCidade(cidade);
-            endereco.setCep(Double.parseDouble(jTextFieldCepPessoaJuridica.getText()));
+            endereco.setCep(jTextFieldCepPessoaJuridica.getText());
             endereco.setLogradouro(jTextFieldLogradouroPessoaJuridica.getText());
             endereco.setComplemento(jTextFieldComplementoPessoaJuridica.getText());
-            endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaJuridica.getText()));
+            endereco.setNumero(jTextFieldNumeroPessoaJuridica.getText());
             endereco.setRua(jTextFieldRuaPessoaJuridica.getText());
             enderecoBll.AddEndereco(endereco);
-            double cep = endereco.getCep();
+            String cep = endereco.getCep();
             endereco = enderecoBll.getConsultaPorCEP(cep);
 
             cliente.setEnderecos(endereco);
             cliente.setNome(null);
-            cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaJuridica.getText()));
+            cliente.setTelefone(jTextFieldTelefonePessoaJuridica.getText());
             cliente.setEmail(jTextFieldEmailPessoaJuridica.getText());
             cliente.setStatus("ADIMPLENTE");
             cliente.setMulta(0);
             clienteBll.addClientes(cliente);
-            double clienteTelefone = cliente.getTelefone();
+            String clienteTelefone = cliente.getTelefone();
             cliente = clienteBll.getClienteByTelefone(clienteTelefone);
 
             pessoaJuridica.setCliente(cliente);
-            pessoaJuridica.setCnpj(Double.parseDouble(jTextFieldCNPJPessoaJuridica.getText()));
+            pessoaJuridica.setCnpj(jTextFieldCNPJPessoaJuridica.getText());
             pessoaJuridica.setNomeFantasia(jTextFieldNomeFantasiaPessoaJuridica.getText());
             pessoaJuridica.setRazaoSocial(jTextFieldRazaoSocialPessoaJuridica.getText());
             pessoaJuridicaBll.addPessoasJuridicas(pessoaJuridica);
@@ -622,21 +622,21 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
 
             endereco.setCidade(cidade);
-            endereco.setCep(Double.parseDouble(jTextFieldCepPessoaJuridica.getText()));
+            endereco.setCep(jTextFieldCepPessoaJuridica.getText());
             endereco.setLogradouro(jTextFieldLogradouroPessoaJuridica.getText());
             endereco.setComplemento(jTextFieldComplementoPessoaJuridica.getText());
-            endereco.setNumero(Float.parseFloat(jTextFieldNumeroPessoaJuridica.getText()));
+            endereco.setNumero(jTextFieldNumeroPessoaJuridica.getText());
             endereco.setRua(jTextFieldRuaPessoaJuridica.getText());
             enderecoBll.updateEndereco(endereco);
 
             cliente.setEnderecos(endereco);
             cliente.setNome(null);
-            cliente.setTelefone(Double.parseDouble(jTextFieldTelefonePessoaJuridica.getText()));
+            cliente.setTelefone(jTextFieldTelefonePessoaJuridica.getText());
             cliente.setEmail(jTextFieldEmailPessoaJuridica.getText());
             clienteBll.updateClientes(cliente);
 
             pessoaJuridica.setCliente(cliente);
-            pessoaJuridica.setCnpj(Double.parseDouble(jTextFieldCNPJPessoaJuridica.getText()));
+            pessoaJuridica.setCnpj(jTextFieldCNPJPessoaJuridica.getText());
             pessoaJuridica.setNomeFantasia(jTextFieldNomeFantasiaPessoaJuridica.getText());
             pessoaJuridica.setRazaoSocial(jTextFieldRazaoSocialPessoaJuridica.getText());
             pessoaJuridicaBll.updatePessoasJuridicas(pessoaJuridica);

@@ -7,6 +7,7 @@ package br.com.pi.bll;
 
 import br.com.pi.dal.CidadesDal;
 import br.com.pi.model.Cidades;
+import br.com.pi.util.Valida;
 import java.util.ArrayList;
 
 /**
@@ -52,6 +53,17 @@ public class CidadesBll {
         if (cidade.getNome().length() > 50) {
             throw new Exception("Nome da Cidade inválida\nMáximo de caracteres excedido!");
         }
+        
+        
+        if (cidade.getUf().getNome().equals("")) {
+             throw new Exception("Selecione uma UF!");
+        }
+        
+        
+        Valida.campoVazio(cidade.getNome(), "Campo Cidade deve ser preenchido!");
+        Valida.notNumber(cidade.getNome(), "");
+        Valida.notSpecialCharacters(cidade.getNome(), "");
+        
         try {
             cidadeDal.addCidades(cidade);
         } catch (Exception error) {
