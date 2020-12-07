@@ -134,7 +134,7 @@ public class TelaFotos extends javax.swing.JFrame {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
 
         String NomeDoArquivo = f.getName();
-        File destino = new File("/home/jhonlinux/Documentos/projetoLocacaoDeVeiculos/Mer/" + NomeDoArquivo);
+        File destino = new File("C:\\Users\\JHONATHAN\\Pictures\\Wallpapers\\" + NomeDoArquivo);
 
         destino = destino.getAbsoluteFile();
 
@@ -143,7 +143,7 @@ public class TelaFotos extends javax.swing.JFrame {
 
             foto.setFot_caminho(destino.getAbsoluteFile().toString());
 
-            foto.setPessoasFisicas(pessoaFsicia);
+            foto.setPessoasFisicas(motorista);
             fotoBll.addFotos(foto);
 
             if (!destino.exists()) {
