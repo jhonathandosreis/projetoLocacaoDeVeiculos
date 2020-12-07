@@ -122,11 +122,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     }
 
     public void validaFormularioPessoasJuridicas() {
-         Valida.SomenteNumero(jTextFieldCNPJPessoaJuridica.getText(), "Campo cnpj deve conter somente números!");
-         Valida.SomenteNumero(jTextFieldCepPessoaJuridica.getText(), "Campo cep deve conter somente números!");
-         Valida.SomenteNumero(jTextFieldNumeroPessoaJuridica.getText(), "Campo número de endereço deve conter somente números!");
-         Valida.SomenteNumero(jTextFieldTelefonePessoaJuridica.getText(), "Campo telefone deve conter somente números!");
-        
+         Valida.SomenteNumero(jTextFieldNumeroPessoaJuridica.getText(), "Campo número de endereço deve conter somente números!");        
     }
 
     public void preencherComboboxCidades() throws Exception {
@@ -383,7 +379,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         jLabel1.setText("E-Mail");
 
         try {
-            jTextFieldTelefonePessoaJuridica.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-###")));
+            jTextFieldTelefonePessoaJuridica.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }

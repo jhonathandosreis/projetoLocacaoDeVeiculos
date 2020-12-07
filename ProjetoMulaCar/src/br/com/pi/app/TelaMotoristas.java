@@ -192,11 +192,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
     }
     
     public void ValidaMotoristas() {
-       Valida.SomenteNumero(jTextFieldCNHMotorista.getText(), "Campo cnh deve conter somente números!");
-       Valida.SomenteNumero(jTextFieldCepMotorista.getText(), "Campo cep deve conter somente números!");
        Valida.SomenteNumero(jTextFieldNumeroMotorista.getText(), "Campo número do endereço deve conter somente números!");
-       Valida.SomenteNumero(jTextFieldTelefoneMotorista.getText(), "Campo telefone deve conter somente números!"); 
-       Valida.SomenteNumero(jTextField_CpfMotorista.getText(), "Campo cpf deve conter somente números!");
        Valida.SomenteNumero(jTextField_rgMotorista.getText(), "Campo rg deve conter somente números!");
        Valida.campoVazio(jTextFieldNomeMotorista.getText(), "Campo nome deve ser preenchido!");
        Valida.notNumber(jTextFieldNomeMotorista.getText(), "Campo nome não deve conter números!");
@@ -519,7 +515,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jLabel1.setText("E-Mail");
 
         try {
-            jTextFieldTelefoneMotorista.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-###")));
+            jTextFieldTelefoneMotorista.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }

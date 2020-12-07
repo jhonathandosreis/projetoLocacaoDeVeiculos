@@ -116,10 +116,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
     
     public void validaFormularioPessoasFisicas(){
         
-       Valida.SomenteNumero(jTextFieldCepPessoaFisica.getText(), "Campo cep deve conter somente números!");
        Valida.SomenteNumero(jTextFieldNumeroPessoaFisica.getText(), "Campo número do endereço deve conter somente números!");
-       Valida.SomenteNumero(jTextFieldTelefonePessoaFisica.getText(), "Campo telefone deve conter somente números!"); 
-       Valida.SomenteNumero(jTextFieldCPFPessoaFisica.getText(), "Campo cpf deve conter somente números!");
        Valida.SomenteNumero(jTextFieldRGPessoaFisica.getText(), "Campo rg deve conter somente números!");
        Valida.campoVazio(jTextFieldNomePessoaFisica.getText(), "Campo nome deve ser preenchido!");
        Valida.notNumber(jTextFieldNomePessoaFisica.getText(), "Campo nome não deve conter números!");
@@ -388,7 +385,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         jLabel1.setText("E-Mail");
 
         try {
-            jTextFieldTelefonePessoaFisica.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-###")));
+            jTextFieldTelefonePessoaFisica.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
