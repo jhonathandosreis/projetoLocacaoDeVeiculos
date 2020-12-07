@@ -22,7 +22,7 @@ import java.util.ArrayList;
  *
  * @author jhonlinux
  */
-//haaha
+
 public class CategoriasBll {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
