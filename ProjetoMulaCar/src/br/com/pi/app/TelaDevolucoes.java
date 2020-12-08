@@ -537,8 +537,14 @@ public class TelaDevolucoes extends javax.swing.JFrame {
             //--- UPDATE KM NA ENTREGA ----------------------------------------------------------------------------->
             //
             veiculo = locacao.getVeiculos();
-            veiculo.setQuilometragem(Integer.parseInt(jTextFieldKmNaEntrega.getText()));
+            veiculo.setQuilometragem(Double.parseDouble(jTextFieldKmNaEntrega.getText()));
             veiculoBll.updateVeiculos(veiculo);
+            
+            
+            //falta fazer
+//              locacao para ADIMPLENTE
+                
+//              status carro  disponivel      
 
             //--- DADOS LOCATÁRIO ---------------------------------------------------------------------------------->
             //
