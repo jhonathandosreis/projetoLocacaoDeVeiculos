@@ -51,6 +51,7 @@ public class TelaLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("[LOGIN]");
         setMinimumSize(new java.awt.Dimension(1280, 855));
+        setPreferredSize(new java.awt.Dimension(1280, 855));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
