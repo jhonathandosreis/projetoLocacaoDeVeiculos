@@ -111,7 +111,8 @@ public class FotosDal {
 
                 //Chave estrangeira
                 pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(rs.getInt("fot_pfi_iden"));
-                foto.setPessoasFisicas(pessoaFisica);   
+                foto.setPessoasFisicas(pessoaFisica);
+                lista.add(foto);
             }
         } catch (Exception error) {
             throw error;

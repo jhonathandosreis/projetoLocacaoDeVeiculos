@@ -169,6 +169,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
 
         jTextFieldIDVeiculo.setText("");
         jTextFieldPlaca.setText("");
+        jTextFieldPlaca.setEnabled(false);
         jTextFieldRenavam.setText("");
         jTextFieldAno.setText("");
         jTextFieldKM.setText("");
@@ -182,6 +183,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jTextFieldCategoria.setText("");
         jTextAreaObservacoes.setText("");
         jTextFieldCapacidadeTanque.setText("");
+        buttonGroupPlacas.clearSelection();
     }
 
     public void ValidaVeículo() throws Exception {
@@ -195,31 +197,30 @@ public class TelaVeiculos extends javax.swing.JFrame {
         }
 
         Valida.campoVazio(jTextFieldPlaca.getText(), "Selecione o modelo da placa\nLogo em seguida digite a placa do veículo!");
-        Valida.campoVazio(jTextFieldRenavam.getText(), "Digite o renavam do veículo!");
-        Valida.campoVazio(jTextFieldAno.getText(), "Ditie o ano do veículo!");
-        Valida.campoVazio(jTextFieldKM.getText(), "Digite a quilometragem do veículo!");
-        Valida.campoVazio(jTextFieldValorDeCompra.getText(), "Digite o valor da compra do veículo!");
-        Valida.campoVazio(jTextFieldQuantidadePassageiros.getText(), "Digite a quantidade de passageiros!");
-        Valida.campoVazio(jTextFieldTipoDeCombustivel.getText(), "Digite o tipo do combustível!");
-        Valida.campoVazio(jTextAreaObservacoes.getText(), "Digite os detalhes do veículo!");
-        Valida.campoVazio(jTextFieldCapacidadeTanque.getText(), "Digite a capacidade do tanque do veículo!");
+        Valida.campoVazio(jTextFieldRenavam.getText(), "Digite o renavam do veículo!\n");
+        Valida.campoVazio(jTextFieldAno.getText(), "Ditie o ano do veículo!\n");
+        Valida.campoVazio(jTextFieldKM.getText(), "Digite a quilometragem do veículo!\n");
+        Valida.campoVazio(jTextFieldValorDeCompra.getText(), "Digite o valor da compra do veículo!\n");
+        Valida.campoVazio(jTextFieldQuantidadePassageiros.getText(), "Digite a quantidade de passageiros!\n");
+        Valida.campoVazio(jTextFieldTipoDeCombustivel.getText(), "Digite o tipo do combustível!\n");
+        Valida.campoVazio(jTextAreaObservacoes.getText(), "Digite os detalhes do veículo!\n");
+        Valida.campoVazio(jTextFieldCapacidadeTanque.getText(), "Digite a capacidade do tanque do veículo!\n");
 
-        Valida.notSpecialCharacters(jTextFieldRenavam.getText(), "Renavam do veículo não é permitido caracteres especiais!");
-        Valida.notSpecialCharacters(jTextFieldAno.getText(), "Ano do veículo não é permitido caracteres especiais!");
-        Valida.notSpecialCharacters(jTextFieldKM.getText(), "Quilometragem do veículo não é permitido caracteres especiais!");
-        Valida.notSpecialCharacters(jTextFieldValorDeCompra.getText(), "Valor de compra do veículo não é permitido caracteres especiais!");
-        Valida.notSpecialCharacters(jTextFieldQuantidadePassageiros.getText(), "Quantidade de passageiros do veículo não é permitido caracteres especiais!");
-        Valida.notSpecialCharacters(jTextFieldTipoDeCombustivel.getText(), "Tipo do combustivel do veículo não é permitido caracteres especiais!");
-        Valida.notSpecialCharacters(jTextAreaObservacoes.getText(), "O campo observações do veículo não é permitido caracteres especiais!");
-        Valida.notSpecialCharacters(jTextFieldCapacidadeTanque.getText(), "O campo capacidade do tanque do veículo não é permitido caracteres especiais!");
+        Valida.notSpecialCharacters(jTextFieldRenavam.getText(), "Renavam do veículo não é permitido caracteres especiais!\n");
+        Valida.notSpecialCharacters(jTextFieldAno.getText(), "Ano do veículo não é permitido caracteres especiais!\n");
+        Valida.notSpecialCharacters(jTextFieldValorDeCompra.getText(), "Valor de compra do veículo não é permitido caracteres especiais!\n");
+        Valida.notSpecialCharacters(jTextFieldQuantidadePassageiros.getText(), "Quantidade de passageiros do veículo não é permitido caracteres especiais!\n");
+        Valida.notSpecialCharacters(jTextFieldTipoDeCombustivel.getText(), "Tipo do combustivel do veículo não é permitido caracteres especiais!\n");
+        Valida.notSpecialCharacters(jTextAreaObservacoes.getText(), "O campo observações do veículo não é permitido caracteres especiais!\n");
+        Valida.notSpecialCharacters(jTextFieldCapacidadeTanque.getText(), "O campo capacidade do tanque do veículo não é permitido caracteres especiais!\n");
 
-        Valida.numberInteger(jTextFieldRenavam.getText(), "Campo renavam aceita somente números!");
-        Valida.numberInteger(jTextFieldAno.getText(), "Campo ano aceita somente números!");
-        Valida.numberInteger(jTextFieldKM.getText(), "Campo quilometragem aceita somente números!");
-        Valida.numberInteger(jTextFieldValorDeCompra.getText(), "Campo valor de compra aceita somente números!");
-        Valida.numberInteger(jTextFieldQuantidadePassageiros.getText(), "Campo capacidade aceita somente números!");
+        Valida.numberInteger(jTextFieldRenavam.getText(), "Campo renavam aceita somente números!\n");
+        Valida.numberInteger(jTextFieldAno.getText(), "Campo ano aceita somente números!\n");
+        Valida.numberInteger(jTextFieldKM.getText(), "Campo quilometragem aceita somente números!\n");
+        Valida.numberInteger(jTextFieldValorDeCompra.getText(), "Campo valor de compra aceita somente números!\n");
+        Valida.numberInteger(jTextFieldQuantidadePassageiros.getText(), "Campo capacidade aceita somente números!\n");
 
-        Valida.notNumber(jTextFieldTipoDeCombustivel.getText(), "Campo tipo de combustivel não é permitido números!");
+        Valida.notNumber(jTextFieldTipoDeCombustivel.getText(), "Campo tipo de combustivel não é permitido números!\n");
     }
 
     //--- FIM METODOS --------------------------------------------------------------------------------->
@@ -589,9 +590,9 @@ public class TelaVeiculos extends javax.swing.JFrame {
             jTableVeiculo.getColumnModel().getColumn(9).setMinWidth(150);
             jTableVeiculo.getColumnModel().getColumn(9).setPreferredWidth(150);
             jTableVeiculo.getColumnModel().getColumn(9).setMaxWidth(150);
-            jTableVeiculo.getColumnModel().getColumn(10).setMinWidth(160);
-            jTableVeiculo.getColumnModel().getColumn(10).setPreferredWidth(160);
-            jTableVeiculo.getColumnModel().getColumn(10).setMaxWidth(160);
+            jTableVeiculo.getColumnModel().getColumn(10).setMinWidth(170);
+            jTableVeiculo.getColumnModel().getColumn(10).setPreferredWidth(170);
+            jTableVeiculo.getColumnModel().getColumn(10).setMaxWidth(170);
             jTableVeiculo.getColumnModel().getColumn(11).setMinWidth(70);
             jTableVeiculo.getColumnModel().getColumn(11).setPreferredWidth(70);
             jTableVeiculo.getColumnModel().getColumn(11).setMaxWidth(70);
