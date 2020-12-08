@@ -578,7 +578,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-
+        int chegou = 0;
         try {
             validaFormularioPessoasJuridicas();
             cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
@@ -592,6 +592,8 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             String cep = endereco.getCep();
             endereco = enderecoBll.getConsultaPorCEP(cep);
 
+            chegou = 1;
+            
             cliente.setEnderecos(endereco);
             cliente.setNome(null);
             cliente.setTelefone(jTextFieldTelefonePessoaJuridica.getText());
@@ -602,6 +604,8 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             String clienteTelefone = cliente.getTelefone();
             cliente = clienteBll.getClienteByTelefone(clienteTelefone);
 
+            chegou = 2;
+            
             pessoaJuridica.setCliente(cliente);
             pessoaJuridica.setCnpj(jTextFieldCNPJPessoaJuridica.getText());
             pessoaJuridica.setNomeFantasia(jTextFieldNomeFantasiaPessoaJuridica.getText());
@@ -613,6 +617,17 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             limparCampos();
 
         } catch (Exception error) {
+            
+             try{
+            if(chegou == 1)enderecoBll.deleteLast();
+            if(chegou == 2){
+                clienteBll.deleteLast();
+                enderecoBll.deleteLast();
+            }
+            } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + e.getMessage());
+        }
+             
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
@@ -635,6 +650,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxCidadeActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        int chegou = 0;
         try {
             if (jTable_PessoasJuridicas.getSelectedRow() == -1) {
                 throw new Exception("Selecione uma pessoa juridica na tabela para ser alterado!");
@@ -654,12 +670,16 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             endereco.setRua(jTextFieldRuaPessoaJuridica.getText());
             enderecoBll.updateEndereco(endereco);
 
+            chegou = 1;
+            
             cliente.setEnderecos(endereco);
             cliente.setNome(null);
             cliente.setTelefone(jTextFieldTelefonePessoaJuridica.getText());
             cliente.setEmail(jTextFieldEmailPessoaJuridica.getText());
             clienteBll.updateClientes(cliente);
 
+            chegou = 2;
+            
             pessoaJuridica.setCliente(cliente);
             pessoaJuridica.setCnpj(jTextFieldCNPJPessoaJuridica.getText());
             pessoaJuridica.setNomeFantasia(jTextFieldNomeFantasiaPessoaJuridica.getText());
@@ -671,6 +691,17 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             limparCampos();
 
         } catch (Exception error) {
+            
+             try{
+            if(chegou == 1)enderecoBll.deleteLast();
+            if(chegou == 2){
+                clienteBll.deleteLast();
+                enderecoBll.deleteLast();
+            }
+            } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + e.getMessage());
+        }
+             
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAlterarActionPerformed

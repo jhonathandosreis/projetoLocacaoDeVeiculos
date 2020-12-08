@@ -36,7 +36,7 @@ public class Locacoes {
     private float valorCaucao = 0;
     private float valorSeguro = 0;
     private float valorTotalPago = 0;
-    private SituacaoLocacao situacao = null;
+    private String status = "";
     
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
@@ -48,7 +48,7 @@ public class Locacoes {
     }
     
     public Locacoes(int iden, Clientes clientes, Motoristas motoristas, Veiculos veiculos,
-            Date dataDeLocao, Date dataPrevistaDevolucao, double kmInicial, SituacaoLocacao situacao,
+            Date dataDeLocao, Date dataPrevistaDevolucao, double kmInicial,String status,
             float valorLocacao, float valorCaucao, float valorSeguro, float valorTotalPago) {
         this.iden = iden;
         this.cliente = clientes;
@@ -61,7 +61,8 @@ public class Locacoes {
         this.valorCaucao = valorCaucao;
         this.valorSeguro = valorSeguro;
         this.valorTotalPago = valorTotalPago;
-        this.situacao = situacao;
+        this.status = status;
+       
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -114,8 +115,8 @@ public class Locacoes {
         return valorTotalPago;
     }
     
-    public SituacaoLocacao getSituacao() {
-        return situacao;
+    public String getStatus() {
+        return status;
     }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
@@ -168,8 +169,8 @@ public class Locacoes {
         this.valorTotalPago = valorTotalPago;
     }
     
-    public void setSituacao(SituacaoLocacao situacao) {
-        this.situacao = situacao;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     //--- FIM SET -------------------------------------------------------------------------------------|

@@ -636,6 +636,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        int chegou = 0;
         try {
             if (jTableConsultaPessoaFisica.getSelectedRow() == -1) {
                 throw new Exception("Selecione uma pessoa fisica na tabela para ser alterado!");
@@ -655,12 +656,16 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             endereco.setRua(jTextFieldRuaPessoaFisica.getText());
             enderecoBll.updateEndereco(endereco);
 
+            chegou = 1;
+            
             cliente.setEnderecos(endereco);
             cliente.setNome(jTextFieldNomePessoaFisica.getText());
             cliente.setTelefone(jTextFieldTelefonePessoaFisica.getText());
             cliente.setEmail(jTextFieldEmailPessoaFisica.getText());
             clienteBll.updateClientes(cliente);
 
+            chegou = 2;
+            
             pessoaFisica.setCliente(cliente);
             pessoaFisica.setRg(jTextFieldRGPessoaFisica.getText());
             pessoaFisica.setCpf(jTextFieldCPFPessoaFisica.getText());
@@ -670,12 +675,22 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             limparCampos();
 
         } catch (Exception error) {
+           
+            try{
+            if(chegou == 1)enderecoBll.deleteLast();
+            if(chegou == 2){
+                clienteBll.deleteLast();
+                enderecoBll.deleteLast();
+            }
+            } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + e.getMessage());
+        }
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-
+        int chegou = 0;
         try {
             validaFormularioPessoasFisicas();
             cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
@@ -688,7 +703,9 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             enderecoBll.AddEndereco(endereco);
             String cep = endereco.getCep();
             endereco = enderecoBll.getConsultaPorCEP(cep);
-
+            
+            chegou = 1;
+            
             cliente.setEnderecos(endereco);
             cliente.setNome(jTextFieldNomePessoaFisica.getText());
             cliente.setTelefone(jTextFieldTelefonePessoaFisica.getText());
@@ -699,6 +716,8 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             String clienteTelefone = cliente.getTelefone();
             cliente = clienteBll.getClienteByTelefone(clienteTelefone);
 
+            chegou = 2;
+            
             pessoaFisica.setCliente(cliente);
             pessoaFisica.setRg(jTextFieldRGPessoaFisica.getText());
             pessoaFisica.setCpf(jTextFieldCPFPessoaFisica.getText());
@@ -709,6 +728,17 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             limparCampos();
 
         } catch (Exception error) {
+            
+             try{
+            if(chegou == 1)enderecoBll.deleteLast();
+            if(chegou == 2){
+                clienteBll.deleteLast();
+                enderecoBll.deleteLast();
+            }
+            } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + e.getMessage());
+        }
+             
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed

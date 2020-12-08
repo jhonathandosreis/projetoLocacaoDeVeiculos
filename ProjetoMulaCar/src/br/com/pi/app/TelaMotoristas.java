@@ -356,7 +356,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
                             .addComponent(jLabel3RGPessoaFisica)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextField_CategoriaCNH)
-                            .addComponent(jTextFieldCNHMotorista))))
+                            .addComponent(jTextFieldCNHMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(815, Short.MAX_VALUE))
         );
         jPanel2PessoaFisicaLayout.setVerticalGroup(
@@ -739,8 +739,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        try {
             int chegou = 0;
+        try {
             ValidaMotoristas();
             Date data = formato.parse(jFormattedTextField_Data_validade.getText());
 
@@ -782,6 +782,17 @@ public class TelaMotoristas extends javax.swing.JFrame {
             limparCampos();
 
         } catch (Exception error) {
+           
+            try{
+                
+            if(chegou == 1)enderecoBll.deleteLast();
+            if(chegou == 2){
+                clienteBll.deleteLast();
+                enderecoBll.deleteLast();
+            }
+            } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + e.getMessage());
+        }
             
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -806,6 +817,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableConsultarMotoristaMouseClicked
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        int chegou = 0;
         try {
             if (jTableConsultarMotorista.getSelectedRow() == -1) {
                 throw new Exception("Selecione um motorista na tabela para ser alterado!");
@@ -828,12 +840,16 @@ public class TelaMotoristas extends javax.swing.JFrame {
             endereco.setRua(jTextFieldRua.getText());
             enderecoBll.updateEndereco(endereco);
 
+            chegou = 1;
+            
             cliente.setEnderecos(endereco);
             cliente.setNome(jTextFieldNomeMotorista.getText());
             cliente.setTelefone(jTextFieldTelefoneMotorista.getText());
             cliente.setEmail(jTextFieldEmailMotorista.getText());
             clienteBll.updateClientes(cliente);
 
+            chegou = 2; 
+            
             motorista.setCliente(cliente);
             motorista.setRg(jTextField_rgMotorista.getText());
             motorista.setCpf(jTextField_CpfMotorista.getText());
@@ -847,6 +863,17 @@ public class TelaMotoristas extends javax.swing.JFrame {
             limparCampos();
 
         } catch (Exception error) {
+            
+             try{
+            if(chegou == 1)enderecoBll.deleteLast();
+            if(chegou == 2){
+                clienteBll.deleteLast();
+                enderecoBll.deleteLast();
+            }
+            } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + e.getMessage());
+        }
+             
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAlterarActionPerformed

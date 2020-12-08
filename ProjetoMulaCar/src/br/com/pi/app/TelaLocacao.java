@@ -39,6 +39,7 @@ import javax.swing.table.DefaultTableModel;
  * @author GustavoDev
  */
 public class TelaLocacao extends javax.swing.JFrame {
+    
     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
     Locacoes locacao;
     LocacoesBll locacaoBll;
@@ -91,6 +92,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     
     public int DiferencaEntreDatas(Date data1, Date data2) throws Exception{
             if(data1.compareTo(data2) >=0 ) throw new Exception("Data de devolução inválida!");
+            
             long diferencaMS =  data2.getTime() - data1.getTime();
             long diferencaSegundos = diferencaMS / 1000;
             long diferencaMinutos = diferencaSegundos / 60;
@@ -99,7 +101,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             int dias = (int) diferencaDias;
             return dias;
     }
-     private void imprimirNaGrid(ArrayList<Veiculos> listaveiculos){
+     private void imprimirNaGridVeiculos(ArrayList<Veiculos> listaveiculos){
         try{
             DefaultTableModel model =  (DefaultTableModel) jTable_VEICULOS.getModel();
             model.setNumRows(0);
@@ -112,7 +114,8 @@ public class TelaLocacao extends javax.swing.JFrame {
                 coluna[2]= veiculo.getModelo().getTiposDeVeiculos().getNome();
                 coluna[3]= veiculo.getModelo().getNome();
                 coluna[4]= veiculo.getModelo().getMarcas().getNome();   
-                coluna[5]= veiculo.getPlaca();                               
+                coluna[5]= veiculo.getPlaca();   
+                
                 model.addRow(coluna);    
                 }
                 
@@ -127,7 +130,7 @@ public class TelaLocacao extends javax.swing.JFrame {
          ArrayList<Motoristas> listaMotoristas = motoristabll.getAllMotoristas();
             for(Motoristas motorista : listaMotoristas){
                 if(motorista.getCliente().getStatus().equals("ADIMPLENTE")){
-                jComboBox_MotoristaLocacao.addItem(motorista.getCliente().getIden()+"-"+motorista.getCliente().getNome());
+                jComboBox_MotoristaLocacao.addItem(motorista.getIden()+"-"+motorista.getCliente().getNome());
             }
             }
             } catch (Exception error) {
@@ -141,6 +144,7 @@ public class TelaLocacao extends javax.swing.JFrame {
         if(jRadioButtonPFisica.isSelected()){
             
             ArrayList<PessoasFisicas> listaPessoasFisicas = pessoaFisicaBll.getAllPessoasFisicas();
+             jComboBox_MotoristaLocacao.setEnabled(true);
            // jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
             for (PessoasFisicas pessoaFisica : listaPessoasFisicas) {
                 if(pessoaFisica.getCliente().getStatus().equals("ADIMPLENTE")){
@@ -151,6 +155,7 @@ public class TelaLocacao extends javax.swing.JFrame {
         
         if(jRadioButtonPJuridica.isSelected()){
             ArrayList<PessoasJuridicas> listaPessoasJuridicas = pessoaJuridicaBll.getAllPessoasJuridicas();
+             jComboBox_MotoristaLocacao.setEnabled(true);
             //jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
             for (PessoasJuridicas pessoJurica : listaPessoasJuridicas) {
                  if(pessoJurica.getCliente().getStatus().equals("ADIMPLENTE")){
@@ -161,6 +166,7 @@ public class TelaLocacao extends javax.swing.JFrame {
         
         if(JradioButonMotodista.isSelected()){
             ArrayList<Motoristas> listaMotoristas = motoristabll.getAllMotoristas();
+            jComboBox_MotoristaLocacao.setEnabled(false);
             //jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
             for(Motoristas motorista : listaMotoristas){
                  if(motorista.getCliente().getStatus().equals("ADIMPLENTE")){
@@ -224,7 +230,7 @@ public class TelaLocacao extends javax.swing.JFrame {
         jTable_VEICULOS = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable_locacao = new javax.swing.JTable();
         jButton_Limpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -440,15 +446,15 @@ public class TelaLocacao extends javax.swing.JFrame {
 
         jLabel8.setText("Filtrar tabela de veículos por:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_locacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "CÓDIGO", "PLACA DO VEÍCULO", "CPF/CNPJ", "KM INICIAL", "DATA DA LOCAÇÃO", "DATA PREVISTA", "VALOR FINAL"
+                "CÓDIGO", "PLACA DO VEÍCULO", "CPF/CNPJ", "KM INICIAL", "DATA DA LOCAÇÃO", "DATA PREVISTA", "VALOR FINAL", "STATUS"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTable_locacao);
 
         jButton_Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/limpar-limpo.png"))); // NOI18N
         jButton_Limpar.setText("LIMPAR");
@@ -551,7 +557,9 @@ public class TelaLocacao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-         try {
+        
+        try {
+             
             if (jTable_VEICULOS.getSelectedRow() == -1) {
                 throw new Exception("Selecione veículo na tabela para ser locado!");
             }
@@ -560,11 +568,18 @@ public class TelaLocacao extends javax.swing.JFrame {
             }
             if(JradioButonMotodista.isSelected()){
                 motorista = motoristabll.getMotoristaById(SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString()));
-                locacao.setCliente(motorista.getCliente());
+                cliente = motorista.getCliente();
+                locacao.setCliente(cliente);
+                locacao.setMotoristas(motorista);
+            }
+            else{
+                Motoristas motorista2 = motoristabll.getMotoristaById(SplitReturnID(jComboBox_MotoristaLocacao.getSelectedItem().toString()));
+                locacao.setMotoristas(motorista2);
             }
             if(jRadioButtonPFisica.isSelected()){
                 pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString()));
-                locacao.setCliente(pessoaFisica.getCliente());
+                cliente = pessoaFisica.getCliente();
+                locacao.setCliente(cliente);
             }
             if(jRadioButtonPJuridica.isSelected()){
                 pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString()));
@@ -574,9 +589,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             int id = Integer.parseInt(jTable_VEICULOS.getValueAt(jTable_VEICULOS.getSelectedRow(), 0).toString());
             veiculo = veiculoBll.getVeiculosById(id);
             locacao.setVeiculos(veiculo);
-            motorista = motoristabll.getMotoristaById(SplitReturnID(jComboBox_MotoristaLocacao.getSelectedItem().toString()));
-            locacao.setMotoristas(motorista);
-
+           
             Date dataLocacao = formato.parse(jTextFieldDataLocacao.getText());
             Date dataPrevista = formato.parse(jTextFieldDataDevolucao.getText());
             locacao.setDataDeLocacao(dataLocacao);
@@ -586,7 +599,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             int dias = DiferencaEntreDatas(dataLocacao,dataPrevista);
             float valorDiaria = veiculo.getModelo().getCategoria().getValorDiarioLocacao();
             float valorLocacao = valorDiaria * dias;
-            float valorCaucao = (float) (valorLocacao + (valorLocacao * 1.5));
+            float valorCaucao = (float) (valorLocacao * 1.5);
             float valorSeguro =  (float) (valorLocacao * 0.009);
             float valorTotal = valorLocacao + valorCaucao + valorSeguro;
             
@@ -594,6 +607,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             locacao.setValorCaucao(valorCaucao);
             locacao.setValorSeguro(valorSeguro);
             locacao.setValorTotalPago(valorTotal); 
+            locacao.setStatus("ATIVA");
             
             
             if(fimLocacao == null){
@@ -634,7 +648,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     private void jButton_listarPorCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listarPorCategoriaActionPerformed
        try{
         TemplateOrdenadoPorCategoria objeto = new TemplateOrdenadoPorCategoria();
-        imprimirNaGrid(objeto.OrdenarListaVeiculos());
+        imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -643,7 +657,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     private void jButton_listarPorTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listarPorTipoActionPerformed
         try{
         TemplateOrdenadoPorMarca objeto = new TemplateOrdenadoPorMarca();
-        imprimirNaGrid(objeto.OrdenarListaVeiculos());
+        imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -652,7 +666,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     private void jButton_listarPorModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listarPorModeloActionPerformed
         try{
          TemplateOrdenadoPorModelo objeto = new TemplateOrdenadoPorModelo();
-         imprimirNaGrid(objeto.OrdenarListaVeiculos());
+         imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -661,7 +675,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     private void jButton__listarPorMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton__listarPorMarcaActionPerformed
         try{
          TemplateOrdenadoPorMarca objeto = new TemplateOrdenadoPorMarca();
-         imprimirNaGrid(objeto.OrdenarListaVeiculos());
+         imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -672,8 +686,9 @@ public class TelaLocacao extends javax.swing.JFrame {
         int id = Integer.parseInt(jTable_VEICULOS.getValueAt(jTable_VEICULOS.getSelectedRow(), 0).toString());
          veiculo = veiculoBll.getVeiculosById(id);
          String saida = "MODELO: "+veiculo.getModelo().getNome();
-         saida+= "\nMARCA: "+veiculo.getModelo().getMarcas();
+         saida+= "\nMARCA: "+veiculo.getModelo().getMarcas().getNome();
          saida+= "\nPLACA: "+veiculo.getPlaca();
+         saida+= "\nKM ATUAL: "+veiculo.getQuilometragem();
          jTextArea_informacoesVeiculo.setText(saida);
          } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -772,8 +787,8 @@ public class TelaLocacao extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable_VEICULOS;
+    private javax.swing.JTable jTable_locacao;
     private javax.swing.JTextArea jTextArea_informacoesVeiculo;
     private javax.swing.JFormattedTextField jTextFieldDataDevolucao;
     private javax.swing.JFormattedTextField jTextFieldDataLocacao;

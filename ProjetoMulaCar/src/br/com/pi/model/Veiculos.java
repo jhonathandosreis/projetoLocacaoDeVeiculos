@@ -45,7 +45,7 @@ public class Veiculos {
         
     }
     
-    public Veiculos(int iden, String placa, int quilometragem, String renavam, 
+    public Veiculos(int iden, String placa, double quilometragem, String renavam, 
             String status, int precoDeCompra, int anoFabricacao, String observacoes, 
             int capacidade, String tipoDeCombustivel, Modelos modelo, TiposDeVeiculos tiposDeVeiculos, int capacidadeCombustivel) {
         this.iden = iden;
