@@ -49,11 +49,10 @@ public class FotosDal {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addFotos(Fotos foto) throws Exception {
 
-        String sql = "INSERT INTO fotos(fot_caminho, fot_pfi_iden) VALUES(?,?)";
+        String sql = "INSERT INTO fotos(fot_caminho) VALUES(?,?)";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, foto.getFot_caminho());
-            preparedStatement.setInt(2, foto.getPessoasFisicas().getIden());
             preparedStatement.executeUpdate();
         } catch (Exception error) {
             throw error;
@@ -70,8 +69,7 @@ public class FotosDal {
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, foto.getFot_caminho());
-            preparedStatement.setInt(2, foto.getPessoasFisicas().getIden());
-            preparedStatement.setInt(3, foto.getFot_iden());
+            preparedStatement.setInt(2, foto.getFot_iden());
             preparedStatement.executeUpdate();
         } catch (Exception error) {
             throw error;
@@ -108,10 +106,6 @@ public class FotosDal {
                 Fotos foto = new Fotos();
                 foto.setFot_iden(rs.getInt("fot_iden"));
                 foto.setFot_caminho(rs.getString("fot_caminho"));
-
-                //Chave estrangeira
-                pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(rs.getInt("fot_pfi_iden"));
-                foto.setPessoasFisicas(pessoaFisica);
                 lista.add(foto);
             }
         } catch (Exception error) {
@@ -130,11 +124,7 @@ public class FotosDal {
             ResultSet rs = statement.executeQuery(sql);
             if (rs.next()) {
                 foto.setFot_iden(rs.getInt("fot_iden"));
-                foto.setFot_caminho(rs.getString("fot_caminho"));
-
-                //chave estrangeira
-                pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(rs.getInt("fot_pfi_iden"));
-                foto.setPessoasFisicas(pessoaFisica);   
+                foto.setFot_caminho(rs.getString("fot_caminho"));   
             }
         } catch (Exception error) {
             throw error;
@@ -157,11 +147,7 @@ public class FotosDal {
             while (rs.next()) {
                 Fotos foto = new Fotos();
                 foto.setFot_iden(rs.getInt("fot_iden"));
-                foto.setFot_caminho(rs.getString("fot_caminho"));
-                
-                //Chave estrangeira
-                pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(rs.getInt("fot_pfi_iden"));
-                foto.setPessoasFisicas(pessoaFisica);       
+                foto.setFot_caminho(rs.getString("fot_caminho"));     
                 fotos.add(foto);
             }
         } catch (Exception error) {
