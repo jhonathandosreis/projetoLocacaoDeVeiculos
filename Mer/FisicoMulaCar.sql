@@ -111,6 +111,7 @@ CREATE TABLE locacoes (
     loc_valor_caucao NUMERIC(50),
     loc_valor_seguro NUMERIC(50),
     loc_valor_total_pago NUMERIC(50),
+    loc_status VARCHAR(20),
     loc_cli_iden INTEGER,
     loc_vei_iden INTEGER,
     

@@ -489,10 +489,10 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="jTable_locacao">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="7" rowCount="0">
+                  <Table columnCount="8" rowCount="0">
                     <Column editable="true" title="C&#xd3;DIGO" type="java.lang.Object"/>
                     <Column editable="true" title="PLACA DO VE&#xcd;CULO" type="java.lang.Object"/>
                     <Column editable="true" title="CPF/CNPJ" type="java.lang.Object"/>
@@ -500,6 +500,7 @@
                     <Column editable="true" title="DATA DA LOCA&#xc7;&#xc3;O" type="java.lang.Object"/>
                     <Column editable="true" title="DATA PREVISTA" type="java.lang.Object"/>
                     <Column editable="true" title="VALOR FINAL" type="java.lang.Object"/>
+                    <Column editable="true" title="STATUS" type="java.lang.Object"/>
                   </Table>
                 </Property>
               </Properties>

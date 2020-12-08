@@ -56,8 +56,8 @@ public class LocacoesDal {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addLocacoes (Locacoes locacao) throws Exception {
         
-        String sql = "INSERT INTO locacoes (loc_data_locacao=?, loc_data_prevista_devolucao=?, loc_km_inicial=?,"
-                + " loc_valor_locacao=?, loc_valor_caucao=?, loc_valor_seguro=?, loc_valor_total_pago=?, loc_cli_iden=?, loc_vei_iden=?)";
+        String sql = "INSERT INTO locacoes (loc_data_locacao, loc_data_prevista_devolucao, loc_km_inicial,"
+                + " loc_valor_locacao, loc_valor_caucao, loc_valor_seguro, loc_valor_total_pago,loc_cli_iden, loc_vei_iden, loc_status) VALUES (?,?,?,?,?,?,?,?,?,?)";
         try{
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         
@@ -73,6 +73,7 @@ public class LocacoesDal {
         preparedStatement.setFloat(7, locacao.getValorTotalPago());
         preparedStatement.setInt(8, locacao.getCliente().getIden());
         preparedStatement.setInt(9, locacao.getVeiculos().getIden());
+        preparedStatement.setString(10, locacao.getStatus());
         preparedStatement.executeUpdate();
         
         } catch (Exception error) {
@@ -87,7 +88,7 @@ public class LocacoesDal {
     public void updateLocacoes (Locacoes locacao) throws Exception {
         
         String sql = "UPDATE locacoes SET loc_data_locacao=?, loc_data_prevista_devolucao=?, loc_km_inicial=?,"
-                + " loc_valor_locacao=?, loc_valor_caucao=?, loc_valor_seguro=?, loc_valor_total_pago=?, loc_cli_iden=?, loc_vei_iden=? WHERE loc_codigo=?)";
+                + " loc_valor_locacao=?, loc_valor_caucao=?, loc_valor_seguro=?, loc_valor_total_pago=?, loc_cli_iden=?, loc_vei_iden=?, loc_status=? WHERE loc_codigo=?)";
         try{
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         
@@ -103,7 +104,8 @@ public class LocacoesDal {
         preparedStatement.setFloat(7, locacao.getValorTotalPago());
         preparedStatement.setInt(8, locacao.getCliente().getIden());
         preparedStatement.setInt(9, locacao.getVeiculos().getIden());
-        preparedStatement.setInt(10, locacao.getIden());
+        preparedStatement.setString(10, locacao.getStatus());
+        preparedStatement.setInt(11, locacao.getIden());
         preparedStatement.executeUpdate();
         
         } catch (Exception error) {
@@ -141,7 +143,7 @@ public class LocacoesDal {
          ResultSet rs = statement.executeQuery(sql);
          
            if(rs.next()){
-                int cli_id = rs.getInt("pfi_cli_iden");
+                int cli_id = rs.getInt("loc_cli_iden");
                 cliente = clienteBll.getClienteById(cli_id);
                 int vei_id = rs.getInt("loc_vei_iden");
                 veiculo = veiculoBll.getVeiculosById(vei_id);
@@ -153,6 +155,7 @@ public class LocacoesDal {
                 locacao.setValorCaucao(rs.getFloat("loc_valor_caucao"));
                 locacao.setValorSeguro(rs.getFloat("loc_valor_seguro"));
                 locacao.setValorTotalPago(rs.getFloat("loc_valor_total_pago"));
+                locacao.setStatus(rs.getString("loc_status"));
                 locacao.setCliente(cliente);
                 locacao.setVeiculos(veiculo);
                 lista.add(locacao);
@@ -172,7 +175,7 @@ public class LocacoesDal {
         ResultSet rs = preparedStatement.executeQuery();
          
            if(rs.next()){
-                int cli_id = rs.getInt("pfi_cli_iden");
+                int cli_id = rs.getInt("loc_cli_iden");
                 cliente = clienteBll.getClienteById(cli_id);
                 int vei_id = rs.getInt("loc_vei_iden");
                 veiculo = veiculoBll.getVeiculosById(vei_id);
@@ -184,6 +187,7 @@ public class LocacoesDal {
                 locacao.setValorCaucao(rs.getFloat("loc_valor_caucao"));
                 locacao.setValorSeguro(rs.getFloat("loc_valor_seguro"));
                 locacao.setValorTotalPago(rs.getFloat("loc_valor_total_pago"));
+                locacao.setStatus(rs.getString("loc_status"));
                 locacao.setCliente(cliente);
                 locacao.setVeiculos(veiculo);
             }

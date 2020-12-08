@@ -89,6 +89,27 @@ public class ClientesDal {
         }
     }
     
+    public void deleteLast() throws Exception {
+        int id = 0;
+        String sql = "SELECT *\n" +
+                     "FROM clientes\n" +
+                     "ORDER by cli_iden DESC limit 1";   
+        String sql2 = "DELETE FROM clientes WHERE cli_iden =?";
+        try {
+            Statement statement = conexao.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            if (rs.next()) {            
+               id = (rs.getInt("cli_iden"));
+            }
+
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql2);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (Exception error) {
+            throw  error;
+         }
+    }
+    
 
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Clientes> getAllClientes() throws Exception {

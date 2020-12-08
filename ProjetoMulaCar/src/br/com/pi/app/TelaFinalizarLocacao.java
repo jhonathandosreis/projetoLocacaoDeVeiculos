@@ -14,8 +14,12 @@
  */
 package br.com.pi.app;
 
+import br.com.pi.bll.ClientesBll;
 import br.com.pi.bll.LocacoesBll;
+import br.com.pi.bll.VeiculosBll;
+import br.com.pi.model.Clientes;
 import br.com.pi.model.Locacoes;
+import br.com.pi.model.Veiculos;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,11 +31,17 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
     private TelaLocacao telalocacao;
     private Locacoes locacao;
     private LocacoesBll locacaoBll;
-
+    private Veiculos veiculo = null;
+    private VeiculosBll veiculoBll;
+    private Clientes cliente = null;
+    private ClientesBll clienteBll;
+    
     public TelaFinalizarLocacao() {
         initComponents();
         try {
             locacaoBll = new LocacoesBll();
+            veiculoBll = new VeiculosBll();
+            clienteBll = new ClientesBll();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
             this.setLocationRelativeTo(null);
@@ -201,9 +211,17 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         try {
             if (telalocacao != null) {
+                
+                veiculo = locacao.getVeiculos();
+                veiculo.setStatus("LOCADO");
+                veiculoBll.updateVeiculos(veiculo);
+                cliente = locacao.getCliente();
+                cliente.setStatus("LOCANDO");
+                clienteBll.updateClientes(cliente);
                 locacaoBll.addLocacoes(locacao);
                 telalocacao.LimparTelaLocacao();
                 telalocacao.respostaFinalizacao("Locação finalizada com sucesso!");
+                
                 this.dispose();
             }
         } catch (Exception error) {

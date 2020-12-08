@@ -74,6 +74,14 @@ public class ClientesBll {
             
         }
     }
+    
+    public void deleteLast() throws Exception {
+       try{
+           clienteDal.deleteLast();
+        } catch (Exception error) {
+            throw  error;
+         }
+    }
     //--- FIM DELET ----------------------------------------------------------------------------------|
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Clientes> getAllClientes() throws Exception {
