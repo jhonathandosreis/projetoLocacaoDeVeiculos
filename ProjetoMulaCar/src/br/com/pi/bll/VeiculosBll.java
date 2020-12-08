@@ -82,8 +82,8 @@ public class VeiculosBll {
             throw new Exception("Capacidade inválido!\nNossa frota não possui veículo com capacidade de combustivel abaixo de 70 litros!");
         }
 
-        if (veiculo.getCapacidade() < 5) {
-            throw new Exception("Capacidade inválida!\nMínimo 5 passageiros!");
+        if (veiculo.getCapacidade() < 2) {
+            throw new Exception("Capacidade inválida!\nMínimo 2 passageiros!");
         }
 
         if (veiculo.getCapacidade() > 7) {
@@ -137,11 +137,11 @@ public class VeiculosBll {
             throw new Exception("Valor inválido!\nNossa frota não possui veículo com valor acima de 80.000!");
         }
 
-        if (veiculo.getCapacidade() < 5) {
-            throw new Exception("Capacidade inválida!\nMínimo 5 passageiros!");
+        if (veiculo.getCapacidade() < 2) {
+            throw new Exception("Capacidade inválida!\nMínimo 2 passageiros!");
         }
 
-        if (veiculo.getCapacidade()> 7) {
+        if (veiculo.getCapacidade() > 7) {
             throw new Exception("Capacidade inválida!\nMáximo 7 passageiros!");
         }
 
