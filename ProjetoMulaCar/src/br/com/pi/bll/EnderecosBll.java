@@ -75,6 +75,14 @@ public class EnderecosBll {
             throw error;
         }
     }
+    
+    public void deleteLast() throws Exception {
+        try{
+            endDal.deleteLast();
+        } catch (Exception error) {
+            throw error;
+        }
+    }
 
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //

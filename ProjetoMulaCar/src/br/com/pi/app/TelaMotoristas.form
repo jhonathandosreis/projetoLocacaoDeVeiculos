@@ -146,7 +146,7 @@
                                       <Component id="jLabel3RGPessoaFisica" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel6" max="32767" attributes="0"/>
                                       <Component id="jTextField_CategoriaCNH" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextFieldCNHMotorista" max="32767" attributes="0"/>
+                                      <Component id="jTextFieldCNHMotorista" min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
