@@ -105,14 +105,6 @@ public class VeiculosBll {
     //
     public void updateVeiculos(Veiculos veiculo) throws Exception {
 
-        if (veiculo.getPlaca().length() < 3) {
-            throw new Exception("Placa inválida\nEx: Mercosul BRA2E19\n Nacional PHL-4508");
-        }
-
-        if (veiculo.getPlaca().length() > 7) {
-            throw new Exception("Placa inválida\nEx: Mercosul BRA2E19\n Nacional PHL-4508");
-        }
-
         if (veiculo.getRenavam().length() < 0) {
             throw new Exception("Renavam inválido\nUm renavam possui 11 números!");
         }
