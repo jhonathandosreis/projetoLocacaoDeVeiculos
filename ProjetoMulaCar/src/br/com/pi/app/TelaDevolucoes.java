@@ -128,17 +128,16 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         }
     }
 
-    public int DiferencaEntreDatas(Date data1, Date data2) throws Exception {
-        if (data1.compareTo(data2) >= 0) {
-            throw new Exception("Data de devolução inválida!");
-        }
-        long diferencaMS = data1.getTime() - data1.getTime();
-        long diferencaSegundos = diferencaMS / 1000;
-        long diferencaMinutos = diferencaSegundos / 60;
-        long diferencaHoras = diferencaMinutos / 60;
-        long diferencaDias = diferencaHoras / 24;
-        int dias = (int) diferencaDias;
-        return dias;
+
+    public int DiferencaEntreDatas(Date data1, Date data2) throws Exception{
+            if(data1.compareTo(data2) >=0 ) throw new Exception("Data de devolução inválida!");
+            long diferencaMS =  data2.getTime() - data1.getTime();
+            long diferencaSegundos = diferencaMS / 1000;
+            long diferencaMinutos = diferencaSegundos / 60;
+            long diferencaHoras = diferencaMinutos / 60;
+            long diferencaDias = diferencaHoras / 24;
+            int dias = (int) diferencaDias;
+            return dias;
     }
 
     public void preencherComboboxLocacoes() throws Exception {
