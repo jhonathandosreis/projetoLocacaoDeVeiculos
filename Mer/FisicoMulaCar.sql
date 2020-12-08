@@ -104,8 +104,8 @@ CREATE TABLE veiculos (
 
 CREATE TABLE locacoes (
     loc_codigo SERIAL PRIMARY KEY,
-    loc_data_locacao VARCHAR(20),
-    loc_data_prevista_devolucao VARCHAR(20),
+    loc_data_locacao DATE,
+    loc_data_prevista_devolucao DATE,
     loc_km_inicial NUMERIC(30),
     loc_valor_locacao NUMERIC(50),
     loc_valor_caucao NUMERIC(50),

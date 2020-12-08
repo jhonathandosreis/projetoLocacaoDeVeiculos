@@ -91,7 +91,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     
     public int DiferencaEntreDatas(Date data1, Date data2) throws Exception{
             if(data1.compareTo(data2) >=0 ) throw new Exception("Data de devolução inválida!");
-            long diferencaMS = data1.getTime() - data1.getTime();
+            long diferencaMS =  data2.getTime() - data1.getTime();
             long diferencaSegundos = diferencaMS / 1000;
             long diferencaMinutos = diferencaSegundos / 60;
             long diferencaHoras = diferencaMinutos / 60;
@@ -124,10 +124,11 @@ public class TelaLocacao extends javax.swing.JFrame {
     public void PreencherComboboxMotorista() throws Exception{
         jComboBox_MotoristaLocacao.removeAllItems();
         try{
-        ArrayList<Motoristas> listaMotoristas = motoristabll.getAllMotoristas();
-           // jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
+         ArrayList<Motoristas> listaMotoristas = motoristabll.getAllMotoristas();
             for(Motoristas motorista : listaMotoristas){
-                jComboBox_MotoristaLocacao.addItem( motorista.getIden()+"-"+motorista.getCliente().getNome());
+                if(motorista.getCliente().getStatus().equals("ADIMPLENTE")){
+                jComboBox_MotoristaLocacao.addItem(motorista.getCliente().getIden()+"-"+motorista.getCliente().getNome());
+            }
             }
             } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -171,6 +172,17 @@ public class TelaLocacao extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }
+    public void LimparTelaLocacao(){
+        jComboBox_Cliente_Locacao.setSelectedIndex(0);
+        jComboBox_MotoristaLocacao.setSelectedIndex(0);
+        jTextFieldDataLocacao.setText("");
+        jTextFieldDataDevolucao.setText("");
+        jTextFieldIDLocacao.setText("");
+        jTextArea_informacoesVeiculo.setText("");
+        JradioButonMotodista.setSelected(false);
+        jRadioButtonPFisica.setSelected(false);
+        jRadioButtonPJuridica.setSelected(false);
+    }
     public void respostaFinalizacao(String resposta){
       JOptionPane.showMessageDialog(null, resposta);
     }
@@ -184,7 +196,7 @@ public class TelaLocacao extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldLocacao = new javax.swing.JTextField();
+        jTextFieldIDLocacao = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -213,7 +225,7 @@ public class TelaLocacao extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jButton_Limpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("[LOCAÇÃO DO VEÍCULO]");
@@ -222,7 +234,7 @@ public class TelaLocacao extends javax.swing.JFrame {
 
         jLabel1.setText("ID");
 
-        jTextFieldLocacao.setEditable(false);
+        jTextFieldIDLocacao.setEditable(false);
 
         jLabel2.setText("CLIENTE");
 
@@ -283,7 +295,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jTextFieldLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldIDLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(29, 29, 29)
                                         .addComponent(jRadioButtonPFisica)
                                         .addGap(18, 18, 18)
@@ -337,7 +349,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                                     .addComponent(jTextFieldDataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextFieldLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldIDLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jRadioButtonPFisica)
                                     .addComponent(jRadioButtonPJuridica)
                                     .addComponent(JradioButonMotodista))
@@ -438,8 +450,13 @@ public class TelaLocacao extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/limpar-limpo.png"))); // NOI18N
-        jButton1.setText("LIMPAR");
+        jButton_Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/limpar-limpo.png"))); // NOI18N
+        jButton_Limpar.setText("LIMPAR");
+        jButton_Limpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_LimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -480,7 +497,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                         .addGap(204, 204, 204)
                         .addComponent(jButtonRemover)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(jButton_Limpar)
                         .addGap(174, 174, 174)))
                 .addContainerGap())
         );
@@ -507,7 +524,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonAlterar)
                         .addComponent(jButtonRemover))
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jButton_Limpar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(65, Short.MAX_VALUE))
@@ -553,9 +570,12 @@ public class TelaLocacao extends javax.swing.JFrame {
                 pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString()));
                 locacao.setCliente(pessoaJuridica.getCliente());
             }
+            
             int id = Integer.parseInt(jTable_VEICULOS.getValueAt(jTable_VEICULOS.getSelectedRow(), 0).toString());
             veiculo = veiculoBll.getVeiculosById(id);
             locacao.setVeiculos(veiculo);
+            motorista = motoristabll.getMotoristaById(SplitReturnID(jComboBox_MotoristaLocacao.getSelectedItem().toString()));
+            locacao.setMotoristas(motorista);
 
             Date dataLocacao = formato.parse(jTextFieldDataLocacao.getText());
             Date dataPrevista = formato.parse(jTextFieldDataDevolucao.getText());
@@ -574,6 +594,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             locacao.setValorCaucao(valorCaucao);
             locacao.setValorSeguro(valorSeguro);
             locacao.setValorTotalPago(valorTotal); 
+            
             
             if(fimLocacao == null){
                 fimLocacao = new TelaFinalizarLocacao();
@@ -683,6 +704,10 @@ public class TelaLocacao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jRadioButtonPFisicaActionPerformed
 
+    private void jButton_LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LimparActionPerformed
+        LimparTelaLocacao();
+    }//GEN-LAST:event_jButton_LimparActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -721,10 +746,10 @@ public class TelaLocacao extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton JradioButonMotodista;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonRemover;
+    private javax.swing.JButton jButton_Limpar;
     private javax.swing.JButton jButton__listarPorMarca;
     private javax.swing.JButton jButton_listarPorCategoria;
     private javax.swing.JButton jButton_listarPorModelo;
@@ -752,6 +777,6 @@ public class TelaLocacao extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea_informacoesVeiculo;
     private javax.swing.JFormattedTextField jTextFieldDataDevolucao;
     private javax.swing.JFormattedTextField jTextFieldDataLocacao;
-    private javax.swing.JTextField jTextFieldLocacao;
+    private javax.swing.JTextField jTextFieldIDLocacao;
     // End of variables declaration//GEN-END:variables
 }

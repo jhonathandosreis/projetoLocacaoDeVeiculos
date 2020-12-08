@@ -56,9 +56,9 @@ public class LocacoesDal {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addLocacoes (Locacoes locacao) throws Exception {
         
-        try{
         String sql = "INSERT INTO locacoes (loc_data_locacao=?, loc_data_prevista_devolucao=?, loc_km_inicial=?,"
                 + " loc_valor_locacao=?, loc_valor_caucao=?, loc_valor_seguro=?, loc_valor_total_pago=?, loc_cli_iden=?, loc_vei_iden=?)";
+        try{
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         
         java.sql.Date dataLocacao = new java.sql.Date(locacao.getDataDeLocacao().getTime());
@@ -86,9 +86,9 @@ public class LocacoesDal {
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateLocacoes (Locacoes locacao) throws Exception {
         
-        try{
         String sql = "UPDATE locacoes SET loc_data_locacao=?, loc_data_prevista_devolucao=?, loc_km_inicial=?,"
                 + " loc_valor_locacao=?, loc_valor_caucao=?, loc_valor_seguro=?, loc_valor_total_pago=?, loc_cli_iden=?, loc_vei_iden=? WHERE loc_codigo=?)";
+        try{
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         
         java.sql.Date dataLocacao = new java.sql.Date(locacao.getDataDeLocacao().getTime());
@@ -117,9 +117,9 @@ public class LocacoesDal {
     //--- DELETE -------------------------------------------------------------------------------------->
     public void deleteLocacoes (Locacoes locacao) throws Exception {
         
+           String sql = "DELETE FROM locacoes WHERE loc_codigo=?";
         try{
             
-           String sql = "DELETE FROM locacoes WHERE loc_codigo=?";
            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
            preparedStatement.setInt(1, locacao.getIden());
            preparedStatement.executeUpdate();
@@ -134,9 +134,9 @@ public class LocacoesDal {
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Locacoes> getAllLocacoes() throws Exception {
         
+         String sql = "SELECT * FROM locacoes";
          try{
          ArrayList<Locacoes> lista = new ArrayList<Locacoes>();
-         String sql = "SELECT * FROM locacoes";
          Statement statement = conexao.createStatement();
          ResultSet rs = statement.executeQuery(sql);
          
@@ -164,9 +164,9 @@ public class LocacoesDal {
     }  
     
     public Locacoes getLocacoesById(int loc_iden) throws Exception {
+        String sql = "SELECT * FROM locacoes WHERE loc_codigo=?";
         try{
         locacao = new Locacoes();
-        String sql = "SELECT * FROM locacoes WHERE loc_codigo=?";
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         preparedStatement.setInt(1, loc_iden);
         ResultSet rs = preparedStatement.executeQuery();

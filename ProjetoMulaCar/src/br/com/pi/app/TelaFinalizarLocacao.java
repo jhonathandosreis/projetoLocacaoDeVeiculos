@@ -202,6 +202,7 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
         try {
             if (telalocacao != null) {
                 locacaoBll.addLocacoes(locacao);
+                telalocacao.LimparTelaLocacao();
                 telalocacao.respostaFinalizacao("Locação finalizada com sucesso!");
                 this.dispose();
             }
@@ -215,8 +216,9 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         try {
             if (telalocacao != null) {
-                telalocacao.respostaFinalizacao("Locação cancelada, o cliente ficará inadimplente com a locadora, "
-                        + "só podera realizar locações com o quitamento do seu debito de " + locacao.getValorTotalPago() + " R$");
+                telalocacao.LimparTelaLocacao();
+                telalocacao.respostaFinalizacao("Locação cancelada");
+                
                 this.dispose();
             }
         } catch (Exception error) {

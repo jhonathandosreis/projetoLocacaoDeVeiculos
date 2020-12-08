@@ -28,7 +28,6 @@ public class Locacoes {
     private int iden = 0;
     private Clientes cliente = null;
     private Motoristas motoristas = null;
-    private Categorias categorias = null;
     private Veiculos veiculos = null;
     private Date dataDeLocacao = null;
     private Date dataPrevistDeDevolucao = null;
@@ -48,13 +47,12 @@ public class Locacoes {
         
     }
     
-    public Locacoes(int iden, Clientes clientes, Motoristas motoristas, Categorias categorias, Veiculos veiculos,
+    public Locacoes(int iden, Clientes clientes, Motoristas motoristas, Veiculos veiculos,
             Date dataDeLocao, Date dataPrevistaDevolucao, double kmInicial, SituacaoLocacao situacao,
             float valorLocacao, float valorCaucao, float valorSeguro, float valorTotalPago) {
         this.iden = iden;
         this.cliente = clientes;
         this.motoristas = motoristas;
-        this.categorias = categorias;
         this.veiculos = veiculos;
         this.dataDeLocacao = dataDeLocao;
         this.dataPrevistDeDevolucao = dataPrevistaDevolucao;
@@ -82,9 +80,7 @@ public class Locacoes {
         return motoristas;
     }
 
-    public Categorias getCategorias() {
-        return categorias;
-    }
+ 
 
     public Veiculos getVeiculos() {
         return veiculos;
@@ -138,9 +134,7 @@ public class Locacoes {
         this.motoristas = motoristas;
     }
 
-    public void setCategorias(Categorias categorias) {
-        this.categorias = categorias;
-    }
+ 
 
     public void setVeiculos(Veiculos veiculos) {
         this.veiculos = veiculos;

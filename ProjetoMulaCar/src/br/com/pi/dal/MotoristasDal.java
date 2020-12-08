@@ -16,7 +16,9 @@
 package br.com.pi.dal;
 
 import br.com.pi.bll.ClientesBll;
+import br.com.pi.bll.EnderecosBll;
 import br.com.pi.model.Clientes;
+import br.com.pi.model.Enderecos;
 import br.com.pi.model.Motoristas;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
@@ -35,6 +37,8 @@ public class MotoristasDal {
     private Connection conexao;
     private Clientes cliente = null;
     private ClientesBll clienteBll = new ClientesBll();
+    private Enderecos endereco = null;
+    private EnderecosBll enderecoBll = new EnderecosBll();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -112,22 +116,12 @@ public class MotoristasDal {
         try{
          ArrayList<Motoristas> lista = new ArrayList<Motoristas>();
          Statement statement = conexao.createStatement();
-         ResultSet rs = statement.executeQuery(sql);
-         
+         ResultSet rs = statement.executeQuery(sql);        
            while(rs.next()){
                 Motoristas motorista = new Motoristas();
-                int cli_id = rs.getInt("pfi_cli_iden");
-                cliente = clienteBll.getClienteById(cli_id);
-                motorista.setIden(rs.getInt("pfi_iden"));
-                motorista.setRg(rs.getString("pfi_rg"));
-                motorista.setCpf(rs.getString("pfi_cpf"));
-                motorista.setNumeroCnh(rs.getString("pfi_numero_cnh"));
-                motorista.setCategoriaCnh(rs.getString("pfi_categoria_cnh"));
-                motorista.setDataValidade(rs.getDate("pfi_data_validade"));
-                motorista.setCliente(cliente);
+                motorista= getMotoristasById(rs.getInt("pfi_iden"));       
                 lista.add(motorista);
            }
-
     return lista;
         } catch (Exception error) {
             throw  error;
