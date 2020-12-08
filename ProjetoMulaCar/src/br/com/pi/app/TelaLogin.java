@@ -45,14 +45,17 @@ public class TelaLogin extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("[LOGIN]");
         setMinimumSize(new java.awt.Dimension(1280, 855));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("LOGIN");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 310, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, -1, -1));
 
         jTextFieldLogin.setText("MulaCar");
         jTextFieldLogin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -65,10 +68,11 @@ public class TelaLogin extends javax.swing.JFrame {
                 jTextFieldLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 299, -1));
+        getContentPane().add(jTextFieldLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, 230, 30));
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("SENHA");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 380, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, -1, -1));
 
         jPasswordField1.setText("1234");
         jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -76,7 +80,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 jPasswordField1KeyPressed(evt);
             }
         });
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, 310, -1));
+        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, 230, 30));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/botao-de-login.png"))); // NOI18N
         jButton1.setText("ENTRAR");
@@ -85,7 +89,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 480, -1, 48));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 520, 150, 50));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/backspace.png"))); // NOI18N
         jButton2.setText("SAIR");
@@ -94,8 +98,16 @@ public class TelaLogin extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 480, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 520, 150, 50));
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Swis721 Blk BT", 0, 48)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("M u l a C a r");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 350, 70));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/image/fundo login.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -182,7 +194,9 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextFieldLogin;
     // End of variables declaration//GEN-END:variables
