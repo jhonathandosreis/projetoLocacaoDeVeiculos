@@ -19,6 +19,7 @@ import br.com.pi.bll.LocacoesBll;
 import br.com.pi.bll.VeiculosBll;
 import br.com.pi.model.Clientes;
 import br.com.pi.model.Locacoes;
+import br.com.pi.model.Motoristas;
 import br.com.pi.model.Veiculos;
 import javax.swing.JOptionPane;
 
@@ -34,7 +35,9 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
     private Veiculos veiculo = null;
     private VeiculosBll veiculoBll;
     private Clientes cliente = null;
+    private Clientes cliente2 = null;
     private ClientesBll clienteBll;
+    private Motoristas motorista = null;
     private String pessoa = "";
 
     public TelaFinalizarLocacao() {
@@ -223,7 +226,11 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
                     cliente.setStatus("LOCANDO");
                     clienteBll.updateClientes(cliente);
                 }
-
+                motorista = locacao.getMotoristas();
+                cliente2 = motorista.getCliente();
+                cliente2.setStatus("LOCANDO");
+                clienteBll.updateClientes(cliente2);
+                
                 veiculo = locacao.getVeiculos();
                 veiculo.setStatus("LOCADO");
                 veiculoBll.updateVeiculos(veiculo);
@@ -231,7 +238,7 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
                 locacaoBll.addLocacoes(locacao);
                 telalocacao.LimparTelaLocacao();
                 telalocacao.respostaFinalizacao("Locação finalizada com sucesso!");
-               
+                telalocacao.PreencherComboboxMotorista();
 
                 this.dispose();
             }
