@@ -75,7 +75,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
             DefaultTableModel tableVeiculos = (DefaultTableModel) jTableVeiculo.getModel();
             tableVeiculos.setRowCount(0);
 
-            Object[] linha = new Object[15];
+            Object[] linha = new Object[10];
 
             ArrayList<Veiculos> veiculos = new VeiculosBll().getAllVeiculos();
 
@@ -85,17 +85,12 @@ public class TelaVeiculos extends javax.swing.JFrame {
                 linha[1] = modelo1.getPlaca();
                 linha[2] = modelo1.getQuilometragem();
                 linha[3] = modelo1.getRenavam();
-                linha[4] = modelo1.getStatus();
-                linha[5] = modelo1.getObservacoes();
-                linha[6] = modelo1.getPrecoDeCompra();
-                linha[7] = modelo1.getAnoFabricacao();
-                linha[8] = modelo1.getCapacidade();
-                linha[9] = modelo1.getTipoDeCombustivel();
-                linha[10] = modelo1.getCapacidadeCombustivel();
-                linha[11] = modelo1.getModelo().getNome();
-                linha[12] = modelo1.getModelo().getMarcas().getNome();
-                linha[13] = modelo1.getModelo().getCategoria().getNome();
-                linha[14] = modelo1.getModelo().getTiposDeVeiculos().getNome();
+                linha[4] = modelo1.getAnoFabricacao();
+                linha[5] = modelo1.getModelo().getNome();
+                linha[6] = modelo1.getModelo().getMarcas().getNome();
+                linha[7] = modelo1.getModelo().getCategoria().getNome();
+                linha[8] = modelo1.getModelo().getTiposDeVeiculos().getNome();
+                linha[9] = modelo1.getStatus();
                 tableVeiculos.addRow(linha);
             }
         } catch (Exception error) {
@@ -120,43 +115,26 @@ public class TelaVeiculos extends javax.swing.JFrame {
     public void preencherFormularioVeiculo() throws Exception {
 
         try {
+            int id = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 0).toString());           
+            veiculo = veiculosBll.getVeiculosById(id);
 
-            int id = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 0).toString());
-            String placa = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 1).toString();
-            double quilometragem = Double.parseDouble(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 2).toString());
-            String renavam = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 3).toString();
-            String status = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 4).toString();
-            String observacoes = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 5).toString();
-            int precoCompra = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 6).toString());
-            int anoFabricacao = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 7).toString());
-            int capacidade = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 8).toString());
-            String tipoDeCombustivel = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 9).toString();
-            int capacidadeCombustivel = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 10).toString());
-            String modeloscombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 11).toString();
-            String marcacombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 12).toString();
-            String categoriacombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 13).toString();
-            String tiposDeVeiculoscombobox = jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 14).toString();
-
-            jComboBoxModelo.setSelectedItem(modelosBll.getModelosById(id).getNome());
-            jTextFieldTipoDoVeiculo.setText(tiposDeVeiculosBll.getTiposDeVeiculosById(id).getNome());
-            jTextFieldMarca.setText(marcasBll.getMarcasById(id).getNome());
-            jTextFieldCategoria.setText(categoriasBll.getCategoriasById(id).getNome());
+            jComboBoxModelo.setSelectedItem(veiculo.getModelo().getNome());
+            jTextFieldTipoDoVeiculo.setText(veiculo.getModelo().getTiposDeVeiculos().getNome());
+            jTextFieldMarca.setText(veiculo.getModelo().getMarcas().getNome());
+            jTextFieldCategoria.setText(veiculo.getModelo().getCategoria().getNome());
+            
 
             jTextFieldIDVeiculo.setText(id + "");
-            jTextFieldPlaca.setText(placa);
-            jTextFieldRenavam.setText(renavam);
-            jTextFieldAno.setText(anoFabricacao + "");
-            jTextFieldKM.setText(quilometragem + "");
-            jTextFieldValorDeCompra.setText(precoCompra + "");
-            jTextFieldQuantidadePassageiros.setText(capacidade + "");
-            jTextFieldTipoDeCombustivel.setText(tipoDeCombustivel);
-            jTextFieldCapacidadeTanque.setText(capacidadeCombustivel + "");
-            jTextFieldStatus.setText(status);
-            jTextAreaObservacoes.setText(observacoes);
-            jTextFieldMarca.setText(marcacombobox);
-            jTextFieldCategoria.setText(categoriacombobox);
-            jTextFieldTipoDoVeiculo.setText(tiposDeVeiculoscombobox);
-            jComboBoxModelo.setSelectedItem(modeloscombobox);
+            jTextFieldPlaca.setText(veiculo.getPlaca());
+            jTextFieldRenavam.setText(veiculo.getRenavam());
+            jTextFieldAno.setText(veiculo.getAnoFabricacao() + "");
+            jTextFieldKM.setText(veiculo.getQuilometragem() + "");
+            jTextFieldValorDeCompra.setText(veiculo.getPrecoDeCompra() + "");
+            jTextFieldQuantidadePassageiros.setText(veiculo.getCapacidade() + "");
+            jTextFieldTipoDeCombustivel.setText(veiculo.getTipoDeCombustivel());
+            jTextFieldCapacidadeTanque.setText(veiculo.getCapacidadeCombustivel() + "");
+            jTextFieldStatus.setText(veiculo.getStatus());
+            jTextAreaObservacoes.setText(veiculo.getObservacoes());
             
             jTextFieldPlaca.setEnabled(true);
 
@@ -184,6 +162,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jTextAreaObservacoes.setText("");
         jTextFieldCapacidadeTanque.setText("");
         buttonGroupPlacas.clearSelection();
+        jComboBoxModelo.setSelectedIndex(0);
     }
 
     public void ValidaVeículo() throws Exception {
@@ -275,8 +254,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("[VEÍCULOS]");
-        setMaximumSize(new java.awt.Dimension(1319, 699));
-        setPreferredSize(new java.awt.Dimension(1319, 699));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Veículo"));
 
@@ -355,6 +332,9 @@ public class TelaVeiculos extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10))
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -390,8 +370,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
                                     .addComponent(jTextFieldValorDeCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                                     .addComponent(jTextFieldKM)
                                     .addComponent(jTextFieldTipoDeCombustivel)
-                                    .addComponent(jTextFieldCapacidadeTanque)))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jTextFieldCapacidadeTanque))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(110, 110, 110)
@@ -413,7 +392,9 @@ public class TelaVeiculos extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -480,13 +461,14 @@ public class TelaVeiculos extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 38, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                                .addComponent(jScrollPane2)))))
+                .addContainerGap())
         );
 
         jButtonCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/salve.png"))); // NOI18N
@@ -526,11 +508,11 @@ public class TelaVeiculos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "PLACA", "KM", "RENAVAM", "STATUS", "OBSERVAÇÕES", "VALOR DE COMPRA", "ANO", "CAPACIDADE", "TIPO DE COMBUSTIVEL", "CAPACIDADE DO TANQUE", "MODELO", "MARCA", "CATEGORIA", "TIPO DE VEICULO"
+                "ID", "PLACA", "KM", "RENAVAM", "ANO", "MODELO", "MARCA", "CATEGORIA", "TIPO DE VEICULO", "STATUS"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -547,48 +529,12 @@ public class TelaVeiculos extends javax.swing.JFrame {
             jTableVeiculo.getColumnModel().getColumn(0).setMinWidth(40);
             jTableVeiculo.getColumnModel().getColumn(0).setPreferredWidth(40);
             jTableVeiculo.getColumnModel().getColumn(0).setMaxWidth(40);
-            jTableVeiculo.getColumnModel().getColumn(1).setMinWidth(80);
-            jTableVeiculo.getColumnModel().getColumn(1).setPreferredWidth(80);
-            jTableVeiculo.getColumnModel().getColumn(1).setMaxWidth(80);
             jTableVeiculo.getColumnModel().getColumn(2).setMinWidth(80);
             jTableVeiculo.getColumnModel().getColumn(2).setPreferredWidth(80);
             jTableVeiculo.getColumnModel().getColumn(2).setMaxWidth(80);
-            jTableVeiculo.getColumnModel().getColumn(3).setMinWidth(130);
-            jTableVeiculo.getColumnModel().getColumn(3).setPreferredWidth(130);
-            jTableVeiculo.getColumnModel().getColumn(3).setMaxWidth(130);
-            jTableVeiculo.getColumnModel().getColumn(4).setMinWidth(90);
-            jTableVeiculo.getColumnModel().getColumn(4).setPreferredWidth(90);
-            jTableVeiculo.getColumnModel().getColumn(4).setMaxWidth(90);
-            jTableVeiculo.getColumnModel().getColumn(5).setMinWidth(150);
-            jTableVeiculo.getColumnModel().getColumn(5).setPreferredWidth(150);
-            jTableVeiculo.getColumnModel().getColumn(5).setMaxWidth(150);
-            jTableVeiculo.getColumnModel().getColumn(6).setMinWidth(140);
-            jTableVeiculo.getColumnModel().getColumn(6).setPreferredWidth(140);
-            jTableVeiculo.getColumnModel().getColumn(6).setMaxWidth(140);
-            jTableVeiculo.getColumnModel().getColumn(7).setMinWidth(60);
-            jTableVeiculo.getColumnModel().getColumn(7).setPreferredWidth(60);
-            jTableVeiculo.getColumnModel().getColumn(7).setMaxWidth(60);
-            jTableVeiculo.getColumnModel().getColumn(8).setMinWidth(100);
-            jTableVeiculo.getColumnModel().getColumn(8).setPreferredWidth(100);
-            jTableVeiculo.getColumnModel().getColumn(8).setMaxWidth(100);
-            jTableVeiculo.getColumnModel().getColumn(9).setMinWidth(150);
-            jTableVeiculo.getColumnModel().getColumn(9).setPreferredWidth(150);
-            jTableVeiculo.getColumnModel().getColumn(9).setMaxWidth(150);
-            jTableVeiculo.getColumnModel().getColumn(10).setMinWidth(170);
-            jTableVeiculo.getColumnModel().getColumn(10).setPreferredWidth(170);
-            jTableVeiculo.getColumnModel().getColumn(10).setMaxWidth(170);
-            jTableVeiculo.getColumnModel().getColumn(11).setMinWidth(70);
-            jTableVeiculo.getColumnModel().getColumn(11).setPreferredWidth(70);
-            jTableVeiculo.getColumnModel().getColumn(11).setMaxWidth(70);
-            jTableVeiculo.getColumnModel().getColumn(12).setMinWidth(70);
-            jTableVeiculo.getColumnModel().getColumn(12).setPreferredWidth(70);
-            jTableVeiculo.getColumnModel().getColumn(12).setMaxWidth(70);
-            jTableVeiculo.getColumnModel().getColumn(13).setMinWidth(80);
-            jTableVeiculo.getColumnModel().getColumn(13).setPreferredWidth(80);
-            jTableVeiculo.getColumnModel().getColumn(13).setMaxWidth(80);
-            jTableVeiculo.getColumnModel().getColumn(14).setMinWidth(140);
-            jTableVeiculo.getColumnModel().getColumn(14).setPreferredWidth(140);
-            jTableVeiculo.getColumnModel().getColumn(14).setMaxWidth(140);
+            jTableVeiculo.getColumnModel().getColumn(4).setMinWidth(60);
+            jTableVeiculo.getColumnModel().getColumn(4).setPreferredWidth(60);
+            jTableVeiculo.getColumnModel().getColumn(4).setMaxWidth(60);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -605,7 +551,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
                             .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButtonRemover)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1536, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
