@@ -120,8 +120,9 @@ public class FotosDal {
 
         String sql = "SELECT * FROM fotos WHERE fot_iden=?";
         try {
-            Statement statement = conexao.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1, fot_iden);
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 foto.setFot_iden(rs.getInt("fot_iden"));
                 foto.setFot_caminho(rs.getString("fot_caminho"));
