@@ -82,7 +82,7 @@ public class FotosBll {
         }
     }
 
-    public Fotos getFotosBy(int fot_iden) throws Exception {
+    public Fotos getFotosById(int fot_iden) throws Exception {
         try {
         return fotoDal.getFotosById(fot_iden);    
         } catch (Exception error) {
@@ -90,9 +90,10 @@ public class FotosBll {
         }
     }
     
-    public ArrayList<Fotos> getFotos(int fot_pfi_iden) throws Exception {
-        return fotoDal.getFotos(fot_pfi_iden);
+    public Fotos getFotosByCaminho(String fot_caminho) throws Exception {
+        return fotoDal.getFotosByCaminho(fot_caminho);
     }
+    
     //--- FIM READ ------------------------------------------------------------------------------------|
     //    
 }

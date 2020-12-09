@@ -48,6 +48,11 @@ CREATE TABLE clientes (
     FOREIGN KEY (cli_end_iden) REFERENCES enderecos (end_iden)
 );
 
+CREATE TABLE fotos (
+    fot_iden SERIAL PRIMARY KEY,
+    fot_caminho VARCHAR(200)
+);
+
 CREATE TABLE pessoas_fisicas (
     pfi_iden SERIAL PRIMARY KEY,
     pfi_rg VARCHAR(20) CONSTRAINT rg_repetido UNIQUE,
@@ -56,14 +61,9 @@ CREATE TABLE pessoas_fisicas (
     pfi_categoria_cnh VARCHAR(20),
     pfi_data_validade DATE,
     pfi_cli_iden INTEGER,
-    FOREIGN KEY (pfi_cli_iden) REFERENCES clientes (cli_iden)
-);
-
-CREATE TABLE fotos (
-    fot_iden SERIAL PRIMARY KEY,
-    fot_caminho VARCHAR(200),
-    fot_pfi_iden INTEGER,
-    FOREIGN KEY (fot_pfi_iden) REFERENCES pessoas_fisicas (pfi_iden)
+    pfi_fot_iden INTEGER,
+    FOREIGN KEY (pfi_cli_iden) REFERENCES clientes (cli_iden),
+    FOREIGN KEY (pfi_fot_iden) REFERENCES fotos (fot_iden)
 );
 
 CREATE TABLE pessoas_juridicas (

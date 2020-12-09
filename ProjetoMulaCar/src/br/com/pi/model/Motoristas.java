@@ -28,7 +28,7 @@ public class Motoristas extends PessoasFisicas {
     private String numeroCnh = "";
     private String categoriaCnh = "";
     private Date dataValidade = null;
-    private ArrayList<Fotos> fotos = new ArrayList<>();
+    private Fotos foto = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -39,13 +39,14 @@ public class Motoristas extends PessoasFisicas {
     }
     
     public Motoristas( String numeroCnh, String categoriaCnh, Date dataValidade,
-        int iden, String rg, String cpf,String status, float multa, String nome, String telefone, String email, Enderecos enderecos, Clientes cliente) {
-       super( iden,nome,telefone,email,enderecos,status, multa, cliente, rg, cpf);
+        int iden, String rg, String cpf,String status, float multa, String nome, String telefone, String email, Enderecos enderecos, Clientes cliente,Fotos foto) {
+       super( iden,nome,telefone,email,enderecos,status, multa, cliente,foto, rg, cpf);
         
         this.iden = iden;
         this.numeroCnh = numeroCnh;
         this.categoriaCnh = categoriaCnh;
         this.dataValidade = dataValidade;
+        this.foto = foto;
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -68,8 +69,8 @@ public class Motoristas extends PessoasFisicas {
         return dataValidade;
     }
     
-    public ArrayList<Fotos> getFotos() {
-        return fotos;
+    public Fotos getFotos() {
+        return foto;
     }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
@@ -92,8 +93,8 @@ public class Motoristas extends PessoasFisicas {
          this.dataValidade = dataValidade;
     }
     
-    public void setFotos(ArrayList<Fotos> fotos) {
-        this.fotos = fotos;
+    public void setFotos(Fotos fotos) {
+        this.foto = fotos;
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //

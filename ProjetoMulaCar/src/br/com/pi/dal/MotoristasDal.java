@@ -17,8 +17,10 @@ package br.com.pi.dal;
 
 import br.com.pi.bll.ClientesBll;
 import br.com.pi.bll.EnderecosBll;
+import br.com.pi.bll.FotosBll;
 import br.com.pi.model.Clientes;
 import br.com.pi.model.Enderecos;
+import br.com.pi.model.Fotos;
 import br.com.pi.model.Motoristas;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
@@ -39,6 +41,8 @@ public class MotoristasDal {
     private ClientesBll clienteBll = new ClientesBll();
     private Enderecos endereco = null;
     private EnderecosBll enderecoBll = new EnderecosBll();
+    private Fotos foto = null;
+    private FotosBll fotoBll = new FotosBll();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -53,7 +57,7 @@ public class MotoristasDal {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addMotoristas (Motoristas motorista) throws Exception {
        
-        String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_numero_cnh, pfi_categoria_cnh, pfi_data_validade, pfi_cli_iden) values (?, ?, ?, ?, ?, ?)";        
+        String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_numero_cnh, pfi_categoria_cnh, pfi_data_validade, pfi_cli_iden, pfi_fot_iden) values (?, ?, ?, ?, ?, ?, ?)";        
         try{
         java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
@@ -63,6 +67,7 @@ public class MotoristasDal {
         preparedStatement2.setString(4, motorista.getCategoriaCnh());
         preparedStatement2.setDate(5, dataValidade);
         preparedStatement2.setInt(6, motorista.getCliente().getIden());
+        preparedStatement2.setInt(7, motorista.getFotos().getFot_iden());
         preparedStatement2.executeUpdate();
         
         } catch (Exception error) {
@@ -75,7 +80,7 @@ public class MotoristasDal {
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateMotoristas (Motoristas motorista) throws Exception {
         
-        String sqlPessoaFisica = "UPDATE pessoas_fisicas SET pfi_rg=?, pfi_cpf=?, pfi_numero_cnh=?, pfi_categoria_cnh=?, pfi_data_validade=?, pfi_cli_iden=? WHERE pfi_iden=?";        
+        String sqlPessoaFisica = "UPDATE pessoas_fisicas SET pfi_rg=?, pfi_cpf=?, pfi_numero_cnh=?, pfi_categoria_cnh=?, pfi_data_validade=?, pfi_cli_iden=?, pfi_fot_iden=?  WHERE pfi_iden=?";        
         try{
         PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
         java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
@@ -85,7 +90,8 @@ public class MotoristasDal {
         preparedStatement2.setString(4, motorista.getCategoriaCnh());
         preparedStatement2.setDate(5, dataValidade);
         preparedStatement2.setInt(6, motorista.getCliente().getIden());
-        preparedStatement2.setInt(7, motorista.getIden());
+         preparedStatement2.setInt(7, motorista.getFotos().getFot_iden());
+        preparedStatement2.setInt(8, motorista.getIden());
         preparedStatement2.executeUpdate();
         
         } catch (Exception error) {
@@ -141,6 +147,8 @@ public class MotoristasDal {
         if(rs.next()){
         int cli_id = rs.getInt("pfi_cli_iden");
         cliente = clienteBll.getClienteById(cli_id);
+        int fot_id = rs.getInt("pfi_fot_iden");
+        foto = fotoBll.getFotosById(fot_id);
         motorista.setIden(rs.getInt("pfi_iden"));
         motorista.setRg(rs.getString("pfi_rg"));
         motorista.setCpf(rs.getString("pfi_cpf"));
@@ -148,6 +156,8 @@ public class MotoristasDal {
         motorista.setCategoriaCnh(rs.getString("pfi_categoria_cnh"));
         motorista.setDataValidade(rs.getDate("pfi_data_validade"));
         motorista.setCliente(cliente);
+        motorista.setFotos(foto);
+           
         }       
         return motorista;
         } catch (Exception error) {
@@ -165,15 +175,7 @@ public class MotoristasDal {
         
         ResultSet rs = preparedStatement.executeQuery();
         if(rs.next()){
-        int cli_id = rs.getInt("pfi_cli_iden");
-        cliente = clienteBll.getClienteById(cli_id);
-        motorista.setIden(rs.getInt("pfi_iden"));
-        motorista.setRg(rs.getString("pfi_rg"));
-        motorista.setCpf(rs.getString("pfi_cpf"));
-        motorista.setNumeroCnh(rs.getString("pfi_numero_cnh"));
-        motorista.setCategoriaCnh(rs.getString("pfi_categoria_cnh"));
-        motorista.setDataValidade(rs.getDate("pfi_data_validade"));
-        motorista.setCliente(cliente);
+         motorista = getMotoristasById(rs.getInt("pfi_iden"));
         }       
         return motorista;
         } catch (Exception error) {

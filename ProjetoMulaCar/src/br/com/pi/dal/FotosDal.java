@@ -95,7 +95,7 @@ public class FotosDal {
 
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Fotos> getAllFotos() throws Exception {
-        
+
         ArrayList<Fotos> lista = new ArrayList<Fotos>();
 
         String sql = "SELECT * FROM fotos";
@@ -124,36 +124,33 @@ public class FotosDal {
             ResultSet rs = statement.executeQuery(sql);
             if (rs.next()) {
                 foto.setFot_iden(rs.getInt("fot_iden"));
-                foto.setFot_caminho(rs.getString("fot_caminho"));   
+                foto.setFot_caminho(rs.getString("fot_caminho"));
             }
         } catch (Exception error) {
             throw error;
         }
         return foto;
     }
-    
-    public ArrayList<Fotos> getFotos(int fot_iden) throws Exception {
-           
-        ArrayList<Fotos> fotos = new ArrayList<Fotos>();
 
-        String sql = "SELECT * FROM fotos WHERE fot_iden =?";
-        
+    public Fotos getFotosByCaminho(String fot_caminho) throws Exception {
+
+        Fotos foto = new Fotos();
+        String sql = "SELECT * FROM fotos WHERE fot_caminho =?";
+
         try {
 
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setInt(1, fot_iden);
+            preparedStatement.setString(1, fot_caminho);
             ResultSet rs = preparedStatement.executeQuery();
 
-            while (rs.next()) {
-                Fotos foto = new Fotos();
+            if (rs.next()) {
                 foto.setFot_iden(rs.getInt("fot_iden"));
-                foto.setFot_caminho(rs.getString("fot_caminho"));     
-                fotos.add(foto);
+                foto.setFot_caminho(rs.getString("fot_caminho"));
             }
         } catch (Exception error) {
             throw error;
         }
-        return fotos;
+        return foto;
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //

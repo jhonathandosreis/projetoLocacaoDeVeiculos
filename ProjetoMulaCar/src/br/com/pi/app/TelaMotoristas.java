@@ -61,10 +61,10 @@ public class TelaMotoristas extends javax.swing.JFrame {
     private Ufs uf;
     private FotosBll fotoBll = null;
     private int posicao = 0;
-    private ArrayList<Fotos> fotos = null;
-    
+    private Fotos fotos = null;
+
     JFileChooser chooser = new JFileChooser();
-    File f, destino; 
+    File f, destino;
 
     public TelaMotoristas() {
         initComponents();
@@ -83,7 +83,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
             cidadesBll = new CidadesBll();
             uf = new Ufs();
             ufbll = new UfsBll();
-            
 
             preencherComboboxCidades();
             preencherGridMotorista();
@@ -120,21 +119,21 @@ public class TelaMotoristas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void buscarFotos(int iden_PessoaFisica) {
         try {
-            fotos = fotoBll.getFotos(iden_PessoaFisica);
+            fotos = fotoBll.getFotosById(iden_PessoaFisica);
             posicao = 0;
             exibirFoto(posicao);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
-    
+
     public void exibirFoto(int posicao) throws Exception {
-        
-        if (fotos.size() > 0) {
-            File f = new File(fotos.get(posicao).getFot_caminho());
+
+       
+            File f = new File(fotos.getFot_caminho());
 
             /* OPCIONAL - Código para definir o tamanho da imagem na tela */
             ImageIcon imageIcon = new ImageIcon(f.getPath()); // load the image to a imageIcon
@@ -144,9 +143,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
             ImageIcon icon = new ImageIcon(newimg);
             jLabelFotos.setIcon(icon);
-        } else {
-            jLabelFotos.setIcon(null);
-        }
     }
 
     public static String convertDate(Date dtConsulta) {
@@ -193,14 +189,14 @@ public class TelaMotoristas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     public void ValidaMotoristas() {
-       Valida.SomenteNumero(jTextFieldNumeroMotorista.getText(), "Campo número do endereço deve conter somente números!");
-       Valida.SomenteNumero(jTextField_rgMotorista.getText(), "Campo rg deve conter somente números!");
-       Valida.campoVazio(jTextFieldNomeMotorista.getText(), "Campo nome deve ser preenchido!");
-       Valida.notNumber(jTextFieldNomeMotorista.getText(), "Campo nome não deve conter números!");
-       Valida.notSpecialCharacters(jTextFieldNomeMotorista.getText(), "Campo nome não deve conter caracteres especiais!");
- 
+        Valida.SomenteNumero(jTextFieldNumeroMotorista.getText(), "Campo número do endereço deve conter somente números!");
+        Valida.SomenteNumero(jTextField_rgMotorista.getText(), "Campo rg deve conter somente números!");
+        Valida.campoVazio(jTextFieldNomeMotorista.getText(), "Campo nome deve ser preenchido!");
+        Valida.notNumber(jTextFieldNomeMotorista.getText(), "Campo nome não deve conter números!");
+        Valida.notSpecialCharacters(jTextFieldNomeMotorista.getText(), "Campo nome não deve conter caracteres especiais!");
+
     }
 
     public void limparCampos() {
@@ -254,6 +250,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jButtonSalvar = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabelFotos = new javax.swing.JLabel();
+        jButtonCadastrar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -274,7 +271,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextFieldEmailMotorista = new javax.swing.JTextField();
         jTextFieldTelefoneMotorista = new javax.swing.JFormattedTextField();
-        jButtonCadastrar = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
         jButtonRemover = new javax.swing.JButton();
         jButtonLimpar = new javax.swing.JButton();
@@ -286,7 +282,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("[MOTORISTAS]");
-        setPreferredSize(new java.awt.Dimension(1366, 768));
 
         jPanel2PessoaFisica.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados Gerais"));
 
@@ -350,6 +345,14 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
         jLabel16.setText("CNH");
 
+        jButtonCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/salve.png"))); // NOI18N
+        jButtonCadastrar.setText("CADASTRAR");
+        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2PessoaFisicaLayout = new javax.swing.GroupLayout(jPanel2PessoaFisica);
         jPanel2PessoaFisica.setLayout(jPanel2PessoaFisicaLayout);
         jPanel2PessoaFisicaLayout.setHorizontalGroup(
@@ -386,6 +389,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
                             .addComponent(jTextField_CategoriaCNH)
                             .addComponent(jTextFieldCNHMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCadastrar)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonSelecionar)
                         .addGap(75, 75, 75)
                         .addComponent(jButtonSalvar)))
@@ -438,7 +443,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonSalvar)))
+                            .addComponent(jButtonSalvar)
+                            .addComponent(jButtonCadastrar)))
                     .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -518,7 +524,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
                                     .addComponent(jTextField_UF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(513, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -541,7 +547,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldComplementoMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -604,14 +610,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
                 .addContainerGap(62, Short.MAX_VALUE))
         );
 
-        jButtonCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/salve.png"))); // NOI18N
-        jButtonCadastrar.setText("CADASTRAR");
-        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCadastrarActionPerformed(evt);
-            }
-        });
-
         jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/editar.png"))); // NOI18N
         jButtonAlterar.setText("ALTERAR");
         jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -665,9 +663,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButtonCadastrar)
-                        .addGap(225, 225, 225)
+                        .addGap(364, 364, 364)
                         .addComponent(jButtonAlterar)
                         .addGap(326, 326, 326)
                         .addComponent(jButtonRemover)
@@ -712,7 +708,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
                                 .addComponent(jButtonSetaDireita2)
                                 .addGap(90, 90, 90)))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonCadastrar)
                     .addComponent(jButtonAlterar)
                     .addComponent(jButtonRemover)
                     .addComponent(jButtonLimpar))
@@ -820,9 +815,11 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
         } catch (Exception error) {
 
-            try{
-                if(chegou == 1)enderecoBll.deleteLast();
-                if(chegou == 2){
+            try {
+                if (chegou == 1) {
+                    enderecoBll.deleteLast();
+                }
+                if (chegou == 2) {
                     clienteBll.deleteLast();
                     enderecoBll.deleteLast();
                 }
@@ -838,6 +835,21 @@ public class TelaMotoristas extends javax.swing.JFrame {
         int chegou = 0;
         try {
             ValidaMotoristas();
+
+            String NomeDoArquivo = f.getName();
+            File destino = new File("C:\\Users\\Gustavo Gabriel\\Pictures\\Saved Pictures" + NomeDoArquivo);
+
+            destino = destino.getAbsoluteFile();
+
+            Fotos foto = new Fotos();
+            foto.setFot_caminho(destino.getAbsoluteFile().toString());
+            fotoBll.addFotos(foto);
+            if (!destino.exists()) {
+                Files.copy(f.toPath(), destino.toPath());
+            }
+            
+            foto = fotoBll.getFotosByCaminho(foto.getFot_caminho());
+            
             Date data = formato.parse(jFormattedTextField_Data_validade.getText());
 
             cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
@@ -864,7 +876,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
             cliente = clienteBll.getClienteByTelefone(clienteTelefone);
 
             chegou = 2;
-
+            
+            motorista.setFotos(fotos);
             motorista.setCliente(cliente);
             motorista.setRg(jTextField_rgMotorista.getText());
             motorista.setCpf(jTextField_CpfMotorista.getText());
@@ -879,10 +892,12 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
         } catch (Exception error) {
 
-            try{
+            try {
 
-                if(chegou == 1)enderecoBll.deleteLast();
-                if(chegou == 2){
+                if (chegou == 1) {
+                    enderecoBll.deleteLast();
+                }
+                if (chegou == 2) {
                     clienteBll.deleteLast();
                     enderecoBll.deleteLast();
                 }
@@ -905,22 +920,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
 
-        String NomeDoArquivo = f.getName();
-        File destino = new File("/home/jhonlinux/Imagens" + NomeDoArquivo);
 
-        destino = destino.getAbsoluteFile();
-
-        try {
-            Fotos foto = new Fotos();
-            foto.setFot_caminho(destino.getAbsoluteFile().toString());
-            fotoBll.addFotos(foto);
-            if (!destino.exists()) {
-                Files.copy(f.toPath(), destino.toPath());
-            }
-            JOptionPane.showMessageDialog(null, "Salvo com sucesso");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed

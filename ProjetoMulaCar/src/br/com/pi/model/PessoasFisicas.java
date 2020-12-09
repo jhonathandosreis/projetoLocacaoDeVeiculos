@@ -30,7 +30,7 @@ public class PessoasFisicas extends Clientes {
     private String rg = "";
     private String cpf = "";
     private Clientes cliente = null;
-    private ArrayList<Fotos> fotos = new ArrayList<>();
+    private Fotos fotos = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -41,12 +41,13 @@ public class PessoasFisicas extends Clientes {
     }
 
     public PessoasFisicas(int iden, String nome, String telefone, String email,
-            Enderecos enderecos,String status, float multa, Clientes cliente, String rg, String cpf) {
+            Enderecos enderecos,String status, float multa, Clientes cliente,Fotos foto, String rg, String cpf) {
         super(iden, nome, telefone, email, enderecos, status, multa);
         this.iden = iden;
         this.rg = rg;
         this.cpf = cpf;
         this.cliente = cliente;
+        this.fotos = foto;
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -57,7 +58,7 @@ public class PessoasFisicas extends Clientes {
         return iden;
     }
 
-    public ArrayList<Fotos> getFotos() {
+    public Fotos getFotos() {
         return fotos;
     }
     
@@ -89,7 +90,7 @@ public class PessoasFisicas extends Clientes {
         this.cpf = cpf;
     }
     
-    public void setFotos(ArrayList<Fotos> fotos) {
+    public void setFotos(Fotos fotos) {
         this.fotos = fotos;
     }
 
