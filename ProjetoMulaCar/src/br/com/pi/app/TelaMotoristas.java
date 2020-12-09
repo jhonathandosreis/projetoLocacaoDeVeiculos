@@ -72,6 +72,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
         try {
 
             motorista = new Motoristas();
+            fotoBll = new FotosBll();
             pessoaFisica = new PessoasFisicas();
             motoristabll = new MotoristasBll();
             cliente = new Clientes();

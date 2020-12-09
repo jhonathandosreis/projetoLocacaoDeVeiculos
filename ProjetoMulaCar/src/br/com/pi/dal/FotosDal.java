@@ -49,7 +49,7 @@ public class FotosDal {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addFotos(Fotos foto) throws Exception {
 
-        String sql = "INSERT INTO fotos(fot_caminho) VALUES(?,?)";
+        String sql = "INSERT INTO fotos(fot_caminho) VALUES (?)";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, foto.getFot_caminho());
@@ -65,7 +65,7 @@ public class FotosDal {
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateFotos(Fotos foto) throws Exception {
 
-        String sql = "UPDATE fotos SET fot_caminho=?, fot_pfi_iden=? WHERE fot_iden=?";
+        String sql = "UPDATE fotos SET fot_caminho=? WHERE fot_iden=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, foto.getFot_caminho());
