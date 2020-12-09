@@ -50,7 +50,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     //
     public TelaDevolucoes() {
         initComponents();
-
+        this.setExtendedState(MAXIMIZED_BOTH);
         try {
 
             devolucao = new Devolucoes();

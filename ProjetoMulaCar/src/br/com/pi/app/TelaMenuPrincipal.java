@@ -14,7 +14,6 @@
  */
 package br.com.pi.app;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**

@@ -39,7 +39,7 @@ public class TelaTipoDeVeiculo extends javax.swing.JFrame {
 
     public TelaTipoDeVeiculo() {
         initComponents();
-
+        this.setExtendedState(MAXIMIZED_BOTH);
         try {
             tiposVeiculosBll = new TiposDeVeiculosBll();
             tipoDeVeiculo = new TiposDeVeiculos();

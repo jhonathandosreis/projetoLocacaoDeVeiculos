@@ -39,6 +39,7 @@ public class TelaMarcas extends javax.swing.JFrame {
 
     public TelaMarcas() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
         try {
             marcasBll = new MarcasBll();
             marca = new Marcas();

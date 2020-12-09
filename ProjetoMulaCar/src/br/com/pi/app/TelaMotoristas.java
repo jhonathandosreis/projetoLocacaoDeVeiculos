@@ -68,7 +68,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
     public TelaMotoristas() {
         initComponents();
-
+        this.setExtendedState(MAXIMIZED_BOTH);
         try {
 
             motorista = new Motoristas();

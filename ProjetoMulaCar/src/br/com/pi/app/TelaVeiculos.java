@@ -49,7 +49,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
     
     public TelaVeiculos() {
         initComponents();
-
+        this.setExtendedState(MAXIMIZED_BOTH);
         try {
             veiculosBll = new VeiculosBll();
             modelosBll = new ModelosBll();

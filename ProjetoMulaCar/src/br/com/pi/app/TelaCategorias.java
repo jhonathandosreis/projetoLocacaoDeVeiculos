@@ -25,7 +25,7 @@ public class TelaCategorias extends javax.swing.JFrame {
 
     public TelaCategorias() {
         initComponents();
-
+        this.setExtendedState(MAXIMIZED_BOTH);
         try {
             categoriasBll = new CategoriasBll();
             categoria = new Categorias();

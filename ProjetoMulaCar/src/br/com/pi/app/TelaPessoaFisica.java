@@ -44,7 +44,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
 
     public TelaPessoaFisica() {
         initComponents();
-
+        this.setExtendedState(MAXIMIZED_BOTH);
         try {
 
             pessoaFisica = new PessoasFisicas();

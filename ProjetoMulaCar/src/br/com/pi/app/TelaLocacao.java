@@ -58,6 +58,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     
     public TelaLocacao() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
         try{
            locacao = new Locacoes();
            locacaoBll = new LocacoesBll();

@@ -51,7 +51,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     //
     public TelaPessoaJuridica() {
         initComponents();
-
+        this.setExtendedState(MAXIMIZED_BOTH);
         try {
 
             pessoaJuridica = new PessoasJuridicas();

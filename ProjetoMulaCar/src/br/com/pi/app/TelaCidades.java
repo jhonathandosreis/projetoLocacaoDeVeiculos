@@ -42,6 +42,7 @@ public class TelaCidades extends javax.swing.JFrame {
     //
     public TelaCidades() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
         try {
 
             ufBll = new UfsBll();

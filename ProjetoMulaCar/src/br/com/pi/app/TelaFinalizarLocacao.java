@@ -38,6 +38,7 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
     
     public TelaFinalizarLocacao() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
         try {
             locacaoBll = new LocacoesBll();
             veiculoBll = new VeiculosBll();

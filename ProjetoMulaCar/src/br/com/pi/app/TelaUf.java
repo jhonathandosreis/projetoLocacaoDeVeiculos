@@ -38,7 +38,7 @@ public class TelaUf extends javax.swing.JFrame {
     //
     public TelaUf() {
         initComponents();
-
+        this.setExtendedState(MAXIMIZED_BOTH);
         try {
             
             ufBll = new UfsBll();

@@ -51,7 +51,7 @@ public class TelaModelos extends javax.swing.JFrame {
 
     public TelaModelos() {
         initComponents();
-
+        this.setExtendedState(MAXIMIZED_BOTH);
         try {
             modelosBll = new ModelosBll();
             categoriasBll = new CategoriasBll();

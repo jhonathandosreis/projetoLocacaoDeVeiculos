@@ -17,6 +17,7 @@ public class TelaLogin extends javax.swing.JFrame {
      TelaMenuPrincipal menu = new TelaMenuPrincipal();
     public TelaLogin() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
          this.setLocationRelativeTo(null);
     }
     
