@@ -16,10 +16,11 @@
 package br.com.pi.dal;
 
 import br.com.pi.bll.ClientesBll;
-import br.com.pi.bll.LocacoesBll;
+import br.com.pi.bll.MotoristasBll;
 import br.com.pi.bll.VeiculosBll;
 import br.com.pi.model.Clientes;
 import br.com.pi.model.Locacoes;
+import br.com.pi.model.Motoristas;
 import br.com.pi.model.Veiculos;
 import br.com.pi.util.Conexao;
 import java.sql.Connection;
@@ -36,12 +37,13 @@ public class LocacoesDal {
     
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     private Connection conexao;
-    private Locacoes locacao;
-    private LocacoesBll locacaoBll;
-    private Clientes cliente;
-    private ClientesBll clienteBll;
-    private Veiculos veiculo;
-    private VeiculosBll veiculoBll;
+    private Locacoes locacao = null;
+    private Clientes cliente = null;
+    private ClientesBll clienteBll = new ClientesBll();
+    private Veiculos veiculo = null;
+    private VeiculosBll veiculoBll = new VeiculosBll();
+    private Motoristas motorista = null;
+    private MotoristasBll motoristaBll = new MotoristasBll();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -57,7 +59,7 @@ public class LocacoesDal {
     public void addLocacoes (Locacoes locacao) throws Exception {
         
         String sql = "INSERT INTO locacoes (loc_data_locacao, loc_data_prevista_devolucao, loc_km_inicial,"
-                + " loc_valor_locacao, loc_valor_caucao, loc_valor_seguro, loc_valor_total_pago,loc_cli_iden, loc_vei_iden, loc_status) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                + " loc_valor_locacao, loc_valor_caucao, loc_valor_seguro, loc_valor_total_pago,loc_cli_iden, loc_vei_iden, loc_status, loc_pfi_iden) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         try{
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         
@@ -74,6 +76,7 @@ public class LocacoesDal {
         preparedStatement.setInt(8, locacao.getCliente().getIden());
         preparedStatement.setInt(9, locacao.getVeiculos().getIden());
         preparedStatement.setString(10, locacao.getStatus());
+        preparedStatement.setInt(11, locacao.getMotoristas().getIden());
         preparedStatement.executeUpdate();
         
         } catch (Exception error) {
@@ -88,7 +91,7 @@ public class LocacoesDal {
     public void updateLocacoes (Locacoes locacao) throws Exception {
         
         String sql = "UPDATE locacoes SET loc_data_locacao=?, loc_data_prevista_devolucao=?, loc_km_inicial=?,"
-                + " loc_valor_locacao=?, loc_valor_caucao=?, loc_valor_seguro=?, loc_valor_total_pago=?, loc_cli_iden=?, loc_vei_iden=?, loc_status=? WHERE loc_codigo=?)";
+                + " loc_valor_locacao=?, loc_valor_caucao=?, loc_valor_seguro=?, loc_valor_total_pago=?, loc_cli_iden=?, loc_vei_iden=?, loc_status=?, loc_pfi_iden=? WHERE loc_codigo=?)";
         try{
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         
@@ -105,7 +108,8 @@ public class LocacoesDal {
         preparedStatement.setInt(8, locacao.getCliente().getIden());
         preparedStatement.setInt(9, locacao.getVeiculos().getIden());
         preparedStatement.setString(10, locacao.getStatus());
-        preparedStatement.setInt(11, locacao.getIden());
+         preparedStatement.setInt(11, locacao.getMotoristas().getIden());
+        preparedStatement.setInt(12, locacao.getIden());
         preparedStatement.executeUpdate();
         
         } catch (Exception error) {
@@ -142,22 +146,10 @@ public class LocacoesDal {
          Statement statement = conexao.createStatement();
          ResultSet rs = statement.executeQuery(sql);
          
-           if(rs.next()){
-                int cli_id = rs.getInt("loc_cli_iden");
-                cliente = clienteBll.getClienteById(cli_id);
-                int vei_id = rs.getInt("loc_vei_iden");
-                veiculo = veiculoBll.getVeiculosById(vei_id);
-                locacao.setIden(rs.getInt("loc_codigo"));
-                locacao.setDataDeLocacao(rs.getDate("loc_data_locacao"));
-                locacao.setDataPrevistDeDevolucao(rs.getDate("loc_data_prevista_devolucao"));
-                locacao.setKmInicial(rs.getDouble("loc_km_inicial"));
-                locacao.setValorLocacao(rs.getFloat("loc_valor_locacao"));
-                locacao.setValorCaucao(rs.getFloat("loc_valor_caucao"));
-                locacao.setValorSeguro(rs.getFloat("loc_valor_seguro"));
-                locacao.setValorTotalPago(rs.getFloat("loc_valor_total_pago"));
-                locacao.setStatus(rs.getString("loc_status"));
-                locacao.setCliente(cliente);
-                locacao.setVeiculos(veiculo);
+           while(rs.next()){
+                locacao = new Locacoes();
+                int id_loc = (rs.getInt("loc_codigo"));
+                locacao = getLocacoesById(id_loc);
                 lista.add(locacao);
            } 
     return lista;
@@ -179,6 +171,8 @@ public class LocacoesDal {
                 cliente = clienteBll.getClienteById(cli_id);
                 int vei_id = rs.getInt("loc_vei_iden");
                 veiculo = veiculoBll.getVeiculosById(vei_id);
+                int mot_iden = rs.getInt("loc_pfi_iden");
+                motorista = motoristaBll.getMotoristaById(mot_iden);
                 locacao.setIden(rs.getInt("loc_codigo"));
                 locacao.setDataDeLocacao(rs.getDate("loc_data_locacao"));
                 locacao.setDataPrevistDeDevolucao(rs.getDate("loc_data_prevista_devolucao"));
@@ -190,6 +184,7 @@ public class LocacoesDal {
                 locacao.setStatus(rs.getString("loc_status"));
                 locacao.setCliente(cliente);
                 locacao.setVeiculos(veiculo);
+                locacao.setMotoristas(motorista);
             }
             return locacao;
         } catch (Exception error) {

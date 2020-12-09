@@ -149,7 +149,7 @@ public class TelaLocacao extends javax.swing.JFrame {
            // jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
             for (PessoasFisicas pessoaFisica : listaPessoasFisicas) {
                 if(pessoaFisica.getCliente().getStatus().equals("ADIMPLENTE")){
-               jComboBox_Cliente_Locacao.addItem(pessoaFisica.getCliente().getIden()+"-"+pessoaFisica.getCliente().getNome());
+               jComboBox_Cliente_Locacao.addItem(pessoaFisica.getIden()+"-"+pessoaFisica.getCliente().getNome());
                 }
             }      
         }
@@ -160,7 +160,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             //jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
             for (PessoasJuridicas pessoJurica : listaPessoasJuridicas) {
                  if(pessoJurica.getCliente().getStatus().equals("ADIMPLENTE")){
-               jComboBox_Cliente_Locacao.addItem(pessoJurica.getCliente().getIden()+"-"+pessoJurica.getRazaoSocial());
+               jComboBox_Cliente_Locacao.addItem(pessoJurica.getIden()+"-"+pessoJurica.getRazaoSocial());
             }
             }
         }
@@ -171,7 +171,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             //jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
             for(Motoristas motorista : listaMotoristas){
                  if(motorista.getCliente().getStatus().equals("ADIMPLENTE")){
-                jComboBox_Cliente_Locacao.addItem(motorista.getCliente().getIden()+"-"+motorista.getCliente().getNome());
+                jComboBox_Cliente_Locacao.addItem(motorista.getIden()+"-"+motorista.getCliente().getNome());
             }
             }
         }
@@ -186,9 +186,7 @@ public class TelaLocacao extends javax.swing.JFrame {
         jTextFieldDataDevolucao.setText("");
         jTextFieldIDLocacao.setText("");
         jTextArea_informacoesVeiculo.setText("");
-        JradioButonMotodista.setSelected(false);
-        jRadioButtonPFisica.setSelected(false);
-        jRadioButtonPJuridica.setSelected(false);
+        buttonGroup1.clearSelection();
     }
     public void respostaFinalizacao(String resposta){
       JOptionPane.showMessageDialog(null, resposta);
@@ -237,8 +235,6 @@ public class TelaLocacao extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("[LOCAÇÃO DO VEÍCULO]");
-        setMaximumSize(new java.awt.Dimension(1319, 699));
-        setPreferredSize(new java.awt.Dimension(1319, 699));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Locação"));
 
@@ -517,23 +513,23 @@ public class TelaLocacao extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonCadastrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(67, 67, 67)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -555,17 +551,17 @@ public class TelaLocacao extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                            .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -591,7 +587,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         
         try {
-             
+             String tipoPessoa = "";
             if (jTable_VEICULOS.getSelectedRow() == -1) {
                 throw new Exception("Selecione veículo na tabela para ser locado!");
             }
@@ -599,25 +595,34 @@ public class TelaLocacao extends javax.swing.JFrame {
                 throw new Exception("Para locar deve indicar quem será o motorista!");
             }
             if(JradioButonMotodista.isSelected()){
-                motorista = motoristabll.getMotoristaById(SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString()));
+                int id = SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString());
+                motorista = motoristabll.getMotoristaById(id);
                 cliente = motorista.getCliente();
                 locacao.setCliente(cliente);
                 locacao.setMotoristas(motorista);
+                tipoPessoa = "F";
             }
             else{
                 Motoristas motorista2 = motoristabll.getMotoristaById(SplitReturnID(jComboBox_MotoristaLocacao.getSelectedItem().toString()));
                 locacao.setMotoristas(motorista2);
-            }
-            if(jRadioButtonPFisica.isSelected()){
-                pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString()));
+                
+                 if(jRadioButtonPFisica.isSelected()){
+                int id = SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString());
+                pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
                 cliente = pessoaFisica.getCliente();
                 locacao.setCliente(cliente);
+                tipoPessoa = "F";
             }
             if(jRadioButtonPJuridica.isSelected()){
-                pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString()));
-                locacao.setCliente(pessoaJuridica.getCliente());
+                int id = SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString());
+                pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(id);
+                cliente = pessoaJuridica.getCliente();
+                locacao.setCliente(cliente);
+                tipoPessoa = "J";
             }
             
+            }
+           
             int id = Integer.parseInt(jTable_VEICULOS.getValueAt(jTable_VEICULOS.getSelectedRow(), 0).toString());
             veiculo = veiculoBll.getVeiculosById(id);
             locacao.setVeiculos(veiculo);
@@ -653,7 +658,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                 fimLocacao.setVisible(true);
                 fimLocacao.setResizable(false);
             }
-                fimLocacao.enviaLocacao(this,locacao);
+                fimLocacao.enviaLocacao(this,locacao,tipoPessoa);
             
            
              } catch (Exception error) {

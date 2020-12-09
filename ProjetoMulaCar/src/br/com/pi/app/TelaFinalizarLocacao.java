@@ -35,7 +35,8 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
     private VeiculosBll veiculoBll;
     private Clientes cliente = null;
     private ClientesBll clienteBll;
-    
+    private String pessoa = "";
+
     public TelaFinalizarLocacao() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -49,7 +50,8 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
         }
     }
 
-    public void enviaLocacao(TelaLocacao tela, Locacoes locacao) {
+    public void enviaLocacao(TelaLocacao tela, Locacoes locacao, String tipoPessoa) {
+        this.pessoa = tipoPessoa;
         this.locacao = locacao;
         this.telalocacao = tela;
         jTextFieldValorLocacao.setText(locacao.getValorLocacao() + " R$");
@@ -216,17 +218,21 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         try {
             if (telalocacao != null) {
-                
+                cliente = locacao.getCliente();
+                if (pessoa.equals("F")) {
+                    cliente.setStatus("LOCANDO");
+                    clienteBll.updateClientes(cliente);
+                }
+
                 veiculo = locacao.getVeiculos();
                 veiculo.setStatus("LOCADO");
                 veiculoBll.updateVeiculos(veiculo);
-                cliente = locacao.getCliente();
-                cliente.setStatus("LOCANDO");
-                clienteBll.updateClientes(cliente);
+
                 locacaoBll.addLocacoes(locacao);
                 telalocacao.LimparTelaLocacao();
                 telalocacao.respostaFinalizacao("Locação finalizada com sucesso!");
-                
+               
+
                 this.dispose();
             }
         } catch (Exception error) {
@@ -241,7 +247,7 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
             if (telalocacao != null) {
                 telalocacao.LimparTelaLocacao();
                 telalocacao.respostaFinalizacao("Locação cancelada");
-                
+
                 this.dispose();
             }
         } catch (Exception error) {

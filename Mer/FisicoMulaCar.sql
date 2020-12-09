@@ -114,9 +114,11 @@ CREATE TABLE locacoes (
     loc_status VARCHAR(20),
     loc_cli_iden INTEGER,
     loc_vei_iden INTEGER,
-    
+    loc_pfi_iden INTEGER,
+
     FOREIGN KEY (loc_cli_iden) REFERENCES clientes (cli_iden),
-    FOREIGN KEY (loc_vei_iden) REFERENCES veiculos (vei_iden)
+    FOREIGN KEY (loc_vei_iden) REFERENCES veiculos (vei_iden),
+    FOREIGN KEY (loc_pfi_iden) REFERENCES pessoas_fisicas (pfi_iden)
 );
 
 CREATE TABLE devolucoes (
