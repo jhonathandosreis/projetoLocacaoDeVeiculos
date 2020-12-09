@@ -275,8 +275,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("[VEÍCULOS]");
-        setMaximumSize(new java.awt.Dimension(1319, 699));
-        setPreferredSize(new java.awt.Dimension(1319, 699));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Veículo"));
 
@@ -650,33 +648,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        try {
-            ValidaVeículo();
-            String nome = jComboBoxModelo.getSelectedItem().toString();
-            modelo = modelosBll.getModeloByNome(nome);
-            veiculo.setModelo(modelo);
-
-            veiculo.setPlaca(jTextFieldPlaca.getText());
-            veiculo.setRenavam(jTextFieldRenavam.getText());
-            veiculo.setAnoFabricacao(Integer.parseInt(jTextFieldAno.getText()));
-            veiculo.setQuilometragem(Double.parseDouble(jTextFieldKM.getText()));
-            veiculo.setPrecoDeCompra(Integer.parseInt(jTextFieldValorDeCompra.getText()));
-            veiculo.setCapacidade(Integer.parseInt(jTextFieldQuantidadePassageiros.getText()));
-            veiculo.setTipoDeCombustivel(jTextFieldTipoDeCombustivel.getText());
-            veiculo.setCapacidadeCombustivel(Integer.parseInt(jTextFieldCapacidadeTanque.getText()));
-            veiculo.setStatus(jTextFieldStatus.getText());
-            veiculo.setObservacoes(jTextAreaObservacoes.getText());
-            veiculosBll.addVeiculos(veiculo);
-            preencherGridVeiculos();
-            limparCampos();
-
-            JOptionPane.showMessageDialog(null, "Veículo cadastrado com sucesso!");
-        } catch (Exception error) {
-            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButtonCadastrarActionPerformed
-
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         try {
             if (jTableVeiculo.getSelectedRow() == -1) {
@@ -756,6 +727,33 @@ public class TelaVeiculos extends javax.swing.JFrame {
     private void jRadioButtonNacionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNacionalActionPerformed
         jTextFieldPlaca.setEnabled(true);
     }//GEN-LAST:event_jRadioButtonNacionalActionPerformed
+
+    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+        try {
+            ValidaVeículo();
+            String nome = jComboBoxModelo.getSelectedItem().toString();
+            modelo = modelosBll.getModeloByNome(nome);
+            veiculo.setModelo(modelo);
+
+            veiculo.setPlaca(jTextFieldPlaca.getText());
+            veiculo.setRenavam(jTextFieldRenavam.getText());
+            veiculo.setAnoFabricacao(Integer.parseInt(jTextFieldAno.getText()));
+            veiculo.setQuilometragem(Double.parseDouble(jTextFieldKM.getText()));
+            veiculo.setPrecoDeCompra(Integer.parseInt(jTextFieldValorDeCompra.getText()));
+            veiculo.setCapacidade(Integer.parseInt(jTextFieldQuantidadePassageiros.getText()));
+            veiculo.setTipoDeCombustivel(jTextFieldTipoDeCombustivel.getText());
+            veiculo.setCapacidadeCombustivel(Integer.parseInt(jTextFieldCapacidadeTanque.getText()));
+            veiculo.setStatus(jTextFieldStatus.getText());
+            veiculo.setObservacoes(jTextAreaObservacoes.getText());
+            veiculosBll.addVeiculos(veiculo);
+            preencherGridVeiculos();
+            limparCampos();
+
+            JOptionPane.showMessageDialog(null, "Veículo cadastrado com sucesso!");
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
