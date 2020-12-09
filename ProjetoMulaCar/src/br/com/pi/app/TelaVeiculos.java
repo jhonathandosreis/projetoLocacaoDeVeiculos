@@ -133,7 +133,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
             jTextFieldQuantidadePassageiros.setText(veiculo.getCapacidade() + "");
             jTextFieldTipoDeCombustivel.setText(veiculo.getTipoDeCombustivel());
             jTextFieldCapacidadeTanque.setText(veiculo.getCapacidadeCombustivel() + "");
-            jTextFieldStatus.setText(veiculo.getStatus());
             jTextAreaObservacoes.setText(veiculo.getObservacoes());
             
             jTextFieldPlaca.setEnabled(true);
@@ -154,7 +153,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jTextFieldValorDeCompra.setText("");
         jTextFieldQuantidadePassageiros.setText("");
         jTextFieldTipoDeCombustivel.setText("");
-        jTextFieldStatus.setText("");
         jComboBoxModelo.setSelectedItem("");
         jTextFieldMarca.setText("");
         jTextFieldTipoDoVeiculo.setText("");
@@ -224,7 +222,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextFieldValorDeCompra = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -243,7 +240,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jRadioButtonMercosul = new javax.swing.JRadioButton();
         jLabel15 = new javax.swing.JLabel();
         jTextFieldCapacidadeTanque = new javax.swing.JTextField();
-        jTextFieldStatus = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jButtonCadastrar = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
@@ -272,8 +268,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jLabel7.setText("Valor de Compra");
 
         jLabel8.setText("Categoria");
-
-        jLabel9.setText("Status");
 
         jLabel10.setText("Modelo");
 
@@ -320,8 +314,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
         });
 
         jLabel15.setText("Capacidade do Tanque");
-
-        jTextFieldStatus.setText("DISPONIVEL");
 
         jSeparator1.setBackground(new java.awt.Color(153, 153, 153));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -382,9 +374,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jTextFieldCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextFieldTipoDoVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldTipoDoVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68))
         );
         jPanel2Layout.setVerticalGroup(
@@ -458,11 +448,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextFieldTipoDoVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 38, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
                                 .addComponent(jLabel12)
@@ -605,8 +591,10 @@ public class TelaVeiculos extends javax.swing.JFrame {
             ValidaVeículo();
             String nome = jComboBoxModelo.getSelectedItem().toString();
             modelo = modelosBll.getModeloByNome(nome);
+            int id = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 0).toString());           
+            veiculo = veiculosBll.getVeiculosById(id);
+            
             veiculo.setModelo(modelo);
-
             veiculo.setIden(Integer.parseInt(jTextFieldIDVeiculo.getText()));
             veiculo.setPlaca(jTextFieldPlaca.getText());
             veiculo.setRenavam(jTextFieldRenavam.getText());
@@ -616,7 +604,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
             veiculo.setCapacidade(Integer.parseInt(jTextFieldQuantidadePassageiros.getText()));
             veiculo.setTipoDeCombustivel(jTextFieldTipoDeCombustivel.getText());
             veiculo.setCapacidadeCombustivel(Integer.parseInt(jTextFieldCapacidadeTanque.getText()));
-            veiculo.setStatus(jTextFieldStatus.getText());
             veiculo.setObservacoes(jTextAreaObservacoes.getText());
             veiculosBll.updateVeiculos(veiculo);
             preencherGridVeiculos();
@@ -691,7 +678,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
             veiculo.setCapacidade(Integer.parseInt(jTextFieldQuantidadePassageiros.getText()));
             veiculo.setTipoDeCombustivel(jTextFieldTipoDeCombustivel.getText());
             veiculo.setCapacidadeCombustivel(Integer.parseInt(jTextFieldCapacidadeTanque.getText()));
-            veiculo.setStatus(jTextFieldStatus.getText());
+            veiculo.setStatus("DISPONIVEL");
             veiculo.setObservacoes(jTextAreaObservacoes.getText());
             veiculosBll.addVeiculos(veiculo);
             preencherGridVeiculos();
@@ -757,7 +744,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButtonMercosul;
@@ -776,7 +762,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPlaca;
     private javax.swing.JTextField jTextFieldQuantidadePassageiros;
     private javax.swing.JTextField jTextFieldRenavam;
-    private javax.swing.JTextField jTextFieldStatus;
     private javax.swing.JTextField jTextFieldTipoDeCombustivel;
     private javax.swing.JTextField jTextFieldTipoDoVeiculo;
     private javax.swing.JTextField jTextFieldValorDeCompra;
