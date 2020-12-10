@@ -39,9 +39,14 @@ public class PessoasFisicasBll {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addPessoasFisicas(PessoasFisicas pessoaFisica) throws Exception {
-        try{
         Valida.campoVazio(pessoaFisica.getCpf(), "Campo cpf deve ser preenchido!");
         Valida.campoVazio(pessoaFisica.getRg(), "Campo rg deve ser preenchido!");
+        String cpf = pessoaFisica.getCpf();
+        cpf = cpf.replace(".", ""); //tira ponto
+        cpf = cpf.replace("-", ""); //tira hífen
+        Valida.isCPF(cpf, "CPF inválido!");
+        
+        try{
         if(pessoaFisica.getCliente().getIden() == 0) throw new RuntimeException("Erro ao inserir cliente em pessoa fisica");       
         pessoaFisicaDal.addPessoasFisicas(pessoaFisica);
         
