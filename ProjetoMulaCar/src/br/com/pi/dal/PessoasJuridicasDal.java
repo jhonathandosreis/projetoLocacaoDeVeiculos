@@ -159,7 +159,7 @@ public class PessoasJuridicasDal {
         
         ResultSet rs = preparedStatement.executeQuery();
         if(rs.next()){
-                pessoaJuridica = getPessoasJuridicasByCliente(rs.getInt("pju_iden"));
+                pessoaJuridica = getPessoasJuridicasById(rs.getInt("pju_iden"));
         }       
         return pessoaJuridica;
         } catch (Exception error) {

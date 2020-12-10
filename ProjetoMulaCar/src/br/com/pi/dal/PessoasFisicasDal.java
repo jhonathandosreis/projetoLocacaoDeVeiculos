@@ -154,7 +154,7 @@ public class PessoasFisicasDal {
         ResultSet rs = preparedStatement.executeQuery();
         if(rs.next()){
        
-        pessoaFisica = getPessoasFisicasByCliente(rs.getInt("pfi_iden"));
+        pessoaFisica = getPessoasFisicasById(rs.getInt("pfi_iden"));
         
         }       
         return pessoaFisica;

@@ -13,6 +13,7 @@
  *  ---------------------------------------------------------------------------------------------------| 
  */
 package br.com.pi.app;
+
 import br.com.pi.bll.CategoriasBll;
 import br.com.pi.bll.ClientesBll;
 import br.com.pi.bll.FotosBll;
@@ -39,12 +40,13 @@ import java.util.Date;
 import java.util.Locale;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author GustavoDev
  */
 public class TelaLocacao extends javax.swing.JFrame {
-    
+
     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
     Locacoes locacao;
     LocacoesBll locacaoBll;
@@ -54,7 +56,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     MotoristasBll motoristabll;
     PessoasFisicas pessoaFisica;
     PessoasFisicasBll pessoaFisicaBll;
-    PessoasJuridicas pessoaJuridica;     
+    PessoasJuridicas pessoaJuridica;
     PessoasJuridicasBll pessoaJuridicaBll;
     Veiculos veiculo;
     VeiculosBll veiculoBll;
@@ -62,37 +64,38 @@ public class TelaLocacao extends javax.swing.JFrame {
     CategoriasBll categoriaBll;
     Fotos fotos;
     FotosBll fotoBll;
-    
+
     public TelaLocacao() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-        try{
-           locacao = new Locacoes();
-           locacaoBll = new LocacoesBll();
-           cliente = new Clientes();
-           clienteBll = new ClientesBll();
-           motorista = new Motoristas();
-           motoristabll = new MotoristasBll();
-           pessoaFisica = new PessoasFisicas();
-           pessoaFisicaBll = new PessoasFisicasBll();
-           pessoaJuridica = new PessoasJuridicas();
-           pessoaJuridicaBll = new PessoasJuridicasBll();
-           veiculo = new Veiculos();
-           veiculoBll = new VeiculosBll();
-           categoria = new Categorias();
-           categoriaBll = new CategoriasBll();
-           fotos = new Fotos();
-           fotoBll = new FotosBll();
-           
-          PreencherComboboxMotorista();
-           preencherGridLocacoes();
-           //jComboBox_MotoristaLocacao.setSelectedIndex(-1);
-            
-        }catch(Exception error){
+        try {
+            locacao = new Locacoes();
+            locacaoBll = new LocacoesBll();
+            cliente = new Clientes();
+            clienteBll = new ClientesBll();
+            motorista = new Motoristas();
+            motoristabll = new MotoristasBll();
+            pessoaFisica = new PessoasFisicas();
+            pessoaFisicaBll = new PessoasFisicasBll();
+            pessoaJuridica = new PessoasJuridicas();
+            pessoaJuridicaBll = new PessoasJuridicasBll();
+            veiculo = new Veiculos();
+            veiculoBll = new VeiculosBll();
+            categoria = new Categorias();
+            categoriaBll = new CategoriasBll();
+            fotos = new Fotos();
+            fotoBll = new FotosBll();
+
+            PreencherComboboxMotorista();
+            preencherGridLocacoes();
+            //jComboBox_MotoristaLocacao.setSelectedIndex(-1);
+
+        } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
         this.setLocationRelativeTo(null);
     }
+
     public static String convertDate(Date dtConsulta) {
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
@@ -101,165 +104,219 @@ public class TelaLocacao extends javax.swing.JFrame {
             return null;
         }
     }
-    
-    public int DiferencaEntreDatas(Date data1, Date data2) throws Exception{
+
+    public int DiferencaEntreDatas(Date data1, Date data2) throws Exception {
         Date hoje = new Date();
-            if(data1.compareTo(hoje) < 0 ) throw new Exception("Data de locação inválida!");
-            if(data1.compareTo(data2) >= 0 ) throw new Exception("Data de devolução inválida!");
-            
-            long diferencaMS =  data2.getTime() - data1.getTime();
-            long diferencaSegundos = diferencaMS / 1000;
-            long diferencaMinutos = diferencaSegundos / 60;
-            long diferencaHoras = diferencaMinutos / 60;
-            long diferencaDias = diferencaHoras / 24;
-            int dias = (int) diferencaDias;
-            return dias;
+        Date formatada = formato.parse(convertDate(hoje));
+        if (data1.compareTo(formatada) < 0) {
+            throw new Exception("Data de locação inválida!");
+        }
+        if (data1.compareTo(data2) >= 0) {
+            throw new Exception("Data de devolução inválida!");
+        }
+
+        long diferencaMS = data2.getTime() - data1.getTime();
+        long diferencaSegundos = diferencaMS / 1000;
+        long diferencaMinutos = diferencaSegundos / 60;
+        long diferencaHoras = diferencaMinutos / 60;
+        long diferencaDias = diferencaHoras / 24;
+        int dias = (int) diferencaDias;
+        return dias;
     }
-    
-     private void imprimirNaGridVeiculos(ArrayList<Veiculos> listaveiculos){
-        try{
-            DefaultTableModel model =  (DefaultTableModel) jTable_VEICULOS.getModel();
+
+    private void imprimirNaGridVeiculos(ArrayList<Veiculos> listaveiculos) {
+        try {
+            DefaultTableModel model = (DefaultTableModel) jTable_VEICULOS.getModel();
             model.setNumRows(0);
-           
-            for(Veiculos veiculo : listaveiculos){
-                if(veiculo.getStatus().equals("DISPONIVEL")){
-                String[] coluna = new String[6];
-                coluna[0]= ""+veiculo.getIden();
-                coluna[1]= veiculo.getModelo().getCategoria().getNome();
-                coluna[2]= veiculo.getModelo().getTiposDeVeiculos().getNome();
-                coluna[3]= veiculo.getModelo().getNome();
-                coluna[4]= veiculo.getModelo().getMarcas().getNome();   
-                coluna[5]= veiculo.getPlaca();   
-                
-                model.addRow(coluna);    
+
+            for (Veiculos veiculo : listaveiculos) {
+                if (veiculo.getStatus().equals("DISPONIVEL")) {
+                    String[] coluna = new String[6];
+                    coluna[0] = "" + veiculo.getIden();
+                    coluna[1] = veiculo.getModelo().getCategoria().getNome();
+                    coluna[2] = veiculo.getModelo().getTiposDeVeiculos().getNome();
+                    coluna[3] = veiculo.getModelo().getNome();
+                    coluna[4] = veiculo.getModelo().getMarcas().getNome();
+                    coluna[5] = veiculo.getPlaca();
+
+                    model.addRow(coluna);
                 }
-                
+
             }
-        }catch(Exception erro){
+        } catch (Exception erro) {
             JOptionPane.showMessageDialog(rootPane, erro);
         }
     }
-     
-     public void preencherGridLocacoes() throws Exception {
-        try{
+
+    public void preencherGridLocacoes() throws Exception {
+        try {
             ArrayList<Locacoes> listaLocacoes = locacaoBll.getAllLocacoes();
-            DefaultTableModel model =  (DefaultTableModel) jTable_locacao.getModel();
+            DefaultTableModel model = (DefaultTableModel) jTable_locacao.getModel();
             model.setNumRows(0);
-           
-            for(Locacoes locacao : listaLocacoes){
+
+            for (Locacoes locacao : listaLocacoes) {
 
                 String[] coluna = new String[8];
-                coluna[0]= ""+locacao.getIden();
-                coluna[1]= locacao.getVeiculos().getPlaca();
-               
-                if(locacao.getCliente().getTipo().equals("FISICA")){
-                 PessoasFisicas fisica = pessoaFisicaBll.getPessoasFisicasByCliente(locacao.getCliente().getIden());
-                   coluna[2]= fisica.getCpf();
+                coluna[0] = "" + locacao.getIden();
+                coluna[1] = locacao.getVeiculos().getPlaca();
+
+                if (locacao.getCliente().getTipo().equals("FISICA")) {
+                    PessoasFisicas fisica = pessoaFisicaBll.getPessoasFisicasByCliente(locacao.getCliente().getIden());
+                    coluna[2] = fisica.getCpf();
                 }
-                if(locacao.getCliente().getTipo().equals("MOTORISTA")){
+                if (locacao.getCliente().getTipo().equals("MOTORISTA")) {
                     Motoristas motorista = motoristabll.getMotoristaBycCliente(locacao.getCliente().getIden());
-                     coluna[2]= motorista.getCpf();
+                    coluna[2] = motorista.getCpf();
                 }
-                if(locacao.getCliente().getTipo().equals("JURIDICA")){
+                if (locacao.getCliente().getTipo().equals("JURIDICA")) {
                     PessoasJuridicas juridica = pessoaJuridicaBll.getPessoasJuridicasByCliente(locacao.getCliente().getIden());
-                     coluna[2]= juridica.getCnpj();
+                    coluna[2] = juridica.getCnpj();
                 }
-              
-                coluna[3]= ""+locacao.getKmInicial();
-                coluna[4]= convertDate(locacao.getDataDeLocacao());
-                coluna[5]= convertDate(locacao.getDataPrevistDeDevolucao());
-                coluna[6] = ""+locacao.getValorTotalPago();
+
+                coluna[3] = "" + locacao.getKmInicial();
+                coluna[4] = convertDate(locacao.getDataDeLocacao());
+                coluna[5] = convertDate(locacao.getDataPrevistDeDevolucao());
+                coluna[6] = "" + locacao.getValorTotalPago();
                 coluna[7] = locacao.getStatus();
-                
-                model.addRow(coluna);    
-                
-                
+
+                model.addRow(coluna);
+
             }
-        }catch(Exception erro){
+        } catch (Exception erro) {
             JOptionPane.showMessageDialog(rootPane, erro);
         }
     }
-       public void exibirFotoGrid(int iden_PessoaFisica) throws Exception {
-            fotos = fotoBll.getFotosById(iden_PessoaFisica);
-            File f = new File(fotos.getFot_caminho());
 
-            /* OPCIONAL - Código para definir o tamanho da imagem na tela */
-            ImageIcon imageIcon = new ImageIcon(f.getPath()); // load the image to a imageIcon
-            Image image = imageIcon.getImage(); // transform it 
-            Image newimg = image.getScaledInstance(246, 210, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
-            /* Fim do código do redimensionamento */
-            ImageIcon icon = new ImageIcon(newimg);
-            jLabel_cnh.setIcon(icon);
-    }
-    public void PreencherComboboxMotorista() throws Exception{
-        jComboBox_MotoristaLocacao.removeAllItems();
-        try{
-        //jComboBox_MotoristaLocacao.addItem("<SELECIONE>");
-         ArrayList<Motoristas> listaMotoristas = motoristabll.getAllMotoristas();
-            for(Motoristas motorista : listaMotoristas){
-                if(motorista.getCliente().getStatus().equals("ADIMPLENTE")){
-                jComboBox_MotoristaLocacao.addItem(motorista.getIden()+"-"+motorista.getCliente().getNome());
+    public void preencherFormularioLocacao() {
+        try {
+
+            int id = Integer.parseInt(jTable_locacao.getValueAt(jTable_locacao.getSelectedRow(), 0).toString());
+            locacao = locacaoBll.getLocacoesBy(id);
+            jComboBox_Cliente_Locacao.removeAllItems();
+            jComboBox_MotoristaLocacao.removeAllItems();
+
+            if (locacao.getCliente().getTipo().equals("FISICA")) {
+                PessoasFisicas fisica = pessoaFisicaBll.getPessoasFisicasByCliente(locacao.getCliente().getIden());
+                jRadioButtonPFisica.setSelected(true);
+                jComboBox_Cliente_Locacao.addItem(fisica.getIden() + "-" + fisica.getCliente().getNome());
             }
+            if (locacao.getCliente().getTipo().equals("MOTORISTA")) {
+                Motoristas motorista = motoristabll.getMotoristaBycCliente(locacao.getCliente().getIden());
+                JradioButonMotodista.setSelected(true);
+                jComboBox_Cliente_Locacao.addItem(motorista.getIden() + "-" + motorista.getCliente().getNome());
             }
-            } catch (Exception error) {
-            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+            if (locacao.getCliente().getTipo().equals("JURIDICA")) {
+                PessoasJuridicas juridica = pessoaJuridicaBll.getPessoasJuridicasByCliente(locacao.getCliente().getIden());
+                jRadioButtonPJuridica.setSelected(true);
+                jComboBox_Cliente_Locacao.addItem(juridica.getIden() + "-" + juridica.getRazaoSocial());
+            }
+
+            jComboBox_MotoristaLocacao.addItem(locacao.getMotoristas().getIden() + "-" + locacao.getMotoristas().getCliente().getNome());
+
+            jTextFieldDataLocacao.setText(convertDate(locacao.getDataDeLocacao()));
+            jTextFieldDataDevolucao.setText(convertDate(locacao.getDataPrevistDeDevolucao()));
+            veiculo = locacao.getVeiculos();
+            String saida = "MODELO: " + veiculo.getModelo().getNome();
+            saida += "\nMARCA: " + veiculo.getModelo().getMarcas().getNome();
+            saida += "\nPLACA: " + veiculo.getPlaca();
+            saida += "\nKM ATUAL: " + veiculo.getQuilometragem();
+            jTextArea_informacoesVeiculo.setText(saida);
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(rootPane, erro);
         }
     }
-   
-    public void PreencherComboboxCliente() throws Exception{
-         
-        jComboBox_Cliente_Locacao.removeAllItems();
-        try{
-        if(jRadioButtonPFisica.isSelected()){
-            
-            ArrayList<PessoasFisicas> listaPessoasFisicas = pessoaFisicaBll.getAllPessoasFisicas();
-             jComboBox_MotoristaLocacao.setEnabled(true);
-           // jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
-            for (PessoasFisicas pessoaFisica : listaPessoasFisicas) {
-                if(pessoaFisica.getCliente().getStatus().equals("ADIMPLENTE")){
-               jComboBox_Cliente_Locacao.addItem(pessoaFisica.getIden()+"-"+pessoaFisica.getCliente().getNome());
-                }
-            }      
-        }
-        
-        if(jRadioButtonPJuridica.isSelected()){
-            ArrayList<PessoasJuridicas> listaPessoasJuridicas = pessoaJuridicaBll.getAllPessoasJuridicas();
-             jComboBox_MotoristaLocacao.setEnabled(true);
-            //jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
-            for (PessoasJuridicas pessoJurica : listaPessoasJuridicas) {
-                 if(pessoJurica.getCliente().getStatus().equals("ADIMPLENTE")){
-               jComboBox_Cliente_Locacao.addItem(pessoJurica.getIden()+"-"+pessoJurica.getRazaoSocial());
-            }
-            }
-        }
-        
-        if(JradioButonMotodista.isSelected()){
+
+    public void exibirFotoGrid(int iden_PessoaFisica) throws Exception {
+        fotos = fotoBll.getFotosById(iden_PessoaFisica);
+        File f = new File(fotos.getFot_caminho());
+
+        /* OPCIONAL - Código para definir o tamanho da imagem na tela */
+        ImageIcon imageIcon = new ImageIcon(f.getPath()); // load the image to a imageIcon
+        Image image = imageIcon.getImage(); // transform it 
+        Image newimg = image.getScaledInstance(246, 210, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
+        /* Fim do código do redimensionamento */
+        ImageIcon icon = new ImageIcon(newimg);
+        jLabel_cnh.setIcon(icon);
+    }
+
+    public void PreencherComboboxMotorista() throws Exception {
+        try {
+            jComboBox_MotoristaLocacao.removeAllItems();
+            jComboBox_MotoristaLocacao.addItem("<SELECIONE>");
             ArrayList<Motoristas> listaMotoristas = motoristabll.getAllMotoristas();
-            jComboBox_MotoristaLocacao.setEnabled(false);
-            //jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
-            for(Motoristas motorista : listaMotoristas){
-                 if(motorista.getCliente().getStatus().equals("ADIMPLENTE")){
-                jComboBox_Cliente_Locacao.addItem(motorista.getIden()+"-"+motorista.getCliente().getNome());
+            for (Motoristas motorista : listaMotoristas) {
+                if (motorista.getCliente().getStatus().equals("ADIMPLENTE")) {
+                    jComboBox_MotoristaLocacao.addItem(motorista.getIden() + "-" + motorista.getCliente().getNome());
+                }
             }
-            }
-        }
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public void LimparTelaLocacao(){
+
+    public void PreencherComboboxCliente() throws Exception {
+
         jComboBox_Cliente_Locacao.removeAllItems();
-        jTextFieldDataLocacao.setText("");
-        jTextFieldDataDevolucao.setText("");
-        jTextFieldIDLocacao.setText("");
-        jTextArea_informacoesVeiculo.setText("");
-        buttonGroup1.clearSelection();
+        try {
+            if (jRadioButtonPFisica.isSelected()) {
+
+                ArrayList<PessoasFisicas> listaPessoasFisicas = pessoaFisicaBll.getAllPessoasFisicas();
+                jComboBox_MotoristaLocacao.setEnabled(true);
+                // jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
+                for (PessoasFisicas pessoaFisica : listaPessoasFisicas) {
+                    if (pessoaFisica.getCliente().getStatus().equals("ADIMPLENTE")) {
+                        jComboBox_Cliente_Locacao.addItem(pessoaFisica.getIden() + "-" + pessoaFisica.getCliente().getNome());
+                    }
+                }
+            }
+
+            if (jRadioButtonPJuridica.isSelected()) {
+                ArrayList<PessoasJuridicas> listaPessoasJuridicas = pessoaJuridicaBll.getAllPessoasJuridicas();
+                jComboBox_MotoristaLocacao.setEnabled(true);
+                //jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
+                for (PessoasJuridicas pessoJuridica : listaPessoasJuridicas) {
+                    if (pessoJuridica.getCliente().getStatus().equals("ADIMPLENTE")) {
+                        jComboBox_Cliente_Locacao.addItem(pessoJuridica.getIden() + "-" + pessoJuridica.getRazaoSocial());
+                    }
+                }
+            }
+
+            if (JradioButonMotodista.isSelected()) {
+                ArrayList<Motoristas> listaMotoristas = motoristabll.getAllMotoristas();
+                jComboBox_MotoristaLocacao.setEnabled(false);
+                //jComboBox_Cliente_Locacao.addItem("<SELECIONE>");
+                for (Motoristas motorista : listaMotoristas) {
+                    if (motorista.getCliente().getStatus().equals("ADIMPLENTE")) {
+                        jComboBox_Cliente_Locacao.addItem(motorista.getIden() + "-" + motorista.getCliente().getNome());
+                    }
+                }
+            }
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
     }
-    public void respostaFinalizacao(String resposta){
-      JOptionPane.showMessageDialog(null, resposta);
+
+    public void LimparTelaLocacao() {
+        try {
+            jComboBox_Cliente_Locacao.removeAllItems();
+            PreencherComboboxMotorista();
+            jTextFieldDataLocacao.setText("");
+            jTextFieldDataDevolucao.setText("");
+            jTextFieldIDLocacao.setText("");
+            jTextArea_informacoesVeiculo.setText("");
+            buttonGroup1.clearSelection();
+            jLabel_cnh.setIcon(null);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void respostaFinalizacao(String resposta) {
+        JOptionPane.showMessageDialog(null, resposta);
     }
     TelaFinalizarLocacao fimLocacao = new TelaFinalizarLocacao();
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -343,12 +400,6 @@ public class TelaLocacao extends javax.swing.JFrame {
 
         jLabel3.setText("MOTORISTA");
 
-        jComboBox_MotoristaLocacao.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox_MotoristaLocacaoItemStateChanged(evt);
-            }
-        });
-
         try {
             jTextFieldDataLocacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
@@ -406,7 +457,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(116, Short.MAX_VALUE))
+                        .addContainerGap(44, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -414,11 +465,11 @@ public class TelaLocacao extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextFieldDataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1))
-                        .addContainerGap(437, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addGap(203, 203, 203))
+                .addGap(123, 123, 123))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -541,6 +592,11 @@ public class TelaLocacao extends javax.swing.JFrame {
                 "CÓDIGO", "PLACA DO VEÍCULO", "CPF/CNPJ", "KM INICIAL", "DATA DA LOCAÇÃO", "DATA PREVISTA", "VALOR FINAL", "STATUS"
             }
         ));
+        jTable_locacao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_locacaoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable_locacao);
 
         jButton_Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/limpar-limpo.png"))); // NOI18N
@@ -556,48 +612,51 @@ public class TelaLocacao extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGap(11, 11, 11)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton_listarPorCategoria)
-                                .addGap(51, 51, 51)
+                                .addGap(58, 58, 58)
                                 .addComponent(jButton_listarPorTipo)
-                                .addGap(53, 53, 53)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton_listarPorModelo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton__listarPorMarca))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)
-                                .addGap(167, 167, 167))))
+                                .addComponent(jButton__listarPorMarca)
+                                .addGap(41, 41, 41))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel8)
+                        .addGap(239, 239, 239))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonCadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonCadastrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(67, 67, 67)))
+                                .addComponent(jButtonAlterar)
+                                .addGap(17, 17, 17)
+                                .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(135, 135, 135))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -653,155 +712,193 @@ public class TelaLocacao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        
+
         try {
-             String tipoPessoa = "";
+            String tipoPessoa = "";
             if (jTable_VEICULOS.getSelectedRow() == -1) {
-                throw new Exception("Selecione veículo na tabela para ser locado!");
+                throw new Exception("Selecione um veículo na tabela para ser locado!");
             }
-            if(jComboBox_MotoristaLocacao.getSelectedIndex() == -1){
+            if (jComboBox_MotoristaLocacao.getSelectedIndex() == 0) {
                 throw new Exception("Para locar deve indicar quem será o motorista!");
             }
-            if(JradioButonMotodista.isSelected()){
+            if (JradioButonMotodista.isSelected()) {
                 int id = SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString());
                 motorista = motoristabll.getMotoristaById(id);
                 cliente = motorista.getCliente();
                 locacao.setCliente(cliente);
                 locacao.setMotoristas(motorista);
                 tipoPessoa = "F";
-            }
-            else{
+            } else {
                 Motoristas motorista2 = motoristabll.getMotoristaById(SplitReturnID(jComboBox_MotoristaLocacao.getSelectedItem().toString()));
                 locacao.setMotoristas(motorista2);
-                
-                 if(jRadioButtonPFisica.isSelected()){
-                int id = SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString());
-                pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
-                cliente = pessoaFisica.getCliente();
-                locacao.setCliente(cliente);
-                tipoPessoa = "F";
+
+                if (jRadioButtonPFisica.isSelected()) {
+                    int id = SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString());
+                    pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
+                    cliente = pessoaFisica.getCliente();
+                    locacao.setCliente(cliente);
+                    tipoPessoa = "F";
+                }
+                if (jRadioButtonPJuridica.isSelected()) {
+                    int id = SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString());
+                    pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(id);
+                    cliente = pessoaJuridica.getCliente();
+                    locacao.setCliente(cliente);
+                    tipoPessoa = "J";
+                }
+
             }
-            if(jRadioButtonPJuridica.isSelected()){
-                int id = SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString());
-                pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(id);
-                cliente = pessoaJuridica.getCliente();
-                locacao.setCliente(cliente);
-                tipoPessoa = "J";
-            }
-            
-            }
-           
+
             int id = Integer.parseInt(jTable_VEICULOS.getValueAt(jTable_VEICULOS.getSelectedRow(), 0).toString());
             veiculo = veiculoBll.getVeiculosById(id);
             locacao.setVeiculos(veiculo);
-           
+
             Date dataLocacao = formato.parse(jTextFieldDataLocacao.getText());
             Date dataPrevista = formato.parse(jTextFieldDataDevolucao.getText());
             locacao.setDataDeLocacao(dataLocacao);
             locacao.setDataPrevistDeDevolucao(dataPrevista);
             locacao.setKmInicial(veiculo.getQuilometragem());
             // CALCULO
-            int dias = DiferencaEntreDatas(dataLocacao,dataPrevista);
+            int dias = DiferencaEntreDatas(dataLocacao, dataPrevista);
             float valorDiaria = veiculo.getModelo().getCategoria().getValorDiarioLocacao();
             float valorLocacao = valorDiaria * dias;
             float valorCaucao = (float) (valorLocacao * 1.5);
-            float valorSeguro =  (float) (valorLocacao * 0.009);
+            float valorSeguro = (float) (valorLocacao * 0.009);
             float valorTotal = valorLocacao + valorCaucao + valorSeguro;
-            
+
             locacao.setValorLocacao(valorLocacao);
             locacao.setValorCaucao(valorCaucao);
             locacao.setValorSeguro(valorSeguro);
-            locacao.setValorTotalPago(valorTotal); 
+            locacao.setValorTotalPago(valorTotal);
             locacao.setStatus("ATIVA");
-            
-            
-            if(fimLocacao == null){
+
+            if (fimLocacao == null) {
                 fimLocacao = new TelaFinalizarLocacao();
                 fimLocacao.setLocationRelativeTo(null);
                 fimLocacao.setVisible(true);
                 fimLocacao.setResizable(false);
-            }
-            else{
+            } else {
                 fimLocacao.setLocationRelativeTo(null);
                 fimLocacao.setVisible(true);
                 fimLocacao.setResizable(false);
             }
-                fimLocacao.enviaLocacao(this,locacao,tipoPessoa);
-            
-           
-             } catch (Exception error) {
+            fimLocacao.enviaLocacao(this, locacao, tipoPessoa);
+
+        } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-        // TODO add your handling code here:
+        try {
+
+            if (jTable_locacao.getSelectedRow() == -1) {
+                throw new Exception("Selecione uma locação na tabela para ser aterada!");
+            }
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
-        // TODO add your handling code here:
+        try {
+
+            if (jTable_locacao.getSelectedRow() == -1) {
+                throw new Exception("Selecione uma locação na tabela para ser removida!");
+            }
+            int x = JOptionPane.showConfirmDialog(null, "Voçê realmente deseja excluir esta locação?", "Excluir Locação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (x == 0) {
+                int id = Integer.parseInt(jTable_locacao.getValueAt(jTable_locacao.getSelectedRow(), 0).toString());
+                locacao = locacaoBll.getLocacoesBy(id);
+
+                cliente = locacao.getCliente();
+
+                cliente.setStatus("ADIMPLENTE");
+                clienteBll.updateClientes(cliente);
+
+                
+                motorista = locacao.getMotoristas();
+                Clientes cliente2 = motorista.getCliente();
+                cliente2.setStatus("ADIMPLENTE");
+                clienteBll.updateClientes(cliente2);
+
+                veiculo = locacao.getVeiculos();
+                veiculo.setStatus("DISPONIVEL");
+                veiculoBll.updateVeiculos(veiculo);
+
+                locacaoBll.deleteLocacoes(locacao);
+
+                JOptionPane.showMessageDialog(null, "Locação excluida com sucesso\nstatus do cliente e do veículo foram atualizados!");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Locação mantida");
+            }
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonRemoverActionPerformed
-    
-    private int SplitReturnID (String combo){
-  
-            String[] split = combo.split("-");
-            int id = Integer.parseInt(split[0]);
-            return id;
-          
+
+    private int SplitReturnID(String combo) {
+
+        String[] split = combo.split("-");
+        int id = Integer.parseInt(split[0]);
+        return id;
+
     }
-    
+
     private void jButton_listarPorCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listarPorCategoriaActionPerformed
-       try{
-        TemplateOrdenadoPorCategoria objeto = new TemplateOrdenadoPorCategoria();
-        imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+        try {
+            TemplateOrdenadoPorCategoria objeto = new TemplateOrdenadoPorCategoria();
+            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton_listarPorCategoriaActionPerformed
 
     private void jButton_listarPorTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listarPorTipoActionPerformed
-        try{
-        TemplateOrdenadoPorMarca objeto = new TemplateOrdenadoPorMarca();
-        imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+        try {
+            TemplateOrdenadoPorMarca objeto = new TemplateOrdenadoPorMarca();
+            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton_listarPorTipoActionPerformed
 
     private void jButton_listarPorModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listarPorModeloActionPerformed
-        try{
-         TemplateOrdenadoPorModelo objeto = new TemplateOrdenadoPorModelo();
-         imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+        try {
+            TemplateOrdenadoPorModelo objeto = new TemplateOrdenadoPorModelo();
+            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton_listarPorModeloActionPerformed
 
     private void jButton__listarPorMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton__listarPorMarcaActionPerformed
-        try{
-         TemplateOrdenadoPorMarca objeto = new TemplateOrdenadoPorMarca();
-         imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+        try {
+            TemplateOrdenadoPorMarca objeto = new TemplateOrdenadoPorMarca();
+            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton__listarPorMarcaActionPerformed
 
     private void jTable_VEICULOSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_VEICULOSMouseClicked
-        try{ 
-        int id = Integer.parseInt(jTable_VEICULOS.getValueAt(jTable_VEICULOS.getSelectedRow(), 0).toString());
-         veiculo = veiculoBll.getVeiculosById(id);
-         String saida = "MODELO: "+veiculo.getModelo().getNome();
-         saida+= "\nMARCA: "+veiculo.getModelo().getMarcas().getNome();
-         saida+= "\nPLACA: "+veiculo.getPlaca();
-         saida+= "\nKM ATUAL: "+veiculo.getQuilometragem();
-         jTextArea_informacoesVeiculo.setText(saida);
-         } catch (Exception error) {
+        try {
+            int id = Integer.parseInt(jTable_VEICULOS.getValueAt(jTable_VEICULOS.getSelectedRow(), 0).toString());
+            veiculo = veiculoBll.getVeiculosById(id);
+            String saida = "MODELO: " + veiculo.getModelo().getNome();
+            saida += "\nMARCA: " + veiculo.getModelo().getMarcas().getNome();
+            saida += "\nPLACA: " + veiculo.getPlaca();
+            saida += "\nKM ATUAL: " + veiculo.getQuilometragem();
+            jTextArea_informacoesVeiculo.setText(saida);
+        } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTable_VEICULOSMouseClicked
 
     private void JradioButonMotodistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JradioButonMotodistaActionPerformed
-        try{
+        try {
             PreencherComboboxCliente();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -809,7 +906,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     }//GEN-LAST:event_JradioButonMotodistaActionPerformed
 
     private void jRadioButtonPJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPJuridicaActionPerformed
-        try{
+        try {
             PreencherComboboxCliente();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -817,7 +914,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonPJuridicaActionPerformed
 
     private void jRadioButtonPFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPFisicaActionPerformed
-        try{
+        try {
             PreencherComboboxCliente();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -828,15 +925,16 @@ public class TelaLocacao extends javax.swing.JFrame {
         LimparTelaLocacao();
     }//GEN-LAST:event_jButton_LimparActionPerformed
 
-    private void jComboBox_MotoristaLocacaoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_MotoristaLocacaoItemStateChanged
-        try{
-        int id = SplitReturnID(jComboBox_MotoristaLocacao.getSelectedItem().toString());
-        Motoristas motorista = motoristabll.getMotoristaById(id);
-            exibirFotoGrid(motorista.getFotos().getFot_iden());
-         } catch (Exception error) {
+    private void jTable_locacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_locacaoMouseClicked
+        try {
+            int id = Integer.parseInt(jTable_locacao.getValueAt(jTable_locacao.getSelectedRow(), 0).toString());
+            locacao = locacaoBll.getLocacoesBy(id);
+            exibirFotoGrid(locacao.getMotoristas().getFotos().getFot_iden());
+            preencherFormularioLocacao();
+        } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jComboBox_MotoristaLocacaoItemStateChanged
+    }//GEN-LAST:event_jTable_locacaoMouseClicked
 
     /**
      * @param args the command line arguments

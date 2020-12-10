@@ -230,7 +230,7 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
                 cliente2 = motorista.getCliente();
                 cliente2.setStatus("LOCANDO");
                 clienteBll.updateClientes(cliente2);
-                
+
                 veiculo = locacao.getVeiculos();
                 veiculo.setStatus("LOCADO");
                 veiculoBll.updateVeiculos(veiculo);
@@ -239,7 +239,6 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
                 telalocacao.LimparTelaLocacao();
                 telalocacao.preencherGridLocacoes();
                 telalocacao.respostaFinalizacao("Locação finalizada com sucesso!");
-                
 
                 this.dispose();
             }
