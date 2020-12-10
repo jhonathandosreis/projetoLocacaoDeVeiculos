@@ -191,7 +191,7 @@ public class TelaLocacao extends javax.swing.JFrame {
         try {
 
             int id = Integer.parseInt(jTable_locacao.getValueAt(jTable_locacao.getSelectedRow(), 0).toString());
-            locacao = locacaoBll.getLocacoesBy(id);
+            locacao = locacaoBll.getLocacoesById(id);
             jComboBox_Cliente_Locacao.removeAllItems();
             jComboBox_MotoristaLocacao.removeAllItems();
 
@@ -341,7 +341,6 @@ public class TelaLocacao extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel_cnh = new javax.swing.JLabel();
         jButtonCadastrar = new javax.swing.JButton();
-        jButtonAlterar = new javax.swing.JButton();
         jButtonRemover = new javax.swing.JButton();
         jButton_listarPorCategoria = new javax.swing.JButton();
         jButton_listarPorTipo = new javax.swing.JButton();
@@ -517,14 +516,6 @@ public class TelaLocacao extends javax.swing.JFrame {
             }
         });
 
-        jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/editar.png"))); // NOI18N
-        jButtonAlterar.setText("ALTERAR");
-        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAlterarActionPerformed(evt);
-            }
-        });
-
         jButtonRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/lixo.png"))); // NOI18N
         jButtonRemover.setText("REMOVER");
         jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
@@ -645,13 +636,9 @@ public class TelaLocacao extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonCadastrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonAlterar)
-                                .addGap(17, 17, 17)
-                                .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -684,10 +671,8 @@ public class TelaLocacao extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -718,8 +703,10 @@ public class TelaLocacao extends javax.swing.JFrame {
             if (jTable_VEICULOS.getSelectedRow() == -1) {
                 throw new Exception("Selecione um veículo na tabela para ser locado!");
             }
+            if(!JradioButonMotodista.isSelected()){
             if (jComboBox_MotoristaLocacao.getSelectedIndex() == 0) {
                 throw new Exception("Para locar deve indicar quem será o motorista!");
+            }
             }
             if (JradioButonMotodista.isSelected()) {
                 int id = SplitReturnID(jComboBox_Cliente_Locacao.getSelectedItem().toString());
@@ -789,18 +776,6 @@ public class TelaLocacao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
-    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-        try {
-
-            if (jTable_locacao.getSelectedRow() == -1) {
-                throw new Exception("Selecione uma locação na tabela para ser aterada!");
-            }
-
-        } catch (Exception error) {
-            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButtonAlterarActionPerformed
-
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
         try {
 
@@ -810,7 +785,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             int x = JOptionPane.showConfirmDialog(null, "Voçê realmente deseja excluir esta locação?", "Excluir Locação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (x == 0) {
                 int id = Integer.parseInt(jTable_locacao.getValueAt(jTable_locacao.getSelectedRow(), 0).toString());
-                locacao = locacaoBll.getLocacoesBy(id);
+                locacao = locacaoBll.getLocacoesById(id);
 
                 cliente = locacao.getCliente();
 
@@ -928,7 +903,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     private void jTable_locacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_locacaoMouseClicked
         try {
             int id = Integer.parseInt(jTable_locacao.getValueAt(jTable_locacao.getSelectedRow(), 0).toString());
-            locacao = locacaoBll.getLocacoesBy(id);
+            locacao = locacaoBll.getLocacoesById(id);
             exibirFotoGrid(locacao.getMotoristas().getFotos().getFot_iden());
             preencherFormularioLocacao();
         } catch (Exception error) {
@@ -974,7 +949,6 @@ public class TelaLocacao extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton JradioButonMotodista;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButton_Limpar;

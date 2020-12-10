@@ -12,7 +12,6 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
-
 package br.com.pi.dal;
 
 import br.com.pi.bll.ClientesBll;
@@ -34,7 +33,7 @@ import java.util.ArrayList;
  * @author Gustavo Gabriel
  */
 public class MotoristasDal {
-  
+
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     private Connection conexao;
     private Clientes cliente = null;
@@ -55,149 +54,149 @@ public class MotoristasDal {
     //
 
     //--- CREATE -------------------------------------------------------------------------------------->
-    public void addMotoristas (Motoristas motorista) throws Exception {
-       
-        String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_numero_cnh, pfi_categoria_cnh, pfi_data_validade, pfi_cli_iden, pfi_fot_iden) values (?, ?, ?, ?, ?, ?, ?)";        
-        try{
-        java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
-        PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
-        preparedStatement2.setString(1, motorista.getRg());
-        preparedStatement2.setString(2, motorista.getCpf());
-        preparedStatement2.setString(3, motorista.getNumeroCnh());
-        preparedStatement2.setString(4, motorista.getCategoriaCnh());
-        preparedStatement2.setDate(5, dataValidade);
-        preparedStatement2.setInt(6, motorista.getCliente().getIden());
-        preparedStatement2.setInt(7, motorista.getFotos().getFot_iden());
-        preparedStatement2.executeUpdate();
-        
+    public void addMotoristas(Motoristas motorista) throws Exception {
+
+        String sqlPessoaFisica = "INSERT INTO pessoas_fisicas (pfi_rg, pfi_cpf, pfi_numero_cnh, pfi_categoria_cnh, pfi_data_validade, pfi_cli_iden, pfi_fot_iden) values (?, ?, ?, ?, ?, ?, ?)";
+        try {
+            java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
+            PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
+            preparedStatement2.setString(1, motorista.getRg());
+            preparedStatement2.setString(2, motorista.getCpf());
+            preparedStatement2.setString(3, motorista.getNumeroCnh());
+            preparedStatement2.setString(4, motorista.getCategoriaCnh());
+            preparedStatement2.setDate(5, dataValidade);
+            preparedStatement2.setInt(6, motorista.getCliente().getIden());
+            preparedStatement2.setInt(7, motorista.getFotos().getFot_iden());
+            preparedStatement2.executeUpdate();
+
         } catch (Exception error) {
-            throw  error;
+            throw error;
         }
-    } 
+    }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-     
+
     //--- UPDATE -------------------------------------------------------------------------------------->
-    public void updateMotoristas (Motoristas motorista) throws Exception {
-        
-        String sqlPessoaFisica = "UPDATE pessoas_fisicas SET pfi_rg=?, pfi_cpf=?, pfi_numero_cnh=?, pfi_categoria_cnh=?, pfi_data_validade=?, pfi_cli_iden=?, pfi_fot_iden=?  WHERE pfi_iden=?";        
-        try{
-        PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
-        java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
-        preparedStatement2.setString(1, motorista.getRg());
-        preparedStatement2.setString(2, motorista.getCpf());
-        preparedStatement2.setString(3, motorista.getNumeroCnh());
-        preparedStatement2.setString(4, motorista.getCategoriaCnh());
-        preparedStatement2.setDate(5, dataValidade);
-        preparedStatement2.setInt(6, motorista.getCliente().getIden());
-         preparedStatement2.setInt(7, motorista.getFotos().getFot_iden());
-        preparedStatement2.setInt(8, motorista.getIden());
-        preparedStatement2.executeUpdate();
-        
+    public void updateMotoristas(Motoristas motorista) throws Exception {
+
+        String sqlPessoaFisica = "UPDATE pessoas_fisicas SET pfi_rg=?, pfi_cpf=?, pfi_numero_cnh=?, pfi_categoria_cnh=?, pfi_data_validade=?, pfi_cli_iden=?, pfi_fot_iden=?  WHERE pfi_iden=?";
+        try {
+            PreparedStatement preparedStatement2 = conexao.prepareStatement(sqlPessoaFisica);
+            java.sql.Date dataValidade = new java.sql.Date(motorista.getDataValidade().getTime());
+            preparedStatement2.setString(1, motorista.getRg());
+            preparedStatement2.setString(2, motorista.getCpf());
+            preparedStatement2.setString(3, motorista.getNumeroCnh());
+            preparedStatement2.setString(4, motorista.getCategoriaCnh());
+            preparedStatement2.setDate(5, dataValidade);
+            preparedStatement2.setInt(6, motorista.getCliente().getIden());
+            preparedStatement2.setInt(7, motorista.getFotos().getFot_iden());
+            preparedStatement2.setInt(8, motorista.getIden());
+            preparedStatement2.executeUpdate();
+
         } catch (Exception error) {
-            throw  error;
+            throw error;
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
     //
 
     //--- DELETE -------------------------------------------------------------------------------------->
-    public void deleteMotoristas (Motoristas motorista) throws Exception {
+    public void deleteMotoristas(Motoristas motorista) throws Exception {
         String sql = "DELETE FROM pessoas_fisicas WHERE pfi_iden =?";
-        try{
-        PreparedStatement preparedStatement2 = conexao.prepareStatement(sql);
-        preparedStatement2.setInt(1, motorista.getIden());
-        preparedStatement2.executeUpdate();
+        try {
+            PreparedStatement preparedStatement2 = conexao.prepareStatement(sql);
+            preparedStatement2.setInt(1, motorista.getIden());
+            preparedStatement2.executeUpdate();
         } catch (Exception error) {
-            throw  error;
+            throw error;
         }
-    }  
+    }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
-    
+
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Motoristas> getAllMotoristas() throws Exception {
-        
-         String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_numero_cnh IS NOT null";
-        try{
-         ArrayList<Motoristas> lista = new ArrayList<Motoristas>();
-         Statement statement = conexao.createStatement();
-         ResultSet rs = statement.executeQuery(sql);        
-           while(rs.next()){
+
+        String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_numero_cnh IS NOT null";
+        try {
+            ArrayList<Motoristas> lista = new ArrayList<Motoristas>();
+            Statement statement = conexao.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
                 Motoristas motorista = new Motoristas();
-                motorista= getMotoristasById(rs.getInt("pfi_iden"));       
+                motorista = getMotoristasById(rs.getInt("pfi_iden"));
                 lista.add(motorista);
-           }
-    return lista;
+            }
+            return lista;
         } catch (Exception error) {
-            throw  error;
+            throw error;
         }
-        
+
     }
 
     public Motoristas getMotoristasById(int mot_iden) throws Exception {
-        
+
         String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_iden=?";
-        try{
-        Motoristas motorista = new Motoristas();
-        PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-        preparedStatement.setInt(1, mot_iden);
-        
-        ResultSet rs = preparedStatement.executeQuery();
-        if(rs.next()){
-        int cli_id = rs.getInt("pfi_cli_iden");
-        cliente = clienteBll.getClienteById(cli_id);
-        int fot_id = rs.getInt("pfi_fot_iden");
-        foto = fotoBll.getFotosById(fot_id);
-        motorista.setIden(rs.getInt("pfi_iden"));
-        motorista.setRg(rs.getString("pfi_rg"));
-        motorista.setCpf(rs.getString("pfi_cpf"));
-        motorista.setNumeroCnh(rs.getString("pfi_numero_cnh"));
-        motorista.setCategoriaCnh(rs.getString("pfi_categoria_cnh"));
-        motorista.setDataValidade(rs.getDate("pfi_data_validade"));
-        motorista.setCliente(cliente);
-        motorista.setFotos(foto);
-           
-        }       
-        return motorista;
+        try {
+            Motoristas motorista = new Motoristas();
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1, mot_iden);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                int cli_id = rs.getInt("pfi_cli_iden");
+                cliente = clienteBll.getClienteById(cli_id);
+                int fot_id = rs.getInt("pfi_fot_iden");
+                foto = fotoBll.getFotosById(fot_id);
+                motorista.setIden(rs.getInt("pfi_iden"));
+                motorista.setRg(rs.getString("pfi_rg"));
+                motorista.setCpf(rs.getString("pfi_cpf"));
+                motorista.setNumeroCnh(rs.getString("pfi_numero_cnh"));
+                motorista.setCategoriaCnh(rs.getString("pfi_categoria_cnh"));
+                motorista.setDataValidade(rs.getDate("pfi_data_validade"));
+                motorista.setCliente(cliente);
+                motorista.setFotos(foto);
+
+            }
+            return motorista;
         } catch (Exception error) {
-            throw  error;
+            throw error;
         }
     }
-    
-     public Motoristas getMotoristasByCpf(int mot_cpf) throws Exception {
-        
+
+    public Motoristas getMotoristasByCpf(int mot_cpf) throws Exception {
+
         String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_cpf=?";
-        try{
-        Motoristas motorista = new Motoristas();
-        PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-        preparedStatement.setInt(1, mot_cpf);
-        
-        ResultSet rs = preparedStatement.executeQuery();
-        if(rs.next()){
-         motorista = getMotoristasById(rs.getInt("pfi_iden"));
-        }       
-        return motorista;
+        try {
+            Motoristas motorista = new Motoristas();
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1, mot_cpf);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                motorista = getMotoristasById(rs.getInt("pfi_iden"));
+            }
+            return motorista;
         } catch (Exception error) {
-            throw  error;
+            throw error;
         }
     }
-     
-      public Motoristas getMotoristasByCliente(int mot_cli) throws Exception {
-        
+
+    public Motoristas getMotoristasByCliente(int mot_cli) throws Exception {
+
         String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_cli_iden=?";
-        try{
-        Motoristas motorista = new Motoristas();
-        PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-        preparedStatement.setInt(1, mot_cli);
-        
-        ResultSet rs = preparedStatement.executeQuery();
-        if(rs.next()){
-         motorista = getMotoristasById(rs.getInt("pfi_iden"));
-        }       
-        return motorista;
+        try {
+            Motoristas motorista = new Motoristas();
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1, mot_cli);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                motorista = getMotoristasById(rs.getInt("pfi_iden"));
+            }
+            return motorista;
         } catch (Exception error) {
-            throw  error;
+            throw error;
         }
     }
     //--- FIM READ ------------------------------------------------------------------------------------|

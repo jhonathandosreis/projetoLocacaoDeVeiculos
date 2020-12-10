@@ -78,7 +78,7 @@ public class LocacoesBll {
         }
     }
     
-    public Locacoes getLocacoesBy(int loc_iden) throws Exception {
+    public Locacoes getLocacoesById(int loc_iden) throws Exception {
         try{
         return locacoesDal.getLocacoesById(loc_iden);
         } catch (Exception error) {

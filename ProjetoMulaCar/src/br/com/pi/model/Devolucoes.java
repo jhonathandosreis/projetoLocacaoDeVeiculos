@@ -26,8 +26,8 @@ public class Devolucoes {
     //
     private int iden = 0;
     private Date dataDevolucao = null;
-    private int multaPorAtraso = 0;
-    private int kmNaEntrega = 0;
+    private double multaPorAtraso = 0;
+    private double kmNaEntrega = 0;
     private Locacoes locacao = null;
  
 
@@ -39,7 +39,7 @@ public class Devolucoes {
 
     }
 
-    public Devolucoes(int iden, Date dataDevolucao,int multaPorAtraso, String status, int kmNaEntrega, Locacoes locacao) {
+    public Devolucoes(int iden, Date dataDevolucao,double multaPorAtraso, String status, double kmNaEntrega, Locacoes locacao) {
         this.iden = iden;
         this.dataDevolucao = dataDevolucao;
         this.multaPorAtraso = multaPorAtraso;
@@ -60,12 +60,12 @@ public class Devolucoes {
         return dataDevolucao;
     }
 
-    public int getMultaPorAtraso() {
+    public double getMultaPorAtraso() {
         return multaPorAtraso;
     }
 
 
-    public int getKmNaEntrega() {
+    public double getKmNaEntrega() {
         return kmNaEntrega;
     }
 
@@ -86,11 +86,11 @@ public class Devolucoes {
         this.dataDevolucao = dataDevolucao;
     }
 
-    public void setMultaPorAtraso(int multaPorAtraso) {
+    public void setMultaPorAtraso(double multaPorAtraso) {
         this.multaPorAtraso = multaPorAtraso;
     }
 
-    public void setKmNaEntrega(int kmNaEntrega) {
+    public void setKmNaEntrega(double kmNaEntrega) {
         this.kmNaEntrega = kmNaEntrega;
     }
 

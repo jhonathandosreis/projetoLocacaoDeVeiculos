@@ -91,9 +91,10 @@ public class LocacoesDal {
     public void updateLocacoes (Locacoes locacao) throws Exception {
         
         String sql = "UPDATE locacoes SET loc_data_locacao=?, loc_data_prevista_devolucao=?, loc_km_inicial=?,"
-                + " loc_valor_locacao=?, loc_valor_caucao=?, loc_valor_seguro=?, loc_valor_total_pago=?, loc_cli_iden=?, loc_vei_iden=?, loc_status=?, loc_pfi_iden=? WHERE loc_codigo=?)";
+                + " loc_valor_locacao=?, loc_valor_caucao=?, loc_valor_seguro=?, loc_valor_total_pago=?, loc_cli_iden=?, loc_vei_iden=?, loc_status=?, loc_pfi_iden=? WHERE loc_codigo=?";
         try{
-        PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+       PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+           preparedStatement.setInt(1, locacao.getIden());
         
         java.sql.Date dataLocacao = new java.sql.Date(locacao.getDataDeLocacao().getTime());
         java.sql.Date dataPrevista = new java.sql.Date(locacao.getDataPrevistDeDevolucao().getTime());

@@ -35,10 +35,10 @@ public class DevolucoesDal {
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
     private Connection conexao;
-    private LocacoesBll locacoesBll;
-    private Locacoes locacao;
-    private Veiculos veiculo;
-    private VeiculosBll veiculoBll;
+    private LocacoesBll locacoesBll = new LocacoesBll();
+    private Locacoes locacao = null;
+    private Veiculos veiculo = null;
+    private VeiculosBll veiculoBll = new VeiculosBll();
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -53,17 +53,16 @@ public class DevolucoesDal {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addDevolucoes(Devolucoes devolucao) throws Exception {
 
-        String sql = "INSERT INTO devolucoes (dev_data_devolucao, dev_multa_por_atraso , dev_km_na_entrega , dev_loc_codigo ) VALEUS (?,?,?,?,?)";
+        String sql = "INSERT INTO devolucoes (dev_data_devolucao, dev_multa_por_atraso , dev_km_na_entrega , dev_loc_iden ) VALUES (?,?,?,?)";
         try {
 
             java.sql.Date dataDevolucao = new java.sql.Date(devolucao.getDataDevolucao().getTime());
 
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setDate(1, dataDevolucao);
-            preparedStatement.setInt(2, devolucao.getMultaPorAtraso());
-            preparedStatement.setInt(3, devolucao.getKmNaEntrega());
+            preparedStatement.setDouble(2, devolucao.getMultaPorAtraso());
+            preparedStatement.setDouble(3, devolucao.getKmNaEntrega());
             preparedStatement.setInt(4, devolucao.getLocacao().getIden());
-            
 
             preparedStatement.executeUpdate();
         } catch (Exception error) {
@@ -77,7 +76,7 @@ public class DevolucoesDal {
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateDevolucoes(Devolucoes devolucao) throws Exception {
 
-        String sql = "UPDATE devolucoes SET dev_data_devolucao=?, dev_multa_por_atraso=? , dev_km_na_entrega=? , dev_loc_codigo=? WHERE dev_iden=?";
+        String sql = "UPDATE devolucoes SET dev_data_devolucao=?, dev_multa_por_atraso=? , dev_km_na_entrega=? , dev_loc_iden=? WHERE dev_iden=?";
 
         try {
 
@@ -85,9 +84,9 @@ public class DevolucoesDal {
 
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setDate(1, dataDevolucao);
-            preparedStatement.setInt(2, devolucao.getMultaPorAtraso());
-            preparedStatement.setInt(3, devolucao.getKmNaEntrega());
-            preparedStatement.setInt(4, devolucao.getLocacao().getIden()); 
+            preparedStatement.setDouble(2, devolucao.getMultaPorAtraso());
+            preparedStatement.setDouble(3, devolucao.getKmNaEntrega());
+            preparedStatement.setInt(4, devolucao.getLocacao().getIden());
             preparedStatement.setInt(5, devolucao.getIden());
 
             preparedStatement.executeUpdate();
@@ -121,34 +120,23 @@ public class DevolucoesDal {
 
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<Devolucoes> getAllDevolucoes() throws Exception {
-        ArrayList<Devolucoes> lista = new ArrayList<Devolucoes>();
 
         String sql = "SELECT * FROM devolucoes";
         try {
-
+            ArrayList<Devolucoes> lista = new ArrayList<Devolucoes>();
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
-
                 Devolucoes devolucao = new Devolucoes();
-
-                devolucao.setIden(rs.getInt("dev_iden"));
-                devolucao.setDataDevolucao(rs.getDate("dev_data_devolucao"));
-                devolucao.setMultaPorAtraso(rs.getInt("dev_multa_por_atraso"));
-                devolucao.setKmNaEntrega(rs.getInt("dev_km_na_entrega"));
-
-                int loc_codigo = rs.getInt(" dev_loc_codigo");
-                locacao = locacoesBll.getLocacoesBy(loc_codigo);
-                devolucao.setLocacao(locacao);
-
-               
+                int id = (rs.getInt("dev_iden"));
+                devolucao = getDevolucoesById(id);
                 lista.add(devolucao);
             }
+            return lista;
         } catch (Exception error) {
             throw error;
         }
 
-        return lista;
     }
 
     public Devolucoes getDevolucoesById(int dev_iden) throws Exception {
@@ -167,14 +155,11 @@ public class DevolucoesDal {
 
                 devolucao.setIden(rs.getInt("dev_iden"));
                 devolucao.setDataDevolucao(rs.getDate("dev_data_devolucao"));
-                devolucao.setMultaPorAtraso(rs.getInt("dev_multa_por_atraso"));
-                devolucao.setKmNaEntrega(rs.getInt("dev_km_na_entrega"));
-
-                int loc_codigo = rs.getInt(" dev_loc_codigo");
-                locacao = locacoesBll.getLocacoesBy(loc_codigo);
+                devolucao.setMultaPorAtraso(rs.getDouble("dev_multa_por_atraso"));
+                devolucao.setKmNaEntrega(rs.getDouble("dev_km_na_entrega"));
+                int loc_codigo = rs.getInt("dev_loc_iden");
+                locacao = locacoesBll.getLocacoesById(loc_codigo);
                 devolucao.setLocacao(locacao);
-
-          
 
             }
         } catch (Exception error) {
