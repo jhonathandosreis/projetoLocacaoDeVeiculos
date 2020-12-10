@@ -307,6 +307,14 @@ public class TelaLocacao extends javax.swing.JFrame {
             jTextArea_informacoesVeiculo.setText("");
             buttonGroup1.clearSelection();
             jLabel_cnh.setIcon(null);
+             JradioButonMotodista.setEnabled(true);
+            jRadioButtonPFisica.setEnabled(true);
+            jRadioButtonPJuridica.setEnabled(true);
+            jComboBox_Cliente_Locacao.setEnabled(true);
+            jComboBox_MotoristaLocacao.setEnabled(true);
+            jTextFieldDataDevolucao.setEnabled(true);
+            jTextFieldDataLocacao.setEnabled(true);
+            jTextArea_informacoesVeiculo.setEnabled(true);
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -902,8 +910,18 @@ public class TelaLocacao extends javax.swing.JFrame {
 
     private void jTable_locacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_locacaoMouseClicked
         try {
+            JradioButonMotodista.setEnabled(false);
+            jRadioButtonPFisica.setEnabled(false);
+            jRadioButtonPJuridica.setEnabled(false);
+            jComboBox_Cliente_Locacao.setEnabled(false);
+            jComboBox_MotoristaLocacao.setEnabled(false);
+            jTextFieldDataDevolucao.setEnabled(false);
+            jTextFieldDataLocacao.setEnabled(false);
+            jTextArea_informacoesVeiculo.setEnabled(false);
+            
             int id = Integer.parseInt(jTable_locacao.getValueAt(jTable_locacao.getSelectedRow(), 0).toString());
             locacao = locacaoBll.getLocacoesById(id);
+            jTextFieldIDLocacao.setText(""+locacao.getIden());
             exibirFotoGrid(locacao.getMotoristas().getFotos().getFot_iden());
             preencherFormularioLocacao();
         } catch (Exception error) {
