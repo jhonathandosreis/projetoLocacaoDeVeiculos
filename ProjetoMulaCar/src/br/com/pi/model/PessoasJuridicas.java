@@ -18,7 +18,7 @@ package br.com.pi.model;
  *
  * @author jhonlinux
  */
-public class PessoasJuridicas extends Clientes {
+public class PessoasJuridicas{
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
@@ -35,9 +35,7 @@ public class PessoasJuridicas extends Clientes {
     public PessoasJuridicas() {
     }
 
-    public PessoasJuridicas(int iden, String nome, String telefone, String email,
-            String cnpj, String nomeFantasia, String razaoSocial, Clientes cliente, Enderecos enderecos,String status, float multa) {
-        super(iden, nome, telefone, email, enderecos, status, multa);
+    public PessoasJuridicas(int iden, String cnpj, String nomeFantasia, String razaoSocial, Clientes cliente) {   
         this.iden = iden;
         this.cnpj = cnpj;
         this.nomeFantasia = nomeFantasia;

@@ -237,8 +237,9 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
 
                 locacaoBll.addLocacoes(locacao);
                 telalocacao.LimparTelaLocacao();
+                telalocacao.preencherGridLocacoes();
                 telalocacao.respostaFinalizacao("Locação finalizada com sucesso!");
-                telalocacao.PreencherComboboxMotorista();
+                
 
                 this.dispose();
             }

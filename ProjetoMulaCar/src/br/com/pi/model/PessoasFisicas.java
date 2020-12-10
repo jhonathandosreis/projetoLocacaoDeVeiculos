@@ -15,14 +15,12 @@
 
 package br.com.pi.model;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author jhonlinux
  */
 
-public class PessoasFisicas extends Clientes {
+public class PessoasFisicas {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
@@ -40,9 +38,8 @@ public class PessoasFisicas extends Clientes {
         
     }
 
-    public PessoasFisicas(int iden, String nome, String telefone, String email,
-            Enderecos enderecos,String status, float multa, Clientes cliente,Fotos foto, String rg, String cpf) {
-        super(iden, nome, telefone, email, enderecos, status, multa);
+    public PessoasFisicas(int iden, Fotos foto, String rg, String cpf, Clientes cliente) {
+       
         this.iden = iden;
         this.rg = rg;
         this.cpf = cpf;

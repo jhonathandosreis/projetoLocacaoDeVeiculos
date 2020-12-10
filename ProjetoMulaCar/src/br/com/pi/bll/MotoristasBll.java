@@ -90,6 +90,15 @@ public class MotoristasBll {
         }
         
     }
+    
+     public Motoristas getMotoristaBycCliente(int mot_cliente) throws Exception {
+         try{
+         return motoristaDal.getMotoristasByCliente(mot_cliente);
+        } catch (Exception error) {
+            throw  error;
+        }
+        
+    }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //   
 }

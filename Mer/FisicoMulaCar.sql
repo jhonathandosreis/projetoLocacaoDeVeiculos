@@ -44,6 +44,7 @@ CREATE TABLE clientes (
     cli_email VARCHAR(80) CONSTRAINT email_repetido UNIQUE,
     cli_status VARCHAR(20),
     cli_multa NUMERIC(20),
+    cli_tipo VARCHAR (15),
     cli_end_iden INTEGER,
     FOREIGN KEY (cli_end_iden) REFERENCES enderecos (end_iden)
 );

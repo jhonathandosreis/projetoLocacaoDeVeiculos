@@ -93,6 +93,15 @@ public class PessoasJuridicasBll {
         }
         
     }
+    
+      public PessoasJuridicas getPessoasJuridicasByCliente(int pessoaJuridica_cliente) throws Exception {
+         try{
+         return pessoaJuridicaDal.getPessoasJuridicasByCliente(pessoaJuridica_cliente);
+        } catch (Exception error) {
+            throw  error;
+        }
+        
+    }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //   
 }

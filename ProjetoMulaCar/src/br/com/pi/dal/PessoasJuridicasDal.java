@@ -149,6 +149,23 @@ public class PessoasJuridicasDal {
             throw  error;
         }
     }  
+    
+     public PessoasJuridicas getPessoasJuridicasByCliente(int pessoaJuridica_cliente) throws Exception {
+         String sql = "SELECT * FROM pessoas_juridicas WHERE pju_cli_iden=?";
+        try{
+            PessoasJuridicas pessoaJuridica = new PessoasJuridicas();
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1, pessoaJuridica_cliente);
+        
+        ResultSet rs = preparedStatement.executeQuery();
+        if(rs.next()){
+                pessoaJuridica = getPessoasJuridicasByCliente(rs.getInt("pju_iden"));
+        }       
+        return pessoaJuridica;
+        } catch (Exception error) {
+            throw  error;
+        }
+    }  
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 }

@@ -30,6 +30,7 @@ public class Clientes {
     private Enderecos enderecos = null;
     private String status = "";
     private float multa = 0;
+    private String tipo = "";
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -39,7 +40,7 @@ public class Clientes {
         
     }
     
-    public Clientes(int iden, String nome, String telefone, String email, Enderecos enderecos, String status, float multa) {
+    public Clientes(int iden, String nome, String telefone, String email, Enderecos enderecos, String status, float multa,String tipo) {
         
         this.iden = iden;
         this.nome = nome;
@@ -48,6 +49,7 @@ public class Clientes {
         this.enderecos = enderecos;
         this.status = status;
         this.multa = multa;
+        this.tipo = tipo;
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
@@ -81,6 +83,9 @@ public class Clientes {
     public float getMulta() {
         return multa;
     }
+    public String getTipo() {
+        return tipo;
+    }
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
     
@@ -112,6 +117,10 @@ public class Clientes {
     
     public void setMulta(float multa) {
         this.multa = multa;
+    }
+    
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //    

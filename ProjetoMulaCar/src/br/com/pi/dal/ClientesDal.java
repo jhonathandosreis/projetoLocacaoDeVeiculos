@@ -46,7 +46,7 @@ public class ClientesDal {
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
     //
     public void addClientes(Clientes cliente) throws Exception {
-        String sqlCliente ="INSERT INTO clientes (cli_nome, cli_telefone, cli_email, cli_status, cli_multa, cli_end_iden) values (?, ?, ?, ?, ?, ?)";
+        String sqlCliente ="INSERT INTO clientes (cli_nome, cli_telefone, cli_email, cli_status, cli_multa, cli_end_iden, cli_tipo) values (?, ?, ?, ?, ?, ?, ?)";
         try{    
         PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);     
         preparedStatement1.setString(1, cliente.getNome());
@@ -55,6 +55,7 @@ public class ClientesDal {
         preparedStatement1.setString(4, cliente.getStatus());
         preparedStatement1.setFloat(5, cliente.getMulta());
         preparedStatement1.setInt(6, cliente.getEnderecos().getIden());
+        preparedStatement1.setString(7, cliente.getTipo());
         preparedStatement1.executeUpdate();
         
         } catch (Exception error) {
@@ -63,7 +64,7 @@ public class ClientesDal {
     }
     
     public void updateClientes(Clientes cliente) throws Exception { 
-            String sqlCliente ="UPDATE clientes SET cli_nome=?, cli_telefone=?, cli_email=?, cli_status=?, cli_multa=?, cli_end_iden=? WHERE cli_iden=?";
+            String sqlCliente ="UPDATE clientes SET cli_nome=?, cli_telefone=?, cli_email=?, cli_status=?, cli_multa=?, cli_end_iden=?, cli_tipo=? WHERE cli_iden=?";
         try{    
             PreparedStatement preparedStatement1 = conexao.prepareStatement(sqlCliente);
             preparedStatement1.setString(1, cliente.getNome());
@@ -72,7 +73,8 @@ public class ClientesDal {
             preparedStatement1.setString(4, cliente.getStatus());
             preparedStatement1.setFloat(5, cliente.getMulta());
             preparedStatement1.setInt(6, cliente.getEnderecos().getIden());
-            preparedStatement1.setInt(7, cliente.getIden());
+            preparedStatement1.setString(7, cliente.getTipo());
+            preparedStatement1.setInt(8, cliente.getIden());
             preparedStatement1.executeUpdate();
             } catch (Exception error) {
             throw  error;
@@ -121,16 +123,7 @@ public class ClientesDal {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 Clientes cliente = new Clientes();
-                int endereco_id = rs.getInt("cli_end_iden");
-                endereco = enderecoBll.getConsultaPorId(endereco_id);
-                cliente = new Clientes();
-                cliente.setIden(rs.getInt("cli_iden"));
-                cliente.setNome(rs.getString("cli_nome"));
-                cliente.setTelefone(rs.getString("cli_telefone"));
-                cliente.setEmail(rs.getString("cli_email"));
-                cliente.setStatus(rs.getString("cli_status"));
-                cliente.setMulta(rs.getFloat("cli_multa"));
-                cliente.setEnderecos(endereco);
+                cliente = getClientesById(rs.getInt("cli_iden"));
                 lista.add(cliente);
             }
              } catch (Exception error) {
@@ -159,6 +152,7 @@ public class ClientesDal {
                 cliente.setEmail(rs.getString("cli_email"));
                 cliente.setStatus(rs.getString("cli_status"));
                 cliente.setMulta(rs.getFloat("cli_multa"));
+                cliente.setTipo(rs.getString("cli_tipo"));
                 cliente.setEnderecos(endereco);
                 
             }
@@ -173,18 +167,8 @@ public class ClientesDal {
         ResultSet rs = preparedStatement1.executeQuery();
 
             while (rs.next()) {
-
-                int endereco_id = rs.getInt("cli_end_iden");
-                endereco = enderecoBll.getConsultaPorId(endereco_id);
-                cliente = new Clientes();
-                cliente.setIden(rs.getInt("cli_iden"));
-                cliente.setNome(rs.getString("cli_nome"));
-                cliente.setTelefone(rs.getString("cli_telefone"));
-                cliente.setEmail(rs.getString("cli_email"));
-                cliente.setStatus(rs.getString("cli_status"));
-                cliente.setMulta(rs.getFloat("cli_multa"));
-                cliente.setEnderecos(endereco);
-                
+                cliente = getClientesById(rs.getInt("cli_iden"));
+     
             }
         return cliente;
     }

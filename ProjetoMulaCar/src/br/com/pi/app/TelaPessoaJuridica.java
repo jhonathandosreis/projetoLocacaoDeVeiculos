@@ -546,6 +546,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             cliente.setTelefone(jTextFieldTelefonePessoaJuridica.getText());
             cliente.setEmail(jTextFieldEmailPessoaJuridica.getText());
             cliente.setStatus("ADIMPLENTE");
+            cliente.setTipo("JURIDICA");
             cliente.setMulta(0);
             clienteBll.addClientes(cliente);
             String clienteTelefone = cliente.getTelefone();
@@ -606,6 +607,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             endereco.setLogradouro(jTextFieldLogradouroPessoaJuridica.getText());
             endereco.setComplemento(jTextFieldComplementoPessoaJuridica.getText());
             endereco.setNumero(jTextFieldNumeroPessoaJuridica.getText());
+            cliente.setTipo("JURIDICA");
             endereco.setRua(jTextFieldRuaPessoaJuridica.getText());
             enderecoBll.updateEndereco(endereco);
 

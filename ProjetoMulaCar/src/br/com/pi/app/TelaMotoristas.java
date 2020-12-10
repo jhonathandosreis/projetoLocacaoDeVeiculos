@@ -60,7 +60,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
     private UfsBll ufbll;
     private Ufs uf;
     private FotosBll fotoBll = null;
-    private int posicao = 0;
     private Fotos fotos = null;
 
     JFileChooser chooser = new JFileChooser();
@@ -120,39 +119,10 @@ public class TelaMotoristas extends javax.swing.JFrame {
         }
     }
 
-//    private void buscarFotos(int iden_PessoaFisica) {
-//        try {
-//            fotos = fotoBll.getFotosById(iden_PessoaFisica);
-//            posicao = 0;
-//            exibirFoto(posicao);
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, e.getMessage());
-//        }
-//    }
-//
-//    public void exibirFoto(int posicao) throws Exception {
-//            File f = new File(fotos.getFot_caminho());
-//
-//            /* OPCIONAL - Código para definir o tamanho da imagem na tela */
-//            ImageIcon imageIcon = new ImageIcon(f.getPath()); // load the image to a imageIcon
-//            Image image = imageIcon.getImage(); // transform it 
-//            Image newimg = image.getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
-//            /* Fim do código do redimensionamento */
-//            ImageIcon icon = new ImageIcon(newimg);
-//            jLabelFotos.setIcon(icon);
-//    }
     
-     private void buscarFotosGrid(int iden_PessoaFisica) {
-        try {
+    
+    public void exibirFotoGrid(int iden_PessoaFisica) throws Exception {
             fotos = fotoBll.getFotosById(iden_PessoaFisica);
-            posicao = 0;
-            exibirFotoGrid(posicao);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }
-    
-    public void exibirFotoGrid(int posicao) throws Exception {
             File f = new File(fotos.getFot_caminho());
 
             /* OPCIONAL - Código para definir o tamanho da imagem na tela */
@@ -194,7 +164,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jTextFieldTelefoneMotorista.setText("" + motorista.getCliente().getTelefone());
         jTextFieldEmailMotorista.setText("" + motorista.getCliente().getTelefone());
         jTextFieldCaminhoDoArquivo.setText(motorista.getFotos().getFot_caminho());
-        buscarFotosGrid(motorista.getFotos().getFot_iden());
+        exibirFotoGrid(motorista.getFotos().getFot_iden());
         
     }
 
@@ -834,6 +804,21 @@ public class TelaMotoristas extends javax.swing.JFrame {
                 throw new Exception("Selecione um motorista na tabela para ser alterado!");
             }
             ValidaMotoristas();
+            
+            String NomeDoArquivo = f.getName();
+            File destino = new File("C:\\Users\\Gustavo Gabriel\\Pictures\\Saved Pictures" + NomeDoArquivo);
+
+            destino = destino.getAbsoluteFile();
+
+            Fotos foto = new Fotos();
+            foto.setFot_caminho(destino.getAbsoluteFile().toString());
+            fotoBll.addFotos(foto);
+            if (!destino.exists()) {
+                Files.copy(f.toPath(), destino.toPath());
+            }
+            
+            foto = fotoBll.getFotosByCaminho(foto.getFot_caminho());
+            
             int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
             motorista = motoristabll.getMotoristaById(id);
             endereco = enderecoBll.getConsultaPorId(motorista.getCliente().getEnderecos().getIden());
@@ -857,10 +842,12 @@ public class TelaMotoristas extends javax.swing.JFrame {
             cliente.setNome(jTextFieldNomeMotorista.getText());
             cliente.setTelefone(jTextFieldTelefoneMotorista.getText());
             cliente.setEmail(jTextFieldEmailMotorista.getText());
+            cliente.setTipo("MOTORISTA");
             clienteBll.updateClientes(cliente);
 
             chegou = 2;
-
+            
+            motorista.setFotos(foto);
             motorista.setCliente(cliente);
             motorista.setRg(jTextField_rgMotorista.getText());
             motorista.setCpf(jTextField_CpfMotorista.getText());
@@ -930,6 +917,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
             cliente.setTelefone(jTextFieldTelefoneMotorista.getText());
             cliente.setEmail(jTextFieldEmailMotorista.getText());
             cliente.setStatus("ADIMPLENTE");
+            cliente.setTipo("MOTORISTA");
             cliente.setMulta(0);
             clienteBll.addClientes(cliente);
             String clienteTelefone = cliente.getTelefone();

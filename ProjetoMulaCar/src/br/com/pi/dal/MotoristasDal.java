@@ -182,6 +182,24 @@ public class MotoristasDal {
             throw  error;
         }
     }
+     
+      public Motoristas getMotoristasByCliente(int mot_cli) throws Exception {
+        
+        String sql = "SELECT * FROM pessoas_fisicas WHERE pfi_cli_iden=?";
+        try{
+        Motoristas motorista = new Motoristas();
+        PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+        preparedStatement.setInt(1, mot_cli);
+        
+        ResultSet rs = preparedStatement.executeQuery();
+        if(rs.next()){
+         motorista = getMotoristasById(rs.getInt("pfi_iden"));
+        }       
+        return motorista;
+        } catch (Exception error) {
+            throw  error;
+        }
+    }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //
 }
