@@ -26,9 +26,15 @@ public class Devolucoes {
     //
     private int iden = 0;
     private Date dataDevolucao = null;
-    private double multaPorAtraso = 0;
     private double kmNaEntrega = 0;
     private Locacoes locacao = null;
+    private double multaPorAtraso = 0;
+    private double multaPorLitros = 0;
+    private double diferencaLitros = 0;
+    private int diferencaDias = 0;
+    private double valorTotal = 0;
+    private double multaTransito = 0;
+    private double danosVeiculo =0;
  
 
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
@@ -39,12 +45,19 @@ public class Devolucoes {
 
     }
 
-    public Devolucoes(int iden, Date dataDevolucao,double multaPorAtraso, String status, double kmNaEntrega, Locacoes locacao) {
+    public Devolucoes(int iden, Date dataDevolucao,double multaPorAtraso, String status, double kmNaEntrega, Locacoes locacao,
+                      double multaLitro, double diferencaLitro , int diferencaDia , double valorfinal, double multaTransito, double danoVeiculo) {
         this.iden = iden;
         this.dataDevolucao = dataDevolucao;
-        this.multaPorAtraso = multaPorAtraso;
         this.kmNaEntrega = kmNaEntrega;
         this.locacao = locacao;
+        this.multaPorAtraso = multaPorAtraso;
+        this.multaPorLitros = multaLitro;
+        this.diferencaLitros = diferencaLitro;
+        this.diferencaDias = diferencaDia;
+        this.valorTotal = valorfinal;
+        this.multaTransito = multaTransito;
+        this.danosVeiculo = danoVeiculo;
        
     }
     //--- FIM CONSTRUTORES ----------------------------------------------------------------------------|
@@ -60,11 +73,6 @@ public class Devolucoes {
         return dataDevolucao;
     }
 
-    public double getMultaPorAtraso() {
-        return multaPorAtraso;
-    }
-
-
     public double getKmNaEntrega() {
         return kmNaEntrega;
     }
@@ -72,6 +80,35 @@ public class Devolucoes {
     public Locacoes getLocacao() {
         return locacao;
     }
+    public double getMultaPorAtraso() {
+        return multaPorAtraso;
+    }
+    
+    public double getMultaPorLitro() {
+        return multaPorLitros;
+    }
+    
+    public double getDiferencaLitros() {
+        return diferencaLitros;
+    }
+    
+    public int  getDiferencaDias() {
+        return diferencaDias;
+    }
+    
+    public double getValorTotal() {
+        return valorTotal;
+    }
+    
+    public double getMultaTransito() {
+        return multaTransito;
+    }
+    
+    public double getDanoVeiculo() {
+        return danosVeiculo;
+    }
+    
+    
     //--- FIM GET -------------------------------------------------------------------------------------|
     //
 
@@ -86,9 +123,6 @@ public class Devolucoes {
         this.dataDevolucao = dataDevolucao;
     }
 
-    public void setMultaPorAtraso(double multaPorAtraso) {
-        this.multaPorAtraso = multaPorAtraso;
-    }
 
     public void setKmNaEntrega(double kmNaEntrega) {
         this.kmNaEntrega = kmNaEntrega;
@@ -97,6 +131,35 @@ public class Devolucoes {
     public void setLocacao(Locacoes locacao) {
         this.locacao = locacao;
     }
+    
+    public void setMultaPorLitro(double multaLitro) {
+        this.multaPorLitros = multaLitro;
+    }
+    
+    public void setMultaPorAtraso(double multaAtraso) {
+        this.multaPorAtraso = multaAtraso;
+    }
+    
+    public void setDiferencaLitros(double diferencaLitro) {
+        this.diferencaLitros = diferencaLitro;
+    }
+    
+    public void setDiferencaDias(int diferencaDias) {
+        this.diferencaDias = diferencaDias;
+    }
+    
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+    
+    public void setMultaTransito(double multaTransito) {
+        this.multaTransito = multaTransito;
+    }
+    
+    public void setDanosVeiculo(double danosVeiculo) {
+        this.danosVeiculo = danosVeiculo;
+    }
+    
     //--- FIM SET -------------------------------------------------------------------------------------|
     //
 

@@ -53,7 +53,7 @@ public class DevolucoesDal {
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addDevolucoes(Devolucoes devolucao) throws Exception {
 
-        String sql = "INSERT INTO devolucoes (dev_data_devolucao, dev_multa_por_atraso , dev_km_na_entrega , dev_loc_iden ) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO devolucoes (dev_data_devolucao, dev_multa_por_atraso , dev_km_na_entrega , dev_loc_iden, dev_dias_atraso, dev_diferenca_litros, dev_multa_por_litros, dev_valor_total, dev_multa_transito, dev_danos_veiculo) VALUES (?,?,?,?,?,?,?,?,?,?)";
         try {
 
             java.sql.Date dataDevolucao = new java.sql.Date(devolucao.getDataDevolucao().getTime());
@@ -63,7 +63,12 @@ public class DevolucoesDal {
             preparedStatement.setDouble(2, devolucao.getMultaPorAtraso());
             preparedStatement.setDouble(3, devolucao.getKmNaEntrega());
             preparedStatement.setInt(4, devolucao.getLocacao().getIden());
-
+            preparedStatement.setInt(5, devolucao.getDiferencaDias());
+            preparedStatement.setDouble(6, devolucao.getDiferencaLitros());
+            preparedStatement.setDouble(7, devolucao.getMultaPorLitro());
+            preparedStatement.setDouble(8, devolucao.getValorTotal());
+            preparedStatement.setDouble(9, devolucao.getMultaTransito());
+            preparedStatement.setDouble(10, devolucao.getDanoVeiculo());
             preparedStatement.executeUpdate();
         } catch (Exception error) {
             throw error;
@@ -76,7 +81,7 @@ public class DevolucoesDal {
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateDevolucoes(Devolucoes devolucao) throws Exception {
 
-        String sql = "UPDATE devolucoes SET dev_data_devolucao=?, dev_multa_por_atraso=? , dev_km_na_entrega=? , dev_loc_iden=? WHERE dev_iden=?";
+        String sql = "UPDATE devolucoes SET dev_data_devolucao=?, dev_multa_por_atraso=? , dev_km_na_entrega=? , dev_loc_iden=? , dev_dias_atraso=? , dev_diferenca_litros? , dev_multa_por_litros? , dev_valor_total=?, dev_multa_transito=?, dev_danos_veiculo=?  WHERE dev_iden=?";
 
         try {
 
@@ -87,7 +92,13 @@ public class DevolucoesDal {
             preparedStatement.setDouble(2, devolucao.getMultaPorAtraso());
             preparedStatement.setDouble(3, devolucao.getKmNaEntrega());
             preparedStatement.setInt(4, devolucao.getLocacao().getIden());
-            preparedStatement.setInt(5, devolucao.getIden());
+            preparedStatement.setInt(5, devolucao.getDiferencaDias());
+            preparedStatement.setDouble(6, devolucao.getDiferencaLitros());
+            preparedStatement.setDouble(7, devolucao.getMultaPorLitro());
+            preparedStatement.setDouble(8, devolucao.getValorTotal());
+            preparedStatement.setDouble(9, devolucao.getMultaTransito());
+            preparedStatement.setDouble(10, devolucao.getDanoVeiculo());
+            preparedStatement.setInt(11, devolucao.getIden());
 
             preparedStatement.executeUpdate();
 
@@ -157,6 +168,12 @@ public class DevolucoesDal {
                 devolucao.setDataDevolucao(rs.getDate("dev_data_devolucao"));
                 devolucao.setMultaPorAtraso(rs.getDouble("dev_multa_por_atraso"));
                 devolucao.setKmNaEntrega(rs.getDouble("dev_km_na_entrega"));
+                devolucao.setDiferencaDias(rs.getInt("dev_dias_atraso"));
+                devolucao.setDiferencaLitros(rs.getDouble("dev_diferenca_litros"));
+                devolucao.setMultaPorLitro(rs.getDouble("dev_multa_por_litros"));
+                devolucao.setValorTotal(rs.getDouble("dev_valor_total"));
+                devolucao.setMultaTransito(rs.getDouble("dev_multa_transito"));
+                devolucao.setDanosVeiculo(rs.getDouble("dev_danos_veiculo"));
                 int loc_codigo = rs.getInt("dev_loc_iden");
                 locacao = locacoesBll.getLocacoesById(loc_codigo);
                 devolucao.setLocacao(locacao);

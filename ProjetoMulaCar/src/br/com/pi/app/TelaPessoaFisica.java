@@ -72,7 +72,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             DefaultTableModel tablePessoasFisicas = (DefaultTableModel) jTableConsultaPessoaFisica.getModel();
             tablePessoasFisicas.setRowCount(0);
 
-            Object[] coluna = new Object[8];
+            Object[] coluna = new Object[9];
 
             ArrayList<PessoasFisicas> listaPessoasFisicas = pessoaFisicaBll.getAllPessoasFisicas();
 
@@ -80,12 +80,14 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
 
                 coluna[0] = pessoaFisica.getIden();
                 coluna[1] = pessoaFisica.getCliente().getNome();
-                coluna[2] = pessoaFisica.getRg();
-                coluna[3] = pessoaFisica.getCpf();
-                coluna[4] = pessoaFisica.getCliente().getEmail();
-                coluna[5] = pessoaFisica.getCliente().getTelefone();
-                coluna[6] = pessoaFisica.getCliente().getEnderecos().getLogradouro();
+                coluna[2] = pessoaFisica.getCliente().getTelefone();
+                coluna[3] = pessoaFisica.getCliente().getEmail();
+                coluna[4] = pessoaFisica.getCliente().getEnderecos().getLogradouro();
+                coluna[5] = pessoaFisica.getRg();
+                coluna[6] = pessoaFisica.getCpf();
                 coluna[7] = pessoaFisica.getCliente().getEnderecos().getCep();
+                coluna[8] = pessoaFisica.getCliente().getStatus();
+                
 
                 tablePessoasFisicas.addRow(coluna);
             }
@@ -459,11 +461,11 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOME", "RG", "CPF", "EMAIL", "TELEFONE", "LOGRADOURO", "CEP"
+                "ID", "NOME", "TELEFONE", "EMAIL", "LOGRADOURO", "RG", "CPF", "CEP", "STATUS"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -476,6 +478,9 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(jTableConsultaPessoaFisica);
+        if (jTableConsultaPessoaFisica.getColumnModel().getColumnCount() > 0) {
+            jTableConsultaPessoaFisica.getColumnModel().getColumn(0).setMaxWidth(40);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

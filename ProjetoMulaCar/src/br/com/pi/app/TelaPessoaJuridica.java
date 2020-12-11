@@ -80,7 +80,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             DefaultTableModel tablePessoasJuridicas = (DefaultTableModel) jTable_PessoasJuridicas.getModel();
             tablePessoasJuridicas.setRowCount(0);
 
-            Object[] coluna = new Object[7];
+            Object[] coluna = new Object[8];
 
             ArrayList<PessoasJuridicas> listaDePessoasJuridicas = new PessoasJuridicasBll().getAllPessoasJuridicas();
 
@@ -88,11 +88,12 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
                 coluna[0] = pessoasJuridicas.getIden();
                 coluna[1] = pessoasJuridicas.getNomeFantasia();
-                coluna[2] = pessoasJuridicas.getCnpj();
-                coluna[3] = pessoasJuridicas.getCliente().getTelefone();
-                coluna[4] = pessoasJuridicas.getCliente().getEmail();
-                coluna[5] = pessoasJuridicas.getCliente().getEnderecos().getLogradouro();
+                coluna[2] = pessoasJuridicas.getCliente().getTelefone();
+                coluna[3] = pessoasJuridicas.getCliente().getEmail();
+                coluna[4] = pessoasJuridicas.getCliente().getEnderecos().getLogradouro();
+                coluna[5] = pessoasJuridicas.getCnpj();
                 coluna[6] = pessoasJuridicas.getCliente().getEnderecos().getCep();
+                coluna[7] = pessoasJuridicas.getCliente().getStatus();
 
                 tablePessoasJuridicas.addRow(coluna);
             }
@@ -448,11 +449,11 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOME FANTASIA", "CNPJ", "TELEFONE", "E-MAIL", "LOGRADOURO", "CEP"
+                "ID", "NOME FANTASIA", "TELEFONE", "E-MAIL", "LOGRADOURO", "CNPJ", "CEP", "STATUS"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -465,6 +466,9 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(jTable_PessoasJuridicas);
+        if (jTable_PessoasJuridicas.getColumnModel().getColumnCount() > 0) {
+            jTable_PessoasJuridicas.getColumnModel().getColumn(0).setMaxWidth(40);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

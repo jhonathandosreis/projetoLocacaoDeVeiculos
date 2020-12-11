@@ -99,7 +99,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
             DefaultTableModel tableMotoristas = (DefaultTableModel) jTableConsultarMotorista.getModel();
             tableMotoristas.setRowCount(0);
 
-            Object[] coluna = new Object[6];
+            Object[] coluna = new Object[8];
 
             ArrayList<Motoristas> listaMotoristas = motoristabll.getAllMotoristas();
 
@@ -107,10 +107,12 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
                 coluna[0] = motorista.getIden();
                 coluna[1] = motorista.getCliente().getNome();
-                coluna[2] = motorista.getNumeroCnh();
-                coluna[3] = motorista.getCliente().getTelefone();
-                coluna[4] = motorista.getCliente().getEnderecos().getLogradouro();
-                coluna[5] = motorista.getCliente().getEnderecos().getCep();
+                coluna[2] = motorista.getCliente().getTelefone();
+                coluna[3] = motorista.getCliente().getEnderecos().getLogradouro();
+                coluna[4] = motorista.getCpf();
+                coluna[5] = motorista.getNumeroCnh();
+                coluna[6] = motorista.getCliente().getEnderecos().getCep();
+                coluna[7] = motorista.getCliente().getStatus();
 
                 tableMotoristas.addRow(coluna);
             }
@@ -644,11 +646,11 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOME", "Nº CNH", "TELEFONE", "LOGRADOURO", "CEP"
+                "ID", "NOME", "TELEFONE", "LOGRADOURO", "CPF", "Nº CNH", "CEP", "STATUS"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -661,6 +663,9 @@ public class TelaMotoristas extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(jTableConsultarMotorista);
+        if (jTableConsultarMotorista.getColumnModel().getColumnCount() > 0) {
+            jTableConsultarMotorista.getColumnModel().getColumn(0).setMaxWidth(50);
+        }
 
         jButtonCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/salve.png"))); // NOI18N
         jButtonCadastrar.setText("CADASTRAR");

@@ -21,6 +21,7 @@ import br.com.pi.model.Clientes;
 import br.com.pi.model.Locacoes;
 import br.com.pi.model.Motoristas;
 import br.com.pi.model.Veiculos;
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -57,10 +58,11 @@ public class TelaFinalizarLocacao extends javax.swing.JFrame {
         this.pessoa = tipoPessoa;
         this.locacao = locacao;
         this.telalocacao = tela;
-        jTextFieldValorLocacao.setText(locacao.getValorLocacao() + " R$");
-        jTextFieldValorDoCaucao.setText(locacao.getValorCaucao() + " R$");
-        jTextFieldValorDoSeguro.setText(locacao.getValorSeguro() + " R$");
-        jTextFieldValorPago.setText(locacao.getValorTotalPago() + " R$");
+        DecimalFormat df = new DecimalFormat("###,##0.00");
+        jTextFieldValorLocacao.setText(df.format(locacao.getValorLocacao()) + " R$");
+        jTextFieldValorDoCaucao.setText(df.format(locacao.getValorCaucao()) + " R$");
+        jTextFieldValorDoSeguro.setText(df.format(locacao.getValorSeguro()) + " R$");
+        jTextFieldValorPago.setText(df.format(locacao.getValorTotalPago()) + " R$");
     }
 
     @SuppressWarnings("unchecked")

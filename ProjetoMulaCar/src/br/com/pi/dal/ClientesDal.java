@@ -53,7 +53,7 @@ public class ClientesDal {
         preparedStatement1.setString(2, cliente.getTelefone());
         preparedStatement1.setString(3, cliente.getEmail());
         preparedStatement1.setString(4, cliente.getStatus());
-        preparedStatement1.setFloat(5, cliente.getMulta());
+        preparedStatement1.setDouble(5, cliente.getMulta());
         preparedStatement1.setInt(6, cliente.getEnderecos().getIden());
         preparedStatement1.setString(7, cliente.getTipo());
         preparedStatement1.executeUpdate();
@@ -71,7 +71,7 @@ public class ClientesDal {
             preparedStatement1.setString(2, cliente.getTelefone());
             preparedStatement1.setString(3, cliente.getEmail());
             preparedStatement1.setString(4, cliente.getStatus());
-            preparedStatement1.setFloat(5, cliente.getMulta());
+            preparedStatement1.setDouble(5, cliente.getMulta());
             preparedStatement1.setInt(6, cliente.getEnderecos().getIden());
             preparedStatement1.setString(7, cliente.getTipo());
             preparedStatement1.setInt(8, cliente.getIden());
@@ -151,7 +151,7 @@ public class ClientesDal {
                 cliente.setTelefone(rs.getString("cli_telefone"));
                 cliente.setEmail(rs.getString("cli_email"));
                 cliente.setStatus(rs.getString("cli_status"));
-                cliente.setMulta(rs.getFloat("cli_multa"));
+                cliente.setMulta(rs.getDouble("cli_multa"));
                 cliente.setTipo(rs.getString("cli_tipo"));
                 cliente.setEnderecos(endereco);
                 
