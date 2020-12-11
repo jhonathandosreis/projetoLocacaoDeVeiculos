@@ -32,10 +32,10 @@ public class Locacoes {
     private Date dataDeLocacao = null;
     private Date dataPrevistDeDevolucao = null;
     private double kmInicial = 0;
-    private float valorLocacao = 0;
-    private float valorCaucao = 0;
-    private float valorSeguro = 0;
-    private float valorTotalPago = 0;
+    private double valorLocacao = 0;
+    private double valorCaucao = 0;
+    private double valorSeguro = 0;
+    private double valorTotalPago = 0;
     private String status = "";
     
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
@@ -49,7 +49,7 @@ public class Locacoes {
     
     public Locacoes(int iden, Clientes clientes, Motoristas motoristas, Veiculos veiculos,
             Date dataDeLocao, Date dataPrevistaDevolucao, double kmInicial,String status,
-            float valorLocacao, float valorCaucao, float valorSeguro, float valorTotalPago) {
+            double valorLocacao, double valorCaucao, double valorSeguro, double valorTotalPago) {
         this.iden = iden;
         this.cliente = clientes;
         this.motoristas = motoristas;
@@ -99,19 +99,19 @@ public class Locacoes {
         return kmInicial;
     }
     
-    public float getValorLocacao() {
+    public double getValorLocacao() {
         return valorLocacao;
     }
 
-    public float getValorCaucao() {
+    public double getValorCaucao() {
         return valorCaucao;
     }
 
-    public float getValorSeguro() {
+    public double getValorSeguro() {
         return valorSeguro;
     }
 
-    public float getValorTotalPago() {
+    public double getValorTotalPago() {
         return valorTotalPago;
     }
     
@@ -153,19 +153,19 @@ public class Locacoes {
         this.kmInicial = kmInicial;
     }
     
-    public void setValorLocacao(float valorLocacao) {
+    public void setValorLocacao(double valorLocacao) {
         this.valorLocacao = valorLocacao;
     }
 
-    public void setValorCaucao(float valorCaucao) {
+    public void setValorCaucao(double valorCaucao) {
         this.valorCaucao = valorCaucao;
     }
 
-    public void setValorSeguro(float valorSeguro) {
+    public void setValorSeguro(double valorSeguro) {
         this.valorSeguro = valorSeguro;
     }
 
-    public void setValorTotalPago(float valorTotalPago) {
+    public void setValorTotalPago(double valorTotalPago) {
         this.valorTotalPago = valorTotalPago;
     }
     

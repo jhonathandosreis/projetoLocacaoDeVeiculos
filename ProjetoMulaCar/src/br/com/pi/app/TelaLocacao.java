@@ -771,11 +771,11 @@ public class TelaLocacao extends javax.swing.JFrame {
             locacao.setKmInicial(veiculo.getQuilometragem());
             // CALCULO
             int dias = DiferencaEntreDatas(dataLocacao, dataPrevista);
-            float valorDiaria = veiculo.getModelo().getCategoria().getValorDiarioLocacao();
-            float valorLocacao = valorDiaria * dias;
-            float valorCaucao = (float) (valorLocacao * 1.5);
-            float valorSeguro = (float) (valorLocacao * 0.009);
-            float valorTotal = valorLocacao + valorCaucao + valorSeguro;
+            double valorDiaria = veiculo.getModelo().getCategoria().getValorDiarioLocacao();
+            double valorLocacao = valorDiaria * dias;
+            double valorCaucao = (double) (valorLocacao * 1.5);
+            double valorSeguro = (double) (valorLocacao * 0.009);
+            double valorTotal = valorLocacao + valorCaucao + valorSeguro;
 
             locacao.setValorLocacao(valorLocacao);
             locacao.setValorCaucao(valorCaucao);

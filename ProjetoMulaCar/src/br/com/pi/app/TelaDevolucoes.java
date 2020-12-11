@@ -172,9 +172,6 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         Valida.numberInteger(jTextFieldLitroVeiculoEntrega.getText(), "Campo capacidade de combustivel/Litro aceita apenas números ");
         Valida.notSpecialCharacters(jTextFieldLitroVeiculoEntrega.getText(), "Campo capacidade de combustivel/Litro não é permitido caracteres especiais! ");
 
-//        if (jComboBoxLocacaoCliente.getSelectedItem() == "<SELECIONE>") {
-//            throw new Exception("Selecione um Código de Locação!");
-//        }
     }
 
     public void limparCampos() {
@@ -674,6 +671,9 @@ public class TelaDevolucoes extends javax.swing.JFrame {
             }
             if (km <= locacao.getKmInicial()) {
                 throw new RuntimeException("KM de entrega inválido, KM na entrega deve ser maior que KM inicial da locação");
+            }
+            if (km > 300000) {
+                throw new RuntimeException("KM de entrega inválido, KM na entrega não deve exceder 300.000 km por padrão");
             }
             if (litroEntregue > capacidadeLitro || litroEntregue <= 0) {
                 throw new RuntimeException("Litros entregue inválido, quantidade deve ser menor ou igual a cacidade de litros no tanque");
