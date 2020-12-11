@@ -16,7 +16,7 @@ package br.com.pi.model;
 
 /**
  *
- * @author jhonlinux
+ * @author GUSTAVO
  */
 public class PessoasJuridicas{
 
@@ -76,19 +76,19 @@ public class PessoasJuridicas{
     }
 
     public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+        this.cnpj = cnpj.trim();
     }
 
     public void setNomeFantasia(String nomeFantasia) {
-        this.nomeFantasia = nomeFantasia;
+        this.nomeFantasia = nomeFantasia.trim().toUpperCase();
     }
 
     public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
+        this.razaoSocial = razaoSocial.trim().toUpperCase();
     }
 
-    public void setCliente(Clientes pju_cli_iden) {
-        this.cliente = pju_cli_iden;
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //

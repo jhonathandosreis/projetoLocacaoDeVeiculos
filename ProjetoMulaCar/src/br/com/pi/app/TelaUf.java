@@ -271,7 +271,7 @@ public class TelaUf extends javax.swing.JFrame {
         try {
           
 
-            uf.setNome(jTextFieldUfnome.getText().toUpperCase());
+            uf.setNome(jTextFieldUfnome.getText());
             ufBll.addUfs(uf);
 
             preencherGridUf();
@@ -293,7 +293,7 @@ public class TelaUf extends javax.swing.JFrame {
                 throw new Exception("Selecione uma UF a ser alterada!");
             }
             
-            uf.setNome(jTextFieldUfnome.getText().toUpperCase());
+            uf.setNome(jTextFieldUfnome.getText());
             uf.setIden(Integer.parseInt(jTextFieldIDUf.getText()));
             ufBll.updateUfs(uf);
 

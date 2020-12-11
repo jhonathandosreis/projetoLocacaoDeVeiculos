@@ -154,7 +154,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jTextField_CpfMotorista.setText("" + motorista.getCpf());
         jTextFieldCNHMotorista.setText("" + motorista.getNumeroCnh());
         jFormattedTextField_Data_validade.setText(convertDate(motorista.getDataValidade()));
-        jTextField_CategoriaCNH.setText(motorista.getCategoriaCnh());
+        jComboBox_CategoriaCnh.setSelectedItem(motorista.getCategoriaCnh());
         jTextFieldCepMotorista.setText("" + motorista.getCliente().getEnderecos().getCep());
         jTextFieldLogradouroMotorista.setText(motorista.getCliente().getEnderecos().getLogradouro());
         jTextFieldNumeroMotorista.setText("" + motorista.getCliente().getEnderecos().getNumero());
@@ -197,7 +197,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jTextField_CpfMotorista.setText("");
         jTextFieldCNHMotorista.setText("");
         jFormattedTextField_Data_validade.setText("");
-        jTextField_CategoriaCNH.setText("");
+        jComboBox_CategoriaCnh.setSelectedIndex(0);
         jTextFieldCepMotorista.setText("");
         jTextFieldLogradouroMotorista.setText("");
         jTextFieldNumeroMotorista.setText("");
@@ -234,7 +234,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jFormattedTextField_Data_validade = new javax.swing.JFormattedTextField();
-        jTextField_CategoriaCNH = new javax.swing.JTextField();
         jTextField_CpfMotorista = new javax.swing.JFormattedTextField();
         jTextField_rgMotorista = new javax.swing.JFormattedTextField();
         jTextFieldCNHMotorista = new javax.swing.JFormattedTextField();
@@ -244,6 +243,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabelFotos = new javax.swing.JLabel();
+        jComboBox_CategoriaCnh = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -301,12 +301,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        jTextField_CategoriaCNH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_CategoriaCNHActionPerformed(evt);
-            }
-        });
-
         try {
             jTextField_CpfMotorista.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
@@ -350,6 +344,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
             .addComponent(jLabelFotos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jComboBox_CategoriaCnh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "B", "C", "D", "E" }));
+
         javax.swing.GroupLayout jPanel2PessoaFisicaLayout = new javax.swing.GroupLayout(jPanel2PessoaFisica);
         jPanel2PessoaFisica.setLayout(jPanel2PessoaFisicaLayout);
         jPanel2PessoaFisicaLayout.setHorizontalGroup(
@@ -390,8 +386,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
                                 .addComponent(jTextFieldCNHMotorista)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField_CategoriaCNH, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox_CategoriaCnh, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
                                 .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2PessoaFisicaLayout.createSequentialGroup()
@@ -452,9 +448,9 @@ public class TelaMotoristas extends javax.swing.JFrame {
                     .addComponent(jLabel3RGPessoaFisica, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2PessoaFisicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldCNHMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_CategoriaCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox_CategoriaCnh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -526,8 +522,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
                                 .addGap(124, 124, 124)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jLabel7)))
                         .addGap(182, 182, 182))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -852,7 +847,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
             motorista.setRg(jTextField_rgMotorista.getText());
             motorista.setCpf(jTextField_CpfMotorista.getText());
             motorista.setNumeroCnh(jTextFieldCNHMotorista.getText());
-            motorista.setCategoriaCnh(jTextField_CategoriaCNH.getText());
+            motorista.setCategoriaCnh(jComboBox_CategoriaCnh.getSelectedItem().toString());
             motorista.setDataValidade(data);
             motoristabll.updateMotorista(motorista);
 
@@ -930,7 +925,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
             motorista.setRg(jTextField_rgMotorista.getText());
             motorista.setCpf(jTextField_CpfMotorista.getText());
             motorista.setNumeroCnh(jTextFieldCNHMotorista.getText());
-            motorista.setCategoriaCnh(jTextField_CategoriaCNH.getText());
+            motorista.setCategoriaCnh(jComboBox_CategoriaCnh.getSelectedItem().toString());
             motorista.setDataValidade(data);
 
             motoristabll.addMotoristas(motorista);
@@ -990,10 +985,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSelecionarActionPerformed
     
     
-    private void jTextField_CategoriaCNHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_CategoriaCNHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_CategoriaCNHActionPerformed
-
     private void jTextFieldNumeroMotoristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroMotoristaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNumeroMotoristaActionPerformed
@@ -1040,6 +1031,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonSelecionar;
+    private javax.swing.JComboBox<String> jComboBox_CategoriaCnh;
     private javax.swing.JComboBox<String> jComboBox_Cidade;
     private javax.swing.JFormattedTextField jFormattedTextField_Data_validade;
     private javax.swing.JLabel jLabel1;
@@ -1082,7 +1074,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNumeroMotorista;
     private javax.swing.JTextField jTextFieldRua;
     private javax.swing.JFormattedTextField jTextFieldTelefoneMotorista;
-    private javax.swing.JTextField jTextField_CategoriaCNH;
     private javax.swing.JFormattedTextField jTextField_CpfMotorista;
     private javax.swing.JTextField jTextField_UF;
     private javax.swing.JFormattedTextField jTextField_rgMotorista;

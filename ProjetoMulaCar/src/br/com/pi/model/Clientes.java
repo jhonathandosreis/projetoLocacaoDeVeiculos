@@ -96,7 +96,7 @@ public class Clientes {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.trim().toUpperCase();
     }
 
     public void setTelefone(String telefone) {
@@ -104,7 +104,7 @@ public class Clientes {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.trim().toUpperCase();
     }
     
     public void setEnderecos(Enderecos enderecos) {
@@ -112,7 +112,7 @@ public class Clientes {
     }
     
     public void setStatus(String status) {
-        this.status = status;
+        this.status = status.trim().toUpperCase();
     }
     
     public void setMulta(float multa) {
@@ -120,7 +120,7 @@ public class Clientes {
     }
     
     public void setTipo(String tipo) {
-        this.tipo = tipo;
+        this.tipo = tipo.trim().toUpperCase();
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //    

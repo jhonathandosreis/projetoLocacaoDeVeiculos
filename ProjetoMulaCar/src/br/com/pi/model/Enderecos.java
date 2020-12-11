@@ -95,15 +95,15 @@ public class Enderecos {
     }
 
     public void setRua(String rua) {
-        this.rua = rua;
+        this.rua = rua.trim().toUpperCase();
     }
 
     public void setNumero(String numero) {
-        this.numero = numero;
+        this.numero = numero.trim();
     }
 
     public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
+        this.logradouro = logradouro.trim().toUpperCase();
     }
 
     public void setCep(String cep) {
@@ -111,7 +111,7 @@ public class Enderecos {
     }
 
     public void setComplemento(String complemento) {
-        this.complemento = complemento;
+        this.complemento = complemento.trim().toUpperCase();
     } 
     
       public void setCidade(Cidades cidade) {

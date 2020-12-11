@@ -12,19 +12,19 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
-
 package br.com.pi.model;
-import java.util.ArrayList;
+
 import java.util.Date;
+
 /**
  *
- * @author jhonlinux
+ * @author GUSTAVO
  */
 public class Motoristas extends PessoasFisicas {
 
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
     //
-    private int iden =0;
+    private int iden = 0;
     private String numeroCnh = "";
     private String categoriaCnh = "";
     private Date dataValidade = null;
@@ -35,12 +35,12 @@ public class Motoristas extends PessoasFisicas {
     //--- CONSTRUTORES --------s------------------------------------------------------------------------>
     //
     public Motoristas() {
-        
+
     }
-    
-    public Motoristas( String numeroCnh, String categoriaCnh, Date dataValidade, int iden, String rg, String cpf,Clientes cliente,Fotos foto) {
-       super(iden,foto,rg,cpf,cliente);
-        
+
+    public Motoristas(String numeroCnh, String categoriaCnh, Date dataValidade, int iden, String rg, String cpf, Clientes cliente, Fotos foto) {
+        super(iden, foto, rg, cpf, cliente);
+
         this.iden = iden;
         this.numeroCnh = numeroCnh;
         this.categoriaCnh = categoriaCnh;
@@ -59,15 +59,15 @@ public class Motoristas extends PessoasFisicas {
     public String getNumeroCnh() {
         return numeroCnh;
     }
-    
+
     public String getCategoriaCnh() {
         return categoriaCnh;
     }
-    
+
     public Date getDataValidade() {
         return dataValidade;
     }
-    
+
     public Fotos getFotos() {
         return foto;
     }
@@ -81,21 +81,21 @@ public class Motoristas extends PessoasFisicas {
     }
 
     public void setNumeroCnh(String numeroCnh) {
-        this.numeroCnh = numeroCnh;
+        this.numeroCnh = numeroCnh.trim();
     }
-    
+
     public void setCategoriaCnh(String categoriacnh) {
-        this.categoriaCnh = categoriacnh;
+        this.categoriaCnh = categoriacnh.trim().toUpperCase();
     }
 
     public void setDataValidade(Date dataValidade) {
-         this.dataValidade = dataValidade;
+        this.dataValidade = dataValidade;
     }
-    
+
     public void setFotos(Fotos fotos) {
         this.foto = fotos;
     }
     //--- FIM SET -------------------------------------------------------------------------------------|
     //
-    
+
 }

@@ -47,7 +47,7 @@ public class Ufs {
     //--- SET ----------------------------------------------------------------------------------------->
     //
     public void setNome(String nome) {
-        this.nome = nome.trim();
+        this.nome = nome.trim().toUpperCase();
     }
 
     public void setIden(int iden) {

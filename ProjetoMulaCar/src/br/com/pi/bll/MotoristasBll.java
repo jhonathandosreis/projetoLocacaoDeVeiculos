@@ -14,10 +14,14 @@
  */
 package br.com.pi.bll;
 
+import static br.com.pi.app.TelaLocacao.convertDate;
 import br.com.pi.dal.MotoristasDal;
 import br.com.pi.model.Motoristas;
 import br.com.pi.util.Valida;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  *
@@ -39,12 +43,21 @@ public class MotoristasBll {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addMotoristas(Motoristas motoristas) throws Exception {
-        if (motoristas.getCliente().getIden() == 0) {
-            throw new RuntimeException("Erro ao inserir cliente em motorista");
-        }
         String cpf = motoristas.getCpf();
         cpf = cpf.replace(".", ""); //tira ponto
         cpf = cpf.replace("-", ""); //tira hífen
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
+        Date hoje = new Date();
+        Date formatada = formato.parse(convertDate(hoje));
+        if (motoristas.getDataValidade().compareTo(formatada) < 0) {
+            throw new RuntimeException("CNH vencida, digite uma data valida!");
+        }
+        
+        
+        if (motoristas.getCliente().getIden() == 0) {
+            throw new RuntimeException("Erro ao inserir cliente em motorista");
+        }
         
         Valida.isCPF(cpf, "CPF inválido!");
         try {

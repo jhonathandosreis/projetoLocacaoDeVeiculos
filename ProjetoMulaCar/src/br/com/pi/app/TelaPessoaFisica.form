@@ -567,14 +567,14 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="8" rowCount="0">
-                            <Column editable="true" title="ID" type="java.lang.Object"/>
-                            <Column editable="true" title="NOME" type="java.lang.Object"/>
-                            <Column editable="true" title="RG" type="java.lang.Object"/>
-                            <Column editable="true" title="CPF" type="java.lang.Object"/>
-                            <Column editable="true" title="EMAIL" type="java.lang.Object"/>
-                            <Column editable="true" title="TELEFONE" type="java.lang.Object"/>
-                            <Column editable="true" title="LOGRADOURO" type="java.lang.Object"/>
-                            <Column editable="true" title="CEP" type="java.lang.Object"/>
+                            <Column editable="false" title="ID" type="java.lang.Object"/>
+                            <Column editable="false" title="NOME" type="java.lang.Object"/>
+                            <Column editable="false" title="RG" type="java.lang.Object"/>
+                            <Column editable="false" title="CPF" type="java.lang.Object"/>
+                            <Column editable="false" title="EMAIL" type="java.lang.Object"/>
+                            <Column editable="false" title="TELEFONE" type="java.lang.Object"/>
+                            <Column editable="false" title="LOGRADOURO" type="java.lang.Object"/>
+                            <Column editable="false" title="CEP" type="java.lang.Object"/>
                           </Table>
                         </Property>
                       </Properties>

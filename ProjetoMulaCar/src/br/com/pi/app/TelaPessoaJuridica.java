@@ -116,13 +116,13 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         jTextFieldComplementoPessoaJuridica.setText(pessoaJuridica.getCliente().getEnderecos().getComplemento());
         jTextFieldRuaPessoaJuridica.setText(pessoaJuridica.getCliente().getEnderecos().getRua());
         jComboBoxCidade.setSelectedItem(pessoaJuridica.getCliente().getEnderecos().getCidade());
-        jTextFieldTelefonePessoaJuridica.setText( pessoaJuridica.getCliente().getTelefone());
+        jTextFieldTelefonePessoaJuridica.setText(pessoaJuridica.getCliente().getTelefone());
         jTextFieldEmailPessoaJuridica.setText(pessoaJuridica.getCliente().getEmail());
 
     }
 
     public void validaFormularioPessoasJuridicas() {
-         Valida.SomenteNumero(jTextFieldNumeroPessoaJuridica.getText(), "Campo número de endereço deve conter somente números!");        
+        Valida.SomenteNumero(jTextFieldNumeroPessoaJuridica.getText(), "Campo número de endereço deve conter somente números!");
     }
 
     public void preencherComboboxCidades() throws Exception {
@@ -340,7 +340,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(8, 8, 8)
                 .addComponent(jTextFieldCepPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
@@ -450,7 +450,15 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             new String [] {
                 "ID", "NOME FANTASIA", "CNPJ", "TELEFONE", "E-MAIL", "LOGRADOURO", "CEP"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable_PessoasJuridicas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable_PessoasJuridicasMouseClicked(evt);
@@ -540,7 +548,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             endereco = enderecoBll.getConsultaPorCEP(cep);
 
             chegou = 1;
-            
+
             cliente.setEnderecos(endereco);
             cliente.setNome(null);
             cliente.setTelefone(jTextFieldTelefonePessoaJuridica.getText());
@@ -553,7 +561,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             cliente = clienteBll.getClienteByTelefone(clienteTelefone);
 
             chegou = 2;
-            
+
             pessoaJuridica.setCliente(cliente);
             pessoaJuridica.setCnpj(jTextFieldCNPJPessoaJuridica.getText());
             pessoaJuridica.setNomeFantasia(jTextFieldNomeFantasiaPessoaJuridica.getText());
@@ -565,17 +573,19 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             limparCampos();
 
         } catch (Exception error) {
-            
-             try{
-            if(chegou == 1)enderecoBll.deleteLast();
-            if(chegou == 2){
-                clienteBll.deleteLast();
-                enderecoBll.deleteLast();
-            }
+
+            try {
+                if (chegou == 1) {
+                    enderecoBll.deleteLast();
+                }
+                if (chegou == 2) {
+                    clienteBll.deleteLast();
+                    enderecoBll.deleteLast();
+                }
             } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + e.getMessage());
-        }
-             
+                JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + e.getMessage());
+            }
+
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
@@ -612,7 +622,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             enderecoBll.updateEndereco(endereco);
 
             chegou = 1;
-            
+
             cliente.setEnderecos(endereco);
             cliente.setNome(null);
             cliente.setTelefone(jTextFieldTelefonePessoaJuridica.getText());
@@ -620,7 +630,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             clienteBll.updateClientes(cliente);
 
             chegou = 2;
-            
+
             pessoaJuridica.setCliente(cliente);
             pessoaJuridica.setCnpj(jTextFieldCNPJPessoaJuridica.getText());
             pessoaJuridica.setNomeFantasia(jTextFieldNomeFantasiaPessoaJuridica.getText());
@@ -632,17 +642,19 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             limparCampos();
 
         } catch (Exception error) {
-            
-             try{
-            if(chegou == 1)enderecoBll.deleteLast();
-            if(chegou == 2){
-                clienteBll.deleteLast();
-                enderecoBll.deleteLast();
-            }
+
+            try {
+                if (chegou == 1) {
+                    enderecoBll.deleteLast();
+                }
+                if (chegou == 2) {
+                    clienteBll.deleteLast();
+                    enderecoBll.deleteLast();
+                }
             } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + e.getMessage());
-        }
-             
+                JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + e.getMessage());
+            }
+
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAlterarActionPerformed
@@ -671,11 +683,15 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
-       limparCampos();
+        limparCampos();
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jTable_PessoasJuridicasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_PessoasJuridicasMouseClicked
-        // TODO add your handling code here:
+        try {
+            preencherFormularioPessoaJuridica();
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jTable_PessoasJuridicasMouseClicked
 
     /**
