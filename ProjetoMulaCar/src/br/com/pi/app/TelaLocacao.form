@@ -485,12 +485,12 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="6" rowCount="0">
-                    <Column editable="true" title="ID" type="java.lang.Object"/>
-                    <Column editable="true" title="CATEGORIA" type="java.lang.Object"/>
-                    <Column editable="true" title="TIPO DE VE&#xcd;CULO" type="java.lang.Object"/>
-                    <Column editable="true" title="MODELO" type="java.lang.Object"/>
-                    <Column editable="true" title="MARCA" type="java.lang.Object"/>
-                    <Column editable="true" title="PLACA" type="java.lang.Object"/>
+                    <Column editable="false" title="ID" type="java.lang.Object"/>
+                    <Column editable="false" title="CATEGORIA" type="java.lang.Object"/>
+                    <Column editable="false" title="TIPO DE VE&#xcd;CULO" type="java.lang.Object"/>
+                    <Column editable="false" title="MODELO" type="java.lang.Object"/>
+                    <Column editable="false" title="MARCA" type="java.lang.Object"/>
+                    <Column editable="false" title="PLACA" type="java.lang.Object"/>
                   </Table>
                 </Property>
               </Properties>
@@ -516,14 +516,14 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="8" rowCount="0">
-                    <Column editable="true" title="C&#xd3;DIGO" type="java.lang.Object"/>
-                    <Column editable="true" title="PLACA DO VE&#xcd;CULO" type="java.lang.Object"/>
-                    <Column editable="true" title="CPF/CNPJ" type="java.lang.Object"/>
-                    <Column editable="true" title="KM INICIAL" type="java.lang.Object"/>
-                    <Column editable="true" title="DATA DA LOCA&#xc7;&#xc3;O" type="java.lang.Object"/>
-                    <Column editable="true" title="DATA PREVISTA" type="java.lang.Object"/>
-                    <Column editable="true" title="VALOR FINAL" type="java.lang.Object"/>
-                    <Column editable="true" title="STATUS" type="java.lang.Object"/>
+                    <Column editable="false" title="C&#xd3;DIGO" type="java.lang.Object"/>
+                    <Column editable="false" title="PLACA DO VE&#xcd;CULO" type="java.lang.Object"/>
+                    <Column editable="false" title="CPF/CNPJ" type="java.lang.Object"/>
+                    <Column editable="false" title="KM INICIAL" type="java.lang.Object"/>
+                    <Column editable="false" title="DATA DA LOCA&#xc7;&#xc3;O" type="java.lang.Object"/>
+                    <Column editable="false" title="DATA PREVISTA" type="java.lang.Object"/>
+                    <Column editable="false" title="VALOR FINAL" type="java.lang.Object"/>
+                    <Column editable="false" title="STATUS" type="java.lang.Object"/>
                   </Table>
                 </Property>
               </Properties>

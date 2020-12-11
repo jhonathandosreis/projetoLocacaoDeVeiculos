@@ -573,7 +573,15 @@ public class TelaLocacao extends javax.swing.JFrame {
             new String [] {
                 "ID", "CATEGORIA", "TIPO DE VEÍCULO", "MODELO", "MARCA", "PLACA"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable_VEICULOS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable_VEICULOSMouseClicked(evt);
@@ -590,7 +598,15 @@ public class TelaLocacao extends javax.swing.JFrame {
             new String [] {
                 "CÓDIGO", "PLACA DO VEÍCULO", "CPF/CNPJ", "KM INICIAL", "DATA DA LOCAÇÃO", "DATA PREVISTA", "VALOR FINAL", "STATUS"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable_locacao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable_locacaoMouseClicked(evt);

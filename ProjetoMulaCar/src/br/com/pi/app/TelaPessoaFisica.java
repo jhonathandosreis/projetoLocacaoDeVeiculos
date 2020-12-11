@@ -636,7 +636,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                 enderecoBll.deleteLast();
             }
             } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro!" + e.getMessage());
         }
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -690,7 +690,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
                 enderecoBll.deleteLast();
             }
             } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro! " + e.getMessage());
         }
              
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -711,7 +711,11 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jTableConsultaPessoaFisicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultaPessoaFisicaMouseClicked
-        // TODO add your handling code here:
+       try{
+        preencherFormularioPessoaJuridica();
+         } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jTableConsultaPessoaFisicaMouseClicked
 
     /**
