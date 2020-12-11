@@ -182,9 +182,9 @@
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="jTextFieldCNHMotorista" max="32767" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jComboBox_CategoriaCnh" min="-2" pref="121" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
@@ -271,8 +271,8 @@
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jTextFieldCNHMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jComboBox_CategoriaCnh" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldCNHMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
@@ -347,13 +347,6 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="jTextFieldCNHMotorista">
-                  <Properties>
-                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                      <Format format="###########" subtype="-1" type="5"/>
-                    </Property>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Caminho da foto"/>
@@ -406,17 +399,25 @@
                 <Component class="javax.swing.JComboBox" name="jComboBox_CategoriaCnh">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="B"/>
-                        <StringItem index="1" value="C"/>
-                        <StringItem index="2" value="D"/>
-                        <StringItem index="3" value="E"/>
+                      <StringArray count="5">
+                        <StringItem index="0" value="AB"/>
+                        <StringItem index="1" value="B"/>
+                        <StringItem index="2" value="C"/>
+                        <StringItem index="3" value="D"/>
+                        <StringItem index="4" value="E"/>
                       </StringArray>
                     </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
+                </Component>
+                <Component class="javax.swing.JFormattedTextField" name="jTextFieldCNHMotorista">
+                  <Properties>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="###########" subtype="-1" type="5"/>
+                    </Property>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>

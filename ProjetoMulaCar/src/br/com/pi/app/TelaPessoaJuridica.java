@@ -550,7 +550,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             chegou = 1;
 
             cliente.setEnderecos(endereco);
-            cliente.setNome(null);
+            cliente.setNome("");
             cliente.setTelefone(jTextFieldTelefonePessoaJuridica.getText());
             cliente.setEmail(jTextFieldEmailPessoaJuridica.getText());
             cliente.setStatus("ADIMPLENTE");

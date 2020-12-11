@@ -585,7 +585,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     private void jButtonDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevolverActionPerformed
 
         try {
-            int x = JOptionPane.showConfirmDialog(null, "Voçê realmente deseja finalizar esta locação e tornar este cliente adimplente ?", "Pagar/Devolver", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int x = JOptionPane.showConfirmDialog(null, "Você realmente deseja finalizar esta locação e tornar este cliente adimplente ?", "Pagar/Devolver", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (x == 0) {
                 locacao = locacaoBll.getLocacoesById(Integer.parseInt(jComboBoxLocacaoCliente.getSelectedItem().toString()));
                 Date data = formato.parse(jFormattedDataDevolucao.getText());
@@ -676,7 +676,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                 throw new RuntimeException("KM de entrega inválido, KM na entrega não deve exceder 300.000 km por padrão");
             }
             if (litroEntregue > capacidadeLitro || litroEntregue <= 0) {
-                throw new RuntimeException("Litros entregue inválido, quantidade deve ser menor ou igual a cacidade de litros no tanque");
+                throw new RuntimeException("Litros entregue inválido, quantidade deve ser menor ou igual a capacidade de litros no tanque");
             }
 
             //--- CÁLCULO TOTAL MULTA POR ATRASO ----------------------------------------------------------------->
@@ -718,7 +718,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         try {
 
-            int x = JOptionPane.showConfirmDialog(null, "Voçê realmente deseja cancelar e tornar este cliente inadimplente?", "Cancelar/ inadimplente", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int x = JOptionPane.showConfirmDialog(null, "Você realmente deseja cancelar e tornar este cliente inadimplente?", "Cancelar/ inadimplente", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (x == 0) {
                 locacao = locacaoBll.getLocacoesById(Integer.parseInt(jComboBoxLocacaoCliente.getSelectedItem().toString()));
                 Date data = formato.parse(jFormattedDataDevolucao.getText());

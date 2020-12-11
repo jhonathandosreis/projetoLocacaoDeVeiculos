@@ -26,7 +26,7 @@ CREATE TABLE cidades (
     FOREIGN KEY (cid_ufs_iden) REFERENCES ufs (uf_iden)
 );
 
-CREATE TABLE Enderecos (
+CREATE TABLE enderecos (
     end_iden SERIAL PRIMARY KEY,
     end_rua VARCHAR(100),
     end_numero VARCHAR(20),
