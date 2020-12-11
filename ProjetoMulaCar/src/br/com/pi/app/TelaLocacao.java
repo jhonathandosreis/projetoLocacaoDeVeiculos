@@ -335,7 +335,6 @@ public class TelaLocacao extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextFieldIDLocacao = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jComboBox_Cliente_Locacao = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
@@ -346,8 +345,6 @@ public class TelaLocacao extends javax.swing.JFrame {
         jComboBox_MotoristaLocacao = new javax.swing.JComboBox<>();
         jTextFieldDataLocacao = new javax.swing.JFormattedTextField();
         jTextFieldDataDevolucao = new javax.swing.JFormattedTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel_cnh = new javax.swing.JLabel();
         jButtonCadastrar = new javax.swing.JButton();
         jButtonRemover = new javax.swing.JButton();
         jButton_listarPorCategoria = new javax.swing.JButton();
@@ -363,9 +360,14 @@ public class TelaLocacao extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_locacao = new javax.swing.JTable();
         jButton_Limpar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel_cnh = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("[LOCAÇÃO DO VEÍCULO]");
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Locação"));
 
@@ -374,8 +376,6 @@ public class TelaLocacao extends javax.swing.JFrame {
         jTextFieldIDLocacao.setEditable(false);
 
         jLabel2.setText("CLIENTE");
-
-        jLabel5.setText("CNH MOTORISTA");
 
         jLabel7.setText("DATA LOCAÇÃO");
 
@@ -419,19 +419,6 @@ public class TelaLocacao extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel_cnh, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel_cnh, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -462,9 +449,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                                             .addComponent(jComboBox_Cliente_Locacao, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(44, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -473,24 +458,14 @@ public class TelaLocacao extends javax.swing.JFrame {
                                 .addComponent(jTextFieldDataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(123, 123, 123))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldDataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(137, 137, 137))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -516,6 +491,8 @@ public class TelaLocacao extends javax.swing.JFrame {
                 .addGap(183, 183, 183))
         );
 
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 6, -1, 265));
+
         jButtonCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/salve.png"))); // NOI18N
         jButtonCadastrar.setText("CADASTRAR");
         jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -523,6 +500,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                 jButtonCadastrarActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 550, -1, 60));
 
         jButtonRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/lixo.png"))); // NOI18N
         jButtonRemover.setText("REMOVER");
@@ -531,6 +509,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                 jButtonRemoverActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 550, 120, 60));
 
         jButton_listarPorCategoria.setText("CATEGORIA");
         jButton_listarPorCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -538,6 +517,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                 jButton_listarPorCategoriaActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton_listarPorCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, -1));
 
         jButton_listarPorTipo.setText("TIPO DE VEICULO");
         jButton_listarPorTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -545,6 +525,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                 jButton_listarPorTipoActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton_listarPorTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, -1, -1));
 
         jButton_listarPorModelo.setText("MODELO");
         jButton_listarPorModelo.addActionListener(new java.awt.event.ActionListener() {
@@ -552,6 +533,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                 jButton_listarPorModeloActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton_listarPorModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, -1, -1));
 
         jButton__listarPorMarca.setText("MARCA");
         jButton__listarPorMarca.addActionListener(new java.awt.event.ActionListener() {
@@ -559,12 +541,16 @@ public class TelaLocacao extends javax.swing.JFrame {
                 jButton__listarPorMarcaActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton__listarPorMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 30, -1, -1));
 
         jLabel6.setText("DADOS DO VEICULO SELECIONADO");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 30, -1, -1));
 
         jTextArea_informacoesVeiculo.setColumns(20);
         jTextArea_informacoesVeiculo.setRows(5);
         jScrollPane2.setViewportView(jTextArea_informacoesVeiculo);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 80, 330, 190));
 
         jTable_VEICULOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -588,8 +574,15 @@ public class TelaLocacao extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(jTable_VEICULOS);
+        if (jTable_VEICULOS.getColumnModel().getColumnCount() > 0) {
+            jTable_VEICULOS.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTable_VEICULOS.getColumnModel().getColumn(2).setPreferredWidth(100);
+        }
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 500, 190));
 
         jLabel8.setText("Filtrar tabela de veículos por:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 0, -1, -1));
 
         jTable_locacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -614,6 +607,8 @@ public class TelaLocacao extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable_locacao);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 311, 950, 300));
+
         jButton_Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/limpar-limpo.png"))); // NOI18N
         jButton_Limpar.setText("LIMPAR");
         jButton_Limpar.addActionListener(new java.awt.event.ActionListener() {
@@ -621,84 +616,31 @@ public class TelaLocacao extends javax.swing.JFrame {
                 jButton_LimparActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton_Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 550, 120, 60));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton_listarPorCategoria)
-                                .addGap(58, 58, 58)
-                                .addComponent(jButton_listarPorTipo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton_listarPorModelo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton__listarPorMarca)
-                                .addGap(41, 41, 41))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
-                        .addGap(239, 239, 239))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonCadastrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addGap(135, 135, 135))
+        jLabel5.setText("CNH MOTORISTA");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 290, -1, -1));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(9, Short.MAX_VALUE)
+                .addComponent(jLabel_cnh, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton_listarPorCategoria)
-                            .addComponent(jButton_listarPorTipo)
-                            .addComponent(jButton_listarPorModelo)
-                            .addComponent(jButton__listarPorMarca))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(jLabel_cnh, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 320, 260, 220));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
