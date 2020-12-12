@@ -154,7 +154,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jTextFieldQuantidadePassageiros.setText("");
         jTextFieldTipoDeCombustivel.setText("");
         jComboBoxModelo.setSelectedItem("");
-        jTextFieldMarca.setText("");
+        jTextFieldMarca.removeAll();
         jTextFieldTipoDoVeiculo.setText("");
         jTextFieldCategoria.setText("");
         jTextAreaObservacoes.setText("");
