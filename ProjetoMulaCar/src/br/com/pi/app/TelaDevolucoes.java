@@ -58,7 +58,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         try {
-
+            //classes
             devolucao = new Devolucoes();
             locacao = new Locacoes();
             veiculo = new Veiculos();
