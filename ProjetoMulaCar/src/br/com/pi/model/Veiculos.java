@@ -35,7 +35,6 @@ public class Veiculos {
     private String tipoDeCombustivel = "";
     private int capacidadeCombustivel = 0;
     private Modelos modelo = null;
-    private TiposDeVeiculos tiposDeVeiculo = null;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -47,7 +46,7 @@ public class Veiculos {
     
     public Veiculos(int iden, String placa, double quilometragem, String renavam, 
             String status, int precoDeCompra, int anoFabricacao, String observacoes, 
-            int capacidade, String tipoDeCombustivel, Modelos modelo, TiposDeVeiculos tiposDeVeiculos, int capacidadeCombustivel) {
+            int capacidade, String tipoDeCombustivel, Modelos modelo, int capacidadeCombustivel) {
         this.iden = iden;
         this.placa = placa;
         this.quilometragem = quilometragem;
@@ -59,7 +58,6 @@ public class Veiculos {
         this.capacidade = capacidade;
         this.tipoDeCombustivel = tipoDeCombustivel;
         this.modelo = modelo;
-        this.tiposDeVeiculo = tiposDeVeiculos;
         this.capacidadeCombustivel = capacidadeCombustivel;
         
     }
@@ -110,10 +108,6 @@ public class Veiculos {
     
     public Modelos getModelo() {
         return modelo;
-    }
-    
-    public TiposDeVeiculos getTiposDeVeiculo() {
-        return tiposDeVeiculo;
     }
     
     public int getCapacidadeCombustivel() {
@@ -167,11 +161,7 @@ public class Veiculos {
     public void setModelo(Modelos modelo) {
         this.modelo = modelo;
     }
-    
-    public void setTiposDeVeiculo(TiposDeVeiculos tiposDeVeiculo) {
-        this.tiposDeVeiculo = tiposDeVeiculo;
-    }
-    
+
     public void setCapacidadeCombustivel(int capacidadeCombustivel) {
         this.capacidadeCombustivel = capacidadeCombustivel;
     }
