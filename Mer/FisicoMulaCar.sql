@@ -16,7 +16,7 @@ CREATE TABLE categorias (
 
 CREATE TABLE tipos_de_veiculos (
     tve_iden SERIAL PRIMARY KEY,
-    tve_nome VARCHAR(80) CONSTRAINT modelo_repetido UNIQUE
+    tve_nome VARCHAR(80) CONSTRAINT tipo_veiculo_repetido UNIQUE
 );
 
 CREATE TABLE cidades (
