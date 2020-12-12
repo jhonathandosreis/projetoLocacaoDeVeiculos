@@ -88,7 +88,7 @@ public class TelaLocacao extends javax.swing.JFrame {
 
             PreencherComboboxMotorista();
             preencherGridLocacoes();
-            //jComboBox_MotoristaLocacao.setSelectedIndex(-1);
+           jTextFieldDataLocacao.setEnabled(false);
 
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -323,7 +323,8 @@ public class TelaLocacao extends javax.swing.JFrame {
             jButton_listarPorTipo.setEnabled(true);
             jButtonCadastrar.setEnabled(true);
             jTextFieldDataDevolucao.setEnabled(true);
-            jTextFieldDataLocacao.setEnabled(true);
+            jTextFieldDataLocacao.setEnabled(false);
+          
             jTextArea_informacoesVeiculo.setEnabled(true);
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -355,6 +356,7 @@ public class TelaLocacao extends javax.swing.JFrame {
         jComboBox_MotoristaLocacao = new javax.swing.JComboBox<>();
         jTextFieldDataLocacao = new javax.swing.JFormattedTextField();
         jTextFieldDataDevolucao = new javax.swing.JFormattedTextField();
+        jRadioButton_reserva = new javax.swing.JRadioButton();
         jButtonCadastrar = new javax.swing.JButton();
         jButtonRemover = new javax.swing.JButton();
         jButton_listarPorCategoria = new javax.swing.JButton();
@@ -430,6 +432,13 @@ public class TelaLocacao extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        jRadioButton_reserva.setText("RESERVA");
+        jRadioButton_reserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton_reservaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -438,30 +447,35 @@ public class TelaLocacao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextFieldIDLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jRadioButtonPFisica)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButtonPJuridica)
-                                .addGap(18, 18, 18)
-                                .addComponent(JradioButonMotodista)
-                                .addGap(11, 11, 11))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboBox_MotoristaLocacao, javax.swing.GroupLayout.Alignment.TRAILING, 0, 274, Short.MAX_VALUE)
-                                .addComponent(jComboBox_Cliente_Locacao, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1)
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldDataDevolucao))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldDataLocacao)
-                            .addComponent(jTextFieldDataDevolucao))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jTextFieldIDLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jRadioButtonPFisica)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jRadioButtonPJuridica)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(JradioButonMotodista)
+                                        .addGap(11, 11, 11))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jComboBox_MotoristaLocacao, javax.swing.GroupLayout.Alignment.TRAILING, 0, 274, Short.MAX_VALUE)
+                                        .addComponent(jComboBox_Cliente_Locacao, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButton_reserva)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -490,11 +504,12 @@ public class TelaLocacao extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jComboBox_MotoristaLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextFieldDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(183, 183, 183))))
+                            .addComponent(jTextFieldDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRadioButton_reserva))
+                        .addGap(181, 181, 181))))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 6, -1, 265));
@@ -699,14 +714,28 @@ public class TelaLocacao extends javax.swing.JFrame {
             int id = Integer.parseInt(jTable_VEICULOS.getValueAt(jTable_VEICULOS.getSelectedRow(), 0).toString());
             veiculo = veiculoBll.getVeiculosById(id);
             locacao.setVeiculos(veiculo);
-
-            Date dataLocacao = formato.parse(jTextFieldDataLocacao.getText());
+           Date hoje = new Date();
+           int dias = 0;
             Date dataPrevista = formato.parse(jTextFieldDataDevolucao.getText());
-            locacao.setDataDeLocacao(dataLocacao);
+            if (!jRadioButton_reserva.isSelected()) {
+                
+                Date formatada = formato.parse(convertDate(hoje));
+                locacao.setDataDeLocacao(hoje);
+                dias = DiferencaEntreDatas(hoje, dataPrevista);
+            }else{
+                  Date formatada = formato.parse(convertDate(hoje));
+                Date dataLocacao = formato.parse(jTextFieldDataLocacao.getText());
+                if (dataLocacao.compareTo(formatada) <= 0) {
+            throw new Exception("Data de reserva deva ser superior ao dia atual!");
+        }
+                locacao.setDataDeLocacao(dataLocacao);
+                 dias = DiferencaEntreDatas(dataLocacao, dataPrevista);
+            }
+            
             locacao.setDataPrevistDeDevolucao(dataPrevista);
             locacao.setKmInicial(veiculo.getQuilometragem());
             // CALCULO
-            int dias = DiferencaEntreDatas(dataLocacao, dataPrevista);
+           
             double valorDiaria = veiculo.getModelo().getCategoria().getValorDiarioLocacao();
             double valorLocacao = valorDiaria * dias;
             double valorCaucao = (valorLocacao * 1.5);
@@ -891,6 +920,10 @@ public class TelaLocacao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable_locacaoMouseClicked
 
+    private void jRadioButton_reservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_reservaActionPerformed
+      jTextFieldDataLocacao.setEnabled(true);
+    }//GEN-LAST:event_jRadioButton_reservaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -952,6 +985,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButtonPFisica;
     private javax.swing.JRadioButton jRadioButtonPJuridica;
+    private javax.swing.JRadioButton jRadioButton_reserva;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
