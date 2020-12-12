@@ -154,7 +154,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
         jTextFieldQuantidadePassageiros.setText("");
         jTextFieldTipoDeCombustivel.setText("");
         jComboBoxModelo.setSelectedItem("");
-        jTextFieldMarca.setText("");
+        jTextFieldMarca.removeAll();
         jTextFieldTipoDoVeiculo.setText("");
         jTextFieldCategoria.setText("");
         jTextAreaObservacoes.setText("");
@@ -193,7 +193,6 @@ public class TelaVeiculos extends javax.swing.JFrame {
 
         Valida.numberInteger(jTextFieldRenavam.getText(), "Campo renavam aceita somente números!\n");
         Valida.numberInteger(jTextFieldAno.getText(), "Campo ano aceita somente números!\n");
-        Valida.numberInteger(jTextFieldKM.getText(), "Campo quilometragem aceita somente números!\n");
         Valida.numberInteger(jTextFieldValorDeCompra.getText(), "Campo valor de compra aceita somente números!\n");
         Valida.numberInteger(jTextFieldQuantidadePassageiros.getText(), "Campo capacidade aceita somente números!\n");
 
