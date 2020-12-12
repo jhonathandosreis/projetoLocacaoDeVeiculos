@@ -454,9 +454,9 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="9" rowCount="0">
                     <Column editable="false" title="C&#xd3;DIGO" type="java.lang.Object"/>
-                    <Column editable="true" title="LOCATARIO" type="java.lang.Object"/>
+                    <Column editable="false" title="LOCATARIO" type="java.lang.Object"/>
                     <Column editable="false" title="CPF/CNPJ" type="java.lang.Object"/>
-                    <Column editable="true" title="VE&#xcd;CULO" type="java.lang.Object"/>
+                    <Column editable="false" title="VE&#xcd;CULO" type="java.lang.Object"/>
                     <Column editable="false" title="PLACA DO VE&#xcd;CULO" type="java.lang.Object"/>
                     <Column editable="false" title="DATA DA LOCA&#xc7;&#xc3;O" type="java.lang.Object"/>
                     <Column editable="false" title="DATA PREVISTA" type="java.lang.Object"/>

@@ -302,6 +302,8 @@ public class TelaLocacao extends javax.swing.JFrame {
 
     public void LimparTelaLocacao() {
         try {
+            DefaultTableModel model = (DefaultTableModel) jTable_VEICULOS.getModel();
+            model.setNumRows(0);
             jComboBox_Cliente_Locacao.removeAllItems();
             PreencherComboboxMotorista();
             jTextFieldDataLocacao.setText("");
@@ -315,6 +317,11 @@ public class TelaLocacao extends javax.swing.JFrame {
             jRadioButtonPJuridica.setEnabled(true);
             jComboBox_Cliente_Locacao.setEnabled(true);
             jComboBox_MotoristaLocacao.setEnabled(true);
+            jButton__listarPorMarca.setEnabled(true);
+            jButton_listarPorCategoria.setEnabled(true);
+            jButton_listarPorModelo.setEnabled(true);
+            jButton_listarPorTipo.setEnabled(true);
+            jButtonCadastrar.setEnabled(true);
             jTextFieldDataDevolucao.setEnabled(true);
             jTextFieldDataLocacao.setEnabled(true);
             jTextArea_informacoesVeiculo.setEnabled(true);
@@ -592,7 +599,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, true, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -731,35 +738,38 @@ public class TelaLocacao extends javax.swing.JFrame {
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
         try {
-
+            int id = Integer.parseInt(jTable_locacao.getValueAt(jTable_locacao.getSelectedRow(), 0).toString());
+            locacao = locacaoBll.getLocacoesById(id);
             if (jTable_locacao.getSelectedRow() == -1) {
                 throw new Exception("Selecione uma locação na tabela para ser removida!");
             }
-            int x = JOptionPane.showConfirmDialog(null, "Voçê realmente deseja excluir esta locação?", "Excluir Locação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (x == 0) {
-                int id = Integer.parseInt(jTable_locacao.getValueAt(jTable_locacao.getSelectedRow(), 0).toString());
-                locacao = locacaoBll.getLocacoesById(id);
+            if (locacao.getStatus().equals("FINALIZADA")) {
+                int x = JOptionPane.showConfirmDialog(null, "Voçê realmente deseja excluir esta locação?", "Excluir Locação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (x == 0) {
 
-                cliente = locacao.getCliente();
+                    cliente = locacao.getCliente();
 
-                cliente.setStatus("ADIMPLENTE");
-                clienteBll.updateClientes(cliente);
+                    cliente.setStatus("ADIMPLENTE");
+                    clienteBll.updateClientes(cliente);
 
-                motorista = locacao.getMotoristas();
-                Clientes cliente2 = motorista.getCliente();
-                cliente2.setStatus("ADIMPLENTE");
-                clienteBll.updateClientes(cliente2);
+                    motorista = locacao.getMotoristas();
+                    Clientes cliente2 = motorista.getCliente();
+                    cliente2.setStatus("ADIMPLENTE");
+                    clienteBll.updateClientes(cliente2);
 
-                veiculo = locacao.getVeiculos();
-                veiculo.setStatus("DISPONIVEL");
-                veiculoBll.updateVeiculos(veiculo);
+                    veiculo = locacao.getVeiculos();
+                    veiculo.setStatus("DISPONIVEL");
+                    veiculoBll.updateVeiculos(veiculo);
 
-                locacaoBll.deleteLocacoes(locacao);
+                    locacaoBll.deleteLocacoes(locacao);
 
-                JOptionPane.showMessageDialog(null, "Locação excluida com sucesso\nstatus do cliente e do veículo foram atualizados!");
+                    JOptionPane.showMessageDialog(null, "Locação excluida com sucesso\nstatus do cliente e do veículo foram atualizados!");
 
+                } else {
+                    JOptionPane.showMessageDialog(null, "Locação mantida");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Locação mantida");
+                JOptionPane.showMessageDialog(null, "Locação não pode ser excluida pois esta com status " + locacao.getStatus());
             }
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -818,6 +828,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             saida += "\nMARCA: " + veiculo.getModelo().getMarcas().getNome();
             saida += "\nPLACA: " + veiculo.getPlaca();
             saida += "\nKM ATUAL: " + veiculo.getQuilometragem();
+            saida += "\nDIÁRIA DO VEÍCULO: " + veiculo.getModelo().getCategoria().getValorDiarioLocacao() + " R$";
             jTextArea_informacoesVeiculo.setText(saida);
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -854,9 +865,16 @@ public class TelaLocacao extends javax.swing.JFrame {
 
     private void jTable_locacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_locacaoMouseClicked
         try {
+            DefaultTableModel model = (DefaultTableModel) jTable_VEICULOS.getModel();
+            model.setNumRows(0);
+            jButtonCadastrar.setEnabled(false);
             JradioButonMotodista.setEnabled(false);
             jRadioButtonPFisica.setEnabled(false);
             jRadioButtonPJuridica.setEnabled(false);
+            jButton__listarPorMarca.setEnabled(false);
+            jButton_listarPorCategoria.setEnabled(false);
+            jButton_listarPorModelo.setEnabled(false);
+            jButton_listarPorTipo.setEnabled(false);
             jComboBox_Cliente_Locacao.setEnabled(false);
             jComboBox_MotoristaLocacao.setEnabled(false);
             jTextFieldDataDevolucao.setEnabled(false);
