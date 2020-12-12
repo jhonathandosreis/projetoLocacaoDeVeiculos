@@ -150,7 +150,6 @@ public class TelaModelos extends javax.swing.JFrame {
     
     public void ValidaModelos() {
         Valida.campoVazio(jTextFieldNome.getText(), "Digite o nome do modelo!");
-        Valida.notNumber(jTextFieldNome.getText(), "");
         Valida.notSpecialCharacters(jTextFieldNome.getText(), "");
     }
 
