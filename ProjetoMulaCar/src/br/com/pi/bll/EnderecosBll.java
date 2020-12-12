@@ -33,22 +33,9 @@ public class EnderecosBll {
 
         try {
 
-            if (endereco.getRua().length() < 2) {
-                throw new Exception("Rua inválido\nNo mínimo 2 caracteres!");
-            }
-            if (endereco.getComplemento().length() < 10) {
-                throw new Exception("Complemento inválido\nNo mínimo 10 caracteres!");
-            }
             if (endereco.getLogradouro().length() < 2) {
                 throw new Exception("Logradouro inválido\nNo mínimo 2 caracteres!");
             }
-//            if (endereco.getNumero() < 0) {
-//                throw new Exception("Número do Endereço não pode ser menor do que 0 !");
-//            }
-
-//            if (endereco.getCep().length()!= 9) {
-//                throw new Exception("CEP é permitido apenas 8 caracteres!");
-//            }
 
             endDal.addEnderecos(endereco);
 
@@ -92,22 +79,9 @@ public class EnderecosBll {
 
         try {
 
-            if (endereco.getRua().length() < 2) {
-                throw new Exception("Rua inválido\nNo mínimo 2 caracteres!");
-            }
-            if (endereco.getComplemento().length() < 10) {
-                throw new Exception("Complemento inválido\nNo mínimo 10 caracteres!");
-            }
             if (endereco.getLogradouro().length() < 2) {
                 throw new Exception("Logradouro inválido\nNo mínimo 2 caracteres!");
             }
-//            if (endereco.getNumero() < 0) {
-//                throw new Exception("Número do Endereço não pode ser menor do que 0 !");
-//            }
-//
-//             if (endereco.getCep().length()!= 9) {
-//                throw new Exception("CEP é permitido apenas 8 caracteres!");
-//            }
 
             endDal.updateEnderecos(endereco);
 

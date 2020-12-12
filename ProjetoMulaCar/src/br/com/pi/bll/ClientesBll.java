@@ -59,8 +59,16 @@ public class ClientesBll {
     //--- UPDATE--------------------------------------------------------------------------------------->
     public void updateClientes(Clientes cliente) throws Exception { 
          try{
+             
+               Valida.campoVazio(cliente.getEmail(), "Campo email deve ser preenchido!");
+         Valida.campoVazio(cliente.getTelefone(), "Campo telefone deve ser preenchido!");
+         if(cliente.getEnderecos().getIden() == 0) throw new RuntimeException ("Erro ao cadastrar endereço!"); // validando se a chave estrangeira esta persistindo
+         
+             
          clienteDal.updateClientes(cliente);
         } catch (Exception error) {
+             if(error.getMessage().contains("email_repetido")) throw new RuntimeException("E-mail ("+cliente.getEmail()+") já cadastrado em nosso sistema!");
+            if(error.getMessage().contains("telefone_repetido")) throw new RuntimeException("Telefone ("+cliente.getTelefone()+") já cadastrado em nosso sistema!");
             
         }
     }
