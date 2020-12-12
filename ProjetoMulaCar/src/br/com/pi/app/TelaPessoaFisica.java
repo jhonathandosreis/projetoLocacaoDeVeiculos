@@ -73,7 +73,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             tablePessoasFisicas.setRowCount(0);
 
             Object[] coluna = new Object[9];
-
+            
             ArrayList<PessoasFisicas> listaPessoasFisicas = pessoaFisicaBll.getAllPessoasFisicas();
 
             for (PessoasFisicas pessoaFisica : listaPessoasFisicas) {
@@ -112,7 +112,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         jTextFieldRuaPessoaFisica.setText(pessoaFisica.getCliente().getEnderecos().getRua());
         jComboBox_Cidades.setSelectedItem(pessoaFisica.getCliente().getEnderecos().getCidade());
         jTextFieldTelefonePessoaFisica.setText("" + pessoaFisica.getCliente().getTelefone());
-        jTextFieldEmailPessoaFisica.setText("" + pessoaFisica.getCliente().getTelefone());
+        jTextFieldEmailPessoaFisica.setText("" + pessoaFisica.getCliente().getEmail());
 
     }
     
