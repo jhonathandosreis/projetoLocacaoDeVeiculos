@@ -60,6 +60,10 @@ public class MotoristasBll {
         }
         
         Valida.isCPF(cpf, "CPF inválido!");
+        
+
+        
+        
         try {
             motoristaDal.addMotoristas(motoristas);
         } catch (Exception error) {
