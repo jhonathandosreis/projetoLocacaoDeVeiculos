@@ -39,6 +39,7 @@ public class PessoasFisicasBll {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addPessoasFisicas(PessoasFisicas pessoaFisica) throws Exception {
+       
         Valida.campoVazio(pessoaFisica.getCpf(), "Campo cpf deve ser preenchido!");
         Valida.campoVazio(pessoaFisica.getRg(), "Campo rg deve ser preenchido!");
         String cpf = pessoaFisica.getCpf();
@@ -49,7 +50,6 @@ public class PessoasFisicasBll {
 //        if (!pessoaFisica.getCliente().getEmail().contains("@") && !pessoaFisica.getCliente().getEmail().contains(".")) {
 //             throw new RuntimeException("E-mail inválido!");
 //        }
-
         try {
             if (pessoaFisica.getCliente().getIden() == 0) {
                 throw new RuntimeException("Erro ao inserir cliente em pessoa fisica");
@@ -81,7 +81,6 @@ public class PessoasFisicasBll {
 //        if (!pessoaFisica.getCliente().getEmail().contains("@") && !pessoaFisica.getCliente().getEmail().contains(".")) {
 //            throw new RuntimeException("E-mail inválido!");
 //        }
-
         try {
             if (pessoaFisica.getCliente().getIden() == 0) {
                 throw new RuntimeException("Erro ao inserir cliente em pessoa fisica");

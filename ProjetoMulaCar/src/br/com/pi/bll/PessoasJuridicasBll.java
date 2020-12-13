@@ -12,7 +12,6 @@
  *  Propósito do arquivo: 
  *  ---------------------------------------------------------------------------------------------------| 
  */
-
 package br.com.pi.bll;
 
 import br.com.pi.dal.PessoasJuridicasDal;
@@ -25,8 +24,9 @@ import java.util.ArrayList;
  * @author Gustavo Gabriel
  */
 public class PessoasJuridicasBll {
+
     //--- ATRIBUTOS ----------------------------------------------------------------------------------->
-    private PessoasJuridicasDal pessoaJuridicaDal;  
+    private PessoasJuridicasDal pessoaJuridicaDal;
     //--- FIM ATRIBUTOS -------------------------------------------------------------------------------|
     //
 
@@ -39,26 +39,55 @@ public class PessoasJuridicasBll {
 
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addPessoasJuridicas(PessoasJuridicas pessoaJuridica) throws Exception {
-        try{
-         Valida.campoVazio(pessoaJuridica.getNomeFantasia(), "Campo nome fantasia deve ser preenchido!");
-         Valida.campoVazio(pessoaJuridica.getRazaoSocial(), "Campo razão social deve ser preenchido!");
-        if(pessoaJuridica.getCliente().getIden() == 0) throw new RuntimeException("Erro ao inserir cliente em pessoa juridica");
-         pessoaJuridicaDal.addPessoasJuridicas(pessoaJuridica);
+
+        Valida.campoVazio(pessoaJuridica.getNomeFantasia(), "Campo nome fantasia deve ser preenchido!");
+        Valida.campoVazio(pessoaJuridica.getRazaoSocial(), "Campo razão social deve ser preenchido!");
+
+        try {
+
+            if (pessoaJuridica.getCliente().getIden() == 0) {
+                throw new RuntimeException("Erro ao inserir cliente em pessoa juridica");
+            }
+
+            pessoaJuridicaDal.addPessoasJuridicas(pessoaJuridica);
         } catch (Exception error) {
-           if(error.getMessage().contains("cpj_repetido")) throw new RuntimeException("Número "+pessoaJuridica.getCnpj()+" de cnpj já cadastrado em nosso sistema");
-             if(error.getMessage().contains("nomefantasia_repetido")) throw new RuntimeException("Nome fantasia "+pessoaJuridica.getNomeFantasia()+" já cadastrado em nosso sistema");
-             if(error.getMessage().contains("razaosocial_repetido")) throw new RuntimeException("Razão social "+pessoaJuridica.getRazaoSocial()+" já cadastrada em nosso sistema");
+            if (error.getMessage().contains("cpj_repetido")) {
+                throw new RuntimeException("Número " + pessoaJuridica.getCnpj() + " de cnpj já cadastrado em nosso sistema");
+            }
+            if (error.getMessage().contains("nomefantasia_repetido")) {
+                throw new RuntimeException("Nome fantasia " + pessoaJuridica.getNomeFantasia() + " já cadastrado em nosso sistema");
+            }
+            if (error.getMessage().contains("razaosocial_repetido")) {
+                throw new RuntimeException("Razão social " + pessoaJuridica.getRazaoSocial() + " já cadastrada em nosso sistema");
+            }
         }
     }
     //--- FIM CREATE ----------------------------------------------------------------------------------|
     //
-    
+
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updatePessoasJuridicas(PessoasJuridicas pessoaJuridica) throws Exception {
-        try{
-         pessoaJuridicaDal.updatePessoasJuridicas(pessoaJuridica);
+       
+        Valida.campoVazio(pessoaJuridica.getNomeFantasia(), "Campo nome fantasia deve ser preenchido!");
+        Valida.campoVazio(pessoaJuridica.getRazaoSocial(), "Campo razão social deve ser preenchido!");
+
+        try {
+
+            if (pessoaJuridica.getCliente().getIden() == 0) {
+                throw new RuntimeException("Erro ao inserir cliente em pessoa juridica");
+            }
+
+            pessoaJuridicaDal.updatePessoasJuridicas(pessoaJuridica);
         } catch (Exception error) {
-            throw  error;
+            if (error.getMessage().contains("cpj_repetido")) {
+                throw new RuntimeException("Número " + pessoaJuridica.getCnpj() + " de cnpj já cadastrado em nosso sistema");
+            }
+            if (error.getMessage().contains("nomefantasia_repetido")) {
+                throw new RuntimeException("Nome fantasia " + pessoaJuridica.getNomeFantasia() + " já cadastrado em nosso sistema");
+            }
+            if (error.getMessage().contains("razaosocial_repetido")) {
+                throw new RuntimeException("Razão social " + pessoaJuridica.getRazaoSocial() + " já cadastrada em nosso sistema");
+            }
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -66,41 +95,41 @@ public class PessoasJuridicasBll {
 
     //--- DELETE -------------------------------------------------------------------------------------->
     public void deletePessoasJuridicas(PessoasJuridicas pessoaJuridica) throws Exception {
-        try{
-         pessoaJuridicaDal.deletePessoasJuridicas(pessoaJuridica);
+        try {
+            pessoaJuridicaDal.deletePessoasJuridicas(pessoaJuridica);
         } catch (Exception error) {
-            throw  error;
+            throw error;
         }
     }
     //--- FIM DELETE ----------------------------------------------------------------------------------|
     //
-    
+
     //--- READ ---------------------------------------------------------------------------------------->
     public ArrayList<PessoasJuridicas> getAllPessoasJuridicas() throws Exception {
-        try{
-         return pessoaJuridicaDal.getAllPessoasJuridicas();
+        try {
+            return pessoaJuridicaDal.getAllPessoasJuridicas();
         } catch (Exception error) {
-            throw  error;
+            throw error;
         }
-        
+
     }
-    
+
     public PessoasJuridicas getPessoasJuridicasBy(int pessoaJuridica_iden) throws Exception {
-         try{
-         return pessoaJuridicaDal.getPessoasJuridicasById(pessoaJuridica_iden);
+        try {
+            return pessoaJuridicaDal.getPessoasJuridicasById(pessoaJuridica_iden);
         } catch (Exception error) {
-            throw  error;
+            throw error;
         }
-        
+
     }
-    
-      public PessoasJuridicas getPessoasJuridicasByCliente(int pessoaJuridica_cliente) throws Exception {
-         try{
-         return pessoaJuridicaDal.getPessoasJuridicasByCliente(pessoaJuridica_cliente);
+
+    public PessoasJuridicas getPessoasJuridicasByCliente(int pessoaJuridica_cliente) throws Exception {
+        try {
+            return pessoaJuridicaDal.getPessoasJuridicasByCliente(pessoaJuridica_cliente);
         } catch (Exception error) {
-            throw  error;
+            throw error;
         }
-        
+
     }
     //--- FIM READ ------------------------------------------------------------------------------------|
     //   
