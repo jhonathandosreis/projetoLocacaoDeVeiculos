@@ -87,6 +87,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/image/fundo bmw logo_Easy-Resize.com.jpg"))); // NOI18N
@@ -222,6 +223,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jMenuItemDesenvolvedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/computador-desktop.png"))); // NOI18N
         jMenuItemDesenvolvedores.setText("Desenvolvedores");
+        jMenuItemDesenvolvedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDesenvolvedoresActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItemDesenvolvedores);
 
         jMenuBar1.add(jMenu5);
@@ -340,6 +346,19 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemCidadeActionPerformed
+
+    private void jMenuItemDesenvolvedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDesenvolvedoresActionPerformed
+
+ try {
+            TelaDesenvolvedores telaDev = new TelaDesenvolvedores();
+            telaDev.setVisible(true);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemDesenvolvedoresActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
