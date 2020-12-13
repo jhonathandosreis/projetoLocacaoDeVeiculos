@@ -611,7 +611,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             pessoaFisica = pessoaFisicaBll.getPessoasFisicasBy(id);
             endereco = enderecoBll.getConsultaPorId(pessoaFisica.getCliente().getEnderecos().getIden());
             cliente = clienteBll.getClienteById(pessoaFisica.getCliente().getIden());
-            cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
+            cidade = cidadeBll.getCidadesById(SplitReturnID(jComboBox_Cidades.getSelectedItem().toString()));
 
             endereco.setCidade(cidade);
             endereco.setCep(jTextFieldCepPessoaFisica.getText());
@@ -659,7 +659,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         int chegou = 0;
         try {
             validaFormularioPessoasFisicas();
-            cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
+            cidade = cidadeBll.getCidadesById(SplitReturnID(jComboBox_Cidades.getSelectedItem().toString()));
             endereco.setCidade(cidade);
             endereco.setCep(jTextFieldCepPessoaFisica.getText());
             endereco.setLogradouro(jTextFieldLogradouroPessoaFisica.getText());
