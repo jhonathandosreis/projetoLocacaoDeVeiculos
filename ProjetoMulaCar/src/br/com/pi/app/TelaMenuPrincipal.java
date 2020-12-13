@@ -27,7 +27,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     
     public TelaMenuPrincipal() {
         initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);
+      
         this.setLocationRelativeTo(null);
     }
 
@@ -44,9 +44,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
-        jDesktopPanePrincipal = new javax.swing.JDesktopPane() {
-
-        };
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCliente = new javax.swing.JMenu();
         jMenuItemPessoaFisica = new javax.swing.JMenuItem();
@@ -86,17 +84,15 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("[MENU PRINCIPAL]");
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jDesktopPanePrincipalLayout = new javax.swing.GroupLayout(jDesktopPanePrincipal);
-        jDesktopPanePrincipal.setLayout(jDesktopPanePrincipalLayout);
-        jDesktopPanePrincipalLayout.setHorizontalGroup(
-            jDesktopPanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1143, Short.MAX_VALUE)
-        );
-        jDesktopPanePrincipalLayout.setVerticalGroup(
-            jDesktopPanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 801, Short.MAX_VALUE)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/image/fundo bmw logo_Easy-Resize.com.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, -1, -1));
+
+        jMenuBar1.setToolTipText("");
 
         jMenuCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/grupo-de-usuarios.png"))); // NOI18N
         jMenuCliente.setText("CLiente");
@@ -232,25 +228,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPanePrincipal)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPanePrincipal)
-                .addContainerGap())
-        );
-
-        jDesktopPanePrincipal.getAccessibleContext().setAccessibleDescription("");
-
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemPessoaFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPessoaFisicaActionPerformed
@@ -396,7 +375,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPanePrincipal;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
