@@ -132,11 +132,19 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             ArrayList<Cidades> listaCidades = cidadesBll.getAllCidades();
 
             for (Cidades cidade : listaCidades) {
-                jComboBoxCidade.addItem(cidade.getNome());
+                jComboBoxCidade.addItem(cidade.getIden()+"-"+cidade.getNome());
             }
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    private int SplitReturnID(String combo) {
+
+        String[] split = combo.split("-");
+        int id = Integer.parseInt(split[0]);
+        return id;
+
     }
 
     public void limparCampos() {
@@ -596,7 +604,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
     private void jComboBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCidadeActionPerformed
         try {
-            cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
+            cidade = cidadesBll.getCidadesById(SplitReturnID(jComboBoxCidade.getSelectedItem().toString()));
             jTextFieldUf.setText(cidade.getUf().getNome());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, "Erro na combo Cidade " + error.getMessage());

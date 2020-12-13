@@ -176,11 +176,19 @@ public class TelaMotoristas extends javax.swing.JFrame {
             ArrayList<Cidades> listaCidades = cidadesBll.getAllCidades();
 
             for (Cidades cidade : listaCidades) {
-                jComboBox_Cidade.addItem(cidade.getNome());
+                jComboBox_Cidade.addItem(cidade.getIden()+"-"+cidade.getNome());
             }
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    private int SplitReturnID(String combo) {
+
+        String[] split = combo.split("-");
+        int id = Integer.parseInt(split[0]);
+        return id;
+
     }
 
     public void ValidaMotoristas() {
@@ -524,24 +532,25 @@ public class TelaMotoristas extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
                                 .addGap(124, 124, 124)
-                                .addComponent(jLabel7)))
+                                .addComponent(jLabel7)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(182, 182, 182))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jTextFieldRua, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox_Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField_uf)
-                        .addGap(128, 128, 128)
-                        .addComponent(jTextField_UF, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jTextFieldRua, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox_Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jTextField_uf)
+                                .addGap(128, 128, 128)
+                                .addComponent(jTextField_UF, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -960,7 +969,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
     private void jComboBox_CidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_CidadeActionPerformed
         try {
-            cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
+              cidade = cidadesBll.getCidadesById(SplitReturnID(jComboBox_Cidade.getSelectedItem().toString()));
             jTextField_uf.setText(cidade.getUf().getNome());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + error.getMessage());

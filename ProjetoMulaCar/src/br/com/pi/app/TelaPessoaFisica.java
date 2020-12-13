@@ -131,7 +131,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             ArrayList<Cidades> listaCidades = cidadeBll.getAllCidades();
 
             for (Cidades cidade : listaCidades) {
-                jComboBox_Cidades.addItem(cidade.getNome());
+                jComboBox_Cidades.addItem(cidade.getIden()+"-"+cidade.getNome());
             }
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -152,6 +152,14 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         jTextFieldTelefonePessoaFisica.setText("");
         jTextFieldNumeroPessoaFisica.setText("");
         jComboBox_Cidades.setSelectedIndex(0);
+    } 
+    
+    private int SplitReturnID(String combo) {
+
+        String[] split = combo.split("-");
+        int id = Integer.parseInt(split[0]);
+        return id;
+
     }
 
     /**
@@ -704,7 +712,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
 
     private void jComboBox_CidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_CidadesActionPerformed
         try {
-            cidade = cidadeBll.getCidadeNome(jComboBox_Cidades.getSelectedItem().toString());
+            cidade = cidadeBll.getCidadesById(SplitReturnID(jComboBox_Cidades.getSelectedItem().toString()));
             jTextField_UF.setText(cidade.getUf().getNome());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, "Erro combo Cidades " + error.getMessage());

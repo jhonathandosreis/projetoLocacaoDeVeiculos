@@ -311,6 +311,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             jTextFieldIDLocacao.setText("");
             jTextArea_informacoesVeiculo.setText("");
             buttonGroup1.clearSelection();
+            jRadioButton_reserva.setSelected(false);
             jLabel_cnh.setIcon(null);
             JradioButonMotodista.setEnabled(true);
             jRadioButtonPFisica.setEnabled(true);
@@ -921,7 +922,12 @@ public class TelaLocacao extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable_locacaoMouseClicked
 
     private void jRadioButton_reservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_reservaActionPerformed
-      jTextFieldDataLocacao.setEnabled(true);
+        if(jRadioButton_reserva.isSelected()){
+             jTextFieldDataLocacao.setEnabled(true);
+        }
+        else{
+        jTextFieldDataLocacao.setEnabled(false);
+        }
     }//GEN-LAST:event_jRadioButton_reservaActionPerformed
 
     /**

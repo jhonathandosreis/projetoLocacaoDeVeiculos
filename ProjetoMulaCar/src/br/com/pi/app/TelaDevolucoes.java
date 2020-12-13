@@ -89,7 +89,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
             DefaultTableModel tableDevolucao = (DefaultTableModel) jTableDevolucao.getModel();
             tableDevolucao.setRowCount(0);
 
-            Object[] linha = new Object[4];
+            Object[] linha = new Object[9];
 
             ArrayList<Devolucoes> devolucao = new DevolucoesBll().getAllDevolucao();
 
@@ -98,7 +98,12 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                 linha[0] = devolucoes.getIden();
                 linha[1] = devolucoes.getLocacao().getIden();
                 linha[2] = devolucoes.getDataDevolucao();
-                linha[3] = devolucoes.getMultaPorAtraso();
+                linha[3] = devolucoes.getDiferencaDias();
+                linha[4] = devolucoes.getMultaPorAtraso();
+                linha[5] = devolucoes.getDiferencaLitros();
+                linha[6] = devolucoes.getMultaPorLitro();
+                linha[7] = devolucoes.getValorTotal();
+                linha[8] = devolucoes.getLocacao().getStatus();
 
                 tableDevolucao.addRow(linha);
             }
@@ -137,18 +142,18 @@ public class TelaDevolucoes extends javax.swing.JFrame {
             jTextFieldDiasAtraso.setText("" + devolucao.getDiferencaDias());
             jTextFieldDiferecaCombustivel.setText("" + devolucao.getDiferencaLitros());
             jTextFieldMultaTotal.setText("" + devolucao.getValorTotal());
-            jTextField_Caucao.setText(""+devolucao.getLocacao().getValorCaucao());
-            double troco= 0;
-            double debito= 0;
-             if (devolucao.getValorTotal() <= locacao.getValorCaucao()) {
+            jTextField_Caucao.setText("" + devolucao.getLocacao().getValorCaucao());
+            double troco = 0;
+            double debito = 0;
+            if (devolucao.getValorTotal() <= locacao.getValorCaucao()) {
                 troco = locacao.getValorCaucao() - devolucao.getValorTotal();
                 debito = 0;
             } else {
                 debito = devolucao.getValorTotal() - locacao.getValorCaucao();
                 troco = 0;
             }
-             jTextField_Troco.setText(""+troco);
-             jTextField_Debito.setText(""+debito);
+            jTextField_Troco.setText("" + troco);
+            jTextField_Debito.setText("" + debito);
 
             double litroEntregue = locacao.getVeiculos().getCapacidadeCombustivel() - devolucao.getDiferencaLitros();
             jTextFieldLitroVeiculoEntrega.setText("" + litroEntregue);
@@ -170,21 +175,21 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     }
 
     public void preencherComboboxLocacoes() throws Exception {
-
+        ArrayList<Locacoes> lista = new ArrayList<Locacoes>();
         try {
 
-            ArrayList<Locacoes> lista = locacaoBll.getAllLocacoes();
-            jComboBoxLocacaoCliente.removeAllItems();
-            //jComboBoxLocacaoCliente.addItem("<SELECIONE>");
-
-            for (Locacoes locacao : lista) {
-                if (!locacao.getStatus().equals("FINALIZADA")) {
-                    jComboBoxLocacaoCliente.addItem(locacao.getIden() + "");
-                }
-            }
+            lista = locacaoBll.getAllLocacoes();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
+        jComboBoxLocacaoCliente.removeAllItems();
+
+        for (Locacoes locacao : lista) {
+            if (locacao.getStatus().equals("ATIVA")) {
+                jComboBoxLocacaoCliente.addItem(locacao.getIden() + "");
+            }
+        }
+
     }
 
     public void ValidaDevolucoes() throws Exception {
@@ -212,8 +217,17 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         jFormattedTextFieldDataPreLocacao.setText("");
         jTextFieldKMInicial.setText("");
         jTextFieldLitroVeiculoEntrega.setText("");
+        jTextField_DanosVeiculo.setText("");
+        jTextFieldMultaTransito.setText("");
+        jTextFieldMultaporCombustivel.setText("");
+        jTextFieldDiasAtraso.setText("");
+        jTextFieldDiferecaCombustivel.setText("");
+        jTextFieldMultaTotal.setText("");
+        jTextField_Caucao.setText("");
+        jTextField_Troco.setText("");
+        jTextField_Debito.setText("");
+        jButtonGerarCalculo.setEnabled(true);
 
-        jComboBoxLocacaoCliente.setSelectedIndex(0);
     }
 
     //--- FIM METODOS --------------------------------------------------------------------------------->
@@ -273,6 +287,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDevolucao = new javax.swing.JTable();
         jButtonQuitarDebito = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("[DEVOLUÇÃO DO VEÍCULO]");
@@ -443,58 +458,58 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                                                 .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel15)))
                                         .addGap(18, 18, 18)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextFieldMultaTransito)
-                                            .addComponent(jTextFieldLitroVeiculoEntrega)
-                                            .addComponent(jTextFieldKmNaEntrega)
-                                            .addComponent(jFormattedDataDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                                            .addComponent(jTextField_DanosVeiculo))))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonGerarCalculo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButtonGerarCalculo)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jTextFieldMultaTransito)
+                                                .addComponent(jTextFieldLitroVeiculoEntrega)
+                                                .addComponent(jTextFieldKmNaEntrega)
+                                                .addComponent(jFormattedDataDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                                                .addComponent(jTextField_DanosVeiculo)))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(jTextFieldDiasAtraso, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel14)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel18)
-                                .addComponent(jLabel16)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldDiferecaCombustivel, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                            .addComponent(jTextFieldMultaporCombustivel)
-                            .addComponent(jTextField_Caucao)
-                            .addComponent(jTextField_Debito)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(156, 156, 156)
-                                .addComponent(jLabel5))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(129, 129, 129)
+                                .addComponent(jTextFieldDiasAtraso, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel14)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel18)
+                                        .addComponent(jLabel16)))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel13)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldDiferecaCombustivel, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldMultaporCombustivel)
+                                    .addComponent(jTextField_Caucao)
+                                    .addComponent(jTextField_Debito)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextFieldMultaPorAtraso, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(156, 156, 156)
+                                        .addComponent(jLabel5))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel12)
-                                            .addComponent(jLabel17))
-                                        .addGap(43, 43, 43)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldMultaTotal)
-                                            .addComponent(jTextField_Troco))))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel13)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jTextFieldMultaPorAtraso, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel12)
+                                                    .addComponent(jLabel17))
+                                                .addGap(43, 43, 43)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jTextFieldMultaTotal)
+                                                    .addComponent(jTextField_Troco))))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonDevolver)))
                 .addContainerGap())
@@ -561,6 +576,8 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel_DanosVeiculo)
                                     .addComponent(jTextField_DanosVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonGerarCalculo)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -586,12 +603,10 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 35, Short.MAX_VALUE))
+                                .addGap(0, 46, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButtonDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonGerarCalculo))))
+                                .addComponent(jButtonDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
 
@@ -600,11 +615,11 @@ public class TelaDevolucoes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "LOCATARIO", "DATA DA DEVOLUÇÃO", "MULTA PAGA POR ATRASO"
+                "ID", "CÓDIGO DA LOCAÇÃO", "DATA DA DEVOLUÇÃO", "DIAS DE ATRASO", "MULTA POR ATRASO", "LITROS A MENOS", "MULTA POR LITROS", "VALOR TOTAL", "STATUS"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -629,6 +644,13 @@ public class TelaDevolucoes extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("LIMPAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -639,6 +661,8 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
                         .addComponent(jButtonQuitarDebito)))
                 .addContainerGap())
         );
@@ -648,10 +672,12 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jButtonQuitarDebito)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonQuitarDebito))
+                .addGap(91, 91, 91))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -702,11 +728,8 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                 clienteBll.updateClientes(cliente2);
 
                 locacao.setStatus("FINALIZADA");
-                locacao.setValorCaucao(locacao.getValorCaucao() - devolucao.getValorTotal());
                 locacaoBll.updateLocacoes(locacao);
 
-                preencherGridDevolucoes();
-                limparCampos();
                 JOptionPane.showMessageDialog(null, "Devolução Registrada com sucesso!"
                         + "\nValor total da devolução = " + devolucao.getValorTotal()
                         + "\nValor total do caução pago foi = " + locacao.getValorCaucao()
@@ -742,8 +765,6 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                     locacao.setStatus("FINALIZADA");
                     locacaoBll.updateLocacoes(locacao);
 
-                    preencherGridDevolucoes();
-                    limparCampos();
                     JOptionPane.showMessageDialog(null, "Devolução Registrada com sucesso!"
                             + "\nValor total da devolução = " + devolucao.getValorTotal()
                             + "\nValor total do caução pago foi = " + locacao.getValorCaucao()
@@ -753,7 +774,6 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                 } else {
                     debito = devolucao.getValorTotal() - locacao.getValorCaucao();
                     troco = 0;
-                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
                     devolucaoBll.addDevolucoes(devolucao);
                     veiculo = locacao.getVeiculos();
                     veiculo.setQuilometragem(Double.parseDouble(jTextFieldKmNaEntrega.getText()));
@@ -764,22 +784,25 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                     cliente.setStatus("INADIMPLENTE");
                     cliente.setMulta(debito);
                     clienteBll.updateClientes(cliente);
-                    
-                    if(!cliente.getTipo().equals("MOTORISTA")){
-                    motorista = locacao.getMotoristas();
-                    Clientes cliente2 = motorista.getCliente();
-                    cliente2.setStatus("INADIMPLENTE");
-                    clienteBll.updateClientes(cliente2);
+
+                    if (!cliente.getTipo().equals("MOTORISTA")) {
+                        motorista = locacao.getMotoristas();
+                        Clientes cliente2 = motorista.getCliente();
+                        cliente2.setStatus("INADIMPLENTE");
+                        clienteBll.updateClientes(cliente2);
                     }
 
                     locacao.setStatus("PENDENTE");
                     locacaoBll.updateLocacoes(locacao);
 
-                    preencherGridDevolucoes();
-                    limparCampos();
+                    preencherComboboxLocacoes();
+                    JOptionPane.showMessageDialog(null, "Devolução cancelada, cliente agora esta inadimplente até o pagamento do debito!");
                 }
-                JOptionPane.showMessageDialog(null, "Cancelamento da devolução registrada com sucesso!");
+
             }
+
+            preencherGridDevolucoes();
+            limparCampos();
 
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Erro ao finalizar Devolução", JOptionPane.ERROR_MESSAGE);
@@ -791,6 +814,8 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     private void jTableDevolucaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableDevolucaoMouseClicked
 
         try {
+            jButtonGerarCalculo.setEnabled(false);
+            jButtonDevolver.setEnabled(false);
             preencherFormularioDevolucao();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -802,11 +827,18 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     private void jButtonGerarCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarCalculoActionPerformed
 
         try {
+           
             jButtonDevolver.setEnabled(true);
+             if (jComboBoxLocacaoCliente.getSelectedIndex() == -1) {
+                throw new RuntimeException("Selecione uma locação para gerar o calculo!");
+            }
+           
+            if (!locacao.getStatus().equals("ATIVA")) {
+                throw new RuntimeException("Esta locação ja foi encerrada!");
+            }
 
             ValidaDevolucoes();
-
-            locacao = locacaoBll.getLocacoesById(Integer.parseInt(jComboBoxLocacaoCliente.getSelectedItem().toString()));
+             locacao = locacaoBll.getLocacoesById(Integer.parseInt(jComboBoxLocacaoCliente.getSelectedItem().toString()));
 
             //--- CÁLCULO ATRASO/DIAS ----------------------------------------------------------------------------->
             //
@@ -916,25 +948,33 @@ public class TelaDevolucoes extends javax.swing.JFrame {
                     cliente2.setStatus("ADIMPLENTE");
                     cliente2.setMulta(0);
                     clienteBll.updateClientes(cliente2);
-                    if(!cliente2.getTipo().equals("MOTORISTA")){
-                    motorista = devolucao.getLocacao().getMotoristas();
-                    Clientes cliente3 = motorista.getCliente();
-                    cliente3.setStatus("ADIMPLENTE");
-                    clienteBll.updateClientes(cliente3);
+                    if (!cliente2.getTipo().equals("MOTORISTA")) {
+                        motorista = devolucao.getLocacao().getMotoristas();
+                        Clientes cliente3 = motorista.getCliente();
+                        cliente3.setStatus("ADIMPLENTE");
+                        clienteBll.updateClientes(cliente3);
                     }
                     Locacoes locacao2 = devolucao.getLocacao();
                     locacao2.setStatus("FINALIZADA");
                     locacaoBll.updateLocacoes(locacao2);
                     JOptionPane.showMessageDialog(null, "Cliente agora está Adimplente com a locadora, devolução finalizada");
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Cliente continua Inadimplente com a locadora, operação cancelada");
                 }
+
+                preencherGridDevolucoes();
+                limparCampos();
             }
 
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonQuitarDebitoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -973,6 +1013,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonDevolver;
     private javax.swing.JButton jButtonGerarCalculo;
     private javax.swing.JButton jButtonQuitarDebito;
