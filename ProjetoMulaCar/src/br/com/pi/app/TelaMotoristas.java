@@ -832,7 +832,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
             motorista = motoristabll.getMotoristaById(id);
             endereco = enderecoBll.getConsultaPorId(motorista.getCliente().getEnderecos().getIden());
             cliente = clienteBll.getClienteById(motorista.getCliente().getIden());
-            cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
+            cidade = cidadesBll.getCidadesById(SplitReturnID(jComboBox_Cidade.getSelectedItem().toString()));
 
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             Date data = formato.parse(jFormattedTextField_Data_validade.getText());
@@ -908,7 +908,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
             
             Date data = formato.parse(jFormattedTextField_Data_validade.getText());
 
-            cidade = cidadesBll.getCidadeNome(jComboBox_Cidade.getSelectedItem().toString());
+             cidade = cidadesBll.getCidadesById(SplitReturnID(jComboBox_Cidade.getSelectedItem().toString()));
             endereco.setCidade(cidade);
             endereco.setCep(jTextFieldCepMotorista.getText());
             endereco.setLogradouro(jTextFieldLogradouroMotorista.getText());

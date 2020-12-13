@@ -548,7 +548,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         int chegou = 0;
         try {
             validaFormularioPessoasJuridicas();
-            cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
+            cidade = cidadesBll.getCidadesById(SplitReturnID(jComboBoxCidade.getSelectedItem().toString()));
             endereco.setCidade(cidade);
             endereco.setCep(jTextFieldCepPessoaJuridica.getText());
             endereco.setLogradouro(jTextFieldLogradouroPessoaJuridica.getText());
@@ -622,7 +622,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             pessoaJuridica = pessoaJuridicaBll.getPessoasJuridicasBy(id);
             endereco = enderecoBll.getConsultaPorId(pessoaJuridica.getCliente().getEnderecos().getIden());
             cliente = clienteBll.getClienteById(pessoaJuridica.getCliente().getIden());
-            cidade = cidadesBll.getCidadeNome(jComboBoxCidade.getSelectedItem().toString());
+            cidade = cidadesBll.getCidadesById(SplitReturnID(jComboBoxCidade.getSelectedItem().toString()));
 
             endereco.setCidade(cidade);
             endereco.setCep(jTextFieldCepPessoaJuridica.getText());
