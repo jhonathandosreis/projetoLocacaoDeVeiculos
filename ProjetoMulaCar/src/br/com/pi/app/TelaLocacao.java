@@ -910,8 +910,10 @@ public class TelaLocacao extends javax.swing.JFrame {
 
     private void jButton_listarPorCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listarPorCategoriaActionPerformed
         try {
-            TemplateOrdenadoPorCategoria objeto = new TemplateOrdenadoPorCategoria();
-            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+            String filtro = "CATEGORIA";
+//            TemplateOrdenadoPorCategoria objeto = new TemplateOrdenadoPorCategoria();
+//            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+            imprimirNaGridVeiculos(Factory_Ordenacao.OrdenarPor(filtro).OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -919,8 +921,10 @@ public class TelaLocacao extends javax.swing.JFrame {
 
     private void jButton_listarPorTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listarPorTipoActionPerformed
         try {
-            TemplateOrdenadoPorMarca objeto = new TemplateOrdenadoPorMarca();
-            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+             String filtro = "TIPO";
+//            TemplateOrdenaListaVeiculos objeto = new TemplateOrdenadoPorMarca();
+//            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+            imprimirNaGridVeiculos(Factory_Ordenacao.OrdenarPor(filtro).OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -928,8 +932,10 @@ public class TelaLocacao extends javax.swing.JFrame {
 
     private void jButton_listarPorModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listarPorModeloActionPerformed
         try {
-            TemplateOrdenadoPorModelo objeto = new TemplateOrdenadoPorModelo();
-            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+             String filtro = "MODELO";
+//            TemplateOrdenadoPorModelo objeto = new TemplateOrdenadoPorModelo();
+//            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+            imprimirNaGridVeiculos(Factory_Ordenacao.OrdenarPor(filtro).OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -937,8 +943,10 @@ public class TelaLocacao extends javax.swing.JFrame {
 
     private void jButton__listarPorMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton__listarPorMarcaActionPerformed
         try {
-            TemplateOrdenadoPorMarca objeto = new TemplateOrdenadoPorMarca();
-            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+             String filtro = "MARCA";
+//            TemplateOrdenadoPorMarca objeto = new TemplateOrdenadoPorMarca();
+//            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+            imprimirNaGridVeiculos(Factory_Ordenacao.OrdenarPor(filtro).OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
