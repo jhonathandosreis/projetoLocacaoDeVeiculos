@@ -193,11 +193,14 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
     public void ValidaMotoristas() {
         Valida.SomenteNumero(jTextFieldNumeroMotorista.getText(), "Campo número do endereço deve conter somente números!");
-        Valida.SomenteNumero(jTextField_rgMotorista.getText(), "Campo rg deve conter somente números!");
         Valida.campoVazio(jTextFieldNomeMotorista.getText(), "Campo nome deve ser preenchido!");
         Valida.notNumber(jTextFieldNomeMotorista.getText(), "Campo nome não deve conter números!");
         Valida.notSpecialCharacters(jTextFieldNomeMotorista.getText(), "Campo nome não deve conter caracteres especiais!");
-
+        Valida.campoVazio(jTextFieldCaminhoDoArquivo.getText(), "Selecione uma foto para avançar no cadastro!");
+        if(jFormattedTextField_Data_validade.getText().equals("  /  /    ")){
+            throw new RuntimeException("Digite uma data");
+        }
+        
     }
 
     public void limparCampos() {
@@ -285,12 +288,11 @@ public class TelaMotoristas extends javax.swing.JFrame {
         setTitle("[MOTORISTAS]");
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2PessoaFisica.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel2PessoaFisica.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Dados Gerais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel2PessoaFisica.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Dados Gerais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jLabelIdPessoaFisica.setForeground(new java.awt.Color(204, 204, 204));
         jLabelIdPessoaFisica.setText("ID");
@@ -532,7 +534,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
         getContentPane().add(jButtonCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 140, 50));
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Dados de Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Dados de Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("CEP");
@@ -603,9 +605,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
                                         .addComponent(jTextFieldNumeroMotorista)))))
                         .addGap(182, 182, 182))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField_UF, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addGap(124, 124, 124)
                         .addComponent(jLabel7)
@@ -614,6 +613,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField_UF, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jTextFieldRua, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -661,7 +661,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 532, 220));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Dados para Contato", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Dados para Contato", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jLabel4CPFPessoaFisica.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4CPFPessoaFisica.setForeground(new java.awt.Color(204, 204, 204));

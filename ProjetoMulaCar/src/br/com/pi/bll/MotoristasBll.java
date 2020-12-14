@@ -46,6 +46,8 @@ public class MotoristasBll {
         String cpf = motoristas.getCpf();
         cpf = cpf.replace(".", ""); //tira ponto
         cpf = cpf.replace("-", ""); //tira hífen
+        Valida.campoVazio(motoristas.getCpf(), "Campo cpf deve ser preenchido!");
+        Valida.campoVazio(motoristas.getRg(), "Campo rg deve ser preenchido!");
         
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
         Date hoje = new Date();
@@ -53,17 +55,16 @@ public class MotoristasBll {
         if (motoristas.getDataValidade().compareTo(formatada) < 0) {
             throw new RuntimeException("CNH vencida, digite uma data valida!");
         }
-        
-        
+       
         if (motoristas.getCliente().getIden() == 0) {
             throw new RuntimeException("Erro ao inserir cliente em motorista");
         }
+        if (!motoristas.getCliente().getEmail().contains("@") || !motoristas.getCliente().getEmail().contains(".")) {
+             throw new RuntimeException("E-mail inválido!");
+        }
         
         Valida.isCPF(cpf, "CPF inválido!");
-        
-
-        
-        
+    
         try {
             motoristaDal.addMotoristas(motoristas);
         } catch (Exception error) {
@@ -83,10 +84,39 @@ public class MotoristasBll {
 
     //--- UPDATE -------------------------------------------------------------------------------------->
     public void updateMotorista(Motoristas motoristas) throws Exception {
+         String cpf = motoristas.getCpf();
+        cpf = cpf.replace(".", ""); //tira ponto
+        cpf = cpf.replace("-", ""); //tira hífen
+        Valida.campoVazio(motoristas.getCpf(), "Campo cpf deve ser preenchido!");
+        Valida.campoVazio(motoristas.getRg(), "Campo rg deve ser preenchido!");
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
+        Date hoje = new Date();
+        Date formatada = formato.parse(convertDate(hoje));
+        if (motoristas.getDataValidade().compareTo(formatada) < 0) {
+            throw new RuntimeException("CNH vencida, digite uma data valida!");
+        }
+    
+        if (motoristas.getCliente().getIden() == 0) {
+            throw new RuntimeException("Erro ao inserir cliente em motorista");
+        }
+        if (!motoristas.getCliente().getEmail().contains("@") || !motoristas.getCliente().getEmail().contains(".")) {
+             throw new RuntimeException("E-mail inválido!");
+        }
+        Valida.isCPF(cpf, "CPF inválido!");
+
         try {
             motoristaDal.updateMotoristas(motoristas);
         } catch (Exception error) {
-            throw error;
+             if (error.getMessage().contains("cnh_repetida")) {
+                throw new RuntimeException("Número (" + motoristas.getNumeroCnh() + ") de cnh já cadastrado em nosso sistema");
+            }
+            if (error.getMessage().contains("cpf_repetido")) {
+                throw new RuntimeException("Número (" + motoristas.getCpf() + ") de cpf já cadastrado em nosso sistema");
+            }
+            if (error.getMessage().contains("rg_repetido")) {
+                throw new RuntimeException("Número (" + motoristas.getRg() + ") de rg já cadastrado em nosso sistema");
+            }
         }
     }
     //--- FIM UPDATE ----------------------------------------------------------------------------------|
@@ -94,6 +124,7 @@ public class MotoristasBll {
 
     //--- DELETE -------------------------------------------------------------------------------------->
     public void deleteMotoristas(Motoristas motoristas) throws Exception {
+        if(!motoristas.getCliente().getStatus().equals("ADIMPLENTE")) throw new RuntimeException("Motorista não pode ser excluido pois está vinculado a uma locação");
         try {
             motoristaDal.deleteMotoristas(motoristas);
         } catch (Exception error) {

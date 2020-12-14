@@ -47,13 +47,14 @@ public class PessoasFisicasBll {
         cpf = cpf.replace("-", ""); //tira hífen
         Valida.isCPF(cpf, "CPF inválido!");
 
-//        if (!pessoaFisica.getCliente().getEmail().contains("@") && !pessoaFisica.getCliente().getEmail().contains(".")) {
-//             throw new RuntimeException("E-mail inválido!");
-//        }
-        try {
-            if (pessoaFisica.getCliente().getIden() == 0) {
+        if (!pessoaFisica.getCliente().getEmail().contains("@") || !pessoaFisica.getCliente().getEmail().contains(".")) {
+             throw new RuntimeException("E-mail inválido!");
+        }
+        if (pessoaFisica.getCliente().getIden() == 0) {
                 throw new RuntimeException("Erro ao inserir cliente em pessoa fisica");
             }
+        try {
+            
             pessoaFisicaDal.addPessoasFisicas(pessoaFisica);
 
         } catch (Exception error) {
@@ -78,13 +79,14 @@ public class PessoasFisicasBll {
         cpf = cpf.replace("-", ""); //tira hífen
         Valida.isCPF(cpf, "CPF inválido!");
 
-//        if (!pessoaFisica.getCliente().getEmail().contains("@") && !pessoaFisica.getCliente().getEmail().contains(".")) {
-//            throw new RuntimeException("E-mail inválido!");
-//        }
-        try {
-            if (pessoaFisica.getCliente().getIden() == 0) {
+        if (!pessoaFisica.getCliente().getEmail().contains("@") || !pessoaFisica.getCliente().getEmail().contains(".")) {
+            throw new RuntimeException("E-mail inválido!");
+        }
+         if (pessoaFisica.getCliente().getIden() == 0) {
                 throw new RuntimeException("Erro ao inserir cliente em pessoa fisica");
             }
+        try {
+           
             pessoaFisicaDal.updatePessoasFisicas(pessoaFisica);
 
         } catch (Exception error) {
@@ -102,6 +104,7 @@ public class PessoasFisicasBll {
 
     //--- DELETE -------------------------------------------------------------------------------------->
     public void deletePessoasFisicas(PessoasFisicas pessoaFisica) throws Exception {
+          if(!pessoaFisica.getCliente().getStatus().equals("ADIMPLENTE")) throw new RuntimeException("Motorista não pode ser excluido pois está vinculado a uma locação");
         try {
             pessoaFisicaDal.deletePessoasFisicas(pessoaFisica);
         } catch (Exception error) {
