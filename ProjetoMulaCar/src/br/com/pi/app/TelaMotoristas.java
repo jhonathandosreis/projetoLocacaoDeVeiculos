@@ -815,7 +815,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
             ValidaMotoristas();
 
             String NomeDoArquivo = f.getName();
-            File destino = new File("C:\\Users\\Gustavo Gabriel\\Pictures\\Saved Pictures" + NomeDoArquivo);
+            File destino = new File("C:\\Users\\Gustavo Gabriel\\Documents\\LocaçãoProjeto\\projetoLocacaoDeVeiculos\\ProjetoMulaCar\\Imagem_CNH" + NomeDoArquivo);
 
             destino = destino.getAbsoluteFile();
 
