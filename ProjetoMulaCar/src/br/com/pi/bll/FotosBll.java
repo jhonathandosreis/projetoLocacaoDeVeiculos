@@ -42,6 +42,7 @@ public class FotosBll {
         try {
             fotoDal.addFotos(foto);
         } catch (Exception error) {
+             if(error.getMessage().contains("caminho_repetido")) throw new RuntimeException("Foto já cadastrada em nosso sistema!");
             throw error;
         }
     }
@@ -54,6 +55,7 @@ public class FotosBll {
         try {
             fotoDal.updateFotos(foto);
         } catch (Exception error) {
+            if(error.getMessage().contains("caminho_repetido")) throw new RuntimeException("Foto já cadastrada em nosso sistema!");
             throw error;
         }
     }

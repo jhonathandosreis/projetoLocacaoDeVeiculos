@@ -51,7 +51,7 @@ CREATE TABLE clientes (
 
 CREATE TABLE fotos (
     fot_iden SERIAL PRIMARY KEY,
-    fot_caminho VARCHAR(200)
+    fot_caminho VARCHAR(200) CONSTRAINT caminho_repetido UNIQUE,
 );
 
 CREATE TABLE pessoas_fisicas (

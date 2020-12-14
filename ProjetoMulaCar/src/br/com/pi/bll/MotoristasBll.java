@@ -59,9 +59,7 @@ public class MotoristasBll {
         if (motoristas.getCliente().getIden() == 0) {
             throw new RuntimeException("Erro ao inserir cliente em motorista");
         }
-        if (!motoristas.getCliente().getEmail().contains("@") || !motoristas.getCliente().getEmail().contains(".")) {
-             throw new RuntimeException("E-mail inválido!");
-        }
+       
         
         Valida.isCPF(cpf, "CPF inválido!");
     
@@ -100,9 +98,7 @@ public class MotoristasBll {
         if (motoristas.getCliente().getIden() == 0) {
             throw new RuntimeException("Erro ao inserir cliente em motorista");
         }
-        if (!motoristas.getCliente().getEmail().contains("@") || !motoristas.getCliente().getEmail().contains(".")) {
-             throw new RuntimeException("E-mail inválido!");
-        }
+       
         Valida.isCPF(cpf, "CPF inválido!");
 
         try {

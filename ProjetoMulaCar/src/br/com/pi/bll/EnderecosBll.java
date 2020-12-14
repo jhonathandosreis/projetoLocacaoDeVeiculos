@@ -31,11 +31,10 @@ public class EnderecosBll {
     //
     public void AddEndereco(Enderecos endereco) throws Exception {
 
+        if(endereco.getCep().equals("  .   -   ")) throw new RuntimeException("Campo CEP deve ser preenchido");
+        if(endereco.getRua().equals("")) throw new RuntimeException("Campo rua deve ser preenchido");
+        if (endereco.getLogradouro().length() < 2) throw new Exception("Logradouro inválido\nNo mínimo 2 caracteres!");
         try {
-
-            if (endereco.getLogradouro().length() < 2) {
-                throw new Exception("Logradouro inválido\nNo mínimo 2 caracteres!");
-            }
 
             endDal.addEnderecos(endereco);
 
@@ -76,12 +75,10 @@ public class EnderecosBll {
     //--- UPDATE -------------------------------------------------------------------------------------->
     //
     public void updateEndereco(Enderecos endereco) throws Exception {
-
+        if(endereco.getCep().equals("  .   -   ")) throw new RuntimeException("Campo CEP deve ser preenchido");
+        if(endereco.getRua().equals("")) throw new RuntimeException("Campo rua deve ser preenchido");
+        if (endereco.getLogradouro().length() < 2) throw new Exception("Logradouro inválido\nNo mínimo 2 caracteres!");
         try {
-
-            if (endereco.getLogradouro().length() < 2) {
-                throw new Exception("Logradouro inválido\nNo mínimo 2 caracteres!");
-            }
 
             endDal.updateEnderecos(endereco);
 

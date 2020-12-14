@@ -47,9 +47,7 @@ public class PessoasFisicasBll {
         cpf = cpf.replace("-", ""); //tira hífen
         Valida.isCPF(cpf, "CPF inválido!");
 
-        if (!pessoaFisica.getCliente().getEmail().contains("@") || !pessoaFisica.getCliente().getEmail().contains(".")) {
-             throw new RuntimeException("E-mail inválido!");
-        }
+        
         if (pessoaFisica.getCliente().getIden() == 0) {
                 throw new RuntimeException("Erro ao inserir cliente em pessoa fisica");
             }
@@ -79,9 +77,7 @@ public class PessoasFisicasBll {
         cpf = cpf.replace("-", ""); //tira hífen
         Valida.isCPF(cpf, "CPF inválido!");
 
-        if (!pessoaFisica.getCliente().getEmail().contains("@") || !pessoaFisica.getCliente().getEmail().contains(".")) {
-            throw new RuntimeException("E-mail inválido!");
-        }
+      
          if (pessoaFisica.getCliente().getIden() == 0) {
                 throw new RuntimeException("Erro ao inserir cliente em pessoa fisica");
             }

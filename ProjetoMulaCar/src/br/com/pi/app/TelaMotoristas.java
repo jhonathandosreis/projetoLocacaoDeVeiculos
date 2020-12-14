@@ -191,14 +191,14 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
     }
 
-    public void ValidaMotoristas() {
+    public void ValidaMotoristas() { 
+       
+        if(jTextFieldCNHMotorista.getText().equals("           ")) throw new RuntimeException("Campo CNH deve ser preenchido");
         Valida.SomenteNumero(jTextFieldNumeroMotorista.getText(), "Campo número do endereço deve conter somente números!");
-        Valida.campoVazio(jTextFieldNomeMotorista.getText(), "Campo nome deve ser preenchido!");
-        Valida.notNumber(jTextFieldNomeMotorista.getText(), "Campo nome não deve conter números!");
-        Valida.notSpecialCharacters(jTextFieldNomeMotorista.getText(), "Campo nome não deve conter caracteres especiais!");
         Valida.campoVazio(jTextFieldCaminhoDoArquivo.getText(), "Selecione uma foto para avançar no cadastro!");
+        if(jComboBox_CategoriaCnh.getSelectedItem().equals("<SELECIONE>"))throw new RuntimeException("Selecione uma categoria para cnh!");
         if(jFormattedTextField_Data_validade.getText().equals("  /  /    ")){
-            throw new RuntimeException("Digite uma data");
+            throw new RuntimeException("Campo data de válidade da CNH deve ser preenchido");
         }
         
     }
@@ -221,6 +221,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jTextFieldEmailMotorista.setText("");
         jTextFieldCaminhoDoArquivo.setText("");
         jComboBox_Cidade.setSelectedIndex(0);
+         jButtonCadastrar.setEnabled(true);
         jLabelIcone_CNHgrid.setIcon(null);
         jLabelFotos.setIcon(null);
 
@@ -273,7 +274,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jComboBox_Cidade = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jTextFieldRua = new javax.swing.JTextField();
-        jTextField_UF = new javax.swing.JTextField();
         jTextFieldCepMotorista = new javax.swing.JFormattedTextField();
         jTextField_uf = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -338,6 +338,8 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(204, 204, 204));
         jLabel12.setText("CAMINHO DA FOTO");
 
+        jTextFieldCaminhoDoArquivo.setEditable(false);
+
         jButtonSelecionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/botao-de-login.png"))); // NOI18N
         jButtonSelecionar.setText("SELECIONE O ARQUIVO");
         jButtonSelecionar.addActionListener(new java.awt.event.ActionListener() {
@@ -349,7 +351,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(204, 204, 204));
         jLabel16.setText("CNH");
 
-        jComboBox_CategoriaCnh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AB", "B", "C", "D", "E" }));
+        jComboBox_CategoriaCnh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<SELECIONE>", "AB", "B", "C", "D", "E" }));
 
         try {
             jTextFieldCNHMotorista.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
@@ -569,8 +571,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(204, 204, 204));
         jLabel14.setText("RUA");
 
-        jTextField_UF.setEditable(false);
-
         try {
             jTextFieldCepMotorista.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###-###")));
         } catch (java.text.ParseException ex) {
@@ -613,7 +613,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField_UF, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jTextFieldRua, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -638,24 +637,19 @@ public class TelaMotoristas extends javax.swing.JFrame {
                     .addComponent(jTextFieldNumeroMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jTextField_UF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jTextFieldComplementoMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox_Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField_uf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addComponent(jTextFieldComplementoMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox_Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_uf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 532, 230));
@@ -720,6 +714,7 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
     private void jTableConsultarMotoristaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultarMotoristaMouseClicked
        try{
+           jButtonCadastrar.setEnabled(false);
         preencherFormularioMotoristas();
        } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -740,10 +735,12 @@ public class TelaMotoristas extends javax.swing.JFrame {
             motorista = motoristabll.getMotoristaById(id);
             endereco = enderecoBll.getConsultaPorId(motorista.getCliente().getEnderecos().getIden());
             cliente = clienteBll.getClienteById(motorista.getCliente().getIden());
+            fotos = fotoBll.getFotosById(motorista.getFotos().getFot_iden());
 
             motoristabll.deleteMotoristas(motorista);
             clienteBll.deleteClientes(cliente);
             enderecoBll.deleteEndereco(endereco);
+            fotoBll.deleteFotos(fotos);
             JOptionPane.showMessageDialog(null, motorista.getCliente().getNome() + " removido com sucesso no sistema!");
             preencherGridMotorista();
             limparCampos();
@@ -760,23 +757,12 @@ public class TelaMotoristas extends javax.swing.JFrame {
                 throw new Exception("Selecione um motorista na tabela para ser alterado!");
             }
             ValidaMotoristas();
-            
-            String NomeDoArquivo = f.getName();
-            File destino = new File("C:\\Users\\Gustavo Gabriel\\Pictures\\Saved Pictures" + NomeDoArquivo);
 
-            destino = destino.getAbsoluteFile();
-
-            Fotos foto = new Fotos();
-            foto.setFot_caminho(destino.getAbsoluteFile().toString());
-            fotoBll.addFotos(foto);
-            if (!destino.exists()) {
-                Files.copy(f.toPath(), destino.toPath());
-            }
-            
-            foto = fotoBll.getFotosByCaminho(foto.getFot_caminho());
-            
             int id = Integer.parseInt(jTableConsultarMotorista.getValueAt(jTableConsultarMotorista.getSelectedRow(), 0).toString());
             motorista = motoristabll.getMotoristaById(id);
+            Fotos foto = fotoBll.getFotosById(motorista.getFotos().getFot_iden());
+            foto.setFot_caminho(jTextFieldCaminhoDoArquivo.getText());
+            fotoBll.updateFotos(foto);
             endereco = enderecoBll.getConsultaPorId(motorista.getCliente().getEnderecos().getIden());
             cliente = clienteBll.getClienteById(motorista.getCliente().getIden());
             cidade = cidadesBll.getCidadesById(SplitReturnID(jComboBox_Cidade.getSelectedItem().toString()));
@@ -818,17 +804,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
 
         } catch (Exception error) {
 
-            try {
-                if (chegou == 1) {
-                    enderecoBll.deleteLast();
-                }
-                if (chegou == 2) {
-                    clienteBll.deleteLast();
-                    enderecoBll.deleteLast();
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + e.getMessage());
-            }
 
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -1033,7 +1008,6 @@ public class TelaMotoristas extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldRua;
     private javax.swing.JFormattedTextField jTextFieldTelefoneMotorista;
     private javax.swing.JFormattedTextField jTextField_CpfMotorista;
-    private javax.swing.JTextField jTextField_UF;
     private javax.swing.JFormattedTextField jTextField_rgMotorista;
     private javax.swing.JTextField jTextField_uf;
     // End of variables declaration//GEN-END:variables

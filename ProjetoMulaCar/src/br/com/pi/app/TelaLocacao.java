@@ -384,12 +384,11 @@ public class TelaLocacao extends javax.swing.JFrame {
         setTitle("[LOCAÇÃO DO VEÍCULO]");
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Locação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Locação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("ID");
@@ -687,7 +686,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 230, -1));
@@ -805,6 +804,10 @@ public class TelaLocacao extends javax.swing.JFrame {
             locacao.setVeiculos(veiculo);
            Date hoje = new Date();
            int dias = 0;
+            if(jTextFieldDataDevolucao.getText().equals("  /  /    ")){
+            throw new RuntimeException("Digite uma data para devolução");
+        }
+           
             Date dataPrevista = formato.parse(jTextFieldDataDevolucao.getText());
             if (!jRadioButton_reserva.isSelected()) {
                 
@@ -812,6 +815,9 @@ public class TelaLocacao extends javax.swing.JFrame {
                 locacao.setDataDeLocacao(hoje);
                 dias = DiferencaEntreDatas(hoje, dataPrevista);
             }else{
+                 if(jTextFieldDataLocacao.getText().equals("  /  /    ")){
+            throw new RuntimeException("Digite uma data para locação");
+        }
                   Date formatada = formato.parse(convertDate(hoje));
                 Date dataLocacao = formato.parse(jTextFieldDataLocacao.getText());
                 if (dataLocacao.compareTo(formatada) <= 0) {

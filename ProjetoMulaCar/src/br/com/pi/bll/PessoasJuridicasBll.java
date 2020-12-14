@@ -45,9 +45,7 @@ public class PessoasJuridicasBll {
           if (pessoaJuridica.getCliente().getIden() == 0) {
                 throw new RuntimeException("Erro ao inserir cliente em pessoa juridica");
             }
-          if (!pessoaJuridica.getCliente().getEmail().contains("@") || !pessoaJuridica.getCliente().getEmail().contains(".")) {
-             throw new RuntimeException("E-mail inválido!");
-        }
+     
         try {
             pessoaJuridicaDal.addPessoasJuridicas(pessoaJuridica);
         } catch (Exception error) {
@@ -73,10 +71,7 @@ public class PessoasJuridicasBll {
           if (pessoaJuridica.getCliente().getIden() == 0) {
                 throw new RuntimeException("Erro ao inserir cliente em pessoa juridica");
             }
-           if (!pessoaJuridica.getCliente().getEmail().contains("@") || !pessoaJuridica.getCliente().getEmail().contains(".")) {
-             throw new RuntimeException("E-mail inválido!");
-        }
-          
+      
         try {
             pessoaJuridicaDal.updatePessoasJuridicas(pessoaJuridica);
         } catch (Exception error) {

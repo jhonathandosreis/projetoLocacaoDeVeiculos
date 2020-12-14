@@ -116,12 +116,9 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
 
     }
     
-    public void validaFormularioPessoasFisicas(){
-        
+    public void validaFormularioPessoasFisicas(){ 
        Valida.SomenteNumero(jTextFieldNumeroPessoaFisica.getText(), "Campo número do endereço deve conter somente números!");
-       Valida.campoVazio(jTextFieldNomePessoaFisica.getText(), "Campo nome deve ser preenchido!");
-       Valida.notNumber(jTextFieldNomePessoaFisica.getText(), "Campo nome não deve conter números!");
-       Valida.notSpecialCharacters(jTextFieldNomePessoaFisica.getText(), "Campo nome não deve conter caracteres especiais!");
+   
     }
 
     public void preencherComboboxCidades() throws Exception {
@@ -151,6 +148,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
         jTextFieldTelefonePessoaFisica.setText("");
         jTextFieldNumeroPessoaFisica.setText("");
         jComboBox_Cidades.setSelectedIndex(0);
+        jButtonCadastrar.setEnabled(true);
     } 
     
     private int SplitReturnID(String combo) {
@@ -599,16 +597,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
             limparCampos();
 
         } catch (Exception error) {
-           
-            try{
-            if(chegou == 1)enderecoBll.deleteLast();
-            if(chegou == 2){
-                clienteBll.deleteLast();
-                enderecoBll.deleteLast();
-            }
-            } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro!" + e.getMessage());
-        }
+
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAlterarActionPerformed
@@ -683,6 +672,7 @@ public class TelaPessoaFisica extends javax.swing.JFrame {
 
     private void jTableConsultaPessoaFisicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultaPessoaFisicaMouseClicked
        try{
+           jButtonCadastrar.setEnabled(false);
         preencherFormularioPessoaJuridica();
          } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);

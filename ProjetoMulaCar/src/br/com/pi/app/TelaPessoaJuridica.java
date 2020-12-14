@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author jhonlinux
+ * @author GUSTAVO
  */
 public class TelaPessoaJuridica extends javax.swing.JFrame {
 
@@ -161,6 +161,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
         jTextFieldTelefonePessoaJuridica.setText("");
         jTextFieldEmailPessoaJuridica.setText("");
         jComboBoxCidade.setSelectedIndex(0);
+        jButtonCadastrar.setEnabled(true);
     }
 
     //--- FIM METODOS --------------------------------------------------------------------------------->
@@ -621,7 +622,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             chegou = 1;
 
             cliente.setEnderecos(endereco);
-            cliente.setNome(null);
+            cliente.setNome("");
             cliente.setTelefone(jTextFieldTelefonePessoaJuridica.getText());
             cliente.setEmail(jTextFieldEmailPessoaJuridica.getText());
             clienteBll.updateClientes(cliente);
@@ -639,18 +640,6 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
             limparCampos();
 
         } catch (Exception error) {
-
-            try {
-                if (chegou == 1) {
-                    enderecoBll.deleteLast();
-                }
-                if (chegou == 2) {
-                    clienteBll.deleteLast();
-                    enderecoBll.deleteLast();
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro na combo Cidades " + e.getMessage());
-            }
 
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -685,6 +674,7 @@ public class TelaPessoaJuridica extends javax.swing.JFrame {
 
     private void jTable_PessoasJuridicasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_PessoasJuridicasMouseClicked
         try {
+            jButtonCadastrar.setEnabled(false);
             preencherFormularioPessoaJuridica();
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);

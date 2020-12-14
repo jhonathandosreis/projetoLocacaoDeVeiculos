@@ -75,6 +75,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
 
             jTextFieldIDDevolucao.setEnabled(false);
             jButtonDevolver.setEnabled(false);
+            jButtonQuitarDebito.setEnabled(false);
 
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
@@ -200,7 +201,9 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         Valida.campoVazio(jTextFieldKmNaEntrega.getText(), "Digite um Km válido ! \n Campo Vazio ");
         Valida.numberInteger(jTextFieldKmNaEntrega.getText(), "Campo Km aceita apenas números ");
         Valida.notSpecialCharacters(jTextFieldKmNaEntrega.getText(), "Campo Km não é permitido caracteres especiais! ");
-
+         if(jFormattedDataDevolucao.getText().equals("  /  /    ")){
+            throw new RuntimeException("Digite uma data para locação");
+        }
         Valida.campoVazio(jTextFieldLitroVeiculoEntrega.getText(), "Digite uma capacidade de combustivel/Litro válida! \n Campo Vazio ");
         Valida.numberInteger(jTextFieldLitroVeiculoEntrega.getText(), "Campo capacidade de combustivel/Litro aceita apenas números ");
         Valida.notSpecialCharacters(jTextFieldLitroVeiculoEntrega.getText(), "Campo capacidade de combustivel/Litro não é permitido caracteres especiais! ");
@@ -227,6 +230,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         jTextField_Troco.setText("");
         jTextField_Debito.setText("");
         jButtonGerarCalculo.setEnabled(true);
+        jButtonQuitarDebito.setEnabled(false);
 
     }
 
@@ -293,12 +297,11 @@ public class TelaDevolucoes extends javax.swing.JFrame {
         setTitle("[DEVOLUÇÃO DO VEÍCULO]");
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Devolução", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Devolução", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jTextFieldIDDevolucao.setEditable(false);
 
@@ -788,6 +791,7 @@ public class TelaDevolucoes extends javax.swing.JFrame {
     private void jTableDevolucaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableDevolucaoMouseClicked
 
         try {
+            jButtonQuitarDebito.setEnabled(true);
             jButtonGerarCalculo.setEnabled(false);
             jButtonDevolver.setEnabled(false);
             preencherFormularioDevolucao();
