@@ -67,7 +67,7 @@ public class TelaLocacao extends javax.swing.JFrame {
 
     public TelaLocacao() {
         initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);
+        
         try {
             locacao = new Locacoes();
             locacaoBll = new LocacoesBll();
@@ -342,7 +342,6 @@ public class TelaLocacao extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldIDLocacao = new javax.swing.JTextField();
@@ -358,45 +357,56 @@ public class TelaLocacao extends javax.swing.JFrame {
         jTextFieldDataLocacao = new javax.swing.JFormattedTextField();
         jTextFieldDataDevolucao = new javax.swing.JFormattedTextField();
         jRadioButton_reserva = new javax.swing.JRadioButton();
-        jButtonCadastrar = new javax.swing.JButton();
-        jButtonRemover = new javax.swing.JButton();
         jButton_listarPorCategoria = new javax.swing.JButton();
         jButton_listarPorTipo = new javax.swing.JButton();
         jButton_listarPorModelo = new javax.swing.JButton();
         jButton__listarPorMarca = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea_informacoesVeiculo = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_VEICULOS = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea_informacoesVeiculo = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_locacao = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel_cnh = new javax.swing.JLabel();
         jButton_Limpar = new javax.swing.JButton();
+        jButtonCadastrar = new javax.swing.JButton();
+        jButtonRemover = new javax.swing.JButton();
+        jLabel_cnh = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("[LOCAÇÃO DO VEÍCULO]");
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Locação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Locação"));
-
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("ID");
 
         jTextFieldIDLocacao.setEditable(false);
 
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("CLIENTE");
 
+        jLabel7.setForeground(new java.awt.Color(204, 204, 204));
         jLabel7.setText("DATA LOCAÇÃO");
 
+        jLabel11.setForeground(new java.awt.Color(204, 204, 204));
         jLabel11.setText("DATA PREVISTA DEVOLUÇÃO");
 
         buttonGroup1.add(jRadioButtonPFisica);
-        jRadioButtonPFisica.setText("Pessoa Fisica");
+        jRadioButtonPFisica.setForeground(new java.awt.Color(204, 204, 204));
+        jRadioButtonPFisica.setText("PESSOA FISICA");
         jRadioButtonPFisica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonPFisicaActionPerformed(evt);
@@ -404,7 +414,8 @@ public class TelaLocacao extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(jRadioButtonPJuridica);
-        jRadioButtonPJuridica.setText("Pessoa Juridica");
+        jRadioButtonPJuridica.setForeground(new java.awt.Color(204, 204, 204));
+        jRadioButtonPJuridica.setText("PESSOA JURÍDICA");
         jRadioButtonPJuridica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonPJuridicaActionPerformed(evt);
@@ -412,13 +423,15 @@ public class TelaLocacao extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(JradioButonMotodista);
-        JradioButonMotodista.setText("Motorista");
+        JradioButonMotodista.setForeground(new java.awt.Color(204, 204, 204));
+        JradioButonMotodista.setText("MOTORISTA");
         JradioButonMotodista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JradioButonMotodistaActionPerformed(evt);
             }
         });
 
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("MOTORISTA");
 
         try {
@@ -433,6 +446,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        jRadioButton_reserva.setForeground(new java.awt.Color(204, 204, 204));
         jRadioButton_reserva.setText("RESERVA");
         jRadioButton_reserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -445,93 +459,79 @@ public class TelaLocacao extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldDataDevolucao))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jTextFieldIDLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jRadioButtonPFisica)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jRadioButtonPJuridica)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(JradioButonMotodista)
-                                        .addGap(11, 11, 11))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jComboBox_MotoristaLocacao, javax.swing.GroupLayout.Alignment.TRAILING, 0, 274, Short.MAX_VALUE)
-                                        .addComponent(jComboBox_Cliente_Locacao, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButtonPFisica)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButtonPJuridica)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JradioButonMotodista))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton_reserva)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel1))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(35, 35, 35)
+                                    .addComponent(jComboBox_Cliente_Locacao, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextFieldDataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextFieldDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jRadioButton_reserva))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBox_MotoristaLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldDataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(137, 137, 137))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldIDLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButtonPFisica)
-                            .addComponent(jRadioButtonPJuridica)
-                            .addComponent(JradioButonMotodista))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldIDLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButtonPFisica)
+                    .addComponent(jRadioButtonPJuridica)
+                    .addComponent(JradioButonMotodista))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jComboBox_Cliente_Locacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jComboBox_MotoristaLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jTextFieldDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton_reserva))
-                        .addGap(181, 181, 181))))
+                        .addGap(38, 38, 38))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBox_MotoristaLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton_reserva)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 6, -1, 265));
-
-        jButtonCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/salve.png"))); // NOI18N
-        jButtonCadastrar.setText("CADASTRAR");
-        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCadastrarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButtonCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 550, -1, 60));
-
-        jButtonRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/lixo.png"))); // NOI18N
-        jButtonRemover.setText("REMOVER");
-        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRemoverActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButtonRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 550, 120, 60));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 440, 260));
 
         jButton_listarPorCategoria.setText("CATEGORIA");
         jButton_listarPorCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -539,15 +539,15 @@ public class TelaLocacao extends javax.swing.JFrame {
                 jButton_listarPorCategoriaActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_listarPorCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, -1, -1));
+        getContentPane().add(jButton_listarPorCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 120, -1));
 
-        jButton_listarPorTipo.setText("TIPO DE VEICULO");
+        jButton_listarPorTipo.setText("TIPO VEICULO");
         jButton_listarPorTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_listarPorTipoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_listarPorTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, -1, -1));
+        getContentPane().add(jButton_listarPorTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, 120, -1));
 
         jButton_listarPorModelo.setText("MODELO");
         jButton_listarPorModelo.addActionListener(new java.awt.event.ActionListener() {
@@ -555,7 +555,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                 jButton_listarPorModeloActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_listarPorModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 30, -1, -1));
+        getContentPane().add(jButton_listarPorModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, 120, -1));
 
         jButton__listarPorMarca.setText("MARCA");
         jButton__listarPorMarca.addActionListener(new java.awt.event.ActionListener() {
@@ -563,17 +563,10 @@ public class TelaLocacao extends javax.swing.JFrame {
                 jButton__listarPorMarcaActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton__listarPorMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, -1, -1));
+        getContentPane().add(jButton__listarPorMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 60, 120, -1));
 
-        jLabel6.setText("DADOS DO VEICULO SELECIONADO");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 30, -1, -1));
-
-        jTextArea_informacoesVeiculo.setColumns(20);
-        jTextArea_informacoesVeiculo.setRows(5);
-        jScrollPane2.setViewportView(jTextArea_informacoesVeiculo);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 80, 330, 190));
-
+        jTable_VEICULOS.setBackground(new java.awt.Color(0, 0, 0));
+        jTable_VEICULOS.setForeground(new java.awt.Color(255, 255, 255));
         jTable_VEICULOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -590,6 +583,8 @@ public class TelaLocacao extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable_VEICULOS.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jTable_VEICULOS.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jTable_VEICULOS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable_VEICULOSMouseClicked(evt);
@@ -601,11 +596,16 @@ public class TelaLocacao extends javax.swing.JFrame {
             jTable_VEICULOS.getColumnModel().getColumn(2).setPreferredWidth(100);
         }
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 500, 190));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 530, 190));
 
-        jLabel8.setText("Filtrar tabela de veículos por:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, -1, -1));
+        jTextArea_informacoesVeiculo.setColumns(20);
+        jTextArea_informacoesVeiculo.setRows(5);
+        jScrollPane2.setViewportView(jTextArea_informacoesVeiculo);
 
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 100, 250, 190));
+
+        jTable_locacao.setBackground(new java.awt.Color(0, 0, 0));
+        jTable_locacao.setForeground(new java.awt.Color(255, 255, 255));
         jTable_locacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -622,6 +622,8 @@ public class TelaLocacao extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable_locacao.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jTable_locacao.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jTable_locacao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable_locacaoMouseClicked(evt);
@@ -632,31 +634,7 @@ public class TelaLocacao extends javax.swing.JFrame {
             jTable_locacao.getColumnModel().getColumn(0).setMaxWidth(60);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 311, 950, 300));
-
-        jLabel5.setText("CNH MOTORISTA RESPONSÁVEL");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 290, 160, -1));
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel_cnh, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel_cnh, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 320, 260, 220));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 980, 260));
 
         jButton_Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/limpar-limpo.png"))); // NOI18N
         jButton_Limpar.setText("LIMPAR");
@@ -665,11 +643,120 @@ public class TelaLocacao extends javax.swing.JFrame {
                 jButton_LimparActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 550, 120, 60));
+        getContentPane().add(jButton_Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 590, 140, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 1350, 640));
+        jButtonCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/salve.png"))); // NOI18N
+        jButtonCadastrar.setText("CADASTRAR");
+        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, 140, 50));
+
+        jButtonRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/lixo.png"))); // NOI18N
+        jButtonRemover.setText("REMOVER");
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 590, 140, 50));
+
+        jLabel_cnh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        getContentPane().add(jLabel_cnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 360, 243, 206));
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel8.setText("FILTAR TABELA DE VEÍCULO POR :");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 230, -1));
+
+        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel6.setText("DADOS DO VEICULO ");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(57, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(49, 49, 49))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 60, 240, 30));
+
+        jPanel4.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel5.setText("CNH ");
+
+        jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel9.setText("MOTORISTA RESPONSÁVEL");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 310, 240, 40));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/image/fundo desfolque bmw_Easy-Resize.com.jpg"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
@@ -717,6 +804,10 @@ public class TelaLocacao extends javax.swing.JFrame {
             locacao.setVeiculos(veiculo);
            Date hoje = new Date();
            int dias = 0;
+            if(jTextFieldDataDevolucao.getText().equals("  /  /    ")){
+            throw new RuntimeException("Digite uma data para devolução");
+        }
+           
             Date dataPrevista = formato.parse(jTextFieldDataDevolucao.getText());
             if (!jRadioButton_reserva.isSelected()) {
                 
@@ -724,6 +815,9 @@ public class TelaLocacao extends javax.swing.JFrame {
                 locacao.setDataDeLocacao(hoje);
                 dias = DiferencaEntreDatas(hoje, dataPrevista);
             }else{
+                 if(jTextFieldDataLocacao.getText().equals("  /  /    ")){
+            throw new RuntimeException("Digite uma data para locação");
+        }
                   Date formatada = formato.parse(convertDate(hoje));
                 Date dataLocacao = formato.parse(jTextFieldDataLocacao.getText());
                 if (dataLocacao.compareTo(formatada) <= 0) {
@@ -816,8 +910,10 @@ public class TelaLocacao extends javax.swing.JFrame {
 
     private void jButton_listarPorCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listarPorCategoriaActionPerformed
         try {
-            TemplateOrdenadoPorCategoria objeto = new TemplateOrdenadoPorCategoria();
-            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+            String filtro = "CATEGORIA";
+//            TemplateOrdenadoPorCategoria objeto = new TemplateOrdenadoPorCategoria();
+//            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+            imprimirNaGridVeiculos(Factory_Ordenacao.OrdenarPor(filtro).OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -825,8 +921,10 @@ public class TelaLocacao extends javax.swing.JFrame {
 
     private void jButton_listarPorTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listarPorTipoActionPerformed
         try {
-            TemplateOrdenadoPorMarca objeto = new TemplateOrdenadoPorMarca();
-            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+             String filtro = "TIPO";
+//            TemplateOrdenaListaVeiculos objeto = new TemplateOrdenadoPorMarca();
+//            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+            imprimirNaGridVeiculos(Factory_Ordenacao.OrdenarPor(filtro).OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -834,8 +932,10 @@ public class TelaLocacao extends javax.swing.JFrame {
 
     private void jButton_listarPorModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listarPorModeloActionPerformed
         try {
-            TemplateOrdenadoPorModelo objeto = new TemplateOrdenadoPorModelo();
-            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+             String filtro = "MODELO";
+//            TemplateOrdenadoPorModelo objeto = new TemplateOrdenadoPorModelo();
+//            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+            imprimirNaGridVeiculos(Factory_Ordenacao.OrdenarPor(filtro).OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -843,8 +943,10 @@ public class TelaLocacao extends javax.swing.JFrame {
 
     private void jButton__listarPorMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton__listarPorMarcaActionPerformed
         try {
-            TemplateOrdenadoPorMarca objeto = new TemplateOrdenadoPorMarca();
-            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+             String filtro = "MARCA";
+//            TemplateOrdenadoPorMarca objeto = new TemplateOrdenadoPorMarca();
+//            imprimirNaGridVeiculos(objeto.OrdenarListaVeiculos());
+            imprimirNaGridVeiculos(Factory_Ordenacao.OrdenarPor(filtro).OrdenarListaVeiculos());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
@@ -981,14 +1083,17 @@ public class TelaLocacao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_cnh;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButton jRadioButtonPFisica;
     private javax.swing.JRadioButton jRadioButtonPJuridica;
     private javax.swing.JRadioButton jRadioButton_reserva;

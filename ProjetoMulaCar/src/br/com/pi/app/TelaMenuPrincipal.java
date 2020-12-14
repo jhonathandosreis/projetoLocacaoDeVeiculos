@@ -47,17 +47,17 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCliente = new javax.swing.JMenu();
+        jMenuItemUF = new javax.swing.JMenuItem();
+        jMenuItemCidade = new javax.swing.JMenuItem();
         jMenuItemPessoaFisica = new javax.swing.JMenuItem();
         jMenuItemPessoaJuridica = new javax.swing.JMenuItem();
         jMenuItemMotorista = new javax.swing.JMenuItem();
-        jMenuItemCidade = new javax.swing.JMenuItem();
-        jMenuItemUF = new javax.swing.JMenuItem();
         jMenuVeiculo = new javax.swing.JMenu();
-        jMenuItemVeiculo = new javax.swing.JMenuItem();
-        jMenuItemMarcas = new javax.swing.JMenuItem();
-        jMenuItemModelo = new javax.swing.JMenuItem();
         jMenuItemCategoria = new javax.swing.JMenuItem();
         jMenuItemTIpoDeVeiculo = new javax.swing.JMenuItem();
+        jMenuItemMarcas = new javax.swing.JMenuItem();
+        jMenuItemModelo = new javax.swing.JMenuItem();
+        jMenuItemVeiculo = new javax.swing.JMenuItem();
         jMenuLocacao = new javax.swing.JMenu();
         jMenuItemLocacao = new javax.swing.JMenuItem();
         jMenuItemDevolucao = new javax.swing.JMenuItem();
@@ -87,6 +87,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/image/fundo bmw logo_Easy-Resize.com.jpg"))); // NOI18N
@@ -96,6 +97,24 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jMenuCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/grupo-de-usuarios.png"))); // NOI18N
         jMenuCliente.setText("CLiente");
+
+        jMenuItemUF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/destino.png"))); // NOI18N
+        jMenuItemUF.setText("UF");
+        jMenuItemUF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemUFActionPerformed(evt);
+            }
+        });
+        jMenuCliente.add(jMenuItemUF);
+
+        jMenuItemCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/cidade.png"))); // NOI18N
+        jMenuItemCidade.setText("Cidade");
+        jMenuItemCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCidadeActionPerformed(evt);
+            }
+        });
+        jMenuCliente.add(jMenuItemCidade);
 
         jMenuItemPessoaFisica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/adicionar-usuario (1).png"))); // NOI18N
         jMenuItemPessoaFisica.setText("Pessoal Física");
@@ -124,37 +143,28 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuCliente.add(jMenuItemMotorista);
 
-        jMenuItemCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/cidade.png"))); // NOI18N
-        jMenuItemCidade.setText("Cidade");
-        jMenuItemCidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemCidadeActionPerformed(evt);
-            }
-        });
-        jMenuCliente.add(jMenuItemCidade);
-
-        jMenuItemUF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/destino.png"))); // NOI18N
-        jMenuItemUF.setText("UF");
-        jMenuItemUF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemUFActionPerformed(evt);
-            }
-        });
-        jMenuCliente.add(jMenuItemUF);
-
         jMenuBar1.add(jMenuCliente);
 
         jMenuVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/carro-sedan-na-frente.png"))); // NOI18N
         jMenuVeiculo.setText("Veículo");
 
-        jMenuItemVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/sedan.png"))); // NOI18N
-        jMenuItemVeiculo.setText("Veículos");
-        jMenuItemVeiculo.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/crossover.png"))); // NOI18N
+        jMenuItemCategoria.setText("Categorias");
+        jMenuItemCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemVeiculoActionPerformed(evt);
+                jMenuItemCategoriaActionPerformed(evt);
             }
         });
-        jMenuVeiculo.add(jMenuItemVeiculo);
+        jMenuVeiculo.add(jMenuItemCategoria);
+
+        jMenuItemTIpoDeVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/hatchback.png"))); // NOI18N
+        jMenuItemTIpoDeVeiculo.setText("Tipo de Veículos");
+        jMenuItemTIpoDeVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemTIpoDeVeiculoActionPerformed(evt);
+            }
+        });
+        jMenuVeiculo.add(jMenuItemTIpoDeVeiculo);
 
         jMenuItemMarcas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/carrinho-de-bebe.png"))); // NOI18N
         jMenuItemMarcas.setText("Marcas");
@@ -174,23 +184,14 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuVeiculo.add(jMenuItemModelo);
 
-        jMenuItemCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/crossover.png"))); // NOI18N
-        jMenuItemCategoria.setText("Categorias");
-        jMenuItemCategoria.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/sedan.png"))); // NOI18N
+        jMenuItemVeiculo.setText("Veículos");
+        jMenuItemVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemCategoriaActionPerformed(evt);
+                jMenuItemVeiculoActionPerformed(evt);
             }
         });
-        jMenuVeiculo.add(jMenuItemCategoria);
-
-        jMenuItemTIpoDeVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/hatchback.png"))); // NOI18N
-        jMenuItemTIpoDeVeiculo.setText("Tipo de Veículos");
-        jMenuItemTIpoDeVeiculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemTIpoDeVeiculoActionPerformed(evt);
-            }
-        });
-        jMenuVeiculo.add(jMenuItemTIpoDeVeiculo);
+        jMenuVeiculo.add(jMenuItemVeiculo);
 
         jMenuBar1.add(jMenuVeiculo);
 
@@ -222,6 +223,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jMenuItemDesenvolvedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pi/icons/computador-desktop.png"))); // NOI18N
         jMenuItemDesenvolvedores.setText("Desenvolvedores");
+        jMenuItemDesenvolvedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDesenvolvedoresActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItemDesenvolvedores);
 
         jMenuBar1.add(jMenu5);
@@ -340,6 +346,19 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemCidadeActionPerformed
+
+    private void jMenuItemDesenvolvedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDesenvolvedoresActionPerformed
+
+ try {
+            TelaDesenvolvedores telaDev = new TelaDesenvolvedores();
+            telaDev.setVisible(true);
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(rootPane, error.getMessage(), "Menssagem", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemDesenvolvedoresActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

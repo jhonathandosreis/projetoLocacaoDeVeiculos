@@ -42,13 +42,11 @@ public class PessoasJuridicasBll {
 
         Valida.campoVazio(pessoaJuridica.getNomeFantasia(), "Campo nome fantasia deve ser preenchido!");
         Valida.campoVazio(pessoaJuridica.getRazaoSocial(), "Campo razão social deve ser preenchido!");
-
-        try {
-
-            if (pessoaJuridica.getCliente().getIden() == 0) {
+          if (pessoaJuridica.getCliente().getIden() == 0) {
                 throw new RuntimeException("Erro ao inserir cliente em pessoa juridica");
             }
-
+     
+        try {
             pessoaJuridicaDal.addPessoasJuridicas(pessoaJuridica);
         } catch (Exception error) {
             if (error.getMessage().contains("cpj_repetido")) {
@@ -70,13 +68,11 @@ public class PessoasJuridicasBll {
        
         Valida.campoVazio(pessoaJuridica.getNomeFantasia(), "Campo nome fantasia deve ser preenchido!");
         Valida.campoVazio(pessoaJuridica.getRazaoSocial(), "Campo razão social deve ser preenchido!");
-
-        try {
-
-            if (pessoaJuridica.getCliente().getIden() == 0) {
+          if (pessoaJuridica.getCliente().getIden() == 0) {
                 throw new RuntimeException("Erro ao inserir cliente em pessoa juridica");
             }
-
+      
+        try {
             pessoaJuridicaDal.updatePessoasJuridicas(pessoaJuridica);
         } catch (Exception error) {
             if (error.getMessage().contains("cpj_repetido")) {
@@ -95,6 +91,7 @@ public class PessoasJuridicasBll {
 
     //--- DELETE -------------------------------------------------------------------------------------->
     public void deletePessoasJuridicas(PessoasJuridicas pessoaJuridica) throws Exception {
+         if(!pessoaJuridica.getCliente().getStatus().equals("ADIMPLENTE")) throw new RuntimeException("Motorista não pode ser excluido pois está vinculado a uma locação");
         try {
             pessoaJuridicaDal.deletePessoasJuridicas(pessoaJuridica);
         } catch (Exception error) {

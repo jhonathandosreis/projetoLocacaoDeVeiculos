@@ -51,7 +51,7 @@ CREATE TABLE clientes (
 
 CREATE TABLE fotos (
     fot_iden SERIAL PRIMARY KEY,
-    fot_caminho VARCHAR(200)
+    fot_caminho VARCHAR(200) CONSTRAINT caminho_repetido UNIQUE
 );
 
 CREATE TABLE pessoas_fisicas (
@@ -125,8 +125,14 @@ CREATE TABLE locacoes (
 CREATE TABLE devolucoes (
     dev_iden SERIAL PRIMARY KEY,
     dev_data_devolucao DATE,
-    dev_multa_por_atraso NUMERIC(50),
     dev_km_na_entrega NUMERIC(50),
+    dev_multa_por_atraso NUMERIC(50),
+    dev_dias_atraso INTEGER,
+    dev_diferenca_litros NUMERIC(50),
+    dev_multa_por_litros NUMERIC(50),
+    dev_valor_total NUMERIC(50),
+    dev_multa_transito NUMERIC(50),
+    dev_danos_veiculo NUMERIC(50),
     dev_loc_iden INTEGER,
     FOREIGN KEY (dev_loc_iden) REFERENCES locacoes (loc_codigo)
 );

@@ -39,14 +39,21 @@ public class ClientesBll {
     //
     //--- CREATE -------------------------------------------------------------------------------------->
     public void addClientes(Clientes cliente) throws Exception {
+        if(!cliente.getTipo().equals("JURIDICA")){
+        Valida.campoVazio(cliente.getNome(), "Campo nome deve ser preenchido!"); 
+        Valida.notNumber(cliente.getNome(), "Campo nome não deve conter números!");
+        Valida.notSpecialCharacters(cliente.getNome(), "Campo nome não deve conter caracteres especiais!");
+        }
+        Valida.campoVazio(cliente.getEmail(), "Campo email deve ser preenchido!");
+        if (!cliente.getEmail().contains("@") || !cliente.getEmail().contains(".")) {
+             throw new RuntimeException("E-mail inválido!");
+        }
+          
+        if (cliente.getTelefone().equals("(  )      -    ")) throw new RuntimeException ("Campo telefone vazio");
+        if(cliente.getEnderecos().getIden() == 0) throw new RuntimeException ("Erro ao cadastrar endereço!"); // validando se a chave estrangeira esta persistindo
         try{
-            
-         
-         Valida.campoVazio(cliente.getEmail(), "Campo email deve ser preenchido!");
-         Valida.campoVazio(cliente.getTelefone(), "Campo telefone deve ser preenchido!");
-         if(cliente.getEnderecos().getIden() == 0) throw new RuntimeException ("Erro ao cadastrar endereço!"); // validando se a chave estrangeira esta persistindo
          clienteDal.addClientes(cliente);
-         
+
         } catch (Exception error) {
             if(error.getMessage().contains("email_repetido")) throw new RuntimeException("E-mail ("+cliente.getEmail()+") já cadastrado em nosso sistema!");
             if(error.getMessage().contains("telefone_repetido")) throw new RuntimeException("Telefone ("+cliente.getTelefone()+") já cadastrado em nosso sistema!");
@@ -58,16 +65,23 @@ public class ClientesBll {
     
     //--- UPDATE--------------------------------------------------------------------------------------->
     public void updateClientes(Clientes cliente) throws Exception { 
-         try{
-             
-               Valida.campoVazio(cliente.getEmail(), "Campo email deve ser preenchido!");
-         Valida.campoVazio(cliente.getTelefone(), "Campo telefone deve ser preenchido!");
+         if(!cliente.getTipo().equals("JURIDICA")){
+        Valida.campoVazio(cliente.getNome(), "Campo nome deve ser preenchido!"); 
+        Valida.notNumber(cliente.getNome(), "Campo nome não deve conter números!");
+        Valida.notSpecialCharacters(cliente.getNome(), "Campo nome não deve conter caracteres especiais!");
+         }
+        Valida.campoVazio(cliente.getEmail(), "Campo email deve ser preenchido!");
+        if (!cliente.getEmail().contains("@") || !cliente.getEmail().contains(".")) {
+             throw new RuntimeException("E-mail inválido!");
+        }
+        if (cliente.getTelefone().equals("(  )      -    ")) throw new RuntimeException ("Campo telefone vazio");
          if(cliente.getEnderecos().getIden() == 0) throw new RuntimeException ("Erro ao cadastrar endereço!"); // validando se a chave estrangeira esta persistindo
          
-             
+        try{
+ 
          clienteDal.updateClientes(cliente);
         } catch (Exception error) {
-             if(error.getMessage().contains("email_repetido")) throw new RuntimeException("E-mail ("+cliente.getEmail()+") já cadastrado em nosso sistema!");
+            if(error.getMessage().contains("email_repetido")) throw new RuntimeException("E-mail ("+cliente.getEmail()+") já cadastrado em nosso sistema!");
             if(error.getMessage().contains("telefone_repetido")) throw new RuntimeException("Telefone ("+cliente.getTelefone()+") já cadastrado em nosso sistema!");
             
         }
