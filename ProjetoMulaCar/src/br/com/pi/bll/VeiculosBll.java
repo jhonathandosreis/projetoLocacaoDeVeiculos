@@ -69,11 +69,11 @@ public class VeiculosBll {
         if (veiculo.getPrecoDeCompra() < 0) {
             throw new Exception("Valor inválido!\nNão existe veículo com valores negativo!");
         }
-        
+
         if (veiculo.getCapacidadeCombustivel() > 80) {
             throw new Exception("Capacidade inválido!\nNossa frota não possui veículo com capacidade de combustivel acima de 90 litros!");
         }
-        
+
         if (veiculo.getCapacidadeCombustivel() < 50) {
             throw new Exception("Capacidade inválido!\nNossa frota não possui veículo com capacidade de combustivel abaixo de 70 litros!");
         }
@@ -84,6 +84,12 @@ public class VeiculosBll {
 
         if (veiculo.getCapacidade() > 7) {
             throw new Exception("Capacidade inválida!\nMáximo 7 passageiros!");
+        }
+
+        if (!veiculo.getTipoDeCombustivel().equals("GASOLINA") && !veiculo.getTipoDeCombustivel().equals("ALCOOL")
+                && !veiculo.getTipoDeCombustivel().equals("DIESEL") && !veiculo.getTipoDeCombustivel().equals("FLEX")
+                && !veiculo.getTipoDeCombustivel().equals("GNV")) {
+            throw new Exception("Tipo de combustível invalido!\nEste tipo de combustível não existe para o veiculo a ser cadastrado!");
         }
 
         try {
@@ -136,7 +142,13 @@ public class VeiculosBll {
         if (veiculo.getCapacidade() > 7) {
             throw new Exception("Capacidade inválida!\nMáximo 7 passageiros!");
         }
-        
+
+        if (!veiculo.getTipoDeCombustivel().equals("GASOLINA") && !veiculo.getTipoDeCombustivel().equals("ALCOOL")
+                && !veiculo.getTipoDeCombustivel().equals("DIESEL") && !veiculo.getTipoDeCombustivel().equals("FLEX")
+                && !veiculo.getTipoDeCombustivel().equals("GNV")) {
+            throw new Exception("Tipo de combustível invalido!\nEste tipo de combustível não existe para o veiculo a ser alterado!");
+        }
+
         try {
             veiculosDal.updateVeiculos(veiculo);
         } catch (Exception error) {
