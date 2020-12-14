@@ -69,10 +69,6 @@ public class VeiculosBll {
         if (veiculo.getPrecoDeCompra() < 0) {
             throw new Exception("Valor inválido!\nNão existe veículo com valores negativo!");
         }
-
-        if (veiculo.getPrecoDeCompra() > 80000) {
-            throw new Exception("Valor inválido!\nNossa frota não possui veículo com valor acima de 80.000!");
-        }
         
         if (veiculo.getCapacidadeCombustivel() > 80) {
             throw new Exception("Capacidade inválido!\nNossa frota não possui veículo com capacidade de combustivel acima de 90 litros!");
@@ -133,10 +129,6 @@ public class VeiculosBll {
             throw new Exception("Valor inválido!\nNão existe veículo com valores negativo!");
         }
 
-        if (veiculo.getPrecoDeCompra() > 80000) {
-            throw new Exception("Valor inválido!\nNossa frota não possui veículo com valor acima de 80.000!");
-        }
-
         if (veiculo.getCapacidade() < 2) {
             throw new Exception("Capacidade inválida!\nMínimo 2 passageiros!");
         }
@@ -144,7 +136,7 @@ public class VeiculosBll {
         if (veiculo.getCapacidade() > 7) {
             throw new Exception("Capacidade inválida!\nMáximo 7 passageiros!");
         }
-
+        
         try {
             veiculosDal.updateVeiculos(veiculo);
         } catch (Exception error) {

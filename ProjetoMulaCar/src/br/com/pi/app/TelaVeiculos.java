@@ -31,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
  * @author jhonlinux
  */
 public class TelaVeiculos extends javax.swing.JFrame {
-    
+
     //--- BLL´S --------------------------------------------------------------------------------------->
     private VeiculosBll veiculosBll = null;
     private ModelosBll modelosBll = null;
@@ -46,7 +46,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
     private Modelos modelo = null;
     //--- FIM CLASSES --------------------------------------------------------------------------------->
     //
-    
+
     public TelaVeiculos() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -115,14 +115,13 @@ public class TelaVeiculos extends javax.swing.JFrame {
     public void preencherFormularioVeiculo() throws Exception {
 
         try {
-            int id = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 0).toString());           
+            int id = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 0).toString());
             veiculo = veiculosBll.getVeiculosById(id);
 
             jComboBoxModelo.setSelectedItem(veiculo.getModelo().getNome());
             jTextFieldTipoDoVeiculo.setText(veiculo.getModelo().getTiposDeVeiculos().getNome());
             jTextFieldMarca.setText(veiculo.getModelo().getMarcas().getNome());
             jTextFieldCategoria.setText(veiculo.getModelo().getCategoria().getNome());
-            
 
             jTextFieldIDVeiculo.setText(id + "");
             jTextFieldPlaca.setText(veiculo.getPlaca());
@@ -134,7 +133,7 @@ public class TelaVeiculos extends javax.swing.JFrame {
             jTextFieldTipoDeCombustivel.setText(veiculo.getTipoDeCombustivel());
             jTextFieldCapacidadeTanque.setText(veiculo.getCapacidadeCombustivel() + "");
             jTextAreaObservacoes.setText(veiculo.getObservacoes());
-            
+
             jTextFieldPlaca.setEnabled(true);
 
         } catch (Exception error) {
@@ -164,13 +163,17 @@ public class TelaVeiculos extends javax.swing.JFrame {
     }
 
     public void ValidaVeículo() throws Exception {
-        
+
         if (jRadioButtonMercosul.isSelected()) {
             Valida.validarPlacaMercosul(jTextFieldPlaca.getText(), "Ex: Mercosul BRA2E19");
         }
 
         if (jRadioButtonNacional.isSelected()) {
             Valida.validaPlacaNacional(jTextFieldPlaca.getText(), "Ex: Nacional PHL-4508");
+        }
+
+        if (jTextFieldTipoDeCombustivel.getText() != "GASOLINA") {
+            throw new Exception("Tipo de combustível invalido!\nVeículo não possui este tipo de combustível!");
         }
 
         Valida.campoVazio(jTextFieldPlaca.getText(), "Selecione o modelo da placa\nLogo em seguida digite a placa do veículo!");
@@ -590,9 +593,9 @@ public class TelaVeiculos extends javax.swing.JFrame {
             ValidaVeículo();
             String nome = jComboBoxModelo.getSelectedItem().toString();
             modelo = modelosBll.getModeloByNome(nome);
-            int id = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 0).toString());           
+            int id = Integer.parseInt(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 0).toString());
             veiculo = veiculosBll.getVeiculosById(id);
-            
+
             veiculo.setModelo(modelo);
             veiculo.setIden(Integer.parseInt(jTextFieldIDVeiculo.getText()));
             veiculo.setPlaca(jTextFieldPlaca.getText());
